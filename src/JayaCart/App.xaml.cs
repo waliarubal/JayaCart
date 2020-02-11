@@ -1,5 +1,4 @@
-﻿using JayaCart.View;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace JayaCart
 {
@@ -9,7 +8,7 @@ namespace JayaCart
         {
             InitializeComponent();
 
-            MainPage = new MainView();
+            //MainPage = new MainView();
         }
 
         protected override void OnStart()
