@@ -15,7 +15,7 @@
     <ContentPage.Content>
         <StackLayout
             Margin="8"
-            HorizontalOptions="CenterAndExpand"
+            HorizontalOptions="StartAndExpand"
             VerticalOptions="Center">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -25,8 +25,8 @@
                 <Label FontSize="Title" Text="Log in" />
                 <Label Grid.Column="1" Text="Forgot password?" />
             </Grid>
-            <Entry Text="Email or mobile number" />
-            <Entry IsPassword="True" Text="Password" />
+            <Entry Placeholder="Mobile phone number" />
+            <Entry IsPassword="True" Placeholder="Password" />
             <StackLayout Orientation="Horizontal">
                 <CheckBox />
                 <Label Text="Show password" />
@@ -36,6 +36,7 @@
                 <Label Text="Keep me logged in" />
             </StackLayout>
             <Button Text="Log in" />
+            <Label HorizontalTextAlignment="Center" Text="Don't have an account?" />
             <Button Text="Create a new account" />
         </StackLayout>
     </ContentPage.Content>
