@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 
 namespace JayaCart
 {
@@ -19,6 +20,20 @@ namespace JayaCart
 
         protected override void OnResume()
         {
+        }
+
+        internal static void Navigate(Type viewType)
+        {
+            var mainPage = Current.MainPage as MasterDetailPage;
+            if (mainPage == null)
+                return;
+
+            var view = Activator.CreateInstance(viewType) as Page;
+            if (view == null)
+                return;
+
+            mainPage.Detail = new NavigationPage(view);
+            mainPage.IsPresented = false;
         }
     }
 }

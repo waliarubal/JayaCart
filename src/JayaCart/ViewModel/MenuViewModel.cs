@@ -9,14 +9,14 @@ namespace JayaCart.ViewModel
 {
     public class MenuViewModel: ViewModelBase
     {
-        ICommand _menuClick;
+        ICommand _openView;
 
         public MenuViewModel()
         {
             Menus = new ObservableCollection<MenuItemModel>
             {
                 new MenuItemModel("Home", typeof(ItemsView), "\uf015"),
-                new MenuItemModel("Shopping Cart", typeof(ItemsView), "\uf07a"),
+                new MenuItemModel("Shopping Cart", typeof(LoginView), "\uf07a"),
                 new MenuItemModel("Your Orders", typeof(ItemsView), "\uf290"),
                 new MenuItemModel("Your Account", typeof(ItemsView), "\uf007")
             };
@@ -32,20 +32,20 @@ namespace JayaCart.ViewModel
 
         public UserAccountModel Account { get; }
 
-        public ICommand MenuClickCommand
+        public ICommand OpenViewCommand
         {
             get
             {
-                if (_menuClick == null)
-                    _menuClick = new RelayCommand<MenuItemModel>(MenuClickAction);
+                if (_openView == null)
+                    _openView = new RelayCommand<MenuItemModel>(OpenViewAction);
 
-                return _menuClick;
+                return _openView;
             }
         }
 
-        void MenuClickAction(MenuItemModel menu)
+        void OpenViewAction(MenuItemModel menu)
         {
-
+            App.Navigate(menu.ViewType);
         }
     }
 }

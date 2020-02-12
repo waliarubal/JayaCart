@@ -4,5 +4,6 @@ namespace JayaCart.ViewModel
 {
     public class MainViewModel: ViewModelBase
     {
+        
     }
 }

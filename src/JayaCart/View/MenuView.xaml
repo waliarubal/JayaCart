@@ -12,17 +12,17 @@
         <vm:MenuViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Resources>
-        <c:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+        <c:SelectedItemEventArgsToSelectedItemConverter x:Key="TappedItemConverter" />
     </ContentPage.Resources>
     <ListView
         ItemsSource="{Binding Menus}"
-        SelectionMode="Single"
+        SelectionMode="None"
         SeparatorVisibility="None">
         <ListView.Behaviors>
             <b:EventToCommandBehavior
-                Command="{Binding MenuClickCommand}"
-                Converter="{StaticResource SelectedItemConverter}}"
-                EventName="ItemSelected" />
+                Command="{Binding OpenViewCommand}"
+                Converter="{StaticResource TappedItemConverter}}"
+                EventName="ItemTapped" />
         </ListView.Behaviors>
         <ListView.Header>
             <Grid Margin="8" HorizontalOptions="FillAndExpand">
