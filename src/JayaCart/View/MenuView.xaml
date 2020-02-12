@@ -9,7 +9,11 @@
     <ContentPage.BindingContext>
         <vm:MenuViewModel />
     </ContentPage.BindingContext>
-    <ListView ItemsSource="{Binding Menus}" SeparatorVisibility="None">
+    <ListView
+        ItemsSource="{Binding Menus}"
+        SelectedItem="{Binding SelectedMenu}"
+        SelectionMode="Single"
+        SeparatorVisibility="None">
         <ListView.Header>
             <Grid Margin="8" HorizontalOptions="FillAndExpand">
                 <Grid.Resources>

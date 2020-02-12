@@ -27,5 +27,11 @@ namespace JayaCart.ViewModel
         public ObservableCollection<MenuItemModel> Menus { get; }
 
         public UserAccountModel Account { get; }
+
+        public MenuItemModel SelectedMenu
+        {
+            get => Get<MenuItemModel>();
+            set => Set(value);
+        }
     }
 }

@@ -12,10 +12,6 @@
         <v:MenuView />
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
-        <NavigationPage>
-            <x:Arguments>
-                <v:ItemsView />
-            </x:Arguments>
-        </NavigationPage>
+        <NavigationPage />
     </MasterDetailPage.Detail>
 </MasterDetailPage>
