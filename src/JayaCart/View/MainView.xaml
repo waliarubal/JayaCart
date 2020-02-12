@@ -3,14 +3,18 @@
     x:Class="JayaCart.View.MainView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:JayaCart.View">
+    xmlns:v="clr-namespace:JayaCart.View"
+    xmlns:vm="clr-namespace:JayaCart.ViewModel">
+    <MasterDetailPage.BindingContext>
+        <vm:MainViewModel />
+    </MasterDetailPage.BindingContext>
     <MasterDetailPage.Master>
-        <pages:MenuView x:Name="MasterPage" />
+        <v:MenuView />
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <pages:ItemsView />
+                <v:ItemsView />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

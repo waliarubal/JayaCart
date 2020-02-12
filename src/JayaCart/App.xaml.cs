@@ -7,8 +7,6 @@ namespace JayaCart
         public App()
         {
             InitializeComponent();
-
-            //MainPage = new MainView();
         }
 
         protected override void OnStart()

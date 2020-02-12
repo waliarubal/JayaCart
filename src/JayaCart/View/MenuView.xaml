@@ -3,46 +3,60 @@
     x:Class="JayaCart.View.MenuView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:c="clr-namespace:JayaCart.Controls"
+    xmlns:vm="clr-namespace:JayaCart.ViewModel"
     Title="Master">
-    <StackLayout>
-        <ListView
-            x:Name="MenuItemsListView"
-            HasUnevenRows="true"
-            ItemsSource="{Binding MenuItems}"
-            SeparatorVisibility="None">
-            <ListView.Header>
-                <Grid BackgroundColor="#03A9F4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="10" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30" />
-                        <RowDefinition Height="80" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="10" />
-                    </Grid.RowDefinitions>
-                    <Label
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        Style="{DynamicResource SubtitleStyle}"
-                        Text="AppName" />
-                </Grid>
-            </ListView.Header>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
-                            <Label
-                                FontSize="24"
-                                Text="{Binding Title}"
-                                VerticalOptions="FillAndExpand"
-                                VerticalTextAlignment="Center" />
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+    <ContentPage.BindingContext>
+        <vm:MenuViewModel />
+    </ContentPage.BindingContext>
+    <ListView ItemsSource="{Binding Menus}" SeparatorVisibility="None">
+        <ListView.Header>
+            <Grid Margin="8" HorizontalOptions="FillAndExpand">
+                <Grid.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="VerticalTextAlignment" Value="Center" />
+                        <Setter Property="FontSize" Value="Title" />
+                        <Setter Property="FontAttributes" Value="Italic" />
+                    </Style>
+                    <Style TargetType="c:FontAwesomeIcon">
+                        <Setter Property="Margin" Value="8,0,0,0" />
+                        <Setter Property="FontSize" Value="Title" />
+                        <Setter Property="VerticalTextAlignment" Value="Center" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <c:FontAwesomeIcon Text="{Binding Account.Image}" />
+                <Label Grid.Column="1" Text="{Binding Account.FullName, StringFormat='Hello, {0}'}" />
+            </Grid>
+        </ListView.Header>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Margin="8,0,8,0" HorizontalOptions="FillAndExpand">
+                        <Grid.Resources>
+                            <Style TargetType="Label">
+                                <Setter Property="Margin" Value="8,0" />
+                                <Setter Property="VerticalTextAlignment" Value="Center" />
+                                <Setter Property="FontSize" Value="Subtitle" />
+                            </Style>
+                            <Style TargetType="c:FontAwesomeIcon">
+                                <Setter Property="Margin" Value="8,0,0,0" />
+                                <Setter Property="FontSize" Value="Subtitle" />
+                                <Setter Property="VerticalTextAlignment" Value="Center" />
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <c:FontAwesomeIcon Text="{Binding Image}" />
+                        <Label Grid.Column="1" Text="{Binding Title}" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>
