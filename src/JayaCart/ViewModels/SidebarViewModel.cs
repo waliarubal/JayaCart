@@ -37,7 +37,10 @@ namespace JayaCart.ViewModels
 
         void OpenViewAction(SidebarItemModel item)
         {
-            _navigationService.Navigate(item);
+            if (item.IsViewModal)
+                _navigationService.NavigateModal(item);
+            else
+                _navigationService.Navigate(item);
         }
     }
 }

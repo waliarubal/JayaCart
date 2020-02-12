@@ -2,6 +2,7 @@
 using JayaCart.Views;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace JayaCart.Services.Navigation
@@ -17,7 +18,7 @@ namespace JayaCart.Services.Navigation
                 new SidebarItemModel("Your Orders", typeof(OrdersView), "\uf290"),
                 new SidebarItemModel("Your Account", typeof(CreateAccountView), "\uf007"),
                 new SidebarItemModel("Legal & About", typeof(AboutView), "\uf56c"),
-                new SidebarItemModel("Sign Out", typeof(LoginView), "\uf2f5")
+                new SidebarItemModel("Sign Out", typeof(LoginView), "\uf2f5", true)
             };
             return menus;
         }
@@ -34,6 +35,20 @@ namespace JayaCart.Services.Navigation
 
             mainPage.Detail = new NavigationPage(view);
             mainPage.IsPresented = false;
+            return true;
+        }
+
+        public async Task<bool> NavigateModal(SidebarItemModel item)
+        {
+            var mainPage = Application.Current.MainPage as MasterDetailPage;
+            if (mainPage == null)
+                return false;
+
+            var view = Activator.CreateInstance(item.ViewType) as Page;
+            if (view == null)
+                return false;
+
+            await mainPage.Detail.Navigation.PushModalAsync(view);
             return true;
         }
     }

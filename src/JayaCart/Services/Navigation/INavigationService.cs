@@ -1,5 +1,6 @@
 ﻿using JayaCart.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace JayaCart.Services.Navigation
 {
@@ -8,5 +9,7 @@ namespace JayaCart.Services.Navigation
         IEnumerable<SidebarItemModel> GetSidebarItems();
 
         bool Navigate(SidebarItemModel item);
+
+        Task<bool> NavigateModal(SidebarItemModel item);
     }
 }

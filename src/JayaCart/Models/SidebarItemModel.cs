@@ -5,11 +5,12 @@ namespace JayaCart.Models
 {
     public class SidebarItemModel: ModelBase
     {
-        public SidebarItemModel(string title, Type viewType, string image = null)
+        public SidebarItemModel(string title, Type viewType, string image = null, bool isViewModal = false)
         {
             Title = title;
             Image = image;
             ViewType = viewType;
+            IsViewModal = isViewModal;
         }
 
         public string Title
@@ -27,6 +28,12 @@ namespace JayaCart.Models
         public Type ViewType
         {
             get => Get<Type>();
+            set => Set(value);
+        }
+
+        public bool IsViewModal
+        {
+            get => Get<bool>();
             set => Set(value);
         }
     }
