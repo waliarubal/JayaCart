@@ -1,20 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MasterDetailPage
-    x:Class="JayaCart.View.MainView"
+    x:Class="JayaCart.Views.MainView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:v="clr-namespace:JayaCart.View"
-    xmlns:vm="clr-namespace:JayaCart.ViewModel">
-    <MasterDetailPage.BindingContext>
-        <vm:MainViewModel />
-    </MasterDetailPage.BindingContext>
+    xmlns:shared="https://github.com/waliarubal/schemas"
+    xmlns:views="clr-namespace:JayaCart.Views"
+    Title="Jaya Cart"
+    shared:ViewModelLocator.AutoWireViewModel="True">
     <MasterDetailPage.Master>
-        <v:SidebarView />
+        <views:SidebarView />
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <v:ProductsView />
+                <views:ProductsView />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

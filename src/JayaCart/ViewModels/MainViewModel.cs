@@ -1,9 +1,9 @@
 ﻿using JayaCart.Shared.Base;
 
-namespace JayaCart.ViewModel
+namespace JayaCart.ViewModels
 {
     public class MainViewModel: ViewModelBase
     {
-        
+       
     }
 }

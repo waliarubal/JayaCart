@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace JayaCart.Shared.Command
+namespace JayaCart.Shared.Commands
 {
     public class RelayCommand : CommandBase
     {

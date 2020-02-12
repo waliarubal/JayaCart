@@ -1,7 +1,7 @@
 ﻿using JayaCart.Shared.Base;
 using System;
 
-namespace JayaCart.Model
+namespace JayaCart.Models
 {
     public class SidebarItemModel: ModelBase
     {

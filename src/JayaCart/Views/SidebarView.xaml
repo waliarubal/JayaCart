@@ -1,25 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="JayaCart.View.SidebarView"
+    x:Class="JayaCart.Views.SidebarView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:b="clr-namespace:JayaCart.Shared.Behaivor;assembly=JayaCart.Shared"
-    xmlns:c="clr-namespace:JayaCart.Shared.Converter;assembly=JayaCart.Shared"
-    xmlns:cntl="clr-namespace:JayaCart.Shared.Controls;assembly=JayaCart.Shared"
-    xmlns:vm="clr-namespace:JayaCart.ViewModel"
-    Title="Master">
-    <ContentPage.BindingContext>
-        <vm:SidebarViewModel />
-    </ContentPage.BindingContext>
+    xmlns:shared="https://github.com/waliarubal/schemas"
+    Title="Sidebar"
+    shared:ViewModelLocator.AutoWireViewModel="True">
     <ContentPage.Resources>
-        <c:SelectedItemEventArgsToSelectedItemConverter x:Key="TappedItemConverter" />
+        <shared:SelectedItemEventArgsToSelectedItemConverter x:Key="TappedItemConverter" />
     </ContentPage.Resources>
     <ListView
         ItemsSource="{Binding Items}"
         SelectionMode="None"
         SeparatorVisibility="None">
+        <ListView.Resources>
+            <Style TargetType="shared:FontAwesomeIcon">
+                <Setter Property="Margin" Value="8,0,0,0" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+        </ListView.Resources>
         <ListView.Behaviors>
-            <b:EventToCommandBehavior
+            <shared:EventToCommandBehavior
                 Command="{Binding OpenViewCommand}"
                 Converter="{StaticResource TappedItemConverter}}"
                 EventName="ItemTapped" />
@@ -31,30 +32,22 @@
                         <Setter Property="VerticalTextAlignment" Value="Center" />
                         <Setter Property="FontAttributes" Value="Italic" />
                     </Style>
-                    <Style TargetType="cntl:FontAwesomeIcon">
-                        <Setter Property="Margin" Value="8,0,0,0" />
-                        <Setter Property="VerticalTextAlignment" Value="Center" />
-                    </Style>
                 </Grid.Resources>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <cntl:FontAwesomeIcon Text="{Binding Account.Image}" />
+                <shared:FontAwesomeIcon Text="{Binding Account.Image}" />
                 <Label Grid.Column="1" Text="{Binding Account.FullName, StringFormat='Hello, {0}'}" />
             </Grid>
         </ListView.Header>
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Grid Margin="8,0,8,0" HorizontalOptions="FillAndExpand">
+                    <Grid Margin="8,0" HorizontalOptions="FillAndExpand">
                         <Grid.Resources>
                             <Style TargetType="Label">
                                 <Setter Property="Margin" Value="8,0" />
-                                <Setter Property="VerticalTextAlignment" Value="Center" />
-                            </Style>
-                            <Style TargetType="cntl:FontAwesomeIcon">
-                                <Setter Property="Margin" Value="8,0,0,0" />
                                 <Setter Property="VerticalTextAlignment" Value="Center" />
                             </Style>
                         </Grid.Resources>
@@ -62,7 +55,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <cntl:FontAwesomeIcon Text="{Binding Image}" />
+                        <shared:FontAwesomeIcon Text="{Binding Image}" />
                         <Label Grid.Column="1" Text="{Binding Title}" />
                     </Grid>
                 </ViewCell>

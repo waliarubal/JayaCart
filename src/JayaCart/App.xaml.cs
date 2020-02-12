@@ -1,6 +1,7 @@
-﻿using JayaCart.Shared;
+﻿using JayaCart.Services.Navigation;
+using JayaCart.Services.UserAccount;
+using JayaCart.Shared;
 using System;
-using System.Reflection;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,14 +11,21 @@ namespace JayaCart
 {
     public partial class App : Application
     {
+        void RegisterDependencies()
+        {
+            ViewModelLocator.RegisterSingleton<INavigationService, NavigationService>();
+            ViewModelLocator.RegisterSingleton<IUserAccountService, UserAccountService>();
+        }
+
         public App()
         {
+            RegisterDependencies();
             InitializeComponent();
         }
 
         protected override void OnStart()
         {
-            ServiceLocator.Instance.DiscoverAndRegisterSingelton(Assembly.GetExecutingAssembly().GetTypes(), "Service");
+            
         }
 
         protected override void OnSleep()

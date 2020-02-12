@@ -1,12 +1,12 @@
-﻿using JayaCart.Model;
-using JayaCart.View;
+﻿using JayaCart.Models;
+using JayaCart.Views;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace JayaCart.Services
+namespace JayaCart.Services.Navigation
 {
-    public sealed class NavigationService
+    public class NavigationService: INavigationService
     {
         public IEnumerable<SidebarItemModel> GetSidebarItems()
         {

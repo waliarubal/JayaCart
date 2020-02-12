@@ -16,10 +16,5 @@
         }
 
         #endregion
-
-        protected T Resolve<T>() where T : class
-        {
-            return ServiceLocator.Instance.Resolve<T>();
-        }
     }
 }

@@ -2,12 +2,12 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace JayaCart.View
+namespace JayaCart.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginView : ContentPage
+    public partial class ProductsView : ContentPage
     {
-        public LoginView()
+        public ProductsView()
         {
             InitializeComponent();
         }

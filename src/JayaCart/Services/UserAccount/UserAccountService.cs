@@ -1,8 +1,8 @@
-﻿using JayaCart.Model;
+﻿using JayaCart.Models;
 
-namespace JayaCart.Services
+namespace JayaCart.Services.UserAccount
 {
-    public sealed class UserAccountService
+    public class UserAccountService: IUserAccountService
     {
         public UserAccountModel GetSavedAccount()
         {

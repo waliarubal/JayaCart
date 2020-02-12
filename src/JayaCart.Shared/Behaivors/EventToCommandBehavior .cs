@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace JayaCart.Shared.Behaivor
+namespace JayaCart.Shared.Behaviors
 {
     public class EventToCommandBehavior : BehaviorBase<View>
     {

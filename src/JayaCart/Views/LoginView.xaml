@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JayaCart.Views.LoginView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Login"
+    mc:Ignorable="d">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="HorizontalTextAlignment" Value="Start" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid
+            Margin="8"
+            HorizontalOptions="Fill"
+            VerticalOptions="Start">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label FontSize="Title" Text="Log in" />
+            <Label Grid.Column="1" Text="Forgot password?" />
+
+            <Entry
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                Placeholder="Mobile phone number" />
+            <Entry
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                IsPassword="True"
+                Placeholder="Password" />
+
+            <StackLayout
+                Grid.Row="3"
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal">
+                <CheckBox />
+                <Label Text="Show password" />
+            </StackLayout>
+
+            <StackLayout
+                Grid.Row="4"
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal">
+                <CheckBox />
+                <Label Text="Keep me logged in" />
+            </StackLayout>
+
+            <Button
+                Grid.Row="5"
+                Grid.ColumnSpan="2"
+                Text="Log in" />
+
+            <Label
+                Grid.Row="6"
+                Grid.ColumnSpan="2"
+                HorizontalTextAlignment="Center"
+                Text="Don't have an account?" />
+
+            <Button
+                Grid.Row="7"
+                Grid.ColumnSpan="2"
+                Text="Create a new account" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

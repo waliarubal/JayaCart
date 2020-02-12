@@ -1,6 +1,6 @@
 ﻿using JayaCart.Shared.Base;
 
-namespace JayaCart.Model
+namespace JayaCart.Models
 {
     public class UserAccountModel: ModelBase
     {
