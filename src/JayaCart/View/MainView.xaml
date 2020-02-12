@@ -9,12 +9,12 @@
         <vm:MainViewModel />
     </MasterDetailPage.BindingContext>
     <MasterDetailPage.Master>
-        <v:MenuView />
+        <v:SidebarView />
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <v:ItemsView />
+                <v:ProductsView />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

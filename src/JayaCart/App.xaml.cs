@@ -1,5 +1,10 @@
-﻿using System;
+﻿using JayaCart.Shared;
+using System;
+using System.Reflection;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
 namespace JayaCart
 {
@@ -12,6 +17,7 @@ namespace JayaCart
 
         protected override void OnStart()
         {
+            ServiceLocator.Instance.DiscoverAndRegisterSingelton(Assembly.GetExecutingAssembly().GetTypes(), "Service");
         }
 
         protected override void OnSleep()

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="JayaCart.View.MenuView"
+    x:Class="JayaCart.View.SidebarView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:b="clr-namespace:JayaCart.Shared.Behaivor;assembly=JayaCart.Shared"
@@ -9,13 +9,13 @@
     xmlns:vm="clr-namespace:JayaCart.ViewModel"
     Title="Master">
     <ContentPage.BindingContext>
-        <vm:MenuViewModel />
+        <vm:SidebarViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Resources>
         <c:SelectedItemEventArgsToSelectedItemConverter x:Key="TappedItemConverter" />
     </ContentPage.Resources>
     <ListView
-        ItemsSource="{Binding Menus}"
+        ItemsSource="{Binding Items}"
         SelectionMode="None"
         SeparatorVisibility="None">
         <ListView.Behaviors>

@@ -3,9 +3,9 @@ using System;
 
 namespace JayaCart.Model
 {
-    public class MenuItemModel: ModelBase
+    public class SidebarItemModel: ModelBase
     {
-        public MenuItemModel(string title, Type viewType, string image = null)
+        public SidebarItemModel(string title, Type viewType, string image = null)
         {
             Title = title;
             Image = image;

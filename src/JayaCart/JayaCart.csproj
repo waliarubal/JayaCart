@@ -21,11 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="View\ItemsView.xaml.cs">
-      <DependentUpon>ItemsView.xaml</DependentUpon>
+    <Compile Update="View\ProductsView.xaml.cs">
+      <DependentUpon>ProductsView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\MenuView.xaml.cs">
-      <DependentUpon>MenuView.xaml</DependentUpon>
+    <Compile Update="View\SidebarView.xaml.cs">
+      <DependentUpon>SidebarView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -42,10 +42,10 @@
     <EmbeddedResource Update="View\MainView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\ItemsView.xaml">
+    <EmbeddedResource Update="View\ProductsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\MenuView.xaml">
+    <EmbeddedResource Update="View\SidebarView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
