@@ -1,4 +1,4 @@
-﻿using JayaCart.Base;
+﻿using JayaCart.Shared.Base;
 
 namespace JayaCart.ViewModel
 {

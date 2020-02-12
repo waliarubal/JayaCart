@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace JayaCart.Controls
+namespace JayaCart.Shared.Controls
 {
     public class FontAwesomeIcon : Label
     {

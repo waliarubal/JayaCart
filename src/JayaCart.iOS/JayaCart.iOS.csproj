@@ -133,11 +133,15 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991640" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\JayaCart.Shared\JayaCart.Shared.csproj">
+      <Project>{ac8a8fe8-ee8e-48d6-9251-05f72f34c05b}</Project>
+      <Name>JayaCart.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JayaCart\JayaCart.csproj">
       <Project>{78A7D8D4-9FF3-4D7F-9FB8-CD8DD3A4E158}</Project>
       <Name>JayaCart</Name>

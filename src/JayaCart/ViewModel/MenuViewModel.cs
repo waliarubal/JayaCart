@@ -1,5 +1,5 @@
-﻿using JayaCart.Base;
-using JayaCart.Model;
+﻿using JayaCart.Model;
+using JayaCart.Shared.Base;
 using JayaCart.View;
 using System.Collections.ObjectModel;
 

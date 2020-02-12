@@ -10,7 +10,4 @@
     <Application.MainPage>
         <v:MainView />
     </Application.MainPage>
-    <Application.Resources>
-
-    </Application.Resources>
 </Application>

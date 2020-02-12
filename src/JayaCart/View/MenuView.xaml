@@ -3,7 +3,7 @@
     x:Class="JayaCart.View.MenuView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:c="clr-namespace:JayaCart.Controls"
+    xmlns:c="clr-namespace:JayaCart.Shared.Controls;assembly=JayaCart.Shared"
     xmlns:vm="clr-namespace:JayaCart.ViewModel"
     Title="Master">
     <ContentPage.BindingContext>

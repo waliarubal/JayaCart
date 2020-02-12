@@ -1,8 +1,8 @@
-﻿using JayaCart.Base;
+﻿using JayaCart.Shared.Base;
 using System;
 using System.Threading.Tasks;
 
-namespace JayaCart.Common
+namespace JayaCart.Shared.Command
 {
     public class RelayCommand : CommandBase
     {

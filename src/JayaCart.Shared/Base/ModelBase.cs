@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace JayaCart.Base
+namespace JayaCart.Shared.Base
 {
     public abstract class ModelBase : INotifyPropertyChanged
     {

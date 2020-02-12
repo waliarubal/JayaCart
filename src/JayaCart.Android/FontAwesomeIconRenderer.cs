@@ -1,7 +1,7 @@
 ﻿using Android.Content;
 using Android.Graphics;
-using JayaCart.Controls;
 using JayaCart.Droid;
+using JayaCart.Shared.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
