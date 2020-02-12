@@ -1,12 +1,16 @@
 ﻿using JayaCart.Model;
 using JayaCart.Shared.Base;
+using JayaCart.Shared.Command;
 using JayaCart.View;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace JayaCart.ViewModel
 {
     public class MenuViewModel: ViewModelBase
     {
+        ICommand _menuClick;
+
         public MenuViewModel()
         {
             Menus = new ObservableCollection<MenuItemModel>
@@ -28,10 +32,20 @@ namespace JayaCart.ViewModel
 
         public UserAccountModel Account { get; }
 
-        public MenuItemModel SelectedMenu
+        public ICommand MenuClickCommand
         {
-            get => Get<MenuItemModel>();
-            set => Set(value);
+            get
+            {
+                if (_menuClick == null)
+                    _menuClick = new RelayCommand<MenuItemModel>(MenuClickAction);
+
+                return _menuClick;
+            }
+        }
+
+        void MenuClickAction(MenuItemModel menu)
+        {
+
         }
     }
 }

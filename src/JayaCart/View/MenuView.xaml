@@ -3,28 +3,36 @@
     x:Class="JayaCart.View.MenuView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:c="clr-namespace:JayaCart.Shared.Controls;assembly=JayaCart.Shared"
+    xmlns:b="clr-namespace:JayaCart.Shared.Behaivor;assembly=JayaCart.Shared"
+    xmlns:c="clr-namespace:JayaCart.Shared.Converter;assembly=JayaCart.Shared"
+    xmlns:cntl="clr-namespace:JayaCart.Shared.Controls;assembly=JayaCart.Shared"
     xmlns:vm="clr-namespace:JayaCart.ViewModel"
     Title="Master">
     <ContentPage.BindingContext>
         <vm:MenuViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <c:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+    </ContentPage.Resources>
     <ListView
         ItemsSource="{Binding Menus}"
-        SelectedItem="{Binding SelectedMenu}"
         SelectionMode="Single"
         SeparatorVisibility="None">
+        <ListView.Behaviors>
+            <b:EventToCommandBehavior
+                Command="{Binding MenuClickCommand}"
+                Converter="{StaticResource SelectedItemConverter}}"
+                EventName="ItemSelected" />
+        </ListView.Behaviors>
         <ListView.Header>
             <Grid Margin="8" HorizontalOptions="FillAndExpand">
                 <Grid.Resources>
                     <Style TargetType="Label">
                         <Setter Property="VerticalTextAlignment" Value="Center" />
-                        <Setter Property="FontSize" Value="Title" />
                         <Setter Property="FontAttributes" Value="Italic" />
                     </Style>
-                    <Style TargetType="c:FontAwesomeIcon">
+                    <Style TargetType="cntl:FontAwesomeIcon">
                         <Setter Property="Margin" Value="8,0,0,0" />
-                        <Setter Property="FontSize" Value="Title" />
                         <Setter Property="VerticalTextAlignment" Value="Center" />
                     </Style>
                 </Grid.Resources>
@@ -32,7 +40,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <c:FontAwesomeIcon Text="{Binding Account.Image}" />
+                <cntl:FontAwesomeIcon Text="{Binding Account.Image}" />
                 <Label Grid.Column="1" Text="{Binding Account.FullName, StringFormat='Hello, {0}'}" />
             </Grid>
         </ListView.Header>
@@ -44,11 +52,9 @@
                             <Style TargetType="Label">
                                 <Setter Property="Margin" Value="8,0" />
                                 <Setter Property="VerticalTextAlignment" Value="Center" />
-                                <Setter Property="FontSize" Value="Subtitle" />
                             </Style>
-                            <Style TargetType="c:FontAwesomeIcon">
+                            <Style TargetType="cntl:FontAwesomeIcon">
                                 <Setter Property="Margin" Value="8,0,0,0" />
-                                <Setter Property="FontSize" Value="Subtitle" />
                                 <Setter Property="VerticalTextAlignment" Value="Center" />
                             </Style>
                         </Grid.Resources>
@@ -56,7 +62,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <c:FontAwesomeIcon Text="{Binding Image}" />
+                        <cntl:FontAwesomeIcon Text="{Binding Image}" />
                         <Label Grid.Column="1" Text="{Binding Title}" />
                     </Grid>
                 </ViewCell>
