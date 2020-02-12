@@ -13,9 +13,11 @@ namespace JayaCart.Services.Navigation
             var menus = new List<SidebarItemModel>
             {
                 new SidebarItemModel("Home", typeof(ProductsView), "\uf015"),
-                new SidebarItemModel("Shopping Cart", typeof(LoginView), "\uf07a"),
-                new SidebarItemModel("Your Orders", typeof(ProductsView), "\uf290"),
-                new SidebarItemModel("Your Account", typeof(ProductsView), "\uf007")
+                new SidebarItemModel("Shopping Cart", typeof(ShoppingCartView), "\uf07a"),
+                new SidebarItemModel("Your Orders", typeof(OrdersView), "\uf290"),
+                new SidebarItemModel("Your Account", typeof(CreateAccountView), "\uf007"),
+                new SidebarItemModel("Legal & About", typeof(AboutView), "\uf56c"),
+                new SidebarItemModel("Sign Out", typeof(LoginView), "\uf2f5")
             };
             return menus;
         }

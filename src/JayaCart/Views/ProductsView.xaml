@@ -4,7 +4,14 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Products">
-    <StackLayout Padding="10">
-        <Label Text="This is a detail page. To get the 'triple' line icon on each platform add a icon to each platform and update the 'Master' page with an Icon that references it." />
-    </StackLayout>
+    <CollectionView HorizontalOptions="Fill" VerticalOptions="Fill">
+        <CollectionView.Header>
+            <SearchBar Placeholder="Search products..." />
+        </CollectionView.Header>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Label Text="Item" />
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

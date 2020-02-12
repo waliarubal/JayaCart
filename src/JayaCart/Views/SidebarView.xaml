@@ -22,7 +22,7 @@
         <ListView.Behaviors>
             <shared:EventToCommandBehavior
                 Command="{Binding OpenViewCommand}"
-                Converter="{StaticResource TappedItemConverter}}"
+                Converter="{StaticResource TappedItemConverter}"
                 EventName="ItemTapped" />
         </ListView.Behaviors>
         <ListView.Header>
