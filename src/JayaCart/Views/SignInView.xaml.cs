@@ -5,9 +5,9 @@ using Xamarin.Forms.Xaml;
 namespace JayaCart.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginView : ContentPage
+    public partial class SignInView : ContentPage
     {
-        public LoginView()
+        public SignInView()
         {
             InitializeComponent();
         }

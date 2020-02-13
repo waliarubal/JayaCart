@@ -6,7 +6,7 @@ namespace JayaCart.Services.Navigation
 {
     public enum ViewType: byte
     {
-        Login,
+        SignIn,
         CreateAccount,
         Products,
         ShoppingCart,

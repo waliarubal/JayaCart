@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="JayaCart.Views.LoginView"
+    x:Class="JayaCart.Views.SignInView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:shared="https://github.com/waliarubal/schemas"
     Title="Sign In"
+    shared:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
     <ContentPage.Resources>
         <Style TargetType="Label">

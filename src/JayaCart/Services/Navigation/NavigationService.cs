@@ -18,7 +18,7 @@ namespace JayaCart.Services.Navigation
                 [ViewType.About] = new KeyValuePair<Type, bool>(typeof(AboutView), false),
                 [ViewType.Account] = new KeyValuePair<Type, bool>(typeof(AccountView), false),
                 [ViewType.CreateAccount] = new KeyValuePair<Type, bool>(typeof(CreateAccountView), true),
-                [ViewType.Login] = new KeyValuePair<Type, bool>(typeof(LoginView), true),
+                [ViewType.SignIn] = new KeyValuePair<Type, bool>(typeof(SignInView), true),
                 [ViewType.Orders] = new KeyValuePair<Type, bool>(typeof(OrdersView), false),
                 [ViewType.Products] = new KeyValuePair<Type, bool>(typeof(ProductsView), false),
                 [ViewType.ShoppingCart] = new KeyValuePair<Type, bool>(typeof(ShoppingCartView), false)
@@ -34,7 +34,7 @@ namespace JayaCart.Services.Navigation
                 new SidebarItemModel("Your Orders", ViewType.Orders, "\uf290"),
                 new SidebarItemModel("Your Account", ViewType.Account, "\uf007"),
                 new SidebarItemModel("Legal & About", ViewType.About, "\uf56c"),
-                new SidebarItemModel("Sign Out", ViewType.Login, "\uf2f5")
+                new SidebarItemModel("Sign Out", ViewType.SignIn, "\uf2f5")
             };
             return menus;
         }

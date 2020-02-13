@@ -4,6 +4,7 @@ using JayaCart.Services.UserAccount;
 using JayaCart.Shared.Base;
 using JayaCart.Shared.Commands;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace JayaCart.ViewModels
@@ -12,17 +13,23 @@ namespace JayaCart.ViewModels
     {
         ICommand _itemClick;
         readonly INavigationService _navigationService;
-        readonly IUserAccountService _userAccountService;
+        readonly IUserAccountService _accountService;
 
         public SidebarViewModel(INavigationService navigationService, IUserAccountService userAccountService)
         {
             _navigationService = navigationService;
-            _userAccountService = userAccountService;
+            _accountService = userAccountService;
+
+            Task.Run(async() => await SignIn());
         }
 
         public IEnumerable<SidebarItemModel> Items => _navigationService?.GetSidebarItems();
 
-        public UserAccountModel Account => _userAccountService?.GetSignedInAccount();
+        public UserAccountModel Account
+        {
+            get => Get<UserAccountModel>();
+            private set => Set(value);
+        }
 
         public ICommand ItemClickCommand
         {
@@ -35,11 +42,15 @@ namespace JayaCart.ViewModels
             }
         }
 
+        async Task SignIn()
+        {
+            Account = _accountService.GetSignedInAccount();
+            if (Account == null)
+                await _navigationService.Navigate(ViewType.SignIn);
+        }
+
         async void ItemClickAction(SidebarItemModel item)
         {
-            if (item.View == ViewType.Login)
-                await _userAccountService.SignOut();
-
             await _navigationService.Navigate(item.View);
         }
     }
