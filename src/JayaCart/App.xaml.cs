@@ -1,6 +1,4 @@
-﻿using JayaCart.Services.Navigation;
-using JayaCart.Services.Settings;
-using JayaCart.Services.UserAccount;
+﻿using JayaCart.Services;
 using JayaCart.Shared;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

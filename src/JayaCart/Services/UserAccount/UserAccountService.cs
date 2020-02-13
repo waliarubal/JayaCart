@@ -1,11 +1,10 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
 using JayaCart.Models;
-using JayaCart.Services.Settings;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JayaCart.Services.UserAccount
+namespace JayaCart.Services
 {
     public class UserAccountService : IUserAccountService
     {
@@ -18,7 +17,7 @@ namespace JayaCart.Services.UserAccount
             _database = new FirebaseClient("https://jaya-cart-2020.firebaseio.com/");
         }
 
-        public async Task<UserAccountModel> Create(UserAccountModel account)
+        public async Task<UserAccount> Create(UserAccount account)
         {
             var existingAccount = await GetAccount(account.PhoneNumber);
             if (existingAccount != null)
@@ -28,15 +27,15 @@ namespace JayaCart.Services.UserAccount
             return account;
         }
 
-        public UserAccountModel GetLocalAccount()
+        public UserAccount GetLocalAccount()
         {
-            if (_settingsService.IsHaving(nameof(UserAccountModel.PhoneNumber)))
+            if (_settingsService.IsHaving(nameof(UserAccount.PhoneNumber)))
             {
-                var localAccount = new UserAccountModel
+                var localAccount = new UserAccount
                 {
-                    PhoneNumber = _settingsService.Get<string>(nameof(UserAccountModel.PhoneNumber)),
-                    FullName = _settingsService.Get<string>(nameof(UserAccountModel.FullName)),
-                    Image = _settingsService.Get<string>(nameof(UserAccountModel.Image))
+                    PhoneNumber = _settingsService.Get<string>(nameof(UserAccount.PhoneNumber)),
+                    FullName = _settingsService.Get<string>(nameof(UserAccount.FullName)),
+                    Image = _settingsService.Get<string>(nameof(UserAccount.Image))
                 };
                 return localAccount;
             }
@@ -44,7 +43,7 @@ namespace JayaCart.Services.UserAccount
             return default;
         }
 
-        public async Task<UserAccountModel> SignIn(string phone, string password, bool keepSignedIn)
+        public async Task<UserAccount> SignIn(string phone, string password, bool keepSignedIn)
         {
             var account = await GetAccount(phone);
             if (!account.Password.Equals(password))
@@ -52,9 +51,9 @@ namespace JayaCart.Services.UserAccount
 
             if (keepSignedIn)
             {
-                _settingsService.Set(nameof(UserAccountModel.PhoneNumber), account.PhoneNumber);
-                _settingsService.Set(nameof(UserAccountModel.FullName), account.FullName);
-                _settingsService.Set(nameof(UserAccountModel.Image), account.Image);
+                _settingsService.Set(nameof(UserAccount.PhoneNumber), account.PhoneNumber);
+                _settingsService.Set(nameof(UserAccount.FullName), account.FullName);
+                _settingsService.Set(nameof(UserAccount.Image), account.Image);
                 await _settingsService.Save();
             }
 
@@ -63,18 +62,18 @@ namespace JayaCart.Services.UserAccount
 
         public async Task SignOut()
         {
-            _settingsService.Delete(nameof(UserAccountModel.PhoneNumber));
-            _settingsService.Delete(nameof(UserAccountModel.FullName));
-            _settingsService.Delete(nameof(UserAccountModel.Image));
+            _settingsService.Delete(nameof(UserAccount.PhoneNumber));
+            _settingsService.Delete(nameof(UserAccount.FullName));
+            _settingsService.Delete(nameof(UserAccount.Image));
             await _settingsService.Save();
         }
 
-        async Task<UserAccountModel> GetAccount(string phone)
+        async Task<UserAccount> GetAccount(string phone)
         {
             var account = (await _database
                 .Child("UserAccounts")
-                .OnceAsync<UserAccountModel>())
-                .Select(record => new UserAccountModel
+                .OnceAsync<UserAccount>())
+                .Select(record => new UserAccount
                 {
                     FullName = record.Object.FullName,
                     PhoneNumber = record.Object.PhoneNumber,

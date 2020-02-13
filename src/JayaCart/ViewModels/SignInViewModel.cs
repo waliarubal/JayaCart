@@ -1,5 +1,4 @@
-﻿using JayaCart.Services.Navigation;
-using JayaCart.Services.UserAccount;
+﻿using JayaCart.Services;
 using JayaCart.Shared.Base;
 using JayaCart.Shared.Commands;
 using System.Threading.Tasks;

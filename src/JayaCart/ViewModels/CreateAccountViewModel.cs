@@ -1,6 +1,5 @@
 ﻿using JayaCart.Models;
-using JayaCart.Services.Navigation;
-using JayaCart.Services.UserAccount;
+using JayaCart.Services;
 using JayaCart.Shared.Base;
 using JayaCart.Shared.Commands;
 using System.Windows.Input;
@@ -62,7 +61,7 @@ namespace JayaCart.ViewModels
 
         async void CreateAccountAction()
         {
-            var account = new UserAccountModel
+            var account = new UserAccount
             {
                 PhoneNumber = PhoneNumber,
                 FullName = FullName,

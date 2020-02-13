@@ -1,11 +1,11 @@
-﻿using JayaCart.Services.Navigation;
+﻿using JayaCart.Services;
 using JayaCart.Shared.Base;
 
 namespace JayaCart.Models
 {
-    public class SidebarItemModel: ModelBase
+    public class SidebarItem: ModelBase
     {
-        public SidebarItemModel(string title, ViewType view, string image = null)
+        public SidebarItem(string title, ViewType view, string image = null)
         {
             Title = title;
             Image = image;

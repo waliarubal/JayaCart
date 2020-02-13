@@ -2,14 +2,14 @@
 
 namespace JayaCart.Models
 {
-    public class UserAccountModel: ModelBase
+    public class UserAccount: ModelBase
     {
-        public UserAccountModel()
+        public UserAccount()
         {
             Image = "\uf2bd";
         }
 
-        public UserAccountModel(string phone, string name): this()
+        public UserAccount(string phone, string name): this()
         {
             PhoneNumber = phone;
             FullName = name;

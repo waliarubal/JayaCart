@@ -1,15 +1,15 @@
 ﻿using JayaCart.Models;
 using System.Threading.Tasks;
 
-namespace JayaCart.Services.UserAccount
+namespace JayaCart.Services
 {
     public interface IUserAccountService
     {
-        UserAccountModel GetLocalAccount();
+        UserAccount GetLocalAccount();
 
-        Task<UserAccountModel> SignIn(string phone, string password, bool keepSignedIn);
+        Task<UserAccount> SignIn(string phone, string password, bool keepSignedIn);
 
-        Task<UserAccountModel> Create(UserAccountModel account);
+        Task<UserAccount> Create(UserAccount account);
 
         Task SignOut();
     }

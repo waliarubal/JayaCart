@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace JayaCart.Services.Navigation
+namespace JayaCart.Services
 {
     public enum ViewType: byte
     {
@@ -17,7 +17,7 @@ namespace JayaCart.Services.Navigation
 
     public interface INavigationService
     {
-        IEnumerable<SidebarItemModel> GetSidebarItems();
+        IEnumerable<SidebarItem> GetSidebarItems();
 
         Task Navigate(ViewType viewType);
 

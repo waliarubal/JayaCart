@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace JayaCart.Services.Navigation
+namespace JayaCart.Services
 {
     public class NavigationService : INavigationService
     {
@@ -35,17 +35,18 @@ namespace JayaCart.Services.Navigation
                 await mainPage.Navigation.PopModalAsync();
         }
 
-        public IEnumerable<SidebarItemModel> GetSidebarItems()
+        public IEnumerable<SidebarItem> GetSidebarItems()
         {
-            var menus = new List<SidebarItemModel>
+            var menus = new List<SidebarItem>
             {
-                new SidebarItemModel("Home", ViewType.Products, "\uf015"),
-                new SidebarItemModel("Shopping Cart", ViewType.ShoppingCart, "\uf07a"),
-                new SidebarItemModel("Your Orders", ViewType.Orders, "\uf290"),
-                new SidebarItemModel("Your Account", ViewType.Account, "\uf007"),
-                new SidebarItemModel("Legal & About", ViewType.About, "\uf56c"),
-                new SidebarItemModel("Sign Out", ViewType.SignIn, "\uf2f5")
+                new SidebarItem("Home", ViewType.Products, "\uf015"),
+                new SidebarItem("Shopping Cart", ViewType.ShoppingCart, "\uf07a"),
+                new SidebarItem("Your Orders", ViewType.Orders, "\uf290"),
+                new SidebarItem("Your Account", ViewType.Account, "\uf007"),
+                new SidebarItem("Legal & About", ViewType.About, "\uf56c"),
+                new SidebarItem("Sign Out", ViewType.SignIn, "\uf2f5")
             };
+
             return menus;
         }
 
