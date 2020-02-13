@@ -13,36 +13,39 @@ namespace JayaCart.Services.UserAccount
             _settingsService = settingsService;
         }
 
-        public UserAccountModel GetSignedInAccount()
+        public UserAccountModel GetLocalAccount()
         {
-            var phone = _settingsService.Get<string>(nameof(UserAccountModel.PhoneNumber));
-            if (phone != null)
+            if (_settingsService.IsHaving(nameof(UserAccountModel.PhoneNumber)))
             {
-                return new UserAccountModel
+                var localAccount = new UserAccountModel
                 {
-                    PhoneNumber = phone,
+                    PhoneNumber = _settingsService.Get<string>(nameof(UserAccountModel.PhoneNumber)),
                     FullName = _settingsService.Get<string>(nameof(UserAccountModel.FullName)),
                     Image = _settingsService.Get<string>(nameof(UserAccountModel.Image))
                 };
+                return localAccount;
             }
 
             return default;
         }
 
-        public async Task<UserAccountModel> SignIn(string phone, string password)
+        public async Task<UserAccountModel> SignIn(string phone, string password, bool keepSignedIn)
         {
             // dummy account
             var account = new UserAccountModel
             {
-                FullName = "Rubal Walia",
-                PhoneNumber = "9928893416"
+                FullName = "User Full Name",
+                PhoneNumber = phone
             };
 
-            _settingsService.Set(nameof(UserAccountModel.PhoneNumber), account.PhoneNumber);
-            _settingsService.Set(nameof(UserAccountModel.FullName), account.FullName);
-            _settingsService.Set(nameof(UserAccountModel.Image), account.Image);
-            await _settingsService.Save();
-
+            if (keepSignedIn)
+            {
+                _settingsService.Set(nameof(UserAccountModel.PhoneNumber), account.PhoneNumber);
+                _settingsService.Set(nameof(UserAccountModel.FullName), account.FullName);
+                _settingsService.Set(nameof(UserAccountModel.Image), account.Image);
+                await _settingsService.Save();
+            }
+            
             return account;
         }
 

@@ -11,5 +11,7 @@ namespace JayaCart.Services.Settings
         void Set<T>(string name, T value);
 
         bool Delete(string name);
+
+        bool IsHaving(string name);
     }
 }

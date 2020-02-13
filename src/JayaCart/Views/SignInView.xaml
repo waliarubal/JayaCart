@@ -41,23 +41,35 @@
             <Entry
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
-                Placeholder="Mobile phone number">
+                Placeholder="Mobile phone number"
+                Text="{Binding PhoneNumber}">
                 <Entry.Behaviors>
                     <shared:NumericValidationBehavior />
                     <shared:EntryLengthValidatorBehavior MaxLength="10" />
                 </Entry.Behaviors>
             </Entry>
+
             <Entry
                 Grid.Row="2"
                 Grid.ColumnSpan="2"
                 IsPassword="True"
-                Placeholder="Password" />
+                Placeholder="Password"
+                Text="{Binding Password}">
+                <Entry.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsPasswordShown}"
+                        TargetType="Entry"
+                        Value="True">
+                        <Setter Property="IsPassword" Value="False" />
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
 
             <StackLayout
                 Grid.Row="3"
                 Grid.ColumnSpan="2"
                 Orientation="Horizontal">
-                <CheckBox />
+                <CheckBox IsChecked="{Binding IsPasswordShown}" />
                 <Label Text="Show password" />
             </StackLayout>
 
@@ -65,7 +77,7 @@
                 Grid.Row="4"
                 Grid.ColumnSpan="2"
                 Orientation="Horizontal">
-                <CheckBox />
+                <CheckBox IsChecked="{Binding IsSignInPreserved}" />
                 <Label Text="Keep me logged in" />
             </StackLayout>
 

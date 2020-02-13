@@ -29,7 +29,15 @@ namespace JayaCart.Services.Settings
 
         public bool Delete(string name)
         {
-            return Settings.Remove(name);
+            if (IsHaving(name))
+                return Settings.Remove(name);
+
+            return false;
+        }
+
+        public bool IsHaving(string name)
+        {
+            return Settings.ContainsKey(name);
         }
     }
 }

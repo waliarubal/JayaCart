@@ -44,7 +44,7 @@ namespace JayaCart.ViewModels
 
         async Task SignIn()
         {
-            Account = _accountService.GetSignedInAccount();
+            Account = _accountService.GetLocalAccount();
             if (Account == null)
                 await _navigationService.Navigate(ViewType.SignIn);
         }

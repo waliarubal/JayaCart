@@ -5,9 +5,9 @@ namespace JayaCart.Services.UserAccount
 {
     public interface IUserAccountService
     {
-        UserAccountModel GetSignedInAccount();
+        UserAccountModel GetLocalAccount();
 
-        Task<UserAccountModel> SignIn(string phone, string password);
+        Task<UserAccountModel> SignIn(string phone, string password, bool keepSignedIn);
 
         Task SignOut();
     }
