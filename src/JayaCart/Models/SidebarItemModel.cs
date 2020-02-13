@@ -1,16 +1,15 @@
-﻿using JayaCart.Shared.Base;
-using System;
+﻿using JayaCart.Services.Navigation;
+using JayaCart.Shared.Base;
 
 namespace JayaCart.Models
 {
     public class SidebarItemModel: ModelBase
     {
-        public SidebarItemModel(string title, Type viewType, string image = null, bool isViewModal = false)
+        public SidebarItemModel(string title, ViewType view, string image = null)
         {
             Title = title;
             Image = image;
-            ViewType = viewType;
-            IsViewModal = isViewModal;
+            View = view;
         }
 
         public string Title
@@ -25,15 +24,9 @@ namespace JayaCart.Models
             set => Set(value);
         }
 
-        public Type ViewType
+        public ViewType View
         {
-            get => Get<Type>();
-            set => Set(value);
-        }
-
-        public bool IsViewModal
-        {
-            get => Get<bool>();
+            get => Get<ViewType>();
             set => Set(value);
         }
     }

@@ -4,6 +4,6 @@ namespace JayaCart.Services.UserAccount
 {
     public interface IUserAccountService
     {
-        UserAccountModel GetSavedAccount();
+        UserAccountModel GetLoggedInAccount();
     }
 }

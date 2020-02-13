@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace JayaCart.ViewModels
 {
-    public class SidebarViewModel: ViewModelBase
+    public class SidebarViewModel : ViewModelBase
     {
         ICommand _openView;
         readonly INavigationService _navigationService;
@@ -22,7 +22,7 @@ namespace JayaCart.ViewModels
 
         public IEnumerable<SidebarItemModel> Items => _navigationService?.GetSidebarItems();
 
-        public UserAccountModel Account => _userAccountService?.GetSavedAccount();
+        public UserAccountModel Account => _userAccountService?.GetLoggedInAccount();
 
         public ICommand OpenViewCommand
         {
@@ -37,10 +37,7 @@ namespace JayaCart.ViewModels
 
         void OpenViewAction(SidebarItemModel item)
         {
-            if (item.IsViewModal)
-                _navigationService.NavigateModal(item);
-            else
-                _navigationService.Navigate(item);
+            _navigationService.Navigate(item.View);
         }
     }
 }

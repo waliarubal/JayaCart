@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Create Account"
     mc:Ignorable="d">
     <ContentPage.Resources>
         <Style TargetType="Label">
@@ -37,7 +38,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Label FontSize="Title" Text="Create account" />
+            <Label FontSize="Large" Text="Create account" />
 
             <Label Grid.Row="1" Text="Your name" />
             <Entry Grid.Row="2" Placeholder="Your full name" />
