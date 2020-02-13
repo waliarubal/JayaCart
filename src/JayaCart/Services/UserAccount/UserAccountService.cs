@@ -1,6 +1,7 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
 using JayaCart.Models;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,21 +10,21 @@ namespace JayaCart.Services
     public class UserAccountService : IUserAccountService
     {
         readonly ISettingsService _settingsService;
-        readonly FirebaseClient _database;
+        readonly FirebaseClient _connection;
 
         public UserAccountService(ISettingsService settingsService)
         {
             _settingsService = settingsService;
-            _database = new FirebaseClient("https://jaya-cart-2020.firebaseio.com/");
+            _connection = Helpers.Instance.GetConnection();
         }
 
         public async Task<UserAccount> Create(UserAccount account)
         {
             var existingAccount = await GetAccount(account.PhoneNumber);
             if (existingAccount != null)
-                return default;
+                throw new InvalidOperationException($"Another user with phone number {account.PhoneNumber} is already registered.");
 
-            await _database.Child("UserAccounts").PostAsync(account);
+            await _connection.Child("UserAccounts").PostAsync(account);
             return account;
         }
 
@@ -47,7 +48,7 @@ namespace JayaCart.Services
         {
             var account = await GetAccount(phone);
             if (!account.Password.Equals(password))
-                return default;
+                throw new InvalidOperationException("Failed to sign in, phone number and passowrd combination is incorrect.");
 
             if (keepSignedIn)
             {
@@ -70,7 +71,7 @@ namespace JayaCart.Services
 
         async Task<UserAccount> GetAccount(string phone)
         {
-            var account = (await _database
+            var account = (await _connection
                 .Child("UserAccounts")
                 .OnceAsync<UserAccount>())
                 .Select(record => new UserAccount
