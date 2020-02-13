@@ -7,13 +7,13 @@ using Xamarin.Forms;
 
 namespace JayaCart.Services.Navigation
 {
-    public class NavigationService: INavigationService
+    public class NavigationService : INavigationService
     {
         readonly Dictionary<ViewType, KeyValuePair<Type, bool>> _viewMapping;
 
         public NavigationService()
         {
-            _viewMapping = new Dictionary <ViewType, KeyValuePair<Type, bool>>
+            _viewMapping = new Dictionary<ViewType, KeyValuePair<Type, bool>>
             {
                 [ViewType.About] = new KeyValuePair<Type, bool>(typeof(AboutView), false),
                 [ViewType.Account] = new KeyValuePair<Type, bool>(typeof(AccountView), false),
@@ -23,6 +23,16 @@ namespace JayaCart.Services.Navigation
                 [ViewType.Products] = new KeyValuePair<Type, bool>(typeof(ProductsView), false),
                 [ViewType.ShoppingCart] = new KeyValuePair<Type, bool>(typeof(ShoppingCartView), false)
             };
+        }
+
+        public async Task Close()
+        {
+            var mainPage = Application.Current.MainPage as MasterDetailPage;
+            if (mainPage == null)
+                return;
+
+            if (mainPage.Navigation.ModalStack.Count > 0)
+                await mainPage.Navigation.PopModalAsync();
         }
 
         public IEnumerable<SidebarItemModel> GetSidebarItems()
@@ -48,6 +58,8 @@ namespace JayaCart.Services.Navigation
             var view = Activator.CreateInstance(_viewMapping[viewType].Key) as Page;
             if (view == null)
                 return;
+
+            await Close();
 
             if (_viewMapping[viewType].Value)
                 await mainPage.Navigation.PushModalAsync(view);

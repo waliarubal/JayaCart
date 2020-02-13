@@ -1,4 +1,5 @@
-﻿using JayaCart.Services.UserAccount;
+﻿using JayaCart.Services.Navigation;
+using JayaCart.Services.UserAccount;
 using JayaCart.Shared.Base;
 using JayaCart.Shared.Commands;
 using System.Threading.Tasks;
@@ -8,12 +9,14 @@ namespace JayaCart.ViewModels
 {
     public class SignInViewModel: ViewModelBase
     {
-        ICommand _signIn;
+        ICommand _signIn, _createAccount;
         readonly IUserAccountService _accountService;
+        readonly INavigationService _navigationService;
 
-        public SignInViewModel(IUserAccountService accountService)
+        public SignInViewModel(IUserAccountService accountService, INavigationService navigationService)
         {
             _accountService = accountService;
+            _navigationService = navigationService;
 
             Task.Run(async() => await SignOut());
         }
@@ -53,11 +56,27 @@ namespace JayaCart.ViewModels
             }
         }
 
+        public ICommand CreateAccountCommand
+        {
+            get
+            {
+                if (_createAccount == null)
+                    _createAccount = new RelayCommand(CreateAccountAction);
+
+                return _createAccount;
+            }
+        }
+
+        async void CreateAccountAction()
+        {
+            await _navigationService.Navigate(ViewType.CreateAccount);
+        }
+
         async void SignInAction()
         {
             var user = await _accountService.SignIn(PhoneNumber, Password, IsSignInPreserved);
             if (user != null)
-                return;
+                await _navigationService.Close();
         }
 
         async Task SignOut()

@@ -27,6 +27,12 @@ namespace JayaCart.Models
             set => Set(value);
         }
 
+        public string Address
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+
         public string Password
         {
             get => Get<string>();

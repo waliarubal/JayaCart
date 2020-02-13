@@ -2,7 +2,6 @@
 using JayaCart.Services.Settings;
 using JayaCart.Services.UserAccount;
 using JayaCart.Shared;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -36,20 +35,6 @@ namespace JayaCart
 
         protected override void OnResume()
         {
-        }
-
-        internal static void Navigate(Type viewType)
-        {
-            var mainPage = Current.MainPage as MasterDetailPage;
-            if (mainPage == null)
-                return;
-
-            var view = Activator.CreateInstance(viewType) as Page;
-            if (view == null)
-                return;
-
-            mainPage.Detail = new NavigationPage(view);
-            mainPage.IsPresented = false;
         }
     }
 }

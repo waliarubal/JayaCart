@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:shared="https://github.com/waliarubal/schemas"
     Title="Create Account"
+    shared:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
     <ContentPage.Resources>
         <Style TargetType="Label">
@@ -42,10 +43,16 @@
             <Label FontSize="Large" Text="Create account" />
 
             <Label Grid.Row="1" Text="Your name" />
-            <Entry Grid.Row="2" Placeholder="Your full name" />
+            <Entry
+                Grid.Row="2"
+                Placeholder="Your full name"
+                Text="{Binding FullName}" />
 
             <Label Grid.Row="3" Text="Phone number" />
-            <Entry Grid.Row="4" Placeholder="Your mobile phone number">
+            <Entry
+                Grid.Row="4"
+                Placeholder="Your mobile phone number"
+                Text="{Binding PhoneNumber}">
                 <Entry.Behaviors>
                     <shared:NumericValidationBehavior />
                     <shared:EntryLengthValidatorBehavior MaxLength="10" />
@@ -53,21 +60,29 @@
             </Entry>
 
             <Label Grid.Row="5" Text="Address" />
-            <Editor Grid.Row="6" Placeholder="Enter your full postal address" />
+            <Editor
+                Grid.Row="6"
+                Placeholder="Enter your full postal address"
+                Text="{Binding Address}" />
 
             <Label Grid.Row="7" Text="Create password" />
             <Entry
                 Grid.Row="8"
                 IsPassword="True"
-                Placeholder="At least 6 characters" />
+                Placeholder="At least 6 characters"
+                Text="{Binding Password}" />
 
             <Label Grid.Row="9" Text="Confirm password" />
             <Entry
                 Grid.Row="10"
                 IsPassword="True"
-                Placeholder="Must match password" />
+                Placeholder="Must match password"
+                Text="{Binding ConfirmPassword}" />
 
-            <Button Grid.Row="11" Text="Create your account" />
+            <Button
+                Grid.Row="11"
+                Command="{Binding CreateAccountCommand}"
+                Text="Create your account" />
 
             <Label Grid.Row="12" Text="By creating an account, you agree to our conditions of use and privacy policy." />
 

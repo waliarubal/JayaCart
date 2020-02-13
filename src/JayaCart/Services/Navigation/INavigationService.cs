@@ -20,5 +20,7 @@ namespace JayaCart.Services.Navigation
         IEnumerable<SidebarItemModel> GetSidebarItems();
 
         Task Navigate(ViewType viewType);
+
+        Task Close();
     }
 }

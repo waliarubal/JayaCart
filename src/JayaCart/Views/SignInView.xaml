@@ -84,7 +84,8 @@
             <Button
                 Grid.Row="5"
                 Grid.ColumnSpan="2"
-                Text="Log in" />
+                Command="{Binding SignInCommand}"
+                Text="Sign in" />
 
             <Label
                 Grid.Row="6"
@@ -95,6 +96,7 @@
             <Button
                 Grid.Row="7"
                 Grid.ColumnSpan="2"
+                Command="{Binding CreateAccountCommand}"
                 Text="Create a new account" />
         </Grid>
     </ContentPage.Content>

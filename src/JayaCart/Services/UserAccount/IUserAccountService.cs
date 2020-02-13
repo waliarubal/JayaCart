@@ -9,6 +9,8 @@ namespace JayaCart.Services.UserAccount
 
         Task<UserAccountModel> SignIn(string phone, string password, bool keepSignedIn);
 
+        Task<UserAccountModel> Create(UserAccountModel account);
+
         Task SignOut();
     }
 }

@@ -1,16 +1,31 @@
-﻿using System.Threading.Tasks;
+﻿using Firebase.Database;
+using Firebase.Database.Query;
 using JayaCart.Models;
 using JayaCart.Services.Settings;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace JayaCart.Services.UserAccount
 {
-    public class UserAccountService: IUserAccountService
+    public class UserAccountService : IUserAccountService
     {
         readonly ISettingsService _settingsService;
+        readonly FirebaseClient _database;
 
         public UserAccountService(ISettingsService settingsService)
         {
             _settingsService = settingsService;
+            _database = new FirebaseClient("https://jaya-cart-2020.firebaseio.com/");
+        }
+
+        public async Task<UserAccountModel> Create(UserAccountModel account)
+        {
+            var existingAccount = await GetAccount(account.PhoneNumber);
+            if (existingAccount != null)
+                return default;
+
+            await _database.Child("UserAccounts").PostAsync(account);
+            return account;
         }
 
         public UserAccountModel GetLocalAccount()
@@ -31,12 +46,9 @@ namespace JayaCart.Services.UserAccount
 
         public async Task<UserAccountModel> SignIn(string phone, string password, bool keepSignedIn)
         {
-            // dummy account
-            var account = new UserAccountModel
-            {
-                FullName = "User Full Name",
-                PhoneNumber = phone
-            };
+            var account = await GetAccount(phone);
+            if (!account.Password.Equals(password))
+                return default;
 
             if (keepSignedIn)
             {
@@ -45,7 +57,7 @@ namespace JayaCart.Services.UserAccount
                 _settingsService.Set(nameof(UserAccountModel.Image), account.Image);
                 await _settingsService.Save();
             }
-            
+
             return account;
         }
 
@@ -55,6 +67,23 @@ namespace JayaCart.Services.UserAccount
             _settingsService.Delete(nameof(UserAccountModel.FullName));
             _settingsService.Delete(nameof(UserAccountModel.Image));
             await _settingsService.Save();
+        }
+
+        async Task<UserAccountModel> GetAccount(string phone)
+        {
+            var account = (await _database
+                .Child("UserAccounts")
+                .OnceAsync<UserAccountModel>())
+                .Select(record => new UserAccountModel
+                {
+                    FullName = record.Object.FullName,
+                    PhoneNumber = record.Object.PhoneNumber,
+                    Image = record.Object.Image,
+                    Password = record.Object.Password
+                })
+                .Where(record => record.PhoneNumber.Equals(phone))
+                .FirstOrDefault();
+            return account;
         }
     }
 }
