@@ -10,7 +10,7 @@ namespace JayaCart.ViewModels
 {
     public class SidebarViewModel : ViewModelBase
     {
-        ICommand _openView;
+        ICommand _itemClick;
         readonly INavigationService _navigationService;
         readonly IUserAccountService _userAccountService;
 
@@ -22,22 +22,25 @@ namespace JayaCart.ViewModels
 
         public IEnumerable<SidebarItemModel> Items => _navigationService?.GetSidebarItems();
 
-        public UserAccountModel Account => _userAccountService?.GetLoggedInAccount();
+        public UserAccountModel Account => _userAccountService?.GetSignedInAccount();
 
-        public ICommand OpenViewCommand
+        public ICommand ItemClickCommand
         {
             get
             {
-                if (_openView == null)
-                    _openView = new RelayCommand<SidebarItemModel>(OpenViewAction);
+                if (_itemClick == null)
+                    _itemClick = new RelayCommand<SidebarItemModel>(ItemClickAction);
 
-                return _openView;
+                return _itemClick;
             }
         }
 
-        void OpenViewAction(SidebarItemModel item)
+        async void ItemClickAction(SidebarItemModel item)
         {
-            _navigationService.Navigate(item.View);
+            if (item.View == ViewType.Login)
+                await _userAccountService.SignOut();
+
+            await _navigationService.Navigate(item.View);
         }
     }
 }

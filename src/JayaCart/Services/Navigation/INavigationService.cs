@@ -1,5 +1,6 @@
 ﻿using JayaCart.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace JayaCart.Services.Navigation
 {
@@ -18,6 +19,6 @@ namespace JayaCart.Services.Navigation
     {
         IEnumerable<SidebarItemModel> GetSidebarItems();
 
-        void Navigate(ViewType viewType);
+        Task Navigate(ViewType viewType);
     }
 }

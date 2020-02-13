@@ -9,13 +9,19 @@ namespace JayaCart.Models
             Image = "\uf2bd";
         }
 
-        public string FullName
+        public UserAccountModel(string phone, string name): this()
+        {
+            PhoneNumber = phone;
+            FullName = name;
+        }
+
+        public string PhoneNumber
         {
             get => Get<string>();
             set => Set(value);
         }
 
-        public string PhoneNumber
+        public string FullName
         {
             get => Get<string>();
             set => Set(value);

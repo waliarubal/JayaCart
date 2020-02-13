@@ -2,6 +2,7 @@
 using JayaCart.Views;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace JayaCart.Services.Navigation
@@ -38,7 +39,7 @@ namespace JayaCart.Services.Navigation
             return menus;
         }
 
-        public async void Navigate(ViewType viewType)
+        public async Task Navigate(ViewType viewType)
         {
             var mainPage = Application.Current.MainPage as MasterDetailPage;
             if (mainPage == null)

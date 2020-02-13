@@ -1,4 +1,5 @@
 ﻿using JayaCart.Services.Navigation;
+using JayaCart.Services.Settings;
 using JayaCart.Services.UserAccount;
 using JayaCart.Shared;
 using System;
@@ -13,6 +14,7 @@ namespace JayaCart
     {
         void RegisterDependencies()
         {
+            ViewModelLocator.RegisterSingleton<ISettingsService, SettingsService>();
             ViewModelLocator.RegisterSingleton<INavigationService, NavigationService>();
             ViewModelLocator.RegisterSingleton<IUserAccountService, UserAccountService>();
         }

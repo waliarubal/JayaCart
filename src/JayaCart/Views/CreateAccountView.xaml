@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:shared="https://github.com/waliarubal/schemas"
     Title="Create Account"
     mc:Ignorable="d">
     <ContentPage.Resources>
@@ -44,7 +45,12 @@
             <Entry Grid.Row="2" Placeholder="Your full name" />
 
             <Label Grid.Row="3" Text="Phone number" />
-            <Entry Grid.Row="4" Placeholder="Your mobile phone number" />
+            <Entry Grid.Row="4" Placeholder="Your mobile phone number">
+                <Entry.Behaviors>
+                    <shared:NumericValidationBehavior />
+                    <shared:EntryLengthValidatorBehavior MaxLength="10" />
+                </Entry.Behaviors>
+            </Entry>
 
             <Label Grid.Row="5" Text="Address" />
             <Editor Grid.Row="6" Placeholder="Enter your full postal address" />

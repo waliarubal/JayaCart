@@ -21,12 +21,12 @@
         </ListView.Resources>
         <ListView.Behaviors>
             <shared:EventToCommandBehavior
-                Command="{Binding OpenViewCommand}"
+                Command="{Binding ItemClickCommand}"
                 Converter="{StaticResource TappedItemConverter}"
                 EventName="ItemTapped" />
         </ListView.Behaviors>
         <ListView.Header>
-            <Grid Margin="8" HorizontalOptions="FillAndExpand">
+            <Grid Margin="8" HorizontalOptions="Fill">
                 <Grid.Resources>
                     <Style TargetType="Label">
                         <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -44,7 +44,7 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Grid Margin="8,0" HorizontalOptions="FillAndExpand">
+                    <Grid Margin="8,0" HorizontalOptions="Fill">
                         <Grid.Resources>
                             <Style TargetType="Label">
                                 <Setter Property="Margin" Value="8,0" />
