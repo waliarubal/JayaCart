@@ -48,7 +48,6 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <!--<Image Source="{shared:ImageResource {Binding Image}}" />-->
                         <Label Grid.Column="1" Text="{Binding Title}" />
                     </Grid>
                 </ViewCell>

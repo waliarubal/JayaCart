@@ -26,19 +26,4 @@ namespace JayaCart.Shared
             return md5String;
         }
     }
-
-    [ContentProperty(nameof(Source))]
-    public class ImageResourceExtension : IMarkupExtension
-    {
-        public string Source { get; set; }
-
-        public object ProvideValue(IServiceProvider serviceProvider)
-        {
-            if (Source == null)
-                return default;
-
-            var imageSource = ImageSource.FromResource(Source, Assembly.GetCallingAssembly());
-            return imageSource;
-        }
-    }
 }
