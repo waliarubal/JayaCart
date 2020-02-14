@@ -2,7 +2,6 @@
 using JayaCart.Shared;
 using JayaCart.Shared.Services;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace JayaCart.Services
@@ -20,16 +19,7 @@ namespace JayaCart.Services
 
         async Task<UserAccount> GetAccount(string phoneNumber)
         {
-            var account = (await _databaseService.GetMany<UserAccount>("UserAccounts"))
-                .Select(record => new UserAccount
-                {
-                    FullName = record.Object.FullName,
-                    PhoneNumber = record.Object.PhoneNumber,
-                    Image = record.Object.Image,
-                    Password = record.Object.Password
-                })
-                .Where(record => record.PhoneNumber.Equals(phoneNumber))
-                .FirstOrDefault();
+            var account = await _databaseService.Get<UserAccount>("UserAccounts", phoneNumber);
             return account;
         }
 
@@ -41,7 +31,7 @@ namespace JayaCart.Services
 
             account.Password = account.Password.MD5();
 
-            var newAccount = await _databaseService.Set("UserAccounts", account);
+            var newAccount = await _databaseService.Set("UserAccounts", account.PhoneNumber, account);
             if (newAccount == null)
                 throw new ServiceException($"Failed to create user account with phone number {account.PhoneNumber}");
 

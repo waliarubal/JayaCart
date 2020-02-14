@@ -6,10 +6,10 @@ namespace JayaCart.Shared.Services
 {
     public interface IDatabaseService
     {
-        Task<T> Get<T>(string resourceName);
+        Task<T> Get<T>(string collectionName, string key);
 
-        Task<IReadOnlyCollection<FirebaseObject<T>>> GetMany<T>(string resourceName);
+        Task<IReadOnlyCollection<FirebaseObject<T>>> GetMany<T>(string collectionName);
 
-        Task<FirebaseObject<T>> Set<T>(string resourceName, T record);
+        Task<T> Set<T>(string collectionName, string key, T record);
     }
 }
