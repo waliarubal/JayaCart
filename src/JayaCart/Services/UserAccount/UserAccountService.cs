@@ -1,4 +1,5 @@
 ﻿using JayaCart.Models;
+using JayaCart.Shared;
 using JayaCart.Shared.Services;
 using System;
 using System.Linq;
@@ -33,12 +34,23 @@ namespace JayaCart.Services
         }
 
         public async Task<UserAccount> Create(UserAccount account)
-        {
+        {            
             var existingAccount = await GetAccount(account.PhoneNumber);
             if (existingAccount != null)
-                throw new InvalidOperationException($"Another user with phone number {account.PhoneNumber} is already registered.");
+                throw new ServiceException($"Another user with phone number {account.PhoneNumber} is registered.");
 
-            await _databaseService.Set("UserAccounts", account);
+            account.Password = account.Password.MD5();
+
+            var newAccount = await _databaseService.Set("UserAccounts", account);
+            if (newAccount == null)
+                throw new ServiceException($"Failed to create user account with phone number {account.PhoneNumber}");
+
+            _settingsService.Set(nameof(UserAccount.PhoneNumber), account.PhoneNumber);
+            _settingsService.Set(nameof(UserAccount.FullName), account.FullName);
+            _settingsService.Set(nameof(UserAccount.Address), account.Address);
+            _settingsService.Set(nameof(UserAccount.Image), account.Image);
+            await _settingsService.Save();
+
             return account;
         }
 
@@ -61,13 +73,18 @@ namespace JayaCart.Services
         public async Task<UserAccount> SignIn(string phone, string password, bool keepSignedIn)
         {
             var account = await GetAccount(phone);
-            if (!account.Password.Equals(password))
-                throw new InvalidOperationException("Failed to sign in, phone number and passowrd combination is incorrect.");
+            if (account == null)
+                throw new ServiceException($"User with phone number {phone} is not registered.");
+
+            var passwordHash = password.MD5();
+            if (!account.Password.Equals(passwordHash, StringComparison.Ordinal))
+                throw new ServiceException("Password is incorrect.");
 
             if (keepSignedIn)
             {
                 _settingsService.Set(nameof(UserAccount.PhoneNumber), account.PhoneNumber);
                 _settingsService.Set(nameof(UserAccount.FullName), account.FullName);
+                _settingsService.Set(nameof(UserAccount.Address), account.Address);
                 _settingsService.Set(nameof(UserAccount.Image), account.Image);
                 await _settingsService.Save();
             }
@@ -79,6 +96,7 @@ namespace JayaCart.Services
         {
             _settingsService.Delete(nameof(UserAccount.PhoneNumber));
             _settingsService.Delete(nameof(UserAccount.FullName));
+            _settingsService.Delete(nameof(UserAccount.Address));
             _settingsService.Delete(nameof(UserAccount.Image));
             await _settingsService.Save();
         }

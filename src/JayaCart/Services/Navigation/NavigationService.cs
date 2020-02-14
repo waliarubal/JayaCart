@@ -31,6 +31,7 @@ namespace JayaCart.Services
             if (mainPage == null)
                 return;
 
+            mainPage.IsPresented = false;
             if (mainPage.Navigation.ModalStack.Count > 0)
                 await mainPage.Navigation.PopModalAsync();
         }
@@ -65,10 +66,7 @@ namespace JayaCart.Services
             if (_viewMapping[viewType].Value)
                 await mainPage.Navigation.PushModalAsync(view);
             else
-            {
                 mainPage.Detail = new NavigationPage(view);
-                mainPage.IsPresented = false;
-            }
         }
     }
 }
