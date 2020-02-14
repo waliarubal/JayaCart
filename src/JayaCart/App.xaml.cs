@@ -1,5 +1,6 @@
 ﻿using JayaCart.Services;
 using JayaCart.Shared;
+using JayaCart.Shared.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,6 +13,7 @@ namespace JayaCart
         void RegisterDependencies()
         {
             ViewModelLocator.RegisterSingleton<ISettingsService, SettingsService>();
+            ViewModelLocator.RegisterSingleton<IDatabaseService, DatabaseService>();
             ViewModelLocator.RegisterSingleton<INavigationService, NavigationService>();
             ViewModelLocator.RegisterSingleton<IUserAccountService, UserAccountService>();
         }

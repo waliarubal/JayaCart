@@ -1,6 +1,5 @@
-﻿using Firebase.Database;
-using Firebase.Database.Query;
-using JayaCart.Models;
+﻿using JayaCart.Models;
+using JayaCart.Shared.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,12 +9,27 @@ namespace JayaCart.Services
     public class UserAccountService : IUserAccountService
     {
         readonly ISettingsService _settingsService;
-        readonly FirebaseClient _connection;
+        readonly IDatabaseService _databaseService;
 
-        public UserAccountService(ISettingsService settingsService)
+        public UserAccountService(ISettingsService settingsService, IDatabaseService databaseService)
         {
             _settingsService = settingsService;
-            _connection = Helpers.Instance.GetConnection();
+            _databaseService = databaseService;
+        }
+
+        async Task<UserAccount> GetAccount(string phoneNumber)
+        {
+            var account = (await _databaseService.GetMany<UserAccount>("UserAccounts"))
+                .Select(record => new UserAccount
+                {
+                    FullName = record.Object.FullName,
+                    PhoneNumber = record.Object.PhoneNumber,
+                    Image = record.Object.Image,
+                    Password = record.Object.Password
+                })
+                .Where(record => record.PhoneNumber.Equals(phoneNumber))
+                .FirstOrDefault();
+            return account;
         }
 
         public async Task<UserAccount> Create(UserAccount account)
@@ -24,7 +38,7 @@ namespace JayaCart.Services
             if (existingAccount != null)
                 throw new InvalidOperationException($"Another user with phone number {account.PhoneNumber} is already registered.");
 
-            await _connection.Child("UserAccounts").PostAsync(account);
+            await _databaseService.Set("UserAccounts", account);
             return account;
         }
 
@@ -67,23 +81,6 @@ namespace JayaCart.Services
             _settingsService.Delete(nameof(UserAccount.FullName));
             _settingsService.Delete(nameof(UserAccount.Image));
             await _settingsService.Save();
-        }
-
-        async Task<UserAccount> GetAccount(string phone)
-        {
-            var account = (await _connection
-                .Child("UserAccounts")
-                .OnceAsync<UserAccount>())
-                .Select(record => new UserAccount
-                {
-                    FullName = record.Object.FullName,
-                    PhoneNumber = record.Object.PhoneNumber,
-                    Image = record.Object.Image,
-                    Password = record.Object.Password
-                })
-                .Where(record => record.PhoneNumber.Equals(phone))
-                .FirstOrDefault();
-            return account;
         }
     }
 }

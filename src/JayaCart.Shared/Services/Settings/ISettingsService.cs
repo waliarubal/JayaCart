@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace JayaCart.Services
+namespace JayaCart.Shared.Services
 {
     public interface ISettingsService
     {
