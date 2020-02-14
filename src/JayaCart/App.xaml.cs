@@ -16,6 +16,7 @@ namespace JayaCart
             ViewModelLocator.RegisterSingleton<IDatabaseService, DatabaseService>();
             ViewModelLocator.RegisterSingleton<INavigationService, NavigationService>();
             ViewModelLocator.RegisterSingleton<IUserAccountService, UserAccountService>();
+            ViewModelLocator.RegisterSingleton<IProductService, ProductService>();
         }
 
         public App()

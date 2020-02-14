@@ -13,12 +13,6 @@
         ItemsSource="{Binding Items}"
         SelectionMode="None"
         SeparatorVisibility="None">
-        <ListView.Resources>
-            <Style TargetType="shared:FontAwesomeIcon">
-                <Setter Property="Margin" Value="8,0,0,0" />
-                <Setter Property="VerticalTextAlignment" Value="Center" />
-            </Style>
-        </ListView.Resources>
         <ListView.Behaviors>
             <shared:EventToCommandBehavior
                 Command="{Binding ItemClickCommand}"
@@ -37,7 +31,6 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <shared:FontAwesomeIcon Text="{Binding Account.Image}" />
                 <Label Grid.Column="1" Text="{Binding Account.FullName, StringFormat='Hello, {0}'}" />
             </Grid>
         </ListView.Header>
@@ -55,7 +48,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <shared:FontAwesomeIcon Text="{Binding Image}" />
+                        <!--<Image Source="{shared:ImageResource {Binding Image}}" />-->
                         <Label Grid.Column="1" Text="{Binding Title}" />
                     </Grid>
                 </ViewCell>
