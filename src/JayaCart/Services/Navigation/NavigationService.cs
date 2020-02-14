@@ -40,12 +40,12 @@ namespace JayaCart.Services
         {
             var menus = new List<SidebarItem>
             {
-                new SidebarItem("Home", ViewType.Products),
-                new SidebarItem("Shopping Cart", ViewType.ShoppingCart),
-                new SidebarItem("Your Orders", ViewType.Orders),
-                new SidebarItem("Your Account", ViewType.Account),
-                new SidebarItem("Legal & About", ViewType.About),
-                new SidebarItem("Sign Out", ViewType.SignIn)
+                new SidebarItem("Home", ViewType.Products, FontAwesomeSolid.Home),
+                new SidebarItem("Shopping Cart", ViewType.ShoppingCart, FontAwesomeSolid.ShoppingCart),
+                new SidebarItem("Your Orders", ViewType.Orders, FontAwesomeSolid.ShoppingBag),
+                new SidebarItem("Your Account", ViewType.Account, FontAwesomeSolid.User),
+                new SidebarItem("Legal & About", ViewType.About, FontAwesomeSolid.Info),
+                new SidebarItem("Sign Out", ViewType.SignIn, FontAwesomeSolid.SignOutAlt)
             };
 
             return menus;

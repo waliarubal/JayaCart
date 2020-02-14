@@ -3,7 +3,6 @@
     x:Class="JayaCart.Views.ProductsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:JayaCart"
     xmlns:shared="https://github.com/waliarubal/schemas"
     Title="Products"
     shared:ViewModelLocator.AutoWireViewModel="True">
@@ -27,26 +26,24 @@
             </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <SwipeView>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Label LineBreakMode="WordWrap" Text="{Binding Name}" />
-                            <Label Grid.Row="1" Text="{Binding Packing}" />
-                            <Label Grid.Row="2" Text="{Binding MaximumRetailPrice, StringFormat='₹{0:###00.00}'}" />
-                            <Button
-                                Grid.RowSpan="3"
-                                Grid.Column="1"
-                                Text="Add to Cart" />
-                        </Grid>
-                    </SwipeView>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label LineBreakMode="WordWrap" Text="{Binding Name}" />
+                        <Label Grid.Row="1" Text="{Binding Packing}" />
+                        <Label Grid.Row="2" Text="{Binding MaximumRetailPrice, StringFormat='₹{0:###00.00}'}" />
+                        <Button
+                            Grid.RowSpan="3"
+                            Grid.Column="1"
+                            Text="Add to Cart" />
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

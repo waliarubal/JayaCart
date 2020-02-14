@@ -5,10 +5,10 @@ namespace JayaCart.Models
 {
     public class SidebarItem: ModelBase
     {
-        public SidebarItem(string title, ViewType view, string image = null)
+        public SidebarItem(string title, ViewType view, string icon = null)
         {
             Title = title;
-            Image = image;
+            Icon = icon;
             View = view;
         }
 
@@ -18,7 +18,7 @@ namespace JayaCart.Models
             set => Set(value);
         }
 
-        public string Image
+        public string Icon
         {
             get => Get<string>();
             set => Set(value);

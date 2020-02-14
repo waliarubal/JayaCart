@@ -40,7 +40,7 @@
                     <Grid Margin="8,0" HorizontalOptions="Fill">
                         <Grid.Resources>
                             <Style TargetType="Label">
-                                <Setter Property="Margin" Value="8,0" />
+                                <Setter Property="Margin" Value="8,0,0,0" />
                                 <Setter Property="VerticalTextAlignment" Value="Center" />
                             </Style>
                         </Grid.Resources>
@@ -48,6 +48,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
+                        <Label FontFamily="{StaticResource FontAwesomeSolid}" Text="{Binding Icon}" />
                         <Label Grid.Column="1" Text="{Binding Title}" />
                     </Grid>
                 </ViewCell>
