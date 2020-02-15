@@ -1,6 +1,6 @@
 ﻿namespace JayaCart
 {
-	public class FontAwesomeRegular
+	public static class FontAwesomeRegular
 	{
 		public const string Heart = "\uf004";
 		public const string Star = "\uf005";

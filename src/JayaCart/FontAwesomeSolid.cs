@@ -1,6 +1,6 @@
 ﻿namespace JayaCart
 {
-	public class FontAwesomeSolid
+	public static class FontAwesomeSolid
 	{
 		public const string GlassMartini = "\uf000";
 		public const string Music = "\uf001";

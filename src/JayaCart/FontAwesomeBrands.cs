@@ -1,6 +1,6 @@
 ﻿namespace JayaCart
 {
-    public class FontAwesomeBrands
+    public static class FontAwesomeBrands
     {
         public const string TwitterSquare = "\uf081";
         public const string FacebookSquare = "\uf082";

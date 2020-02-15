@@ -40,7 +40,7 @@
                     <Grid Margin="8,0" HorizontalOptions="Fill">
                         <Grid.Resources>
                             <Style TargetType="Label">
-                                <Setter Property="Margin" Value="8,0,0,0" />
+                                <Setter Property="Margin" Value="4,0,0,0" />
                                 <Setter Property="VerticalTextAlignment" Value="Center" />
                             </Style>
                         </Grid.Resources>

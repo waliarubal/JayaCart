@@ -3,6 +3,7 @@
     x:Class="JayaCart.Views.ProductsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:JayaCart"
     xmlns:shared="https://github.com/waliarubal/schemas"
     Title="Products"
     shared:ViewModelLocator.AutoWireViewModel="True">
@@ -42,7 +43,13 @@
                         <Button
                             Grid.RowSpan="3"
                             Grid.Column="1"
-                            Text="Add to Cart" />
+                            BorderRadius="20"
+                            FontFamily="{StaticResource FontAwesomeSolid}"
+                            HeightRequest="40"
+                            HorizontalOptions="Center"
+                            Text="{x:Static local:FontAwesomeSolid.ShoppingCart}"
+                            VerticalOptions="Center"
+                            WidthRequest="40" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
