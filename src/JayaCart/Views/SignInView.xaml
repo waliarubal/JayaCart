@@ -15,90 +15,94 @@
             <Setter Property="HorizontalTextAlignment" Value="Start" />
         </Style>
     </ContentPage.Resources>
-    <ContentPage.Content>
-        <Grid
-            Margin="8"
-            HorizontalOptions="Fill"
-            VerticalOptions="Start">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+    <Grid
+        Margin="8"
+        HorizontalOptions="Fill"
+        VerticalOptions="Start">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-            <Label FontSize="Large" Text="Sign in" />
-            <Label Grid.Column="1" Text="Forgot password?" />
+        <Label FontSize="Large" Text="Sign in" />
+        <Label Grid.Column="1" Text="Forgot password?" />
 
-            <Entry
-                Grid.Row="1"
-                Grid.ColumnSpan="2"
-                Keyboard="Telephone"
-                Placeholder="Mobile phone number"
-                Text="{Binding PhoneNumber}">
-                <Entry.Behaviors>
-                    <shared:NumericValidationBehavior />
-                    <shared:EntryLengthValidatorBehavior MaxLength="10" />
-                </Entry.Behaviors>
-            </Entry>
+        <Entry
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Keyboard="Telephone"
+            Placeholder="Mobile phone number"
+            Text="{Binding PhoneNumber}">
+            <Entry.Behaviors>
+                <shared:NumericValidationBehavior />
+                <shared:EntryLengthValidatorBehavior MaxLength="10" />
+            </Entry.Behaviors>
+        </Entry>
 
-            <Entry
-                Grid.Row="2"
-                Grid.ColumnSpan="2"
-                IsPassword="True"
-                Placeholder="Password"
-                Text="{Binding Password}">
-                <Entry.Triggers>
-                    <DataTrigger
-                        Binding="{Binding IsPasswordShown}"
-                        TargetType="Entry"
-                        Value="True">
-                        <Setter Property="IsPassword" Value="False" />
-                    </DataTrigger>
-                </Entry.Triggers>
-            </Entry>
+        <Entry
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            IsPassword="True"
+            Placeholder="Password"
+            Text="{Binding Password}">
+            <Entry.Triggers>
+                <DataTrigger
+                    Binding="{Binding IsPasswordShown}"
+                    TargetType="Entry"
+                    Value="True">
+                    <Setter Property="IsPassword" Value="False" />
+                </DataTrigger>
+            </Entry.Triggers>
+        </Entry>
 
-            <StackLayout
-                Grid.Row="3"
-                Grid.ColumnSpan="2"
-                Orientation="Horizontal">
-                <CheckBox IsChecked="{Binding IsPasswordShown}" />
-                <Label Text="Show password" />
-            </StackLayout>
+        <StackLayout
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding IsPasswordShown}" />
+            <Label Text="Show password" />
+        </StackLayout>
 
-            <StackLayout
-                Grid.Row="4"
-                Grid.ColumnSpan="2"
-                Orientation="Horizontal">
-                <CheckBox IsChecked="{Binding IsSignInPreserved}" />
-                <Label Text="Keep me logged in" />
-            </StackLayout>
+        <StackLayout
+            Grid.Row="4"
+            Grid.ColumnSpan="2"
+            Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding IsSignInPreserved}" />
+            <Label Text="Keep me logged in" />
+        </StackLayout>
 
-            <Button
-                Grid.Row="5"
-                Grid.ColumnSpan="2"
-                Command="{Binding SignInCommand}"
-                Text="Sign in" />
+        <Button
+            Grid.Row="5"
+            Grid.ColumnSpan="2"
+            Command="{Binding SignInCommand}"
+            Text="Sign in" />
 
-            <Label
-                Grid.Row="6"
-                Grid.ColumnSpan="2"
-                HorizontalTextAlignment="Center"
-                Text="Don't have an account?" />
+        <Label
+            Grid.Row="6"
+            Grid.ColumnSpan="2"
+            HorizontalTextAlignment="Center"
+            Text="Don't have an account?" />
 
-            <Button
-                Grid.Row="7"
-                Grid.ColumnSpan="2"
-                Command="{Binding CreateAccountCommand}"
-                Text="Create a new account" />
-        </Grid>
-    </ContentPage.Content>
+        <Button
+            Grid.Row="7"
+            Grid.ColumnSpan="2"
+            Command="{Binding CreateAccountCommand}"
+            Text="Create a new account" />
+
+        <shared:MessageCard
+            Grid.RowSpan="8"
+            Grid.ColumnSpan="2"
+            IsVisible="{Binding IsHavingError}"
+            Message="{Binding Error}" />
+    </Grid>
 </ContentPage>
