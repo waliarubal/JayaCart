@@ -1,4 +1,5 @@
-﻿using JayaCart.Services;
+﻿using JayaCart.Models;
+using JayaCart.Services;
 using JayaCart.Shared.Base;
 using JayaCart.Shared.Commands;
 using System.Threading.Tasks;
@@ -6,7 +7,7 @@ using System.Windows.Input;
 
 namespace JayaCart.ViewModels
 {
-    public class SignInViewModel: ViewModelBase
+    public class SignInViewModel : ViewModelBase
     {
         ICommand _signIn, _createAccount;
         readonly IUserAccountService _accountService;
@@ -17,7 +18,7 @@ namespace JayaCart.ViewModels
             _accountService = accountService;
             _navigationService = navigationService;
 
-            Task.Run(async() => await SignOut());
+            Task.Run(async () => await SignOut());
         }
 
         public string PhoneNumber
@@ -66,6 +67,17 @@ namespace JayaCart.ViewModels
             }
         }
 
+        protected override string Validate()
+        {
+            if (string.IsNullOrWhiteSpace(PhoneNumber) || PhoneNumber.Length != 10)
+                return "Mobile phone number must be ten characters long.";
+
+            if (string.IsNullOrWhiteSpace(Password))
+                return "Please enter your password.";
+
+            return default;
+        }
+
         async void CreateAccountAction()
         {
             await _navigationService.Navigate(ViewType.CreateAccount);
@@ -73,9 +85,20 @@ namespace JayaCart.ViewModels
 
         async void SignInAction()
         {
-            var user = await _accountService.SignIn(PhoneNumber, Password, IsSignInPreserved);
-            if (user != null)
-                await _navigationService.Navigate(ViewType.Products);
+            Error = Validate();
+            if (IsHavingError)
+                return;
+
+            try
+            {
+                var user = await _accountService.SignIn(PhoneNumber, Password, IsSignInPreserved);
+                if (user != null)
+                    await _navigationService.Navigate(ViewType.Products);
+            }
+            catch (ServiceException ex)
+            {
+                Error = ex.Message;
+            }
         }
 
         async Task SignOut()
