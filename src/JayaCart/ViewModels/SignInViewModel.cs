@@ -75,7 +75,7 @@ namespace JayaCart.ViewModels
         {
             var user = await _accountService.SignIn(PhoneNumber, Password, IsSignInPreserved);
             if (user != null)
-                await _navigationService.Close();
+                await _navigationService.Navigate(ViewType.Products);
         }
 
         async Task SignOut()

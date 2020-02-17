@@ -41,6 +41,7 @@
             <Entry
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
+                Keyboard="Telephone"
                 Placeholder="Mobile phone number"
                 Text="{Binding PhoneNumber}">
                 <Entry.Behaviors>

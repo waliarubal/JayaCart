@@ -12,7 +12,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <SearchBar Placeholder="Search" />
+        <SearchBar
+            Placeholder="Search"
+            SearchCommand="{Binding SearchCommand}"
+            SearchCommandParameter="{Binding SearchKeywoard}"
+            Text="{Binding SearchKeywoard}" />
         <CollectionView
             Grid.Row="1"
             HorizontalOptions="Fill"
@@ -22,7 +26,7 @@
             <CollectionView.EmptyView>
                 <Label
                     HorizontalOptions="Center"
-                    Text="No products to display."
+                    Text="Nothing to display."
                     VerticalOptions="Center" />
             </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
@@ -37,11 +41,18 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <Label LineBreakMode="WordWrap" Text="{Binding Name}" />
-                        <Label Grid.Row="1" Text="{Binding Packing}" />
+                        <Label
+                            Grid.ColumnSpan="3"
+                            LineBreakMode="WordWrap"
+                            Text="{Binding Name}" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.ColumnSpan="3"
+                            Text="{Binding Packing}" />
                         <Label Grid.Row="2" Text="{Binding MaximumRetailPrice, StringFormat='₹{0:###00.00}'}" />
+
                         <Button
-                            Grid.RowSpan="3"
+                            Grid.Row="2"
                             Grid.Column="1"
                             BorderRadius="20"
                             FontFamily="{StaticResource FontAwesomeSolid}"
@@ -50,6 +61,7 @@
                             Text="{x:Static local:FontAwesomeSolid.ShoppingCart}"
                             VerticalOptions="Center"
                             WidthRequest="40" />
+
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

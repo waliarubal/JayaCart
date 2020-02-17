@@ -2,7 +2,7 @@
 
 namespace JayaCart.Models
 {
-    public class Product: ModelBase
+    public class Product : ModelBase
     {
         public string Code
         {
@@ -31,7 +31,13 @@ namespace JayaCart.Models
         public long Stock
         {
             get => Get<long>();
-            set => Set(value);
+            set
+            {
+                Set(value);
+                RaisePropertyChanged(nameof(IsInStock));
+            }
         }
+
+        public bool IsInStock => Stock > 0;
     }
 }

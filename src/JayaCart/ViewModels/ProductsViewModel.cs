@@ -3,27 +3,30 @@ using JayaCart.Services;
 using JayaCart.Shared.Base;
 using JayaCart.Shared.Commands;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace JayaCart.ViewModels
 {
     public class ProductsViewModel: ViewModelBase
     {
-        ICommand _search;
+        ICommand _search, _addToCart;
         readonly IProductService _productService;
 
         public ProductsViewModel(IProductService productService)
         {
             _productService = productService;
-
-            Task.Run(() => SearchAction(string.Empty));
         }
 
         public ObservableCollection<Product> Products
         {
             get => Get<ObservableCollection<Product>>();
             private set => Set(value);
+        }
+
+        public string SearchKeywoard
+        {
+            get => Get<string>();
+            set => Set(value);
         }
 
         public ICommand SearchCommand
@@ -35,6 +38,22 @@ namespace JayaCart.ViewModels
 
                 return _search;
             }
+        }
+
+        public ICommand AddToCartCommand
+        {
+            get
+            {
+                if (_addToCart == null)
+                    _addToCart = new RelayCommand<Product>(AddToCart);
+
+                return _addToCart;
+            }
+        }
+
+        void AddToCart(Product product)
+        {
+           
         }
 
         async void SearchAction(string keywoard)
