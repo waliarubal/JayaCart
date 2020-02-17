@@ -23,6 +23,12 @@ namespace JayaCart.ViewModels
             private set => Set(value);
         }
 
+        public Product SelectedProduct
+        {
+            get => Get<Product>();
+            private set => Set(value);
+        }
+
         public string SearchKeywoard
         {
             get => Get<string>();
@@ -45,15 +51,15 @@ namespace JayaCart.ViewModels
             get
             {
                 if (_addToCart == null)
-                    _addToCart = new RelayCommand<Product>(AddToCart);
+                    _addToCart = new RelayCommand(AddToCart);
 
                 return _addToCart;
             }
         }
 
-        void AddToCart(Product product)
+        void AddToCart()
         {
-           
+
         }
 
         async void SearchAction(string keywoard)

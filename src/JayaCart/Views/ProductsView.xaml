@@ -61,10 +61,29 @@
                             Text="{x:Static local:FontAwesomeSolid.ShoppingCart}"
                             VerticalOptions="Center"
                             WidthRequest="40" />
-
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <ContentView
+            Grid.RowSpan="2"
+            HorizontalOptions="Center"
+            IsVisible="False"
+            VerticalOptions="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.ColumnSpan="2" Text="Number of items:" />
+                <Entry Grid.Row="1" Keyboard="Numeric" />
+                <Stepper Grid.Row="1" Grid.Column="1" />
+            </Grid>
+        </ContentView>
     </Grid>
 </ContentPage>
