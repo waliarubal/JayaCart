@@ -13,8 +13,11 @@
 
   <ItemGroup>
     <Compile Remove="Assets\**" />
+    <Compile Remove="Controls\**" />
     <EmbeddedResource Remove="Assets\**" />
+    <EmbeddedResource Remove="Controls\**" />
     <None Remove="Assets\**" />
+    <None Remove="Controls\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -101,9 +104,5 @@
     <None Update="Views\SignInView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controls\" />
   </ItemGroup>
 </Project>
