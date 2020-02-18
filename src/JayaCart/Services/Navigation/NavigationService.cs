@@ -21,7 +21,7 @@ namespace JayaCart.Services
                 [ViewType.CreateAccount] = new KeyValuePair<Type, bool>(typeof(CreateAccountView), true),
                 [ViewType.SignIn] = new KeyValuePair<Type, bool>(typeof(SignInView), true),
                 [ViewType.Orders] = new KeyValuePair<Type, bool>(typeof(OrdersView), false),
-                [ViewType.Products] = new KeyValuePair<Type, bool>(typeof(ProductsView), false),
+                [ViewType.Products] = new KeyValuePair<Type, bool>(typeof(ArticlesView), false),
                 [ViewType.ShoppingCart] = new KeyValuePair<Type, bool>(typeof(ShoppingCartView), false)
             };
         }

@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 namespace JayaCart.Services
 {
-    public interface IProductService
+    public interface IArticleService
     {
-        Task<IEnumerable<Product>> Search(string keywoard);
+        Task<IEnumerable<Article>> Search(string keywoard);
     }
 }

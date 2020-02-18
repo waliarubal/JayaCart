@@ -7,25 +7,25 @@ using System.Windows.Input;
 
 namespace JayaCart.ViewModels
 {
-    public class ProductsViewModel: ViewModelBase
+    public class ArticlesViewModel: ViewModelBase
     {
         ICommand _search, _addToCart;
-        readonly IProductService _productService;
+        readonly IArticleService _articleService;
 
-        public ProductsViewModel(IProductService productService)
+        public ArticlesViewModel(IArticleService articleService)
         {
-            _productService = productService;
+            _articleService = articleService;
         }
 
-        public ObservableCollection<Product> Products
+        public ObservableCollection<Article> Articles
         {
-            get => Get<ObservableCollection<Product>>();
+            get => Get<ObservableCollection<Article>>();
             private set => Set(value);
         }
 
-        public Product SelectedProduct
+        public Article SelectedArticle
         {
-            get => Get<Product>();
+            get => Get<Article>();
             private set => Set(value);
         }
 
@@ -64,8 +64,8 @@ namespace JayaCart.ViewModels
 
         async void SearchAction(string keywoard)
         {
-            var products = await _productService.Search(keywoard);
-            Products = new ObservableCollection<Product>(products);
+            var products = await _articleService.Search(keywoard);
+            Articles = new ObservableCollection<Article>(products);
         }
     }
 }

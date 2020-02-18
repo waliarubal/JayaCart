@@ -31,8 +31,8 @@
     <Compile Update="Views\SignInView.xaml.cs">
       <DependentUpon>SignInView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\ProductsView.xaml.cs">
-      <DependentUpon>ProductsView.xaml</DependentUpon>
+    <Compile Update="Views\ArticlesView.xaml.cs">
+      <DependentUpon>ArticlesView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\SidebarView.xaml.cs">
       <DependentUpon>SidebarView.xaml</DependentUpon>
@@ -58,7 +58,7 @@
     <EmbeddedResource Update="Views\OrdersView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ProductsView.xaml">
+    <EmbeddedResource Update="Views\ArticlesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ShoppingCartView.xaml">

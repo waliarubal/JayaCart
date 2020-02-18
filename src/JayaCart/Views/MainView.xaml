@@ -13,7 +13,7 @@
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <views:ProductsView />
+                <views:ArticlesView />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>
