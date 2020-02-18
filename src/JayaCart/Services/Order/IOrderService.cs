@@ -1,6 +1,6 @@
-﻿using JayaCart.Models;
+﻿using JayaCart.Mobile.Models;
 
-namespace JayaCart.Services
+namespace JayaCart.Mobile.Services
 {
     public interface IOrderService
     {

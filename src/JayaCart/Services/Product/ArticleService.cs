@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using JayaCart.Models;
+using JayaCart.Mobile.Models;
 
-namespace JayaCart.Services
+namespace JayaCart.Mobile.Services
 {
     public class ArticleService : IArticleService
     {

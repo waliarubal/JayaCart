@@ -1,7 +1,7 @@
-﻿using JayaCart.Models;
+﻿using JayaCart.Mobile.Models;
 using System.Threading.Tasks;
 
-namespace JayaCart.Services
+namespace JayaCart.Mobile.Services
 {
     public interface IUserAccountService
     {

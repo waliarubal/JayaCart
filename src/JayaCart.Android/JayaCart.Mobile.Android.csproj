@@ -99,13 +99,13 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JayaCart.Shared\JayaCart.Shared.csproj">
+    <ProjectReference Include="..\JayaCart.Shared\JayaCart.Mobile.Shared.csproj">
       <Project>{AC8A8FE8-EE8E-48D6-9251-05F72F34C05B}</Project>
-      <Name>JayaCart.Shared</Name>
+      <Name>JayaCart.Mobile.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JayaCart\JayaCart.csproj">
-      <Project>{78A7D8D4-9FF3-4D7F-9FB8-CD8DD3A4E158}</Project>
-      <Name>JayaCart</Name>
+    <ProjectReference Include="..\JayaCart\JayaCart.Mobile.csproj">
+      <Project>{94C26EAF-F17D-4770-91A9-7D3A6486AEC4}</Project>
+      <Name>JayaCart.Mobile</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

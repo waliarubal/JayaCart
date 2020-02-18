@@ -1,9 +1,8 @@
-﻿using JayaCart.Models;
+﻿using JayaCart.Mobile.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace JayaCart.Services
+namespace JayaCart.Mobile.Services
 {
     public enum ViewType: byte
     {

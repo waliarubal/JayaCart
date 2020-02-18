@@ -5,7 +5,7 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace JayaCart.Shared
+namespace JayaCart.Mobile.Shared
 {
     public static class Extensions
     {

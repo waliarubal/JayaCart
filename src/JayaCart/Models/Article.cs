@@ -1,7 +1,7 @@
-﻿using JayaCart.Shared.Base;
+﻿using JayaCart.Mobile.Shared.Base;
 using System;
 
-namespace JayaCart.Models
+namespace JayaCart.Mobile.Models
 {
     public class Article : ModelBase
     {

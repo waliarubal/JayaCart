@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace JayaCart.Views
+namespace JayaCart.Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreateAccountView : ContentPage

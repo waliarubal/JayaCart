@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application
-    x:Class="JayaCart.App"
+    x:Class="JayaCart.Mobile.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:shared="https://github.com/waliarubal/schemas"
-    xmlns:v="clr-namespace:JayaCart.Views"
+    xmlns:v="clr-namespace:JayaCart.Mobile.Views"
     mc:Ignorable="d">
     <Application.Resources>
         <ResourceDictionary>

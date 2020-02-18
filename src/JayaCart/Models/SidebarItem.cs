@@ -1,7 +1,7 @@
-﻿using JayaCart.Services;
-using JayaCart.Shared.Base;
+﻿using JayaCart.Mobile.Services;
+using JayaCart.Mobile.Shared.Base;
 
-namespace JayaCart.Models
+namespace JayaCart.Mobile.Models
 {
     public class SidebarItem: ModelBase
     {

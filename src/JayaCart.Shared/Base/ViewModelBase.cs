@@ -1,4 +1,4 @@
-﻿namespace JayaCart.Shared.Base
+﻿namespace JayaCart.Mobile.Shared.Base
 {
     public abstract class ViewModelBase : ModelBase
     {

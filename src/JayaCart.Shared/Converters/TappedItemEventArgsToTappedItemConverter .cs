@@ -2,7 +2,7 @@
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace JayaCart.Shared.Converters
+namespace JayaCart.Mobile.Shared.Converters
 {
     public class SelectedItemEventArgsToSelectedItemConverter : IValueConverter
     {

@@ -1,7 +1,7 @@
-﻿using JayaCart.Shared.Base;
+﻿using JayaCart.Mobile.Shared.Base;
 using Xamarin.Forms;
 
-namespace JayaCart.Shared.Behaviors
+namespace JayaCart.Mobile.Shared.Behaviors
 {
     public class NumericValidationBehavior : BehaviorBase<Entry>
     {

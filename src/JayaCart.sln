@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JayaCart.Mobile.Android", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JayaCart.Mobile.iOS", "JayaCart.iOS\JayaCart.Mobile.iOS.csproj", "{01C0B130-7406-4D84-AB13-43F9E390D09C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JayaCart", "JayaCart\JayaCart.csproj", "{94C26EAF-F17D-4770-91A9-7D3A6486AEC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JayaCart.Mobile", "JayaCart\JayaCart.Mobile.csproj", "{94C26EAF-F17D-4770-91A9-7D3A6486AEC4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JayaCart.Shared", "JayaCart.Shared\JayaCart.Shared.csproj", "{AC8A8FE8-EE8E-48D6-9251-05F72F34C05B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JayaCart.Mobile.Shared", "JayaCart.Shared\JayaCart.Mobile.Shared.csproj", "{AC8A8FE8-EE8E-48D6-9251-05F72F34C05B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

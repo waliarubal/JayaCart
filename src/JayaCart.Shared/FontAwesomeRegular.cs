@@ -1,4 +1,4 @@
-﻿namespace JayaCart.Shared
+﻿namespace JayaCart.Mobile.Shared
 {
 	public static class FontAwesomeRegular
 	{

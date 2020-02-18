@@ -1,12 +1,12 @@
-﻿using JayaCart.Models;
-using JayaCart.Shared;
-using JayaCart.Views;
+﻿using JayaCart.Mobile.Models;
+using JayaCart.Mobile.Shared;
+using JayaCart.Mobile.Views;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace JayaCart.Services
+namespace JayaCart.Mobile.Services
 {
     public class NavigationService : INavigationService
     {

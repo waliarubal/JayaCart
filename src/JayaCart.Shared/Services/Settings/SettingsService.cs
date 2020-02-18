@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace JayaCart.Shared.Services
+namespace JayaCart.Mobile.Shared.Services
 {
     public class SettingsService : ISettingsService
     {

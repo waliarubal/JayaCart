@@ -6,15 +6,15 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 [assembly: Preserve]
-[assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Shared")]
-[assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Shared.Base")]
-[assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Shared.Behaviors")]
-[assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Shared.Commands")]
-[assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Shared.Controls")]
-[assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Shared.Converters")]
-[assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Shared.Styles")]
+[assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Mobile.Shared")]
+[assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Mobile.Shared.Base")]
+[assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Mobile.Shared.Behaviors")]
+[assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Mobile.Shared.Commands")]
+[assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Mobile.Shared.Controls")]
+[assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Mobile.Shared.Converters")]
+[assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Mobile.Shared.Styles")]
 
-namespace JayaCart.Shared
+namespace JayaCart.Mobile.Shared
 {
     public static class ViewModelLocator
     {

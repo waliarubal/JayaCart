@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace JayaCart.Shared.Base
+namespace JayaCart.Mobile.Shared.Base
 {
     public abstract class BehaviorBase<T> : Behavior<T> where T : BindableObject
     {

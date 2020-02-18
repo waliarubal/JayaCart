@@ -1,6 +1,6 @@
-﻿using JayaCart.Shared.Base;
+﻿using JayaCart.Mobile.Shared.Base;
 
-namespace JayaCart.Models
+namespace JayaCart.Mobile.Models
 {
     public class OrderArticle: ModelBase
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JayaCart.Models
+namespace JayaCart.Mobile.Models
 {
     public class ServiceException: Exception
     {

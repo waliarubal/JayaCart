@@ -1,10 +1,10 @@
-﻿using JayaCart.Shared.Base;
+﻿using JayaCart.Mobile.Shared.Base;
 using System;
 using System.Reflection;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace JayaCart.Shared.Behaviors
+namespace JayaCart.Mobile.Shared.Behaviors
 {
     public class EventToCommandBehavior : BehaviorBase<View>
     {

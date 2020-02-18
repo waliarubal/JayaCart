@@ -1,12 +1,12 @@
-﻿using JayaCart.Services;
-using JayaCart.Shared;
-using JayaCart.Shared.Services;
+﻿using JayaCart.Mobile.Services;
+using JayaCart.Mobile.Shared;
+using JayaCart.Mobile.Shared.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
-namespace JayaCart
+namespace JayaCart.Mobile
 {
     public partial class App : Application
     {

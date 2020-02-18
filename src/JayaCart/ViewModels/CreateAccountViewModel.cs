@@ -1,11 +1,11 @@
-﻿using JayaCart.Models;
-using JayaCart.Services;
-using JayaCart.Shared.Base;
-using JayaCart.Shared.Commands;
+﻿using JayaCart.Mobile.Models;
+using JayaCart.Mobile.Services;
+using JayaCart.Mobile.Shared.Base;
+using JayaCart.Mobile.Shared.Commands;
 using System;
 using System.Windows.Input;
 
-namespace JayaCart.ViewModels
+namespace JayaCart.Mobile.ViewModels
 {
     public class CreateAccountViewModel : ViewModelBase
     {

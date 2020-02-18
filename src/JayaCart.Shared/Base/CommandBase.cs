@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace JayaCart.Shared.Base
+namespace JayaCart.Mobile.Shared.Base
 {
     public abstract class CommandBase : ModelBase, ICommand
     {

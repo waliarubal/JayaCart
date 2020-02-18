@@ -1,6 +1,6 @@
-﻿using JayaCart.Shared.Base;
+﻿using JayaCart.Mobile.Shared.Base;
 
-namespace JayaCart.ViewModels
+namespace JayaCart.Mobile.ViewModels
 {
     public class MainViewModel: ViewModelBase
     {
