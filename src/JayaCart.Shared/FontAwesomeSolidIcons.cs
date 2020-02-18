@@ -1,6 +1,6 @@
 ﻿namespace JayaCart.Mobile.Shared
 {
-	public static class FontAwesomeSolid
+	public static class FontAwesomeSolidIcons
 	{
 		public const string GlassMartini = "\uf000";
 		public const string Music = "\uf001";

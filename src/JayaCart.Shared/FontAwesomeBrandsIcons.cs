@@ -1,6 +1,6 @@
 ﻿namespace JayaCart.Mobile.Shared
 {
-    public static class FontAwesomeBrands
+    public static class FontAwesomeBrandsIcons
     {
         public const string TwitterSquare = "\uf081";
         public const string FacebookSquare = "\uf082";

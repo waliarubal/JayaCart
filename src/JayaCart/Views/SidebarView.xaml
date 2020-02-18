@@ -9,7 +9,26 @@
     <ContentPage.Resources>
         <shared:SelectedItemEventArgsToSelectedItemConverter x:Key="TappedItemConverter" />
     </ContentPage.Resources>
-    <ListView
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <BoxView
+            BackgroundColor="{DynamicResource BackgroundColorHigh}"
+            HeightRequest="18"
+            VerticalOptions="Start" />
+        <BoxView BackgroundColor="{DynamicResource BackgroundColorHigh}" CornerRadius="16" />
+        <BoxView Grid.Row="1" BackgroundColor="{DynamicResource BackgroundColorMedium}" />
+        <BoxView
+            Grid.Row="1"
+            BackgroundColor="{DynamicResource BackgroundColorLow}"
+            CornerRadius="2"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
+        </BoxView>
+    </Grid>
+    <!--<ListView
         ItemsSource="{Binding Items}"
         SelectionMode="None"
         SeparatorVisibility="None">
@@ -54,5 +73,5 @@
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
-    </ListView>
+    </ListView>-->
 </ContentPage>

@@ -1,6 +1,6 @@
 ﻿namespace JayaCart.Mobile.Shared
 {
-	public static class FontAwesomeRegular
+	public static class FontAwesomeRegularIcons
 	{
 		public const string Heart = "\uf004";
 		public const string Star = "\uf005";

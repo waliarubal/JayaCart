@@ -50,12 +50,12 @@ namespace JayaCart.Mobile.Services
         {
             var menus = new List<SidebarItem>
             {
-                new SidebarItem("Home", ViewType.Products, FontAwesomeSolid.Home),
-                new SidebarItem("Shopping Cart", ViewType.ShoppingCart, FontAwesomeSolid.ShoppingCart),
-                new SidebarItem("Your Orders", ViewType.Orders, FontAwesomeSolid.ShoppingBag),
-                new SidebarItem("Your Account", ViewType.Account, FontAwesomeSolid.User),
-                new SidebarItem("Legal & About", ViewType.About, FontAwesomeSolid.Info),
-                new SidebarItem("Sign Out", ViewType.SignIn, FontAwesomeSolid.SignOutAlt)
+                new SidebarItem("Home", ViewType.Products, FontAwesomeSolidIcons.Home),
+                new SidebarItem("Shopping Cart", ViewType.ShoppingCart, FontAwesomeSolidIcons.ShoppingCart),
+                new SidebarItem("Your Orders", ViewType.Orders, FontAwesomeSolidIcons.ShoppingBag),
+                new SidebarItem("Your Account", ViewType.Account, FontAwesomeSolidIcons.User),
+                new SidebarItem("Legal & About", ViewType.About, FontAwesomeSolidIcons.Info),
+                new SidebarItem("Sign Out", ViewType.SignIn, FontAwesomeSolidIcons.SignOutAlt)
             };
 
             return menus;

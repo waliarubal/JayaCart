@@ -57,7 +57,7 @@
                             FontFamily="{StaticResource FontAwesomeSolid}"
                             HeightRequest="40"
                             HorizontalOptions="End"
-                            Text="{x:Static shared:FontAwesomeSolid.ShoppingCart}"
+                            Text="{x:Static shared:FontAwesomeSolidIcons.ShoppingCart}"
                             VerticalOptions="Center"
                             WidthRequest="40" />
                     </Grid>
