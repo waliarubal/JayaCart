@@ -85,9 +85,12 @@ namespace JayaCart.ViewModels
 
         async void SignInAction()
         {
-            Error = Validate();
-            if (IsHavingError)
+            var error = Validate();
+            if (error != null)
+            {
+                await _navigationService.Alert("Error", error);
                 return;
+            }
 
             try
             {
@@ -97,7 +100,8 @@ namespace JayaCart.ViewModels
             }
             catch (ServiceException ex)
             {
-                Error = ex.Message;
+                error = ex.Message;
+                await _navigationService.Alert("Error", error);
             }
         }
 

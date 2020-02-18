@@ -85,9 +85,12 @@ namespace JayaCart.ViewModels
 
         async void CreateAccountAction()
         {
-            Error = Validate();
-            if (IsHavingError)
+            var error = Validate();
+            if (error != null)
+            {
+                await _navigationService.Alert("Error", error);
                 return;
+            }
 
             var account = new UserAccount
             {
@@ -105,7 +108,8 @@ namespace JayaCart.ViewModels
             }
             catch (ServiceException ex)
             {
-                Error = ex.Message;
+                await _navigationService.Alert("Error", error);
+                error = ex.Message;
             }
         }
     }

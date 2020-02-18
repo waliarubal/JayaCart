@@ -98,11 +98,5 @@
             Grid.ColumnSpan="2"
             Command="{Binding CreateAccountCommand}"
             Text="Create a new account" />
-
-        <shared:MessageCard
-            Grid.RowSpan="8"
-            Grid.ColumnSpan="2"
-            IsVisible="{Binding IsHavingError}"
-            Message="{Binding Error}" />
     </Grid>
 </ContentPage>

@@ -1,6 +1,7 @@
 ﻿using JayaCart.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace JayaCart.Services
 {
@@ -22,5 +23,7 @@ namespace JayaCart.Services
         Task Navigate(ViewType viewType);
 
         Task Close();
+
+        Task Alert(string title, string message, string cancel = "Cancel");
     }
 }

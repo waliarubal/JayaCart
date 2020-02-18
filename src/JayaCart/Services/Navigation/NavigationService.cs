@@ -1,4 +1,5 @@
 ﻿using JayaCart.Models;
+using JayaCart.Shared;
 using JayaCart.Views;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,15 @@ namespace JayaCart.Services
                 [ViewType.Products] = new KeyValuePair<Type, bool>(typeof(ProductsView), false),
                 [ViewType.ShoppingCart] = new KeyValuePair<Type, bool>(typeof(ShoppingCartView), false)
             };
+        }
+
+        public async Task Alert(string title, string message, string cancel = "Cancel")
+        {
+            var mainPage = Application.Current.MainPage;
+            if (mainPage == null)
+                return;
+
+            await mainPage.DisplayAlert(title, message, cancel);
         }
 
         public async Task Close()
