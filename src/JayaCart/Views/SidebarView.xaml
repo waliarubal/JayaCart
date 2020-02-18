@@ -9,9 +9,11 @@
     <ContentPage.Resources>
         <shared:SelectedItemEventArgsToSelectedItemConverter x:Key="TappedItemConverter" />
     </ContentPage.Resources>
-    <Grid>
-        <shared:PageContainer />
-    </Grid>
+    <shared:PageContainer HeaderHeight=".6*">
+        <shared:PageContainer.PageContent>
+            <Label Text="Poo" />
+        </shared:PageContainer.PageContent>
+    </shared:PageContainer>
     <!--<ListView
         ItemsSource="{Binding Items}"
         SelectionMode="None"

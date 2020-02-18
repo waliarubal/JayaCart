@@ -2,7 +2,9 @@
 using JayaCart.Mobile.Services;
 using JayaCart.Mobile.Shared;
 using JayaCart.Mobile.Shared.Services;
+using System.Diagnostics;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -23,6 +25,7 @@ namespace JayaCart.Mobile
 
         public App()
         {
+            Log.Listeners.Add(new DelegateLogListener((value, category) => Debug.WriteLine(value, category)));
             RegisterDependencies();
             InitializeComponent();
         }

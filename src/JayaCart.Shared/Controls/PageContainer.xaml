@@ -21,7 +21,7 @@
             HorizontalOptions="Fill"
             VerticalOptions="Fill">
             <Grid.RowDefinitions>
-                <RowDefinition Height="{Binding HeaderShadeHeight}" />
+                <RowDefinition Height="{Binding HeaderHeight}" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <BoxView
@@ -29,10 +29,16 @@
                 HeightRequest="32"
                 VerticalOptions="Start" />
             <BoxView BackgroundColor="{DynamicResource BackgroundColorHigh}" CornerRadius="32" />
-            <ContentPresenter
+            <Frame
                 Grid.RowSpan="2"
-                Margin="32"
-                BackgroundColor="{DynamicResource BackgroundColorLow}" />
+                Margin="{Binding ContentMargin}"
+                BackgroundColor="{DynamicResource BackgroundColorLow}"
+                CornerRadius="2">
+                <ContentPresenter
+                    Content="{Binding PageContent}"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill" />
+            </Frame>
         </Grid>
     </ContentView.Content>
 </ContentView>

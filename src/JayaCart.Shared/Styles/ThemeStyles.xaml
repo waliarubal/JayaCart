@@ -25,5 +25,5 @@
     <Color x:Key="BackgroundColorHigh">#ff034e</Color>
     <Color x:Key="BackgroundColorMedium">#f6f6f8</Color>
     <Color x:Key="BackgroundColorLow">#ffffff</Color>
-    <Color x:Key="BorderColor">#f2f2f2</Color>
+    <Color x:Key="BorderColor">#c7c7c7</Color>
 </ResourceDictionary>
