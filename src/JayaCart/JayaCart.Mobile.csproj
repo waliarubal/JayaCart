@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JayaCart.DataAccess\JayaCart.DataAccess.csproj" />
     <ProjectReference Include="..\JayaCart.Shared\JayaCart.Mobile.Shared.csproj" />
   </ItemGroup>
 

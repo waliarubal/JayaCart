@@ -1,4 +1,6 @@
-﻿using JayaCart.Mobile.Models;
+﻿using JayaCart.DataAccess.Models;
+using JayaCart.DataAccess.Services;
+using JayaCart.Mobile.Models;
 using JayaCart.Mobile.Services;
 using JayaCart.Mobile.Shared.Base;
 using JayaCart.Mobile.Shared.Commands;

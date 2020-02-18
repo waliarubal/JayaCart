@@ -1,10 +1,8 @@
-﻿using JayaCart.Mobile.Models;
-using JayaCart.Mobile.Shared;
-using JayaCart.Mobile.Shared.Services;
+﻿using JayaCart.DataAccess.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace JayaCart.Mobile.Services
+namespace JayaCart.DataAccess.Services
 {
     public class UserAccountService : IUserAccountService
     {

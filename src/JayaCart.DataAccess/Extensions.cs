@@ -1,13 +1,9 @@
-﻿using System;
-using System.Reflection;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
-namespace JayaCart.Mobile.Shared
+namespace JayaCart.DataAccess
 {
-    public static class Extensions
+    static class Extensions
     {
         public static string MD5(this string value)
         {

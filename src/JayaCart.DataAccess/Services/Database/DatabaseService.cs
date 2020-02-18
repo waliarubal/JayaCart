@@ -3,7 +3,7 @@ using Firebase.Database.Query;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace JayaCart.Mobile.Shared.Services
+namespace JayaCart.DataAccess.Services
 {
     public class DatabaseService : IDatabaseService
     {

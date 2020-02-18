@@ -1,8 +1,8 @@
-﻿using JayaCart.Mobile.Models;
+﻿using JayaCart.DataAccess.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace JayaCart.Mobile.Services
+namespace JayaCart.DataAccess.Services
 {
     public interface IArticleService
     {

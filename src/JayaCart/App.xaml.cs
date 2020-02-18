@@ -1,4 +1,5 @@
-﻿using JayaCart.Mobile.Services;
+﻿using JayaCart.DataAccess.Services;
+using JayaCart.Mobile.Services;
 using JayaCart.Mobile.Shared;
 using JayaCart.Mobile.Shared.Services;
 using Xamarin.Forms;

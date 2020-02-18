@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace JayaCart.Mobile.Shared.Services
+namespace JayaCart.DataAccess.Services
 {
     public interface IDatabaseService
     {

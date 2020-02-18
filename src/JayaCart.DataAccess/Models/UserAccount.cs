@@ -1,6 +1,6 @@
-﻿using JayaCart.Mobile.Shared.Base;
+﻿using JayaCart.DataAccess.Base;
 
-namespace JayaCart.Mobile.Models
+namespace JayaCart.DataAccess.Models
 {
     public class UserAccount: ModelBase
     {

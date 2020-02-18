@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace JayaCart.Mobile.Shared.Services
+namespace JayaCart.DataAccess.Services
 {
     public interface ISettingsService
     {

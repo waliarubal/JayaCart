@@ -10,7 +10,6 @@ using Xamarin.Forms.Internals;
 [assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Mobile.Shared.Base")]
 [assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Mobile.Shared.Behaviors")]
 [assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Mobile.Shared.Commands")]
-[assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Mobile.Shared.Controls")]
 [assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Mobile.Shared.Converters")]
 [assembly: XmlnsDefinition("https://github.com/waliarubal/schemas", "JayaCart.Mobile.Shared.Styles")]
 

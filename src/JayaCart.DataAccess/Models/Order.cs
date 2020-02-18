@@ -1,8 +1,8 @@
-﻿using JayaCart.Mobile.Shared.Base;
+﻿using JayaCart.DataAccess.Base;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
-namespace JayaCart.Mobile.Models
+namespace JayaCart.DataAccess.Models
 {
     public class Order: ModelBase
     {
