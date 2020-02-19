@@ -9,10 +9,9 @@ namespace JayaCart.DataAccess.Models
             Image = "\uf2bd";
         }
 
-        public UserAccount(string phone, string name): this()
+        public UserAccount(string phone): this()
         {
             PhoneNumber = phone;
-            FullName = name;
         }
 
         public string PhoneNumber
@@ -21,13 +20,25 @@ namespace JayaCart.DataAccess.Models
             set => Set(value);
         }
 
-        public string FullName
+        public string FirstName
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+
+        public string LastName
         {
             get => Get<string>();
             set => Set(value);
         }
 
         public string Address
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+
+        public string City
         {
             get => Get<string>();
             set => Set(value);
@@ -42,6 +53,12 @@ namespace JayaCart.DataAccess.Models
         public string Image
         {
             get => Get<string>();
+            set => Set(value);
+        }
+
+        public float Balance
+        {
+            get => Get<float>();
             set => Set(value);
         }
     }

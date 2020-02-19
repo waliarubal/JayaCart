@@ -17,8 +17,7 @@ namespace JayaCart.DataAccess.Services
 
         async Task<UserAccount> GetAccount(string phoneNumber)
         {
-            var account = await _databaseService.Get<UserAccount>("UserAccounts", phoneNumber);
-            return account;
+            return await _databaseService.Get<UserAccount>("UserAccounts", phoneNumber);
         }
 
         public async Task<UserAccount> Create(UserAccount account)
@@ -34,8 +33,8 @@ namespace JayaCart.DataAccess.Services
                 throw new ServiceException($"Failed to create user account with phone number {account.PhoneNumber}");
 
             _settingsService.Set(nameof(UserAccount.PhoneNumber), account.PhoneNumber);
-            _settingsService.Set(nameof(UserAccount.FullName), account.FullName);
-            _settingsService.Set(nameof(UserAccount.Address), account.Address);
+            _settingsService.Set(nameof(UserAccount.FirstName), account.FirstName);
+            _settingsService.Set(nameof(UserAccount.City), account.City);
             _settingsService.Set(nameof(UserAccount.Image), account.Image);
             await _settingsService.Save();
 
@@ -46,11 +45,11 @@ namespace JayaCart.DataAccess.Services
         {
             if (_settingsService.IsHaving(nameof(UserAccount.PhoneNumber)))
             {
-                var localAccount = new UserAccount
+                var localAccount = new UserAccount(_settingsService.Get<string>(nameof(UserAccount.PhoneNumber)))
                 {
-                    PhoneNumber = _settingsService.Get<string>(nameof(UserAccount.PhoneNumber)),
-                    FullName = _settingsService.Get<string>(nameof(UserAccount.FullName)),
-                    Image = _settingsService.Get<string>(nameof(UserAccount.Image))
+                    FirstName = _settingsService.Get<string>(nameof(UserAccount.FirstName)),
+                    Image = _settingsService.Get<string>(nameof(UserAccount.Image)),
+                    City = _settingsService.Get<string>(nameof(UserAccount.City))
                 };
                 return localAccount;
             }
@@ -71,8 +70,8 @@ namespace JayaCart.DataAccess.Services
             if (keepSignedIn)
             {
                 _settingsService.Set(nameof(UserAccount.PhoneNumber), account.PhoneNumber);
-                _settingsService.Set(nameof(UserAccount.FullName), account.FullName);
-                _settingsService.Set(nameof(UserAccount.Address), account.Address);
+                _settingsService.Set(nameof(UserAccount.FirstName), account.FirstName);
+                _settingsService.Set(nameof(UserAccount.City), account.City);
                 _settingsService.Set(nameof(UserAccount.Image), account.Image);
                 await _settingsService.Save();
             }
@@ -83,8 +82,8 @@ namespace JayaCart.DataAccess.Services
         public async Task SignOut()
         {
             _settingsService.Delete(nameof(UserAccount.PhoneNumber));
-            _settingsService.Delete(nameof(UserAccount.FullName));
-            _settingsService.Delete(nameof(UserAccount.Address));
+            _settingsService.Delete(nameof(UserAccount.FirstName));
+            _settingsService.Delete(nameof(UserAccount.City));
             _settingsService.Delete(nameof(UserAccount.Image));
             await _settingsService.Save();
         }

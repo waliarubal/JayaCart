@@ -20,7 +20,13 @@ namespace JayaCart.Mobile.ViewModels
             _navigationService = navigationService;
         }
 
-        public string FullName
+        public string FirstName
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+
+        public string LastName
         {
             get => Get<string>();
             set => Set(value);
@@ -33,6 +39,12 @@ namespace JayaCart.Mobile.ViewModels
         }
 
         public string Address
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+
+        public string City
         {
             get => Get<string>();
             set => Set(value);
@@ -63,8 +75,8 @@ namespace JayaCart.Mobile.ViewModels
 
         protected override string Validate()
         {
-            if (string.IsNullOrEmpty(FullName))
-                return "Please enter your full name.";
+            if (string.IsNullOrEmpty(FirstName))
+                return "Please enter your first name.";
 
             if (string.IsNullOrWhiteSpace(PhoneNumber) || PhoneNumber.Length != 10)
                 return "Mobile phone number must be ten characters long.";
@@ -72,13 +84,16 @@ namespace JayaCart.Mobile.ViewModels
             if (string.IsNullOrWhiteSpace(Address))
                 return "Please enter your address.";
 
+            if (string.IsNullOrWhiteSpace(City))
+                return "Please enter your city.";
+
             if (string.IsNullOrEmpty(Password) || Password.Length < 6)
                 return "Password must be atleast six characters long.";
 
             if (string.IsNullOrEmpty(ConfirmPassword))
                 return "Please confirm your password.";
 
-            if (Password.Equals(ConfirmPassword, StringComparison.Ordinal))
+            if (!Password.Equals(ConfirmPassword, StringComparison.Ordinal))
                 return "Invalid password confirmation. Reconfirm your password.";
 
             return base.Validate();
@@ -93,11 +108,12 @@ namespace JayaCart.Mobile.ViewModels
                 return;
             }
 
-            var account = new UserAccount
+            var account = new UserAccount(PhoneNumber)
             {
-                PhoneNumber = PhoneNumber,
-                FullName = FullName,
+                FirstName = FirstName,
+                LastName = LastName,
                 Address = Address,
+                City = City,
                 Password = Password
             };
 
