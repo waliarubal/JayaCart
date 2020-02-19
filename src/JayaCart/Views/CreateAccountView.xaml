@@ -110,7 +110,7 @@
                     </Entry>
 
                     <StackLayout Margin="0,8" Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding IsPasswordShown}" Color="{DynamicResource TextColorHigh}" />
+                        <CheckBox IsChecked="{Binding IsPasswordShown}" Style="{StaticResource CheckInputStyle}" />
                         <Label
                             FontAttributes="Bold"
                             Text="By signing up, I agree to your conditions of use and privacy policy."
@@ -133,94 +133,4 @@
 
         </controls:PageContainer.PageContent>
     </controls:PageContainer>
-    <!--<ContentPage.Resources>
-        <Style TargetType="Label">
-            <Setter Property="VerticalTextAlignment" Value="Center" />
-            <Setter Property="HorizontalTextAlignment" Value="Start" />
-        </Style>
-    </ContentPage.Resources>
-    <ContentPage.Content>
-        <Grid
-            Margin="8"
-            HorizontalOptions="Fill"
-            VerticalOptions="Fill">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
-            <Label FontSize="Large" Text="Create account" />
-
-            <Label Grid.Row="1" Text="Your name" />
-            <Grid Grid.Row="2" HorizontalOptions="Fill">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Entry Placeholder="Your first name" Text="{Binding FirstName}" />
-                <Entry
-                    Grid.Column="1"
-                    Placeholder="Your last name"
-                    Text="{Binding LastName}" />
-            </Grid>
-
-            <Label Grid.Row="3" Text="Phone number" />
-            <Entry
-                Grid.Row="4"
-                Keyboard="Telephone"
-                Placeholder="Your mobile phone number"
-                Text="{Binding PhoneNumber}">
-                <Entry.Behaviors>
-                    <shared:NumericValidationBehavior />
-                    <shared:EntryLengthValidatorBehavior MaxLength="10" />
-                </Entry.Behaviors>
-            </Entry>
-
-            <Label Grid.Row="5" Text="Address" />
-            <Editor
-                Grid.Row="6"
-                Placeholder="Enter your full postal address"
-                Text="{Binding Address}" />
-            <Entry
-                Grid.Row="7"
-                Placeholder="Enter your city"
-                Text="{Binding City}" />
-
-            <Label Grid.Row="8" Text="Create password" />
-            <Entry
-                Grid.Row="9"
-                IsPassword="True"
-                Placeholder="At least 6 characters"
-                Text="{Binding Password}" />
-
-            <Label Grid.Row="10" Text="Confirm password" />
-            <Entry
-                Grid.Row="11"
-                IsPassword="True"
-                Placeholder="Must match password"
-                Text="{Binding ConfirmPassword}" />
-
-            <Button
-                Grid.Row="12"
-                Command="{Binding CreateAccountCommand}"
-                Text="Create your account" />
-
-            <Label Grid.Row="13" Text="By creating an account, you agree to our conditions of use and privacy policy." />
-
-            <Label Grid.Row="14" Text="Already have an account? Log in" />
-        </Grid>
-    </ContentPage.Content>-->
 </ContentPage>

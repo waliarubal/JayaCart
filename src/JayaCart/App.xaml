@@ -71,6 +71,10 @@
             <Setter Property="BorderColor" Value="{DynamicResource BorderColorHigh}" />
         </Style>
 
+        <Style x:Key="CheckInputStyle" TargetType="CheckBox">
+            <Setter Property="Color" Value="{DynamicResource TextColorHigh}" />
+        </Style>
+
         <Style x:Key="InputStyle" TargetType="Entry">
             <Setter Property="FontAttributes" Value="Bold" />
             <Setter Property="TextColor" Value="{DynamicResource TextColorMid}" />
