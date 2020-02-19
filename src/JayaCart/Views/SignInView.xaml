@@ -12,38 +12,36 @@
     shared:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
     <controls:PageContainer ContentMargin="32,100,32,8" HeaderHeight="190">
+        <controls:PageContainer.HeaderContent>
+            <Label
+                Margin="0,40,0,0"
+                Style="{StaticResource TitleStyle}"
+                Text="Account log in" />
+        </controls:PageContainer.HeaderContent>
         <controls:PageContainer.PageContent>
             <StackLayout
                 Margin="16"
                 BindingContext="{Binding BindingContext, Source={x:Reference this}}"
                 HorizontalOptions="FillAndExpand"
+                Spacing="0"
                 VerticalOptions="StartAndExpand">
-                <Label
-                    FontSize="Small"
-                    Text="Phone number"
-                    TextColor="{DynamicResource TextColorLow}" />
+                <Label Style="{StaticResource FieldStyle}" Text="Phone number" />
                 <Entry
-                    FontAttributes="Bold"
                     Keyboard="Telephone"
                     Placeholder="Your mobile phone number"
-                    Text="{Binding PhoneNumber}"
-                    TextColor="{DynamicResource TextColorMid}">
+                    Style="{StaticResource InputStyle}"
+                    Text="{Binding PhoneNumber}">
                     <Entry.Behaviors>
                         <shared:NumericValidationBehavior />
                         <shared:EntryLengthValidatorBehavior MaxLength="10" />
                     </Entry.Behaviors>
                 </Entry>
 
-                <Label
-                    FontSize="Small"
-                    Text="Password"
-                    TextColor="{DynamicResource TextColorLow}" />
+                <Label Style="{StaticResource FieldStyle}" Text="Password" />
                 <Entry
-                    FontAttributes="Bold"
-                    IsPassword="True"
                     Placeholder="Your password"
-                    Text="{Binding Password}"
-                    TextColor="{DynamicResource TextColorHigh}">
+                    Style="{StaticResource PasswordInputStyle}"
+                    Text="{Binding Password}">
                     <Entry.Behaviors>
                         <shared:EntryLengthValidatorBehavior MaxLength="12" />
                     </Entry.Behaviors>
@@ -68,34 +66,15 @@
                 </StackLayout>
 
                 <Button
-                    Margin="0,8"
-                    BackgroundColor="{DynamicResource BackgroundColorHigh}"
-                    BorderColor="{DynamicResource BackgroundColorHigh}"
-                    BorderWidth="4"
                     Command="{Binding SignInCommand}"
-                    CornerRadius="52"
-                    FontAttributes="Bold"
-                    FontSize="Medium"
-                    HeightRequest="52"
-                    HorizontalOptions="Center"
-                    Text="Log in"
-                    TextColor="{DynamicResource BackgroundColorLow}"
-                    WidthRequest="200" />
+                    Style="{StaticResource ButtonPrimaryStyle}"
+                    Text="Log in" />
 
                 <Button
-                    Margin="0,8"
                     BackgroundColor="{DynamicResource BackgroundColorLow}"
-                    BorderColor="{DynamicResource BorderColorHigh}"
-                    BorderWidth="4"
                     Command="{Binding CreateAccountCommand}"
-                    CornerRadius="52"
-                    FontAttributes="Bold"
-                    FontSize="Medium"
-                    HeightRequest="52"
-                    HorizontalOptions="Center"
-                    Text="Sign Up"
-                    TextColor="{DynamicResource TextColorMid}"
-                    WidthRequest="200" />
+                    Style="{StaticResource ButtonSecondaryStyle}"
+                    Text="Sign Up" />
 
             </StackLayout>
         </controls:PageContainer.PageContent>
