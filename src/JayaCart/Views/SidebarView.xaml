@@ -9,11 +9,14 @@
     <ContentPage.Resources>
         <shared:SelectedItemEventArgsToSelectedItemConverter x:Key="TappedItemConverter" />
     </ContentPage.Resources>
-    <shared:PageContainer HeaderHeight=".6*">
-        <shared:PageContainer.PageContent>
-            <Label Text="Poo" />
-        </shared:PageContainer.PageContent>
-    </shared:PageContainer>
+    <ContentPage.Content>
+        <shared:PageContainer HeaderHeight=".6*">
+            <shared:PageContainer.PageContent>
+                <Label Text="Hola!" />
+            </shared:PageContainer.PageContent>
+        </shared:PageContainer>
+    </ContentPage.Content>
+
     <!--<ListView
         ItemsSource="{Binding Items}"
         SelectionMode="None"

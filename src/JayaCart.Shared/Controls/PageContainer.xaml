@@ -15,30 +15,25 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentView.Resources>
-    <ContentView.Content>
-        <Grid
-            BindingContext="{x:Reference this}"
-            HorizontalOptions="Fill"
-            VerticalOptions="Fill">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="{Binding HeaderHeight}" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <BoxView
-                BackgroundColor="{DynamicResource BackgroundColorHigh}"
-                HeightRequest="32"
-                VerticalOptions="Start" />
-            <BoxView BackgroundColor="{DynamicResource BackgroundColorHigh}" CornerRadius="32" />
-            <Frame
-                Grid.RowSpan="2"
-                Margin="{Binding ContentMargin}"
-                BackgroundColor="{DynamicResource BackgroundColorLow}"
-                CornerRadius="2">
-                <ContentPresenter
-                    Content="{Binding PageContent}"
-                    HorizontalOptions="Fill"
-                    VerticalOptions="Fill" />
-            </Frame>
-        </Grid>
-    </ContentView.Content>
+    <Grid
+        BindingContext="{x:Reference this}"
+        HorizontalOptions="Fill"
+        VerticalOptions="Fill">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{Binding HeaderHeight}" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <BoxView
+            BackgroundColor="{DynamicResource BackgroundColorHigh}"
+            HeightRequest="32"
+            VerticalOptions="Start" />
+        <BoxView BackgroundColor="{DynamicResource BackgroundColorHigh}" CornerRadius="32" />
+        <Frame
+            Grid.RowSpan="2"
+            Margin="{Binding ContentMargin}"
+            Padding="2"
+            BackgroundColor="{DynamicResource BackgroundColorLow}"
+            Content="{Binding PageContent}"
+            CornerRadius="2" />
+    </Grid>
 </ContentView>
