@@ -21,7 +21,7 @@ namespace JayaCart.DataAccess.Services
         }
 
         public async Task<UserAccount> Create(UserAccount account)
-        {            
+        {
             var existingAccount = await GetAccount(account.PhoneNumber);
             if (existingAccount != null)
                 throw new ServiceException($"Another user with phone number {account.PhoneNumber} is registered.");
@@ -57,7 +57,7 @@ namespace JayaCart.DataAccess.Services
             return default;
         }
 
-        public async Task<UserAccount> SignIn(string phone, string password, bool keepSignedIn)
+        public async Task<UserAccount> SignIn(string phone, string password)
         {
             var account = await GetAccount(phone);
             if (account == null)
@@ -67,14 +67,11 @@ namespace JayaCart.DataAccess.Services
             if (!account.Password.Equals(passwordHash, StringComparison.Ordinal))
                 throw new ServiceException("Password is incorrect.");
 
-            if (keepSignedIn)
-            {
-                _settingsService.Set(nameof(UserAccount.PhoneNumber), account.PhoneNumber);
-                _settingsService.Set(nameof(UserAccount.FirstName), account.FirstName);
-                _settingsService.Set(nameof(UserAccount.City), account.City);
-                _settingsService.Set(nameof(UserAccount.Image), account.Image);
-                await _settingsService.Save();
-            }
+            _settingsService.Set(nameof(UserAccount.PhoneNumber), account.PhoneNumber);
+            _settingsService.Set(nameof(UserAccount.FirstName), account.FirstName);
+            _settingsService.Set(nameof(UserAccount.City), account.City);
+            _settingsService.Set(nameof(UserAccount.Image), account.Image);
+            await _settingsService.Save();
 
             return account;
         }

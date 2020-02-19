@@ -40,12 +40,6 @@ namespace JayaCart.Mobile.ViewModels
             set => Set(value);
         }
 
-        public bool IsSignInPreserved
-        {
-            get => Get<bool>();
-            set => Set(value);
-        }
-
         public ICommand SignInCommand
         {
             get
@@ -95,7 +89,7 @@ namespace JayaCart.Mobile.ViewModels
 
             try
             {
-                var user = await _accountService.SignIn(PhoneNumber, Password, IsSignInPreserved);
+                var user = await _accountService.SignIn(PhoneNumber, Password);
                 if (user != null)
                     await _navigationService.Navigate(ViewType.Products);
             }

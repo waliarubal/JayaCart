@@ -7,7 +7,7 @@ namespace JayaCart.DataAccess.Services
     {
         UserAccount GetLocalAccount();
 
-        Task<UserAccount> SignIn(string phone, string password, bool keepSignedIn);
+        Task<UserAccount> SignIn(string phone, string password);
 
         Task<UserAccount> Create(UserAccount account);
 

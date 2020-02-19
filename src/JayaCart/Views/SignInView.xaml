@@ -3,100 +3,101 @@
     x:Class="JayaCart.Mobile.Views.SignInView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:JayaCart.Mobile.Controls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:shared="https://github.com/waliarubal/schemas"
+    x:Name="this"
     Title="Sign In"
     shared:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
-    <ContentPage.Resources>
-        <Style TargetType="Label">
-            <Setter Property="VerticalTextAlignment" Value="Center" />
-            <Setter Property="HorizontalTextAlignment" Value="Start" />
-        </Style>
-    </ContentPage.Resources>
-    <Grid
-        Margin="8"
-        HorizontalOptions="Fill"
-        VerticalOptions="Start">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <controls:PageContainer ContentMargin="32,100,32,8" HeaderHeight="190">
+        <controls:PageContainer.PageContent>
+            <StackLayout
+                Margin="16"
+                BindingContext="{Binding BindingContext, Source={x:Reference this}}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="StartAndExpand">
+                <Label
+                    FontSize="Small"
+                    Text="Phone number"
+                    TextColor="{DynamicResource TextColorLow}" />
+                <Entry
+                    FontAttributes="Bold"
+                    Keyboard="Telephone"
+                    Placeholder="Your mobile phone number"
+                    Text="{Binding PhoneNumber}"
+                    TextColor="{DynamicResource TextColorMid}">
+                    <Entry.Behaviors>
+                        <shared:NumericValidationBehavior />
+                        <shared:EntryLengthValidatorBehavior MaxLength="10" />
+                    </Entry.Behaviors>
+                </Entry>
 
-        <Label FontSize="Large" Text="Sign in" />
-        <Label Grid.Column="1" Text="Forgot password?" />
+                <Label
+                    FontSize="Small"
+                    Text="Password"
+                    TextColor="{DynamicResource TextColorLow}" />
+                <Entry
+                    FontAttributes="Bold"
+                    IsPassword="True"
+                    Placeholder="Your password"
+                    Text="{Binding Password}"
+                    TextColor="{DynamicResource TextColorHigh}">
+                    <Entry.Behaviors>
+                        <shared:EntryLengthValidatorBehavior MaxLength="12" />
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger
+                            Binding="{Binding IsPasswordShown}"
+                            TargetType="Entry"
+                            Value="True">
+                            <Setter Property="IsPassword" Value="False" />
+                            <Setter Property="TextColor" Value="{DynamicResource TextColorMid}" />
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
 
-        <Entry
-            Grid.Row="1"
-            Grid.ColumnSpan="2"
-            Keyboard="Telephone"
-            Placeholder="Mobile phone number"
-            Text="{Binding PhoneNumber}">
-            <Entry.Behaviors>
-                <shared:NumericValidationBehavior />
-                <shared:EntryLengthValidatorBehavior MaxLength="10" />
-            </Entry.Behaviors>
-        </Entry>
+                <StackLayout Margin="0,8" Orientation="Horizontal">
+                    <CheckBox IsChecked="{Binding IsPasswordShown}" />
+                    <Label
+                        FontAttributes="Bold"
+                        Text="Show password"
+                        TextColor="{DynamicResource TextColorMid}"
+                        VerticalTextAlignment="Center" />
+                </StackLayout>
 
-        <Entry
-            Grid.Row="2"
-            Grid.ColumnSpan="2"
-            IsPassword="True"
-            Placeholder="Password"
-            Text="{Binding Password}">
-            <Entry.Triggers>
-                <DataTrigger
-                    Binding="{Binding IsPasswordShown}"
-                    TargetType="Entry"
-                    Value="True">
-                    <Setter Property="IsPassword" Value="False" />
-                </DataTrigger>
-            </Entry.Triggers>
-        </Entry>
+                <Button
+                    Margin="0,8"
+                    BackgroundColor="{DynamicResource BackgroundColorHigh}"
+                    BorderColor="{DynamicResource BackgroundColorHigh}"
+                    BorderWidth="4"
+                    Command="{Binding SignInCommand}"
+                    CornerRadius="52"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HeightRequest="52"
+                    HorizontalOptions="Center"
+                    Text="Log in"
+                    TextColor="{DynamicResource BackgroundColorLow}"
+                    WidthRequest="200" />
 
-        <StackLayout
-            Grid.Row="3"
-            Grid.ColumnSpan="2"
-            Orientation="Horizontal">
-            <CheckBox IsChecked="{Binding IsPasswordShown}" />
-            <Label Text="Show password" />
-        </StackLayout>
+                <Button
+                    Margin="0,8"
+                    BackgroundColor="{DynamicResource BackgroundColorLow}"
+                    BorderColor="{DynamicResource BorderColorHigh}"
+                    BorderWidth="4"
+                    Command="{Binding CreateAccountCommand}"
+                    CornerRadius="52"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HeightRequest="52"
+                    HorizontalOptions="Center"
+                    Text="Sign Up"
+                    TextColor="{DynamicResource TextColorMid}"
+                    WidthRequest="200" />
 
-        <StackLayout
-            Grid.Row="4"
-            Grid.ColumnSpan="2"
-            Orientation="Horizontal">
-            <CheckBox IsChecked="{Binding IsSignInPreserved}" />
-            <Label Text="Keep me logged in" />
-        </StackLayout>
-
-        <Button
-            Grid.Row="5"
-            Grid.ColumnSpan="2"
-            Command="{Binding SignInCommand}"
-            Text="Sign in" />
-
-        <Label
-            Grid.Row="6"
-            Grid.ColumnSpan="2"
-            HorizontalTextAlignment="Center"
-            Text="Don't have an account?" />
-
-        <Button
-            Grid.Row="7"
-            Grid.ColumnSpan="2"
-            Command="{Binding CreateAccountCommand}"
-            Text="Create a new account" />
-    </Grid>
+            </StackLayout>
+        </controls:PageContainer.PageContent>
+    </controls:PageContainer>
 </ContentPage>
