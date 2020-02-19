@@ -3,14 +3,16 @@
     x:Class="JayaCart.Mobile.Views.SidebarView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:JayaCart.Mobile.Controls"
+    xmlns:local="clr-namespace:JayaCart.Mobile"
     xmlns:shared="https://github.com/waliarubal/schemas"
     x:Name="this"
     shared:ViewModelLocator.AutoWireViewModel="True">
     <ContentPage.Resources>
         <shared:SelectedItemEventArgsToSelectedItemConverter x:Key="TappedItemConverter" />
     </ContentPage.Resources>
-    <shared:PageContainer ContentMargin="32,100,32,8" HeaderHeight="190">
-        <shared:PageContainer.HeaderContent>
+    <controls:PageContainer ContentMargin="32,100,32,8" HeaderHeight="190">
+        <controls:PageContainer.HeaderContent>
             <Frame
                 Margin="0,60,0,0"
                 BorderColor="{DynamicResource BorderColorHigh}"
@@ -20,8 +22,8 @@
                 IsClippedToBounds="True"
                 VerticalOptions="Start"
                 WidthRequest="40" />
-        </shared:PageContainer.HeaderContent>
-        <shared:PageContainer.PageContent>
+        </controls:PageContainer.HeaderContent>
+        <controls:PageContainer.PageContent>
             <Grid
                 Margin="16,40"
                 Padding="0"
@@ -48,7 +50,7 @@
                         <Label
                             FontFamily="{StaticResource FontAwesomeSolid}"
                             FontSize="Small"
-                            Text="{x:Static shared:FontAwesomeSolidIcons.MapMarkerAlt}"
+                            Text="{x:Static local:FontAwesomeSolidIcons.MapMarkerAlt}"
                             TextColor="{DynamicResource TextColorHigh}"
                             VerticalTextAlignment="Center" />
                         <Label
@@ -91,6 +93,12 @@
                                         HorizontalOptions="FillAndExpand"
                                         Spacing="0"
                                         VerticalOptions="FillAndExpand">
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding BindingContext.ItemClickCommand, Source={x:Reference this}}"
+                                                CommandParameter="{Binding}"
+                                                NumberOfTapsRequired="1" />
+                                        </StackLayout.GestureRecognizers>
                                         <Grid
                                             Padding="0,8"
                                             BackgroundColor="{DynamicResource BackgroundColorLow}"
@@ -122,6 +130,6 @@
                     </StackLayout>
                 </ScrollView>
             </Grid>
-        </shared:PageContainer.PageContent>
-    </shared:PageContainer>
+        </controls:PageContainer.PageContent>
+    </controls:PageContainer>
 </ContentPage>

@@ -5,15 +5,35 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:shared="https://github.com/waliarubal/schemas"
     xmlns:views="clr-namespace:JayaCart.Mobile.Views"
     mc:Ignorable="d">
     <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <shared:ThemeStyles />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        <OnPlatform
+            x:Key="FontAwesomeSolid"
+            x:TypeArguments="x:String"
+            Android="fa-solid-900.ttf#Font Awesome 5 Free Solid"
+            iOS="Font Awesome 5 Free Solid" />
+        <OnPlatform
+            x:Key="FontAwesomeRegular"
+            x:TypeArguments="x:String"
+            Android="fa-regular-400.ttf#Font Awesome 5 Free Regular"
+            iOS="Font Awesome 5 Free Regular" />
+        <OnPlatform
+            x:Key="FontAwesomeBrands"
+            x:TypeArguments="x:String"
+            Android="fa-brands-400.ttf#Font Awesome 5 Brands Regular"
+            iOS="Font Awesome 5 Brands Regular" />
+
+        <Color x:Key="BackgroundColorHigh">#ff034e</Color>
+        <Color x:Key="BackgroundColorMid">#f6f6f8</Color>
+        <Color x:Key="BackgroundColorLow">#ffffff</Color>
+
+        <Color x:Key="BorderColor">#ececec</Color>
+        <Color x:Key="BorderColorHigh">#c72d49</Color>
+
+        <Color x:Key="TextColorHigh">#ff2045</Color>
+        <Color x:Key="TextColorMid">Black</Color>
+        <Color x:Key="TextColorLow">#c7c7c7</Color>
     </Application.Resources>
     <Application.MainPage>
         <views:MainView />

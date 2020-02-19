@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentView
-    x:Class="JayaCart.Mobile.Shared.Controls.PageContainer"
+    x:Class="JayaCart.Mobile.Controls.PageContainer"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -8,13 +8,6 @@
     x:Name="this"
     BackgroundColor="{DynamicResource BackgroundColorMid}"
     mc:Ignorable="d">
-    <ContentView.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/ThemeStyles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentView.Resources>
     <Grid
         BindingContext="{x:Reference this}"
         HorizontalOptions="Fill"

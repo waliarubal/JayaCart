@@ -1,4 +1,4 @@
-﻿namespace JayaCart.Mobile.Shared
+﻿namespace JayaCart.Mobile
 {
 	public static class FontAwesomeSolidIcons
 	{

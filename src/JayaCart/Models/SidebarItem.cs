@@ -5,20 +5,13 @@ namespace JayaCart.Mobile.Models
 {
     public class SidebarItem: ModelBase
     {
-        public SidebarItem(string title, ViewType view, string icon = null)
+        public SidebarItem(string title, ViewType view)
         {
             Title = title;
-            Icon = icon;
             View = view;
         }
 
         public string Title
-        {
-            get => Get<string>();
-            set => Set(value);
-        }
-
-        public string Icon
         {
             get => Get<string>();
             set => Set(value);

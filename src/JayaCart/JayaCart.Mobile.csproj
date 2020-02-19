@@ -13,11 +13,8 @@
 
   <ItemGroup>
     <Compile Remove="Assets\**" />
-    <Compile Remove="Controls\**" />
     <EmbeddedResource Remove="Assets\**" />
-    <EmbeddedResource Remove="Controls\**" />
     <None Remove="Assets\**" />
-    <None Remove="Controls\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Controls\PageContainer.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
     <Compile Update="Views\SignInView.xaml.cs">
       <DependentUpon>SignInView.xaml</DependentUpon>
     </Compile>
