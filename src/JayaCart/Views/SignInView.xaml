@@ -57,7 +57,7 @@
                 </Entry>
 
                 <StackLayout Margin="0,8" Orientation="Horizontal">
-                    <CheckBox IsChecked="{Binding IsPasswordShown}" />
+                    <CheckBox IsChecked="{Binding IsPasswordShown}" Color="{DynamicResource TextColorHigh}" />
                     <Label
                         FontAttributes="Bold"
                         Text="Show password"
