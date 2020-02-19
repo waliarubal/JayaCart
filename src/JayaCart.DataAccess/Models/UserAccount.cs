@@ -32,7 +32,13 @@ namespace JayaCart.DataAccess.Models
             set => Set(value);
         }
 
-        public string Address
+        public string AddressLine1
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+
+        public string AddressLine2
         {
             get => Get<string>();
             set => Set(value);

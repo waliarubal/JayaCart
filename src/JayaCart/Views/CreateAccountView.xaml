@@ -3,13 +3,137 @@
     x:Class="JayaCart.Mobile.Views.CreateAccountView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:JayaCart.Mobile.Controls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:shared="https://github.com/waliarubal/schemas"
-    Title="Create Account"
+    x:Name="this"
+    Title="Sign Up"
     shared:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
-    <ContentPage.Resources>
+    <controls:PageContainer ContentMargin="32,100,32,8" HeaderHeight="190">
+        <controls:PageContainer.HeaderContent>
+            <Label
+                Margin="0,40,0,0"
+                Style="{StaticResource TitleStyle}"
+                Text="Account sign up" />
+        </controls:PageContainer.HeaderContent>
+        <controls:PageContainer.PageContent>
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout
+                    Margin="16"
+                    BindingContext="{Binding BindingContext, Source={x:Reference this}}"
+                    HorizontalOptions="FillAndExpand"
+                    Spacing="0"
+                    VerticalOptions="StartAndExpand">
+                    <Label Style="{StaticResource FieldStyle}" Text="Your name" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Entry
+                            Placeholder="First name"
+                            Style="{StaticResource InputStyle}"
+                            Text="{Binding FirstName}">
+                            <Entry.Behaviors>
+                                <shared:EntryLengthValidatorBehavior MaxLength="32" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Entry
+                            Grid.Column="1"
+                            Placeholder="Last name"
+                            Style="{StaticResource InputStyle}"
+                            Text="{Binding LastName}">
+                            <Entry.Behaviors>
+                                <shared:EntryLengthValidatorBehavior MaxLength="32" />
+                            </Entry.Behaviors>
+                        </Entry>
+                    </Grid>
+
+                    <Label Style="{StaticResource FieldStyle}" Text="Your phone number" />
+                    <Entry
+                        Keyboard="Telephone"
+                        Placeholder="Your mobile phone number"
+                        Style="{StaticResource InputStyle}"
+                        Text="{Binding PhoneNumber}">
+                        <Entry.Behaviors>
+                            <shared:NumericValidationBehavior />
+                            <shared:EntryLengthValidatorBehavior MaxLength="10" />
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Label Style="{StaticResource FieldStyle}" Text="Your address" />
+                    <Entry
+                        Placeholder="Address line 1"
+                        Style="{StaticResource InputStyle}"
+                        Text="{Binding AddressLine1}">
+                        <Entry.Behaviors>
+                            <shared:EntryLengthValidatorBehavior MaxLength="52" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Entry
+                        Placeholder="Address line 2"
+                        Style="{StaticResource InputStyle}"
+                        Text="{Binding AddressLine2}">
+                        <Entry.Behaviors>
+                            <shared:EntryLengthValidatorBehavior MaxLength="52" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Entry
+                        Placeholder="City"
+                        Style="{StaticResource InputStyle}"
+                        Text="{Binding City}">
+                        <Entry.Behaviors>
+                            <shared:EntryLengthValidatorBehavior MaxLength="52" />
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Label Style="{StaticResource FieldStyle}" Text="Create password" />
+                    <Entry
+                        Placeholder="At least six characters"
+                        Style="{StaticResource PasswordInputStyle}"
+                        Text="{Binding Password}">
+                        <Entry.Behaviors>
+                            <shared:EntryLengthValidatorBehavior MaxLength="32" />
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Label Style="{StaticResource FieldStyle}" Text="Confirm password" />
+                    <Entry
+                        Placeholder="Must match password"
+                        Style="{StaticResource PasswordInputStyle}"
+                        Text="{Binding ConfirmPassword}">
+                        <Entry.Behaviors>
+                            <shared:EntryLengthValidatorBehavior MaxLength="32" />
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <StackLayout Margin="0,8" Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsPasswordShown}" Color="{DynamicResource TextColorHigh}" />
+                        <Label
+                            FontAttributes="Bold"
+                            Text="By signing up, I agree to your conditions of use and privacy policy."
+                            TextColor="{DynamicResource TextColorMid}"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+
+                    <Button
+                        Command="{Binding CreateAccountCommand}"
+                        Style="{StaticResource ButtonPrimaryStyle}"
+                        Text="Sign Up" />
+
+                    <Button
+                        BackgroundColor="{DynamicResource BackgroundColorLow}"
+                        Command="{Binding SignInCommand}"
+                        Style="{StaticResource ButtonSecondaryStyle}"
+                        Text="Log in" />
+                </StackLayout>
+            </ScrollView>
+
+        </controls:PageContainer.PageContent>
+    </controls:PageContainer>
+    <!--<ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="VerticalTextAlignment" Value="Center" />
             <Setter Property="HorizontalTextAlignment" Value="Start" />
@@ -98,5 +222,5 @@
 
             <Label Grid.Row="14" Text="Already have an account? Log in" />
         </Grid>
-    </ContentPage.Content>
+    </ContentPage.Content>-->
 </ContentPage>

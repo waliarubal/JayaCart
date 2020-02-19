@@ -12,7 +12,7 @@ namespace JayaCart.Mobile.ViewModels
     {
         readonly IUserAccountService _accountService;
         readonly INavigationService _navigationService;
-        ICommand _createAccount;
+        ICommand _createAccount, _signIn;
 
         public CreateAccountViewModel(IUserAccountService accountService, INavigationService navigationService)
         {
@@ -38,7 +38,13 @@ namespace JayaCart.Mobile.ViewModels
             set => Set(value);
         }
 
-        public string Address
+        public string AddressLine1
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+
+        public string AddressLine2
         {
             get => Get<string>();
             set => Set(value);
@@ -73,6 +79,17 @@ namespace JayaCart.Mobile.ViewModels
             }
         }
 
+        public ICommand SignInCommand
+        {
+            get
+            {
+                if (_signIn == null)
+                    _signIn = new RelayCommand(SignInAction);
+
+                return _signIn;
+            }
+        }
+
         protected override string Validate()
         {
             if (string.IsNullOrEmpty(FirstName))
@@ -81,7 +98,7 @@ namespace JayaCart.Mobile.ViewModels
             if (string.IsNullOrWhiteSpace(PhoneNumber) || PhoneNumber.Length != 10)
                 return "Mobile phone number must be ten characters long.";
 
-            if (string.IsNullOrWhiteSpace(Address))
+            if (string.IsNullOrWhiteSpace(AddressLine1))
                 return "Please enter your address.";
 
             if (string.IsNullOrWhiteSpace(City))
@@ -99,6 +116,11 @@ namespace JayaCart.Mobile.ViewModels
             return base.Validate();
         }
 
+        async void SignInAction()
+        {
+            await _navigationService.Navigate(ViewType.SignIn);
+        }
+
         async void CreateAccountAction()
         {
             var error = Validate();
@@ -112,7 +134,8 @@ namespace JayaCart.Mobile.ViewModels
             {
                 FirstName = FirstName,
                 LastName = LastName,
-                Address = Address,
+                AddressLine1 = AddressLine1,
+                AddressLine2 = AddressLine2,
                 City = City,
                 Password = Password
             };

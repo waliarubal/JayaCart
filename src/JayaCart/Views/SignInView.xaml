@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:shared="https://github.com/waliarubal/schemas"
     x:Name="this"
-    Title="Sign In"
+    Title="Log In"
     shared:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
     <controls:PageContainer ContentMargin="32,100,32,8" HeaderHeight="190">
@@ -19,64 +19,66 @@
                 Text="Account log in" />
         </controls:PageContainer.HeaderContent>
         <controls:PageContainer.PageContent>
-            <StackLayout
-                Margin="16"
-                BindingContext="{Binding BindingContext, Source={x:Reference this}}"
-                HorizontalOptions="FillAndExpand"
-                Spacing="0"
-                VerticalOptions="StartAndExpand">
-                <Label Style="{StaticResource FieldStyle}" Text="Phone number" />
-                <Entry
-                    Keyboard="Telephone"
-                    Placeholder="Your mobile phone number"
-                    Style="{StaticResource InputStyle}"
-                    Text="{Binding PhoneNumber}">
-                    <Entry.Behaviors>
-                        <shared:NumericValidationBehavior />
-                        <shared:EntryLengthValidatorBehavior MaxLength="10" />
-                    </Entry.Behaviors>
-                </Entry>
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout
+                    Margin="16"
+                    BindingContext="{Binding BindingContext, Source={x:Reference this}}"
+                    HorizontalOptions="FillAndExpand"
+                    Spacing="0"
+                    VerticalOptions="StartAndExpand">
+                    <Label Style="{StaticResource FieldStyle}" Text="Phone number" />
+                    <Entry
+                        Keyboard="Telephone"
+                        Placeholder="Your mobile phone number"
+                        Style="{StaticResource InputStyle}"
+                        Text="{Binding PhoneNumber}">
+                        <Entry.Behaviors>
+                            <shared:NumericValidationBehavior />
+                            <shared:EntryLengthValidatorBehavior MaxLength="10" />
+                        </Entry.Behaviors>
+                    </Entry>
 
-                <Label Style="{StaticResource FieldStyle}" Text="Password" />
-                <Entry
-                    Placeholder="Your password"
-                    Style="{StaticResource PasswordInputStyle}"
-                    Text="{Binding Password}">
-                    <Entry.Behaviors>
-                        <shared:EntryLengthValidatorBehavior MaxLength="12" />
-                    </Entry.Behaviors>
-                    <Entry.Triggers>
-                        <DataTrigger
-                            Binding="{Binding IsPasswordShown}"
-                            TargetType="Entry"
-                            Value="True">
-                            <Setter Property="IsPassword" Value="False" />
-                            <Setter Property="TextColor" Value="{DynamicResource TextColorMid}" />
-                        </DataTrigger>
-                    </Entry.Triggers>
-                </Entry>
+                    <Label Style="{StaticResource FieldStyle}" Text="Password" />
+                    <Entry
+                        Placeholder="Your password"
+                        Style="{StaticResource PasswordInputStyle}"
+                        Text="{Binding Password}">
+                        <Entry.Behaviors>
+                            <shared:EntryLengthValidatorBehavior MaxLength="32" />
+                        </Entry.Behaviors>
+                        <Entry.Triggers>
+                            <DataTrigger
+                                Binding="{Binding IsPasswordShown}"
+                                TargetType="Entry"
+                                Value="True">
+                                <Setter Property="IsPassword" Value="False" />
+                                <Setter Property="TextColor" Value="{DynamicResource TextColorMid}" />
+                            </DataTrigger>
+                        </Entry.Triggers>
+                    </Entry>
 
-                <StackLayout Margin="0,8" Orientation="Horizontal">
-                    <CheckBox IsChecked="{Binding IsPasswordShown}" Color="{DynamicResource TextColorHigh}" />
-                    <Label
-                        FontAttributes="Bold"
-                        Text="Show password"
-                        TextColor="{DynamicResource TextColorMid}"
-                        VerticalTextAlignment="Center" />
+                    <StackLayout Margin="0,8" Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsPasswordShown}" Color="{DynamicResource TextColorHigh}" />
+                        <Label
+                            FontAttributes="Bold"
+                            Text="Show password"
+                            TextColor="{DynamicResource TextColorMid}"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+
+                    <Button
+                        Command="{Binding SignInCommand}"
+                        Style="{StaticResource ButtonPrimaryStyle}"
+                        Text="Log in" />
+
+                    <Button
+                        BackgroundColor="{DynamicResource BackgroundColorLow}"
+                        Command="{Binding CreateAccountCommand}"
+                        Style="{StaticResource ButtonSecondaryStyle}"
+                        Text="Sign Up" />
+
                 </StackLayout>
-
-                <Button
-                    Command="{Binding SignInCommand}"
-                    Style="{StaticResource ButtonPrimaryStyle}"
-                    Text="Log in" />
-
-                <Button
-                    BackgroundColor="{DynamicResource BackgroundColorLow}"
-                    Command="{Binding CreateAccountCommand}"
-                    Style="{StaticResource ButtonSecondaryStyle}"
-                    Text="Sign Up" />
-
-            </StackLayout>
+            </ScrollView>
         </controls:PageContainer.PageContent>
     </controls:PageContainer>
 </ContentPage>
