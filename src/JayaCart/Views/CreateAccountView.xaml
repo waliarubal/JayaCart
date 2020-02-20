@@ -11,9 +11,13 @@
     Title="Account sign up"
     shared:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
-    <controls:PageContainer ContentMargin="32,60,32,8" HeaderHeight="190">
+    <controls:PageContainer
+        x:Name="Container"
+        ContentMargin="32,60,32,8"
+        HeaderHeight="190"
+        IsNavigationAllowed="False">
         <controls:PageContainer.HeaderContent>
-            <controls:TitleBar Title="{Binding Title, Source={x:Reference this}}" IsModal="False" />
+            <controls:TitleBar Title="{Binding Title, Source={x:Reference this}}" IsNavigationAllowed="{Binding IsNavigationAllowed, Source={x:Reference Container}}" />
         </controls:PageContainer.HeaderContent>
         <controls:PageContainer.PageContent>
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">

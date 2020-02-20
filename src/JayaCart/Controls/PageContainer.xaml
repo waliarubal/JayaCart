@@ -3,6 +3,7 @@
     x:Class="JayaCart.Mobile.Controls.PageContainer"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:JayaCart.Mobile.Controls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="this"
@@ -15,12 +16,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="{Binding HeaderHeight}" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <BoxView
             BackgroundColor="{DynamicResource BackgroundColorHigh}"
-            HeightRequest="32"
+            HeightRequest="{Binding CornerRadius, Source={x:Reference Header}}"
             VerticalOptions="Start" />
-        <BoxView BackgroundColor="{DynamicResource BackgroundColorHigh}" CornerRadius="32" />
+        <BoxView
+            x:Name="Header"
+            BackgroundColor="{DynamicResource BackgroundColorHigh}"
+            CornerRadius="32" />
         <ContentView
             Grid.RowSpan="2"
             Content="{Binding HeaderContent}"
@@ -34,5 +39,10 @@
             Content="{Binding PageContent}"
             CornerRadius="2"
             HasShadow="False" />
+        <controls:FooterBar
+            Grid.Row="2"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsNavigationAllowed}"
+            VerticalOptions="End" />
     </Grid>
 </ContentView>

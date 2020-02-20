@@ -32,6 +32,7 @@
 
         <Color x:Key="TextColorHigh">#ff2045</Color>
         <Color x:Key="TextColorMid">Black</Color>
+        <Color x:Key="TextColorMid1">#727272</Color>
         <Color x:Key="TextColorLow">#c7c7c7</Color>
 
         <Style x:Key="FieldStyle" TargetType="Label">
@@ -69,6 +70,7 @@
 
         <Style x:Key="InputStyle" TargetType="Entry">
             <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="PlaceholderColor" Value="{DynamicResource TextColorMid1}" />
             <Setter Property="TextColor" Value="{DynamicResource TextColorMid}" />
         </Style>
 

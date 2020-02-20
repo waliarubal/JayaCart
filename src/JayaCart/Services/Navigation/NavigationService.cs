@@ -1,5 +1,4 @@
 ﻿using JayaCart.Mobile.Models;
-using JayaCart.Mobile.Shared;
 using JayaCart.Mobile.Views;
 using System;
 using System.Collections.Generic;
@@ -76,7 +75,7 @@ namespace JayaCart.Mobile.Services
             if (_viewMapping[viewType].Value)
                 await mainPage.Navigation.PushModalAsync(view);
             else
-                mainPage.Detail = new NavigationPage(view);
+                await mainPage.Detail.Navigation.PushAsync(new NavigationPage(view));
         }
 
         public void ShowSidebar()

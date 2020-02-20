@@ -11,7 +11,8 @@ namespace JayaCart.Mobile.Controls
             HeaderHeightProperty,
             ContentMarginProperty,
             PageContentProperty,
-            HeaderContentProperty;
+            HeaderContentProperty, 
+            IsNavigationAllowedProperty;
 
         static PageContainer()
         {
@@ -19,6 +20,7 @@ namespace JayaCart.Mobile.Controls
             ContentMarginProperty = BindableProperty.Create(nameof(ContentMargin), typeof(Thickness), typeof(PageContainer), new Thickness(32, 32, 32, 8), BindingMode.OneWay);
             PageContentProperty = BindableProperty.Create(nameof(PageContent), typeof(View), typeof(PageContainer));
             HeaderContentProperty = BindableProperty.Create(nameof(HeaderContent), typeof(View), typeof(PageContainer));
+            IsNavigationAllowedProperty = BindableProperty.Create(nameof(IsNavigationAllowed), typeof(bool), typeof(TitleBar), true, BindingMode.OneWay);
         }
 
         public PageContainer()
@@ -48,6 +50,12 @@ namespace JayaCart.Mobile.Controls
         {
             get => (View)GetValue(HeaderContentProperty);
             set => SetValue(HeaderContentProperty, value);
+        }
+
+        public bool IsNavigationAllowed
+        {
+            get => (bool)GetValue(IsNavigationAllowedProperty);
+            set => SetValue(IsNavigationAllowedProperty, value);
         }
     }
 }

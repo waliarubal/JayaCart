@@ -19,7 +19,7 @@
                 <Setter Property="FontSize" Value="Title" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="CornerRadius" Value="16" />
-                <Setter Property="IsVisible" Value="{Binding IsModal}" />
+                <Setter Property="IsVisible" Value="{Binding IsNavigationAllowed}" />
             </Style>
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="Title" />
@@ -32,18 +32,13 @@
             </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="44" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Button
             Grid.Column="0"
             Command="{Binding ShowSidebarCommand}"
-            Text="{x:Static local:FontAwesomeSolidIcons.Bars}" />
-        <Label Grid.Column="1" Text="{Binding Title}" />
-        <Button
-            Grid.Column="2"
-            Command="{Binding ShowSidebarCommand}"
-            Text="{x:Static local:FontAwesomeSolidIcons.ShoppingCart}" />
+            Text="{x:Static local:FontAwesomeSolidIcons.ChevronLeft}" />
+        <Label Grid.ColumnSpan="2" Text="{Binding Title}" />
     </Grid>
 </ContentView>

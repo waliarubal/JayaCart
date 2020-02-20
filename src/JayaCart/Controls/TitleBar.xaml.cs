@@ -11,14 +11,14 @@ namespace JayaCart.Mobile.Controls
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TitleBar : ContentView
     {
-        public static readonly BindableProperty TitleProperty, IsModalProperty;
+        public static readonly BindableProperty TitleProperty, IsNavigationAllowedProperty;
         INavigationService _navigationService;
         ICommand _showSidebar;
 
         static TitleBar()
         {
             TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(TitleBar), string.Empty, BindingMode.OneWay);
-            IsModalProperty = BindableProperty.Create(nameof(IsModal), typeof(bool), typeof(TitleBar), true, BindingMode.OneWay);
+            IsNavigationAllowedProperty = BindableProperty.Create(nameof(IsNavigationAllowed), typeof(bool), typeof(TitleBar), true, BindingMode.OneWay);
         }
 
         public TitleBar()
@@ -43,15 +43,15 @@ namespace JayaCart.Mobile.Controls
             set => SetValue(TitleProperty, value);
         }
 
-        public bool IsModal
+        public bool IsNavigationAllowed
         {
-            get => (bool)GetValue(IsModalProperty);
-            set => SetValue(IsModalProperty, value);
+            get => (bool)GetValue(IsNavigationAllowedProperty);
+            set => SetValue(IsNavigationAllowedProperty, value);
         }
 
         void ShowSidebarAction()
         {
-            if (!IsModal)
+            if (IsNavigationAllowed)
                 return;
 
             if (_navigationService == null)
