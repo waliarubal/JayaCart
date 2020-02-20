@@ -21,6 +21,11 @@
             HeightRequest="32"
             VerticalOptions="Start" />
         <BoxView BackgroundColor="{DynamicResource BackgroundColorHigh}" CornerRadius="32" />
+        <ContentView
+            Grid.RowSpan="2"
+            Content="{Binding HeaderContent}"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Start" />
         <Frame
             Grid.RowSpan="2"
             Margin="{Binding ContentMargin}"
@@ -29,10 +34,5 @@
             Content="{Binding PageContent}"
             CornerRadius="2"
             HasShadow="False" />
-        <ContentView
-            Grid.RowSpan="2"
-            Content="{Binding HeaderContent}"
-            HorizontalOptions="Center"
-            VerticalOptions="Start" />
     </Grid>
 </ContentView>

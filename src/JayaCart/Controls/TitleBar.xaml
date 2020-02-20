@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="JayaCart.Mobile.Controls.TitleBar"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:JayaCart.Mobile"
+    x:Name="this"
+    BackgroundColor="Transparent">
+    <Grid
+        Margin="4,0,4,0"
+        BindingContext="{x:Reference this}"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="Start">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Button
+            BackgroundColor="{DynamicResource BackgroundColorHigh}"
+            Command="{Binding ShowSidebarCommand}"
+            CornerRadius="42"
+            FontFamily="{DynamicResource FontAwesomeSolid}"
+            FontSize="Title"
+            IsVisible="{Binding IsSidebarAvailable}"
+            Text="{x:Static local:FontAwesomeSolidIcons.Bars}"
+            TextColor="{DynamicResource BackgroundColorLow}"
+            VerticalOptions="Center"
+            WidthRequest="42" />
+        <Label
+            Grid.ColumnSpan="2"
+            Style="{StaticResource TitleStyle}"
+            Text="{Binding Title}" />
+    </Grid>
+</ContentView>

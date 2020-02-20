@@ -78,5 +78,14 @@ namespace JayaCart.Mobile.Services
             else
                 mainPage.Detail = new NavigationPage(view);
         }
+
+        public void ShowSidebar()
+        {
+            var mainPage = Application.Current.MainPage as MasterDetailPage;
+            if (mainPage == null)
+                return;
+
+            mainPage.IsPresented = true;
+        }
     }
 }

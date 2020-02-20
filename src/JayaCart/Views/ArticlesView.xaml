@@ -6,15 +6,13 @@
     xmlns:controls="clr-namespace:JayaCart.Mobile.Controls"
     xmlns:local="clr-namespace:JayaCart.Mobile"
     xmlns:shared="https://github.com/waliarubal/schemas"
-    Title=""
+    x:Name="this"
+    Title="Account log in"
     shared:ViewModelLocator.AutoWireViewModel="True"
     NavigationPage.HasNavigationBar="False">
-    <controls:PageContainer ContentMargin="8,70,8,8" HeaderHeight="70">
+    <controls:PageContainer ContentMargin="8,60,8,8" HeaderHeight="60">
         <controls:PageContainer.HeaderContent>
-            <Label
-                Margin="0,12,0,0"
-                Style="{StaticResource TitleStyle}"
-                Text="Account log in" />
+            <controls:TitleBar Title="{Binding Title, Source={x:Reference this}}" />
         </controls:PageContainer.HeaderContent>
         <controls:PageContainer.PageContent>
             <Grid

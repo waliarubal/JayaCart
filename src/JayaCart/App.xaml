@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:views="clr-namespace:JayaCart.Mobile.Views"
     mc:Ignorable="d">
     <Application.Resources>
         <OnPlatform
@@ -38,7 +37,10 @@
         <Style x:Key="TitleStyle" TargetType="Label">
             <Setter Property="FontSize" Value="Title" />
             <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="HorizontalOptions" Value="Center" />
             <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
             <Setter Property="TextColor" Value="{DynamicResource BackgroundColorLow}" />
         </Style>
 

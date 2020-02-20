@@ -1,6 +1,8 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace JayaCart.DataAccess.Services
@@ -19,10 +21,22 @@ namespace JayaCart.DataAccess.Services
         {
             var client = GetClient();
 
-            return await client
+            T result;
+            try
+            {
+                result = await client
                 .Child(resourceName)
                 .Child(key)
                 .OnceSingleAsync<T>();
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+                result = default;
+            }
+
+            return result;
+
         }
 
         public async Task<IReadOnlyCollection<FirebaseObject<T>>> GetMany<T>(string collectionName)
