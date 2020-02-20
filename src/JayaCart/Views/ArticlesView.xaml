@@ -10,7 +10,10 @@
     Title="Account log in"
     shared:ViewModelLocator.AutoWireViewModel="True"
     NavigationPage.HasNavigationBar="False">
-    <controls:PageContainer ContentMargin="8,60,8,8" HeaderHeight="60">
+    <controls:PageContainer
+        BackgroundColor="{DynamicResource BackgroundColorLow}"
+        ContentMargin="0,60,0,0"
+        HeaderHeight="60">
         <controls:PageContainer.HeaderContent>
             <controls:TitleBar Title="{Binding Title, Source={x:Reference this}}" />
         </controls:PageContainer.HeaderContent>

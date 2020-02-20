@@ -18,10 +18,10 @@
         <Button
             BackgroundColor="{DynamicResource BackgroundColorHigh}"
             Command="{Binding ShowSidebarCommand}"
-            CornerRadius="42"
+            CornerRadius="16"
             FontFamily="{DynamicResource FontAwesomeSolid}"
             FontSize="Title"
-            IsVisible="{Binding IsSidebarAvailable}"
+            IsVisible="{Binding IsModal}"
             Text="{x:Static local:FontAwesomeSolidIcons.Bars}"
             TextColor="{DynamicResource BackgroundColorLow}"
             VerticalOptions="Center"
