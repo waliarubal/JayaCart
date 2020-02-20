@@ -11,24 +11,39 @@
         BindingContext="{x:Reference this}"
         HorizontalOptions="FillAndExpand"
         VerticalOptions="Start">
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColorHigh}" />
+                <Setter Property="TextColor" Value="{DynamicResource BackgroundColorLow}" />
+                <Setter Property="FontFamily" Value="{DynamicResource FontAwesomeSolid}" />
+                <Setter Property="FontSize" Value="Title" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="IsVisible" Value="{Binding IsModal}" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Title" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{DynamicResource BackgroundColorLow}" />
+            </Style>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Button
-            BackgroundColor="{DynamicResource BackgroundColorHigh}"
+            Grid.Column="0"
             Command="{Binding ShowSidebarCommand}"
-            CornerRadius="16"
-            FontFamily="{DynamicResource FontAwesomeSolid}"
-            FontSize="Title"
-            IsVisible="{Binding IsModal}"
-            Text="{x:Static local:FontAwesomeSolidIcons.Bars}"
-            TextColor="{DynamicResource BackgroundColorLow}"
-            VerticalOptions="Center"
-            WidthRequest="42" />
-        <Label
-            Grid.ColumnSpan="2"
-            Style="{StaticResource TitleStyle}"
-            Text="{Binding Title}" />
+            Text="{x:Static local:FontAwesomeSolidIcons.Bars}" />
+        <Label Grid.Column="1" Text="{Binding Title}" />
+        <Button
+            Grid.Column="2"
+            Command="{Binding ShowSidebarCommand}"
+            Text="{x:Static local:FontAwesomeSolidIcons.ShoppingCart}" />
     </Grid>
 </ContentView>

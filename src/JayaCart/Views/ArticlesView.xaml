@@ -7,7 +7,7 @@
     xmlns:local="clr-namespace:JayaCart.Mobile"
     xmlns:shared="https://github.com/waliarubal/schemas"
     x:Name="this"
-    Title="Account log in"
+    Title="Shop for articles"
     shared:ViewModelLocator.AutoWireViewModel="True"
     NavigationPage.HasNavigationBar="False">
     <controls:PageContainer
@@ -20,67 +20,65 @@
         <controls:PageContainer.PageContent>
             <Grid
                 Margin="8"
-                BackgroundColor="{DynamicResource BackgroundColorLow}"
+                BindingContext="{Binding BindingContext, Source={x:Reference this}}"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <SearchBar
-                    Placeholder="Search"
-                    SearchCommand="{Binding SearchCommand}"
-                    SearchCommandParameter="{Binding SearchKeywoard}"
-                    Text="{Binding SearchKeywoard}" />
-                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <CheckBox VerticalOptions="Center" Color="{DynamicResource TextColorHigh}" />
-                    <Label
-                        Grid.Column="1"
-                        Text="Select All"
-                        TextColor="{DynamicResource TextColorMid}"
-                        VerticalTextAlignment="Center" />
-                    <Button
-                        Grid.Column="2"
-                        BackgroundColor="Transparent"
-                        FontFamily="{DynamicResource FontAwesomeSolid}"
-                        FontSize="32"
-                        HorizontalOptions="Start"
-                        Text="{x:Static local:FontAwesomeSolidIcons.ShoppingCart}"
-                        TextColor="{DynamicResource BackgroundColorHigh}"
-                        VerticalOptions="Center" />
-                </Grid>
+
+                <Frame
+                    Padding="16,0"
+                    BackgroundColor="{DynamicResource BackgroundColorLow}"
+                    BorderColor="{DynamicResource BorderColorHigh}"
+                    CornerRadius="{Binding Height, Source={x:RelativeSource Mode=Self}}"
+                    VerticalOptions="Start">
+                    <Grid HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Entry
+                            Keyboard="Plain"
+                            Placeholder="Search"
+                            Text="{Binding SearchKeywoard}" />
+                        <Button
+                            Grid.Column="1"
+                            BackgroundColor="Transparent"
+                            Command="{Binding SearchCommand}"
+                            CommandParameter="{Binding SearchKeywoard}"
+                            FontFamily="{DynamicResource FontAwesomeSolid}"
+                            FontSize="Large"
+                            Text="{x:Static local:FontAwesomeSolidIcons.Search}"
+                            TextColor="{DynamicResource BorderColorHigh}"
+                            WidthRequest="{Binding Height, Source={x:RelativeSource Mode=Self}}" />
+                    </Grid>
+                </Frame>
+
                 <CollectionView
-                    Grid.Row="2"
-                    Margin="4,0"
+                    Grid.Row="1"
+                    Margin="4,8"
                     HorizontalOptions="FillAndExpand"
                     ItemsSource="{Binding Articles}"
                     SelectionMode="None"
-                    VerticalOptions="FillAndExpand">
-                    <CollectionView.EmptyView>
-                        <Label
-                            HorizontalOptions="Center"
-                            Text="Nothing to display."
-                            VerticalOptions="Center" />
-                    </CollectionView.EmptyView>
+                    VerticalOptions="StartAndExpand">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid
-                                Margin="8"
+                                Margin="0,6"
+                                BackgroundColor="{DynamicResource BackgroundColorLow}"
                                 HorizontalOptions="FillAndExpand"
-                                VerticalOptions="Center">
+                                VerticalOptions="Start">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="120" />
                                 </Grid.ColumnDefinitions>
-                                <CheckBox Style="{StaticResource CheckInputStyle}" />
-                                <StackLayout Grid.Column="1" HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                                     <Label Text="{Binding Name}" TextColor="{DynamicResource TextColorMid}" />
                                     <Label
                                         Margin="0,-4"
@@ -94,42 +92,13 @@
                                         Text="{Binding MaximumRetailPrice, StringFormat='₹{0:####0.00}'}"
                                         TextColor="{DynamicResource TextColorHigh}" />
                                 </StackLayout>
-                                <StackLayout
-                                    Grid.Column="2"
-                                    Orientation="Horizontal"
-                                    VerticalOptions="Center">
-                                    <Button
-                                        Margin="0,0,-8,0"
-                                        BackgroundColor="Transparent"
-                                        FontFamily="{DynamicResource FontAwesomeSolid}"
-                                        HorizontalOptions="Start"
-                                        Text="{x:Static local:FontAwesomeSolidIcons.Plus}"
-                                        TextColor="{DynamicResource TextColorLow}"
-                                        VerticalOptions="Center"
-                                        WidthRequest="36" />
-                                    <Frame
-                                        Padding="0"
-                                        BorderColor="{DynamicResource BorderColor}"
-                                        CornerRadius="2"
-                                        VerticalOptions="Center"
-                                        WidthRequest="36">
-                                        <Entry
-                                            HorizontalTextAlignment="Center"
-                                            Keyboard="Numeric"
-                                            MaxLength="3"
-                                            Text="0"
-                                            VerticalTextAlignment="Center" />
-                                    </Frame>
-                                    <Button
-                                        Margin="-8,0,0,0"
-                                        BackgroundColor="Transparent"
-                                        FontFamily="{DynamicResource FontAwesomeSolid}"
-                                        HorizontalOptions="Start"
-                                        Text="{x:Static local:FontAwesomeSolidIcons.Minus}"
-                                        TextColor="{DynamicResource TextColorLow}"
-                                        VerticalOptions="Center"
-                                        WidthRequest="36" />
-                                </StackLayout>
+                                <controls:NumericUpDown Grid.Column="1" VerticalOptions="Center" />
+                                <BoxView
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="2"
+                                    HeightRequest="1"
+                                    VerticalOptions="Start"
+                                    Color="{DynamicResource BorderColor}" />
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

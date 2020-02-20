@@ -34,16 +34,6 @@
         <Color x:Key="TextColorMid">Black</Color>
         <Color x:Key="TextColorLow">#c7c7c7</Color>
 
-        <Style x:Key="TitleStyle" TargetType="Label">
-            <Setter Property="FontSize" Value="Title" />
-            <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="HorizontalOptions" Value="Center" />
-            <Setter Property="HorizontalTextAlignment" Value="Center" />
-            <Setter Property="VerticalOptions" Value="Center" />
-            <Setter Property="VerticalTextAlignment" Value="Center" />
-            <Setter Property="TextColor" Value="{DynamicResource BackgroundColorLow}" />
-        </Style>
-
         <Style x:Key="FieldStyle" TargetType="Label">
             <Setter Property="FontSize" Value="Small" />
             <Setter Property="VerticalTextAlignment" Value="End" />
