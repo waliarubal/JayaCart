@@ -3,16 +3,19 @@
     x:Class="JayaCart.Mobile.Views.AccountView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:JayaCart.Mobile.Controls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Account"
+    x:Name="this"
+    Title="Your Account"
+    NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <controls:PageContainer
+        BackgroundColor="{DynamicResource BackgroundColorLow}"
+        ContentMargin="0,60,0,0"
+        HeaderHeight="60">
+        <controls:PageContainer.HeaderContent>
+            <controls:TitleBar Title="{Binding Title, Source={x:Reference this}}" />
+        </controls:PageContainer.HeaderContent>
+    </controls:PageContainer>
 </ContentPage>

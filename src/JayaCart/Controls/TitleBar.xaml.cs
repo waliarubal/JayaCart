@@ -62,7 +62,7 @@ namespace JayaCart.Mobile.Controls
 
         async void GoBackAction()
         {
-            if (IsNavigationAllowed)
+            if (!IsNavigationAllowed)
                 return;
 
             await NavigationService.NavigateBack();

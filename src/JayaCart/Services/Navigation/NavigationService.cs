@@ -84,8 +84,8 @@ namespace JayaCart.Mobile.Services
             if (mainPage == null)
                 return;
 
-            if (mainPage.Navigation.NavigationStack.Count > 0)
-                await mainPage.Navigation.PopAsync();
+            if (mainPage.Detail.Navigation.NavigationStack.Count > 0)
+                await mainPage.Detail.Navigation.PopAsync();
         }
 
         public void ShowSidebar()
