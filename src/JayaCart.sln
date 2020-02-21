@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1022
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JayaCart.Mobile.Android", "JayaCart.Android\JayaCart.Mobile.Android.csproj", "{E74DA46A-3B83-428A-9870-4738AA55E30B}"
 EndProject
@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JayaCart.Mobile", "JayaCart
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JayaCart.Mobile.Shared", "JayaCart.Shared\JayaCart.Mobile.Shared.csproj", "{AC8A8FE8-EE8E-48D6-9251-05F72F34C05B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JayaCart.DataAccess", "JayaCart.DataAccess\JayaCart.DataAccess.csproj", "{BF1234A6-9087-47D2-A34A-0A07EBFB6950}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JayaCart.DataAccess", "JayaCart.DataAccess\JayaCart.DataAccess.csproj", "{BF1234A6-9087-47D2-A34A-0A07EBFB6950}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JayaCart.Api", "JayaCart.Api\JayaCart.Api.csproj", "{F27C05B3-D592-4631-B609-FCD00BE1E0A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +103,18 @@ Global
 		{BF1234A6-9087-47D2-A34A-0A07EBFB6950}.Release|iPhone.Build.0 = Release|Any CPU
 		{BF1234A6-9087-47D2-A34A-0A07EBFB6950}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{BF1234A6-9087-47D2-A34A-0A07EBFB6950}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{F27C05B3-D592-4631-B609-FCD00BE1E0A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F27C05B3-D592-4631-B609-FCD00BE1E0A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F27C05B3-D592-4631-B609-FCD00BE1E0A4}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{F27C05B3-D592-4631-B609-FCD00BE1E0A4}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{F27C05B3-D592-4631-B609-FCD00BE1E0A4}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{F27C05B3-D592-4631-B609-FCD00BE1E0A4}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{F27C05B3-D592-4631-B609-FCD00BE1E0A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F27C05B3-D592-4631-B609-FCD00BE1E0A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F27C05B3-D592-4631-B609-FCD00BE1E0A4}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{F27C05B3-D592-4631-B609-FCD00BE1E0A4}.Release|iPhone.Build.0 = Release|Any CPU
+		{F27C05B3-D592-4631-B609-FCD00BE1E0A4}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{F27C05B3-D592-4631-B609-FCD00BE1E0A4}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
