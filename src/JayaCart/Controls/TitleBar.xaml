@@ -37,7 +37,7 @@
         </Grid.ColumnDefinitions>
         <Button
             Grid.Column="0"
-            Command="{Binding ShowSidebarCommand}"
+            Command="{Binding GoBackCommand}"
             Text="{x:Static local:FontAwesomeSolidIcons.ChevronLeft}" />
         <Label Grid.ColumnSpan="2" Text="{Binding Title}" />
     </Grid>

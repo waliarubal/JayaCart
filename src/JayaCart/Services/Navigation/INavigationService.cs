@@ -21,6 +21,8 @@ namespace JayaCart.Mobile.Services
 
         Task Navigate(ViewType viewType);
 
+        Task NavigateBack();
+
         Task Close();
 
         Task Alert(string title, string message, string cancel = "Cancel");

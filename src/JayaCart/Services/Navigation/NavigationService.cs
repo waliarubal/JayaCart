@@ -49,11 +49,11 @@ namespace JayaCart.Mobile.Services
         {
             var menus = new List<SidebarItem>
             {
-                new SidebarItem("Home", ViewType.Products),
+                new SidebarItem("Store", ViewType.Products),
                 new SidebarItem("Shopping Cart", ViewType.ShoppingCart),
                 new SidebarItem("Your Orders", ViewType.Orders),
                 new SidebarItem("Your Account", ViewType.Account),
-                new SidebarItem("Legal & About", ViewType.About),
+                new SidebarItem("About", ViewType.About),
                 new SidebarItem("Sign Out", ViewType.SignIn)
             };
 
@@ -75,7 +75,17 @@ namespace JayaCart.Mobile.Services
             if (_viewMapping[viewType].Value)
                 await mainPage.Navigation.PushModalAsync(view);
             else
-                await mainPage.Detail.Navigation.PushAsync(new NavigationPage(view));
+                await mainPage.Detail.Navigation.PushAsync(view);
+        }
+
+        public async Task NavigateBack()
+        {
+            var mainPage = Application.Current.MainPage as MasterDetailPage;
+            if (mainPage == null)
+                return;
+
+            if (mainPage.Navigation.NavigationStack.Count > 0)
+                await mainPage.Navigation.PopAsync();
         }
 
         public void ShowSidebar()

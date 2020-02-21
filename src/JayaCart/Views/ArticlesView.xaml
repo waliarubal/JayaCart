@@ -58,7 +58,7 @@
 
                 <CollectionView
                     Grid.Row="1"
-                    Margin="4,8"
+                    Margin="4,8,4,0"
                     HorizontalOptions="FillAndExpand"
                     ItemsSource="{Binding Articles}"
                     SelectionMode="None"

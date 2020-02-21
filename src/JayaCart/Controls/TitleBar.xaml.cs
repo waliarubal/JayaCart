@@ -13,7 +13,7 @@ namespace JayaCart.Mobile.Controls
     {
         public static readonly BindableProperty TitleProperty, IsNavigationAllowedProperty;
         INavigationService _navigationService;
-        ICommand _showSidebar;
+        ICommand _goBack;
 
         static TitleBar()
         {
@@ -26,14 +26,25 @@ namespace JayaCart.Mobile.Controls
             InitializeComponent();
         }
 
-        public ICommand ShowSidebarCommand
+        INavigationService NavigationService
         {
             get
             {
-                if (_showSidebar == null)
-                    _showSidebar = new RelayCommand(ShowSidebarAction);
+                if (_navigationService == null)
+                    _navigationService = ViewModelLocator.Resolve<INavigationService>();
 
-                return _showSidebar;
+                return _navigationService;
+            }
+        }
+
+        public ICommand GoBackCommand
+        {
+            get
+            {
+                if (_goBack == null)
+                    _goBack = new RelayCommand(GoBackAction);
+
+                return _goBack;
             }
         }
 
@@ -49,15 +60,12 @@ namespace JayaCart.Mobile.Controls
             set => SetValue(IsNavigationAllowedProperty, value);
         }
 
-        void ShowSidebarAction()
+        async void GoBackAction()
         {
             if (IsNavigationAllowed)
                 return;
 
-            if (_navigationService == null)
-                _navigationService = ViewModelLocator.Resolve<INavigationService>();
-
-            _navigationService.ShowSidebar();
+            await NavigationService.NavigateBack();
         }
     }
 }

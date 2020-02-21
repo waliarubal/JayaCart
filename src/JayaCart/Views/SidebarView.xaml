@@ -9,7 +9,10 @@
     x:Name="this"
     shared:ViewModelLocator.AutoWireViewModel="True">
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <controls:PageContainer ContentMargin="32,100,32,8" HeaderHeight="190">
+        <controls:PageContainer
+            ContentMargin="32,100,32,8"
+            HeaderHeight="190"
+            IsNavigationAllowed="False">
             <controls:PageContainer.PageContent>
                 <Grid
                     Margin="16,40"
