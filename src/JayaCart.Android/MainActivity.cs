@@ -21,6 +21,9 @@ namespace JayaCart.Mobile.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+                Window.SetStatusBarColor(Android.Graphics.Color.Rgb(255, 3, 78));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

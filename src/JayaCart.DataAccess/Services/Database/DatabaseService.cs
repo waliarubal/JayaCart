@@ -9,7 +9,7 @@ namespace JayaCart.DataAccess.Services
 {
     public class DatabaseService : IDatabaseService
     {
-        const string DATABASE_URL = "https://jaya-cart-2020.firebaseio.com/";
+        const string DATABASE_URL = "https://jaya-cart-1988.firebaseio.com/";
 
         FirebaseClient GetClient()
         {
