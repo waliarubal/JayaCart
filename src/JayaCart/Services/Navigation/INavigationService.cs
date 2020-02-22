@@ -8,7 +8,7 @@ namespace JayaCart.Mobile.Services
     {
         SignIn,
         CreateAccount,
-        Products,
+        Articles,
         ShoppingCart,
         Orders,
         Account,

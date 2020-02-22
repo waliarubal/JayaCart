@@ -14,8 +14,8 @@
                 <Setter Property="HeightRequest" Value="36" />
                 <Setter Property="CornerRadius" Value="18" />
                 <Setter Property="TextColor" Value="{DynamicResource TextColorMid}" />
-                <Setter Property="BorderColor" Value="{DynamicResource BorderColor}" />
-                <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColorMid}" />
+                <Setter Property="BorderColor" Value="{DynamicResource BackgroundColorLow}" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColorLow}" />
                 <Setter Property="BorderWidth" Value="1" />
             </Style>
         </Grid.Resources>

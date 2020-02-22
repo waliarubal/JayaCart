@@ -44,7 +44,7 @@
             Command="{Binding NavigateComand}"
             Text="{x:Static local:FontAwesomeSolidIcons.Store}">
             <Button.CommandParameter>
-                <services:ViewType>Products</services:ViewType>
+                <services:ViewType>Articles</services:ViewType>
             </Button.CommandParameter>
         </Button>
         <Button

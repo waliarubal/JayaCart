@@ -10,6 +10,7 @@ namespace JayaCart.Mobile.Services
     public class NavigationService : INavigationService
     {
         readonly Dictionary<ViewType, KeyValuePair<Type, bool>> _viewMapping;
+        ViewType? _currentViewType;
 
         public NavigationService()
         {
@@ -20,9 +21,11 @@ namespace JayaCart.Mobile.Services
                 [ViewType.CreateAccount] = new KeyValuePair<Type, bool>(typeof(CreateAccountView), true),
                 [ViewType.SignIn] = new KeyValuePair<Type, bool>(typeof(SignInView), true),
                 [ViewType.Orders] = new KeyValuePair<Type, bool>(typeof(OrdersView), false),
-                [ViewType.Products] = new KeyValuePair<Type, bool>(typeof(ArticlesView), false),
+                [ViewType.Articles] = new KeyValuePair<Type, bool>(typeof(ArticlesView), false),
                 [ViewType.ShoppingCart] = new KeyValuePair<Type, bool>(typeof(ShoppingCartView), false)
             };
+
+            _currentViewType = ViewType.Articles;
         }
 
         public async Task Alert(string title, string message, string cancel = "Cancel")
@@ -43,13 +46,15 @@ namespace JayaCart.Mobile.Services
             mainPage.IsPresented = false;
             if (mainPage.Navigation.ModalStack.Count > 0)
                 await mainPage.Navigation.PopModalAsync();
+
+            _currentViewType = null;
         }
 
         public IEnumerable<SidebarItem> GetSidebarItems()
         {
             var menus = new List<SidebarItem>
             {
-                new SidebarItem("Store", ViewType.Products),
+                new SidebarItem("Store", ViewType.Articles),
                 new SidebarItem("Shopping Cart", ViewType.ShoppingCart),
                 new SidebarItem("Your Orders", ViewType.Orders),
                 new SidebarItem("Your Account", ViewType.Account),
@@ -62,6 +67,9 @@ namespace JayaCart.Mobile.Services
 
         public async Task Navigate(ViewType viewType)
         {
+            if (viewType == _currentViewType)
+                return;
+
             var mainPage = Application.Current.MainPage as MasterDetailPage;
             if (mainPage == null)
                 return;
@@ -76,6 +84,8 @@ namespace JayaCart.Mobile.Services
                 await mainPage.Navigation.PushModalAsync(view);
             else
                 await mainPage.Detail.Navigation.PushAsync(view);
+
+            _currentViewType = viewType;
         }
 
         public async Task NavigateBack()
