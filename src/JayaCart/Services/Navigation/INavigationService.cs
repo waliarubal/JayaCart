@@ -1,25 +1,15 @@
 ﻿using JayaCart.Mobile.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace JayaCart.Mobile.Services
 {
-    public enum ViewType: byte
-    {
-        SignIn,
-        CreateAccount,
-        Articles,
-        ShoppingCart,
-        Orders,
-        Account,
-        About
-    }
-
     public interface INavigationService
     {
         IEnumerable<SidebarItem> GetSidebarItems();
 
-        Task Navigate(ViewType viewType);
+        Task Navigate(Type viewType, bool isModal = false);
 
         Task NavigateBack();
 

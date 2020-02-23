@@ -3,6 +3,7 @@ using JayaCart.DataAccess.Services;
 using JayaCart.Mobile.Services;
 using JayaCart.Mobile.Shared.Base;
 using JayaCart.Mobile.Shared.Commands;
+using JayaCart.Mobile.Views;
 using System;
 using System.Windows.Input;
 
@@ -118,7 +119,7 @@ namespace JayaCart.Mobile.ViewModels
 
         async void SignInAction()
         {
-            await _navigationService.Navigate(ViewType.SignIn);
+            await _navigationService.Navigate(typeof(SignInView), true);
         }
 
         async void CreateAccountAction()

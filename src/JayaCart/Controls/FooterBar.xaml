@@ -6,7 +6,7 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:local="clr-namespace:JayaCart.Mobile"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:services="clr-namespace:JayaCart.Mobile.Services"
+    xmlns:views="clr-namespace:JayaCart.Mobile.Views"
     x:Name="this"
     BackgroundColor="{DynamicResource BackgroundColorLow}"
     mc:Ignorable="d">
@@ -42,43 +42,30 @@
             Grid.Row="1"
             Grid.Column="0"
             Command="{Binding NavigateComand}"
-            Text="{x:Static local:FontAwesomeSolidIcons.Store}">
-            <Button.CommandParameter>
-                <services:ViewType>Articles</services:ViewType>
-            </Button.CommandParameter>
-        </Button>
+            CommandParameter="{x:Type views:ArticlesView}"
+            Text="{x:Static local:FontAwesomeSolidIcons.Store}" />
         <Button
             Grid.Row="1"
             Grid.Column="1"
             Command="{Binding NavigateComand}"
-            Text="{x:Static local:FontAwesomeSolidIcons.ShoppingCart}">
-            <Button.CommandParameter>
-                <services:ViewType>ShoppingCart</services:ViewType>
-            </Button.CommandParameter>
-        </Button>
+            CommandParameter="{x:Type views:ShoppingCartView}"
+            Text="{x:Static local:FontAwesomeSolidIcons.ShoppingCart}" />
         <Button
             Grid.Row="1"
             Grid.Column="2"
             Command="{Binding NavigateComand}"
-            Text="{x:Static local:FontAwesomeSolidIcons.ShoppingBag}">
-            <Button.CommandParameter>
-                <services:ViewType>Orders</services:ViewType>
-            </Button.CommandParameter>
-        </Button>
+            CommandParameter="{x:Type views:OrdersView}"
+            Text="{x:Static local:FontAwesomeSolidIcons.ShoppingBag}" />
         <Button
             Grid.Row="1"
             Grid.Column="3"
             Command="{Binding NavigateComand}"
-            Text="{x:Static local:FontAwesomeSolidIcons.User}">
-            <Button.CommandParameter>
-                <services:ViewType>Account</services:ViewType>
-            </Button.CommandParameter>
-        </Button>
+            CommandParameter="{x:Type views:AccountView}"
+            Text="{x:Static local:FontAwesomeSolidIcons.User}" />
         <Button
             Grid.Row="1"
             Grid.Column="4"
             Command="{Binding ShowSidebarComand}"
             Text="{x:Static local:FontAwesomeSolidIcons.Bars}" />
-
     </Grid>
 </ContentView>

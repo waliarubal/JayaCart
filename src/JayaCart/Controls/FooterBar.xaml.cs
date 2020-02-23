@@ -2,6 +2,7 @@
 using JayaCart.Mobile.Services;
 using JayaCart.Mobile.Shared;
 using JayaCart.Mobile.Shared.Commands;
+using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -35,7 +36,7 @@ namespace JayaCart.Mobile.Controls
             get
             {
                 if (_navigate == null)
-                    _navigate = new RelayCommand<ViewType>(NavigateAction);
+                    _navigate = new RelayCommand<Type>(NavigateAction);
 
                 return _navigate;
             }
@@ -57,7 +58,7 @@ namespace JayaCart.Mobile.Controls
             NavigationService.ShowSidebar();
         }
 
-        async void NavigateAction(ViewType viewType)
+        async void NavigateAction(Type viewType)
         {
             await NavigationService.Navigate(viewType);
         }

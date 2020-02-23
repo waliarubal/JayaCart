@@ -4,6 +4,7 @@ using JayaCart.Mobile.Models;
 using JayaCart.Mobile.Services;
 using JayaCart.Mobile.Shared.Base;
 using JayaCart.Mobile.Shared.Commands;
+using JayaCart.Mobile.Views;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -47,12 +48,12 @@ namespace JayaCart.Mobile.ViewModels
         {
             Account = _accountService.GetLocalAccount();
             if (Account == null)
-                await _navigationService.Navigate(ViewType.SignIn);
+                await _navigationService.Navigate(typeof(SignInView), true);
         }
 
         async void ItemClickAction(SidebarItem item)
         {
-            await _navigationService.Navigate(item.View);
+            await _navigationService.Navigate(item.ViewType);
         }
     }
 }

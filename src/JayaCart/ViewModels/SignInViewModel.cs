@@ -3,6 +3,7 @@ using JayaCart.DataAccess.Services;
 using JayaCart.Mobile.Services;
 using JayaCart.Mobile.Shared.Base;
 using JayaCart.Mobile.Shared.Commands;
+using JayaCart.Mobile.Views;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -75,7 +76,7 @@ namespace JayaCart.Mobile.ViewModels
 
         async void CreateAccountAction()
         {
-            await _navigationService.Navigate(ViewType.CreateAccount);
+            await _navigationService.Navigate(typeof(CreateAccountView), true);
         }
 
         async void SignInAction()
@@ -91,7 +92,7 @@ namespace JayaCart.Mobile.ViewModels
             {
                 var user = await _accountService.SignIn(PhoneNumber, Password);
                 if (user != null)
-                    await _navigationService.Navigate(ViewType.Articles);
+                    await _navigationService.Navigate(typeof(ArticlesView));
             }
             catch (ServiceException ex)
             {

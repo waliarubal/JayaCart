@@ -9,25 +9,6 @@ namespace JayaCart.Mobile.Services
 {
     public class NavigationService : INavigationService
     {
-        readonly Dictionary<ViewType, KeyValuePair<Type, bool>> _viewMapping;
-        ViewType? _currentViewType;
-
-        public NavigationService()
-        {
-            _viewMapping = new Dictionary<ViewType, KeyValuePair<Type, bool>>
-            {
-                [ViewType.About] = new KeyValuePair<Type, bool>(typeof(AboutView), false),
-                [ViewType.Account] = new KeyValuePair<Type, bool>(typeof(AccountView), false),
-                [ViewType.CreateAccount] = new KeyValuePair<Type, bool>(typeof(CreateAccountView), true),
-                [ViewType.SignIn] = new KeyValuePair<Type, bool>(typeof(SignInView), true),
-                [ViewType.Orders] = new KeyValuePair<Type, bool>(typeof(OrdersView), false),
-                [ViewType.Articles] = new KeyValuePair<Type, bool>(typeof(ArticlesView), false),
-                [ViewType.ShoppingCart] = new KeyValuePair<Type, bool>(typeof(ShoppingCartView), false)
-            };
-
-            _currentViewType = ViewType.Articles;
-        }
-
         public async Task Alert(string title, string message, string cancel = "Cancel")
         {
             var mainPage = Application.Current.MainPage;
@@ -46,46 +27,39 @@ namespace JayaCart.Mobile.Services
             mainPage.IsPresented = false;
             if (mainPage.Navigation.ModalStack.Count > 0)
                 await mainPage.Navigation.PopModalAsync();
-
-            _currentViewType = null;
         }
 
         public IEnumerable<SidebarItem> GetSidebarItems()
         {
             var menus = new List<SidebarItem>
             {
-                new SidebarItem("Store", ViewType.Articles),
-                new SidebarItem("Shopping Cart", ViewType.ShoppingCart),
-                new SidebarItem("Your Orders", ViewType.Orders),
-                new SidebarItem("Your Account", ViewType.Account),
-                new SidebarItem("About", ViewType.About),
-                new SidebarItem("Sign Out", ViewType.SignIn)
+                new SidebarItem("Store", typeof(ArticlesView)),
+                new SidebarItem("Shopping Cart", typeof(ShoppingCartView)),
+                new SidebarItem("Your Orders", typeof(OrdersView)),
+                new SidebarItem("Your Account", typeof(AccountView)),
+                new SidebarItem("About", typeof(AboutView)),
+                new SidebarItem("Sign Out", typeof(SignInView))
             };
 
             return menus;
         }
 
-        public async Task Navigate(ViewType viewType)
+        public async Task Navigate(Type viewType, bool isModal = false)
         {
-            if (viewType == _currentViewType)
-                return;
-
             var mainPage = Application.Current.MainPage as MasterDetailPage;
             if (mainPage == null)
                 return;
 
-            var view = Activator.CreateInstance(_viewMapping[viewType].Key) as Page;
+            var view = Activator.CreateInstance(viewType) as Page;
             if (view == null)
                 return;
 
             await Close();
 
-            if (_viewMapping[viewType].Value)
+            if (isModal)
                 await mainPage.Navigation.PushModalAsync(view);
             else
                 await mainPage.Detail.Navigation.PushAsync(view);
-
-            _currentViewType = viewType;
         }
 
         public async Task NavigateBack()

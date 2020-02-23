@@ -1,14 +1,14 @@
-﻿using JayaCart.Mobile.Services;
-using JayaCart.Mobile.Shared.Base;
+﻿using JayaCart.Mobile.Shared.Base;
+using System;
 
 namespace JayaCart.Mobile.Models
 {
     public class SidebarItem: ModelBase
     {
-        public SidebarItem(string title, ViewType view)
+        public SidebarItem(string title, Type viewType)
         {
             Title = title;
-            View = view;
+            ViewType = viewType;
         }
 
         public string Title
@@ -17,9 +17,9 @@ namespace JayaCart.Mobile.Models
             set => Set(value);
         }
 
-        public ViewType View
+        public Type ViewType
         {
-            get => Get<ViewType>();
+            get => Get<Type>();
             set => Set(value);
         }
     }
