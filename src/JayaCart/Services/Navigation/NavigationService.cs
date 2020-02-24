@@ -34,7 +34,7 @@ namespace JayaCart.Mobile.Services
         {
             var menus = new List<SidebarItem>
             {
-                new SidebarItem("Store", typeof(ArticlesView)),
+                new SidebarItem("Shop", typeof(ArticlesView)),
                 new SidebarItem("Shopping Cart", typeof(ShoppingCartView)),
                 new SidebarItem("Your Orders", typeof(OrdersView)),
                 new SidebarItem("Your Account", typeof(AccountView)),

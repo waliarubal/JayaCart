@@ -27,11 +27,7 @@ namespace JayaCart.Mobile.ViewModels
 
         public IEnumerable<SidebarItem> Items => _navigationService?.GetSidebarItems();
 
-        public UserAccount Account
-        {
-            get => Get<UserAccount>();
-            private set => Set(value);
-        }
+        public UserAccount Account => _accountService?.LocalAccount;
 
         public ICommand ItemClickCommand
         {
@@ -62,7 +58,6 @@ namespace JayaCart.Mobile.ViewModels
 
         async Task SignIn()
         {
-            Account = _accountService.GetLocalAccount();
             if (Account == null)
                 await _navigationService.Navigate(typeof(SignInView), true);
         }

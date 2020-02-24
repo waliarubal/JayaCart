@@ -103,7 +103,7 @@ namespace JayaCart.Mobile.ViewModels
 
         async Task SignOut()
         {
-            var user = _accountService.GetLocalAccount();
+            var user = _accountService.LocalAccount;
             if (user != null)
                 await _accountService.SignOut();
         }

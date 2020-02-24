@@ -1,10 +1,11 @@
-﻿using JayaCart.DataAccess.Models;
+﻿using JayaCart.DataAccess.Base;
+using JayaCart.DataAccess.Models;
 using System;
 using System.Threading.Tasks;
 
 namespace JayaCart.DataAccess.Services
 {
-    public class UserAccountService : IUserAccountService
+    public class UserAccountService : ModelBase, IUserAccountService
     {
         readonly ISettingsService _settingsService;
         readonly IDatabaseService _databaseService;
@@ -13,11 +14,35 @@ namespace JayaCart.DataAccess.Services
         {
             _settingsService = settingsService;
             _databaseService = databaseService;
+
+            LocalAccount = GetLocalAccount();
+        }
+
+        public UserAccount LocalAccount
+        {
+            get => Get<UserAccount>();
+            private set => Set(value);
         }
 
         async Task<UserAccount> GetAccount(string phoneNumber)
         {
             return await _databaseService.Get<UserAccount>("UserAccounts", phoneNumber);
+        }
+
+        UserAccount GetLocalAccount()
+        {
+            if (_settingsService.IsHaving(nameof(UserAccount.PhoneNumber)))
+            {
+                var localAccount = new UserAccount(_settingsService.Get<string>(nameof(UserAccount.PhoneNumber)))
+                {
+                    FirstName = _settingsService.Get<string>(nameof(UserAccount.FirstName)),
+                    Image = _settingsService.Get<string>(nameof(UserAccount.Image)),
+                    City = _settingsService.Get<string>(nameof(UserAccount.City))
+                };
+                return localAccount;
+            }
+
+            return default;
         }
 
         public async Task<UserAccount> Create(UserAccount account)
@@ -41,22 +66,6 @@ namespace JayaCart.DataAccess.Services
             return account;
         }
 
-        public UserAccount GetLocalAccount()
-        {
-            if (_settingsService.IsHaving(nameof(UserAccount.PhoneNumber)))
-            {
-                var localAccount = new UserAccount(_settingsService.Get<string>(nameof(UserAccount.PhoneNumber)))
-                {
-                    FirstName = _settingsService.Get<string>(nameof(UserAccount.FirstName)),
-                    Image = _settingsService.Get<string>(nameof(UserAccount.Image)),
-                    City = _settingsService.Get<string>(nameof(UserAccount.City))
-                };
-                return localAccount;
-            }
-
-            return default;
-        }
-
         public async Task<UserAccount> SignIn(string phone, string password)
         {
             var account = await GetAccount(phone);
@@ -72,6 +81,8 @@ namespace JayaCart.DataAccess.Services
             _settingsService.Set(nameof(UserAccount.Image), account.Image);
             await _settingsService.Save();
 
+            LocalAccount = account;
+
             return account;
         }
 
@@ -82,6 +93,8 @@ namespace JayaCart.DataAccess.Services
             _settingsService.Delete(nameof(UserAccount.City));
             _settingsService.Delete(nameof(UserAccount.Image));
             await _settingsService.Save();
+
+            LocalAccount = null;
         }
     }
 }
