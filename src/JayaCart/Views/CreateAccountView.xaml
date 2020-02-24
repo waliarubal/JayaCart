@@ -10,6 +10,7 @@
     x:Name="this"
     Title="Account sign up"
     shared:ViewModelLocator.AutoWireViewModel="True"
+    NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
     <controls:PageContainer
         x:Name="Container"
@@ -111,7 +112,7 @@
                     </Entry>
 
                     <StackLayout Margin="0,8" Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding IsPasswordShown}" Style="{StaticResource CheckInputStyle}" />
+                        <CheckBox IsChecked="{Binding IsPolicyAgreed}" Style="{StaticResource CheckInputStyle}" />
                         <Label
                             FontAttributes="Bold"
                             Text="By signing up, I agree to your conditions of use and privacy policy."

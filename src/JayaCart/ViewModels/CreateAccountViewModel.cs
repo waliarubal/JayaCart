@@ -69,6 +69,12 @@ namespace JayaCart.Mobile.ViewModels
             set => Set(value);
         }
 
+        public bool IsPolicyAgreed
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         public ICommand CreateAccountCommand
         {
             get
@@ -113,6 +119,9 @@ namespace JayaCart.Mobile.ViewModels
 
             if (!Password.Equals(ConfirmPassword, StringComparison.Ordinal))
                 return "Invalid password confirmation. Reconfirm your password.";
+
+            if (!IsPolicyAgreed)
+                return "Please agree to our conditions of use and privacy policy.";
 
             return base.Validate();
         }

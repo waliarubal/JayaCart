@@ -9,6 +9,6 @@ namespace JayaCart.DataAccess.Services
 
         Task<IReadOnlyCollection<T>> GetMany<T>(string collectionName) where T : new();
 
-        Task<T> Set<T>(string collectionName, string key, T record) where T : new();
+        Task<T> Insert<T>(string collectionName, string key, T record) where T : new();
     }
 }

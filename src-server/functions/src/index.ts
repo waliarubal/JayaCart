@@ -35,35 +35,42 @@ app.post(`/${USER_ACCOUNTS}`, async (request, response) => {
             Balance: 0
         };
 
-        await firebaseHelper.firestore.createDocumentWithID(db, USER_ACCOUNTS, account.PhoneNumber, account);
-        response.status(201).send(`User account with phone number ${account.PhoneNumber} created.`);
+        let isCreated = await firebaseHelper.firestore.createDocumentWithID(db, USER_ACCOUNTS, account.PhoneNumber, account);
+        if (isCreated)
+            response.status(201).json(account);
+        else {
+            console.log(`Failed to create user account: ${account}`);
+            response.status(400).send(`Failed to create user account.`);
+        }
+            
     } catch (ex) {
-        response.send(400).send(`Failed to create user account.`);
+        console.log(`Failed to create user account. ${ex}`);
+        response.status(400).send(`Failed to create user account.`);
     }
 });
 
 app.patch(`/${USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => {
     try {
         await firebaseHelper.firestore.updateDocument(db, USER_ACCOUNTS, request.params.PhoneNumber, request.body);
-        response.send(204).send(`User account with phone number ${request.params.PhoneNumber} updated.`);
+        response.status(204).json(request.body);
     } catch (ex) {
-        response.send(400).send(`Failed to update user account with phone number ${request.params.PhoneNumber}.`);
+        response.status(400).send(`Failed to update user account with phone number ${request.params.PhoneNumber}.`);
     }
 });
 
 app.get(`/${USER_ACCOUNTS}/:PhoneNumber`, (request, response) => {
     firebaseHelper.firestore.getDocument(db, USER_ACCOUNTS, request.params.PhoneNumber)
-        .then(record => response.status(200).send(record))
+        .then(record => response.status(200).json(record))
         .catch(ex => response.status(400).send(`Failed to get user account for phone number ${request.params.PhoneNumber}: ${ex}`));
 });
 
 app.get(`/${USER_ACCOUNTS}`, (request, response) => {
     firebaseHelper.firestore.backup(db, USER_ACCOUNTS)
-        .then(records => response.status(200).send(records))
+        .then(records => response.status(200).json(records))
         .catch(ex => response.status(400).send(`Failed to get user accounts: ${ex}`));
 });
 
 app.delete(`/${USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => {
     const deletedRecord = await firebaseHelper.firestore.deleteDocument(db, USER_ACCOUNTS, request.params.PhoneNumber);
-    response.status(204).send(`User account deleted: ${deletedRecord}`);
+    response.status(204).json(deletedRecord);
 });

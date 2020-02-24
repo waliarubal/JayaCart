@@ -10,6 +10,7 @@
     x:Name="this"
     Title="Account log in"
     shared:ViewModelLocator.AutoWireViewModel="True"
+    NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
     <controls:PageContainer
         x:Name="Container"
