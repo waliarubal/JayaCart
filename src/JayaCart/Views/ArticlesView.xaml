@@ -71,6 +71,7 @@
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="Start">
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="120" />
                                 </Grid.ColumnDefinitions>
@@ -78,7 +79,17 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                <Label
+                                    Margin="0,0,8,0"
+                                    FontFamily="{DynamicResource FontAwesomeSolid}"
+                                    FontSize="Medium"
+                                    Text="{x:Static local:FontAwesomeSolidIcons.ShoppingCart}"
+                                    TextColor="{DynamicResource BackgroundColorHigh}"
+                                    VerticalOptions="Start" />
+                                <StackLayout
+                                    Grid.Column="1"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center">
                                     <Label Text="{Binding Name}" TextColor="{DynamicResource TextColorMid}" />
                                     <Label
                                         Margin="0,-4"
@@ -92,10 +103,10 @@
                                         Text="{Binding MaximumRetailPrice, StringFormat='₹{0:####0.00}'}"
                                         TextColor="{DynamicResource TextColorHigh}" />
                                 </StackLayout>
-                                <controls:NumericUpDown Grid.Column="1" VerticalOptions="Center" />
+                                <controls:NumericUpDown Grid.Column="2" VerticalOptions="Center" />
                                 <BoxView
                                     Grid.Row="1"
-                                    Grid.ColumnSpan="2"
+                                    Grid.ColumnSpan="3"
                                     HeightRequest="1"
                                     VerticalOptions="Start"
                                     Color="{DynamicResource BorderColor}" />
