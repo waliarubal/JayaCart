@@ -28,7 +28,8 @@ namespace JayaCart.DataAccess.Services
 
             request = new RestRequest(resource, method, DataFormat.Json)
             {
-                JsonSerializer = new JsonNetSerializer(settings)
+                JsonSerializer = new JsonNetSerializer(settings),
+                OnBeforeDeserialization = response => response.ContentType = "application/json"
             };
 
             return client;
@@ -73,7 +74,6 @@ namespace JayaCart.DataAccess.Services
         public async Task<T> Insert<T>(string collectionName, string key, T record) where T : new()
         {
             var client = GetClient($"{collectionName}", Method.POST, out RestRequest request);
-            request.OnBeforeDeserialization = response => response.ContentType = "application/json";
             request.AddJsonBody(record);
 
             T result;
