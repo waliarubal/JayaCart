@@ -26,6 +26,8 @@ namespace JayaCart.DataAccess.Services
             if (existingAccount != null)
                 throw new ServiceException($"Another user with phone number {account.PhoneNumber} is registered.");
 
+            account.Password = account.Password.MD5();
+
             var newAccount = await _databaseService.Insert("UserAccounts", account.PhoneNumber, account);
             if (newAccount == null)
                 throw new ServiceException($"Failed to create user account with phone number {account.PhoneNumber}");
@@ -61,7 +63,7 @@ namespace JayaCart.DataAccess.Services
             if (account == null)
                 throw new ServiceException($"User with phone number {phone} is not registered.");
 
-            if (!account.Password.Equals(password, StringComparison.Ordinal))
+            if (!account.Password.Equals(password.MD5(), StringComparison.Ordinal))
                 throw new ServiceException("Password is incorrect.");
 
             _settingsService.Set(nameof(UserAccount.PhoneNumber), account.PhoneNumber);
