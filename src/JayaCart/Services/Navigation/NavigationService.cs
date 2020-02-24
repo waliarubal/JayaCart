@@ -2,6 +2,7 @@
 using JayaCart.Mobile.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -70,6 +71,11 @@ namespace JayaCart.Mobile.Services
 
             if (mainPage.Detail.Navigation.NavigationStack.Count > 0)
                 await mainPage.Detail.Navigation.PopAsync();
+        }
+
+        public void Quit()
+        {
+            Process.GetCurrentProcess().CloseMainWindow();
         }
 
         public void ShowSidebar()

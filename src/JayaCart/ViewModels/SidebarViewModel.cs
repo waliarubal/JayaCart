@@ -13,7 +13,7 @@ namespace JayaCart.Mobile.ViewModels
 {
     public class SidebarViewModel : ViewModelBase
     {
-        ICommand _itemClick;
+        ICommand _itemClick, _exit;
         readonly INavigationService _navigationService;
         readonly IUserAccountService _accountService;
 
@@ -42,6 +42,22 @@ namespace JayaCart.Mobile.ViewModels
 
                 return _itemClick;
             }
+        }
+
+        public ICommand ExitCommand
+        {
+            get
+            {
+                if (_exit == null)
+                    _exit = new RelayCommand(ExitAction);
+
+                return _exit;
+            }
+        }
+
+        void ExitAction()
+        {
+            _navigationService.Quit();
         }
 
         async Task SignIn()

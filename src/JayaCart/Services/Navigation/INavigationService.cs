@@ -18,5 +18,7 @@ namespace JayaCart.Mobile.Services
         Task Alert(string title, string message, string cancel = "Cancel");
 
         void ShowSidebar();
+
+        void Quit();
     }
 }
