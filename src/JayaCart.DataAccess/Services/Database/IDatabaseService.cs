@@ -1,15 +1,14 @@
-﻿using Firebase.Database;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace JayaCart.DataAccess.Services
 {
     public interface IDatabaseService
     {
-        Task<T> Get<T>(string collectionName, string key);
+        Task<T> Get<T>(string collectionName, string key) where T : new();
 
-        Task<IReadOnlyCollection<FirebaseObject<T>>> GetMany<T>(string collectionName);
+        Task<IReadOnlyCollection<T>> GetMany<T>(string collectionName) where T : new();
 
-        Task<T> Set<T>(string collectionName, string key, T record);
+        Task<T> Set<T>(string collectionName, string key, T record) where T : new();
     }
 }
