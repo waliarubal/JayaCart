@@ -31,5 +31,6 @@ namespace JayaCart.Mobile.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
     }
 }

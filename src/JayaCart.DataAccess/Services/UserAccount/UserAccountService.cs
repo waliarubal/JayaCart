@@ -14,14 +14,6 @@ namespace JayaCart.DataAccess.Services
         {
             _settingsService = settingsService;
             _databaseService = databaseService;
-
-            LocalAccount = GetLocalAccount();
-        }
-
-        public UserAccount LocalAccount
-        {
-            get => Get<UserAccount>();
-            private set => Set(value);
         }
 
         async Task<UserAccount> GetAccount(string phoneNumber)
@@ -29,7 +21,7 @@ namespace JayaCart.DataAccess.Services
             return await _databaseService.Get<UserAccount>("UserAccounts", phoneNumber);
         }
 
-        UserAccount GetLocalAccount()
+        public UserAccount GetLocalAccount()
         {
             if (_settingsService.IsHaving(nameof(UserAccount.PhoneNumber)))
             {
@@ -81,8 +73,6 @@ namespace JayaCart.DataAccess.Services
             _settingsService.Set(nameof(UserAccount.Image), account.Image);
             await _settingsService.Save();
 
-            LocalAccount = account;
-
             return account;
         }
 
@@ -93,8 +83,6 @@ namespace JayaCart.DataAccess.Services
             _settingsService.Delete(nameof(UserAccount.City));
             _settingsService.Delete(nameof(UserAccount.Image));
             await _settingsService.Save();
-
-            LocalAccount = null;
         }
     }
 }

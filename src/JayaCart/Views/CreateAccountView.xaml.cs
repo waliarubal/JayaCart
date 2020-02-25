@@ -14,7 +14,7 @@ namespace JayaCart.Mobile.Views
 
         protected override bool OnBackButtonPressed()
         {
-            return false;
+            return true;
         }
     }
 }

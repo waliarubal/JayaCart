@@ -27,7 +27,7 @@ namespace JayaCart.Mobile.ViewModels
 
         public IEnumerable<SidebarItem> Items => _navigationService?.GetSidebarItems();
 
-        public UserAccount Account => _accountService?.LocalAccount;
+        public UserAccount Account => _accountService?.GetLocalAccount();
 
         public ICommand ItemClickCommand
         {

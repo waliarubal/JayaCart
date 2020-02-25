@@ -10,6 +10,7 @@ namespace JayaCart.Mobile.Services
 {
     public class NavigationService : INavigationService
     {
+
         public async Task Alert(string title, string message, string cancel = "Cancel")
         {
             var mainPage = Application.Current.MainPage;
@@ -50,6 +51,10 @@ namespace JayaCart.Mobile.Services
             var mainPage = Application.Current.MainPage as MasterDetailPage;
             if (mainPage == null)
                 return;
+
+            if (!isModal && mainPage.Detail.Navigation.NavigationStack.Count > 0)
+                if (mainPage.Detail.Navigation.NavigationStack[mainPage.Detail.Navigation.NavigationStack.Count - 1].GetType() == viewType)
+                    return;
 
             var view = Activator.CreateInstance(viewType) as Page;
             if (view == null)
