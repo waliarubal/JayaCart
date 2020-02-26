@@ -92,7 +92,7 @@ namespace JayaCart.Mobile.ViewModels
             {
                 var user = await _accountService.SignIn(PhoneNumber, Password);
                 if (user != null)
-                    await _navigationService.Navigate(typeof(ArticlesView));
+                    await _navigationService.Close();
             }
             catch (ServiceException ex)
             {

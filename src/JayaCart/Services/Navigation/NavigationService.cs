@@ -74,7 +74,7 @@ namespace JayaCart.Mobile.Services
             if (mainPage == null)
                 return;
 
-            if (mainPage.Detail.Navigation.NavigationStack.Count > 0)
+            if (mainPage.Detail.Navigation.NavigationStack.Count > 1)
                 await mainPage.Detail.Navigation.PopAsync();
         }
 

@@ -3,6 +3,7 @@
     x:Class="JayaCart.Mobile.Views.MainView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:JayaCart.Mobile.Controls"
     xmlns:shared="https://github.com/waliarubal/schemas"
     xmlns:views="clr-namespace:JayaCart.Mobile.Views"
     Title=""
@@ -11,10 +12,10 @@
         <views:SidebarView Title="Sidebar" />
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
-        <NavigationPage>
+        <controls:AnimationlessNavigationPage>
             <x:Arguments>
                 <views:ArticlesView />
             </x:Arguments>
-        </NavigationPage>
+        </controls:AnimationlessNavigationPage>
     </MasterDetailPage.Detail>
 </MasterDetailPage>
