@@ -29,26 +29,26 @@
                     Spacing="0"
                     VerticalOptions="StartAndExpand">
                     <Label Style="{StaticResource FieldStyle}" Text="Phone number" />
-                    <Entry
+                    <controls:UnderlineEntry
                         Keyboard="Telephone"
                         Placeholder="Your mobile phone number"
                         Style="{StaticResource InputStyle}"
                         Text="{Binding PhoneNumber}">
-                        <Entry.Behaviors>
+                        <controls:UnderlineEntry.Behaviors>
                             <shared:NumericValidationBehavior />
                             <shared:EntryLengthValidatorBehavior MaxLength="10" />
-                        </Entry.Behaviors>
-                    </Entry>
+                        </controls:UnderlineEntry.Behaviors>
+                    </controls:UnderlineEntry>
 
                     <Label Style="{StaticResource FieldStyle}" Text="Password" />
-                    <Entry
+                    <controls:UnderlineEntry
                         Placeholder="Your password"
                         Style="{StaticResource PasswordInputStyle}"
                         Text="{Binding Password}">
-                        <Entry.Behaviors>
+                        <controls:UnderlineEntry.Behaviors>
                             <shared:EntryLengthValidatorBehavior MaxLength="32" />
-                        </Entry.Behaviors>
-                        <Entry.Triggers>
+                        </controls:UnderlineEntry.Behaviors>
+                        <controls:UnderlineEntry.Triggers>
                             <DataTrigger
                                 Binding="{Binding IsPasswordShown}"
                                 TargetType="Entry"
@@ -56,8 +56,8 @@
                                 <Setter Property="IsPassword" Value="False" />
                                 <Setter Property="TextColor" Value="{DynamicResource TextColorMid}" />
                             </DataTrigger>
-                        </Entry.Triggers>
-                    </Entry>
+                        </controls:UnderlineEntry.Triggers>
+                    </controls:UnderlineEntry>
 
                     <StackLayout Margin="0,8" Orientation="Horizontal">
                         <CheckBox IsChecked="{Binding IsPasswordShown}" Style="{StaticResource CheckInputStyle}" />
