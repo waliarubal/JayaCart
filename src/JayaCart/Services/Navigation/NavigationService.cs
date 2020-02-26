@@ -40,7 +40,7 @@ namespace JayaCart.Mobile.Services
                 new SidebarItem("Your Orders", typeof(OrdersView)),
                 new SidebarItem("Your Account", typeof(AccountView)),
                 new SidebarItem("About", typeof(AboutView)),
-                new SidebarItem("Sign Out", typeof(SignInView))
+                new SidebarItem("Sign Out", typeof(SignInView), true)
             };
 
             return menus;

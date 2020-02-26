@@ -64,7 +64,7 @@ namespace JayaCart.Mobile.ViewModels
 
         async void ItemClickAction(SidebarItem item)
         {
-            await _navigationService.Navigate(item.ViewType);
+            await _navigationService.Navigate(item.ViewType, item.IsModal);
         }
     }
 }
