@@ -15,6 +15,8 @@ namespace JayaCart.Mobile.ViewModels
         public ArticlesViewModel(IArticleService articleService)
         {
             _articleService = articleService;
+
+            SearchCommand.Execute("<suggested>");
         }
 
         public ObservableCollection<Article> Articles
