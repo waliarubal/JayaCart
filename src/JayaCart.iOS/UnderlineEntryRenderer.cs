@@ -23,10 +23,13 @@ namespace JayaCart.Mobile.iOS
 
             Control.BorderStyle = UITextBorderStyle.None;
 
+            var color = (e.NewElement as UnderlineEntry).UnderlineColor;
+            var platformColor = color.ToCGColor();
+
             _line = new CALayer
             {
-                BorderColor = UIColor.FromRGB(174, 174, 174).CGColor,
-                BackgroundColor = UIColor.FromRGB(174, 174, 174).CGColor,
+                BorderColor = platformColor,
+                BackgroundColor = platformColor,
                 Frame = new CGRect(0, Frame.Height / 2, Frame.Width * 2, 1f)
             };
 

@@ -24,10 +24,13 @@ namespace JayaCart.Mobile.Droid
             if (Control == null || e.NewElement == null)
                 return;
 
+            var color = (e.NewElement as UnderlineEntry).UnderlineColor;
+            var platformColor = color.ToAndroid();
+
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
-                Control.BackgroundTintList = ColorStateList.ValueOf(Android.Graphics.Color.White);
+                Control.BackgroundTintList = ColorStateList.ValueOf(platformColor);
             else
-                Control.Background.SetColorFilter(Android.Graphics.Color.White, PorterDuff.Mode.SrcAtop);
+                Control.Background.SetColorFilter(platformColor, PorterDuff.Mode.SrcAtop);
         }
     }
 }

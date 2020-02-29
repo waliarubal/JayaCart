@@ -3,6 +3,7 @@
     x:Class="JayaCart.Mobile.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:JayaCart.Mobile.Controls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -75,9 +76,16 @@
         </Style>
 
         <Style
-            x:Key="PasswordInputStyle"
+            x:Key="UnderlineInputStyle"
             BasedOn="{StaticResource InputStyle}"
-            TargetType="Entry">
+            TargetType="controls:UnderlineEntry">
+            <Setter Property="UnderlineColor" Value="{DynamicResource BorderColor}" />
+        </Style>
+
+        <Style
+            x:Key="PasswordInputStyle"
+            BasedOn="{StaticResource UnderlineInputStyle}"
+            TargetType="controls:UnderlineEntry">
             <Setter Property="IsPassword" Value="True" />
             <Setter Property="TextColor" Value="{DynamicResource TextColorHigh}" />
         </Style>

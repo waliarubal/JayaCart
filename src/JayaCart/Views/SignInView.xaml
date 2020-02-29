@@ -32,7 +32,7 @@
                     <controls:UnderlineEntry
                         Keyboard="Telephone"
                         Placeholder="Your mobile phone number"
-                        Style="{StaticResource InputStyle}"
+                        Style="{StaticResource UnderlineInputStyle}"
                         Text="{Binding PhoneNumber}">
                         <controls:UnderlineEntry.Behaviors>
                             <shared:NumericValidationBehavior />
