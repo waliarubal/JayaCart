@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JayaCart.Mobile.Views.HomeView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False">
+    <Grid
+        BackgroundColor="{DynamicResource BackgroundColorLow}"
+        HorizontalOptions="Fill"
+        VerticalOptions="Fill">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="190" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <BoxView BackgroundColor="{DynamicResource BackgroundColorHigh}" VerticalOptions="Fill" />
+        <StackLayout Grid.Row="1" Margin="0,8,0,0">
+            <Button
+                Command="{Binding CreateAccountCommand}"
+                Style="{StaticResource ButtonSecondaryStyle}"
+                Text="Sign Up" />
+
+            <Button
+                BackgroundColor="{DynamicResource BackgroundColorHigh}"
+                Command="{Binding SignInCommand}"
+                Style="{StaticResource ButtonPrimaryStyle}"
+                Text="Log in" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

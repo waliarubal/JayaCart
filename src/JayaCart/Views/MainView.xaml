@@ -14,7 +14,7 @@
     <MasterDetailPage.Detail>
         <controls:AnimationlessNavigationPage>
             <x:Arguments>
-                <views:ArticlesView />
+                <views:HomeView />
             </x:Arguments>
         </controls:AnimationlessNavigationPage>
     </MasterDetailPage.Detail>
