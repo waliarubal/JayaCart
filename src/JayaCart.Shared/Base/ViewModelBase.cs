@@ -20,6 +20,11 @@
             return default;
         }
 
+        protected virtual void Clear()
+        {
+
+        }
+
         #endregion
     }
 }

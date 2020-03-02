@@ -39,6 +39,7 @@
         <StackLayout
             Grid.Row="1"
             Margin="0,8,0,0"
+            HorizontalOptions="Fill"
             VerticalOptions="Start">
             <Button
                 Command="{Binding CreateAccountCommand}"

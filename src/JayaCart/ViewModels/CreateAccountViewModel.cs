@@ -126,6 +126,19 @@ namespace JayaCart.Mobile.ViewModels
             return base.Validate();
         }
 
+        protected override void Clear()
+        {
+            FirstName = null;
+            LastName = null;
+            PhoneNumber = null;
+            AddressLine1 = null;
+            AddressLine2 = null;
+            City = null;
+            Password = null;
+            ConfirmPassword = null;
+            IsPolicyAgreed = false;
+        }
+
         async void SignInAction()
         {
             await _navigationService.Navigate(typeof(SignInView), true);

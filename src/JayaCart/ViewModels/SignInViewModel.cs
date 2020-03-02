@@ -84,6 +84,13 @@ namespace JayaCart.Mobile.ViewModels
             return default;
         }
 
+        protected override void Clear()
+        {
+            PhoneNumber = null;
+            Password = null;
+            IsPasswordShown = false;
+        }
+
         async void CreateAccountAction()
         {
             await _navigationService.Navigate(typeof(CreateAccountView), true);

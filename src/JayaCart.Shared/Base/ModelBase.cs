@@ -19,11 +19,6 @@ namespace JayaCart.Mobile.Shared.Base
             _variables.Clear();
         }
 
-        protected void Clear()
-        {
-            _variables.Clear();
-        }
-
         protected T Get<T>([CallerMemberName]string propertyName = null)
         {
             if (string.IsNullOrEmpty(propertyName))
