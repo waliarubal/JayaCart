@@ -79,23 +79,23 @@
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                                    <Label Text="{Binding Name}" TextColor="{DynamicResource TextColorMid}" />
+                                    <Label Text="{Binding Article.Name}" TextColor="{DynamicResource TextColorMid}" />
                                     <Label
                                         Margin="0,-4"
                                         FontSize="Small"
-                                        Text="{Binding Packing}"
+                                        Text="{Binding Article.Details}"
                                         TextColor="{DynamicResource TextColorLow}" />
                                     <Label
                                         Margin="0,-4"
                                         FontAttributes="Bold"
                                         FontSize="Medium"
-                                        Text="{Binding MaximumRetailPrice, StringFormat='₹{0:####0.00}'}"
+                                        Text="{Binding Article.Price, StringFormat='₹{0:####0.00}'}"
                                         TextColor="{DynamicResource TextColorHigh}" />
                                 </StackLayout>
                                 <controls:NumericUpDown
                                     Grid.Column="1"
-                                    ValueChangedCommand="{Binding Source={x:Reference this}, Path=BindingContext.QuantityChangedCommand}"
-                                    VerticalOptions="Center" />
+                                    VerticalOptions="Center"
+                                    Value="{Binding Quantity, Mode=OneWay}" />
                                 <BoxView
                                     Grid.Row="1"
                                     Grid.ColumnSpan="2"

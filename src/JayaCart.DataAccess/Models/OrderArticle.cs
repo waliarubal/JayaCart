@@ -24,6 +24,6 @@ namespace JayaCart.DataAccess.Models
             }
         }
 
-        public float Total => Quantity * (Article != null ? Article.MaximumRetailPrice : 0f);
+        public float Total => Quantity * (Article != null ? Article.Price : 0f);
     }
 }

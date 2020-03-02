@@ -23,6 +23,7 @@
         <controls:PageContainer.PageContent>
             <Grid
                 Margin="8"
+                BindingContext="{Binding BindingContext, Source={x:Reference this}}"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill">
                 <Grid.Resources>
@@ -52,7 +53,7 @@
                 <Label
                     Grid.Column="2"
                     FontAttributes="Bold"
-                    Text="0"
+                    Text="{Binding Cart.Total, Mode=OneWay}"
                     TextColor="{DynamicResource BorderColorHigh}" />
             </Grid>
         </controls:PageContainer.PageContent>

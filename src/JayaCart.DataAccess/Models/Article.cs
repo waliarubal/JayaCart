@@ -17,13 +17,13 @@ namespace JayaCart.DataAccess.Models
             set => Set(value);
         }
 
-        public string Packing
+        public string Details
         {
             get => Get<string>();
             set => Set(value);
         }
 
-        public float MaximumRetailPrice
+        public float Price
         {
             get => Get<float>();
             set => Set(value);

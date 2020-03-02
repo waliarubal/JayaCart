@@ -1,7 +1,9 @@
 ﻿using JayaCart.DataAccess.Models;
 using JayaCart.DataAccess.Services;
+using JayaCart.Mobile.Models;
 using JayaCart.Mobile.Shared.Base;
 using JayaCart.Mobile.Shared.Commands;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -19,9 +21,9 @@ namespace JayaCart.Mobile.ViewModels
             SearchCommand.Execute("<suggested>");
         }
 
-        public ObservableCollection<Article> Articles
+        public ObservableCollection<ShoppingCartArticle> Articles
         {
-            get => Get<ObservableCollection<Article>>();
+            get => Get<ObservableCollection<ShoppingCartArticle>>();
             private set => Set(value);
         }
 
@@ -76,8 +78,13 @@ namespace JayaCart.Mobile.ViewModels
 
         async void SearchAction(string keywoard)
         {
-            var products = await _articleService.Search(keywoard);
-            Articles = new ObservableCollection<Article>(products);
+            var articles = await _articleService.Search(keywoard);
+
+            var cartArticles = new List<ShoppingCartArticle>();
+            foreach (var product in articles)
+                cartArticles.Add(new ShoppingCartArticle { Article = product });
+
+            Articles = new ObservableCollection<ShoppingCartArticle>(cartArticles);
         }
     }
 }
