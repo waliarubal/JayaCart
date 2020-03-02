@@ -1,4 +1,6 @@
-﻿namespace JayaCart.Mobile.Shared.Base
+﻿using System.Threading.Tasks;
+
+namespace JayaCart.Mobile.Shared.Base
 {
     public abstract class ViewModelBase : ModelBase
     {
@@ -13,6 +15,12 @@
         {
             get => Get<bool>();
             protected set => Set(value);
+        }
+
+        public bool IsLoaded
+        {
+            get => Get<bool>();
+            internal set => Set(value);
         }
 
         protected virtual string Validate()

@@ -1,4 +1,5 @@
-﻿using Nancy.TinyIoc;
+﻿using JayaCart.Mobile.Shared.Base;
+using Nancy.TinyIoc;
 using System;
 using System.Globalization;
 using System.Reflection;
@@ -67,8 +68,9 @@ namespace JayaCart.Mobile.Shared
             if (viewModelType == null)
                 return;
             
-            var viewModel = _container.Resolve(viewModelType);
+            var viewModel = _container.Resolve(viewModelType) as ViewModelBase;
             view.BindingContext = viewModel;
+            viewModel.IsLoaded = true;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace JayaCart.Mobile.ViewModels
 {
     public class ArticlesViewModel: ViewModelBase
     {
-        ICommand _search, _addToCart;
+        ICommand _search, _addToCart, _quantityChangedCommand;
         readonly IArticleService _articleService;
 
         public ArticlesViewModel(IArticleService articleService)
@@ -22,12 +22,6 @@ namespace JayaCart.Mobile.ViewModels
         public ObservableCollection<Article> Articles
         {
             get => Get<ObservableCollection<Article>>();
-            private set => Set(value);
-        }
-
-        public Article SelectedArticle
-        {
-            get => Get<Article>();
             private set => Set(value);
         }
 
@@ -48,6 +42,17 @@ namespace JayaCart.Mobile.ViewModels
             }
         }
 
+        public ICommand QuantityChangedCommand
+        {
+            get
+            {
+                if (_quantityChangedCommand == null)
+                    _quantityChangedCommand = new RelayCommand(ArticleQuantityChangedAction);
+
+                return _quantityChangedCommand;
+            }
+        }
+
         public ICommand AddToCartCommand
         {
             get
@@ -60,6 +65,11 @@ namespace JayaCart.Mobile.ViewModels
         }
 
         void AddToCart()
+        {
+
+        }
+
+        void ArticleQuantityChangedAction()
         {
 
         }

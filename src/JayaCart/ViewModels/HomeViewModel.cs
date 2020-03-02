@@ -1,7 +1,9 @@
-﻿using JayaCart.Mobile.Services;
+﻿using JayaCart.DataAccess.Services;
+using JayaCart.Mobile.Services;
 using JayaCart.Mobile.Shared.Base;
 using JayaCart.Mobile.Shared.Commands;
 using JayaCart.Mobile.Views;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace JayaCart.Mobile.ViewModels
@@ -11,9 +13,16 @@ namespace JayaCart.Mobile.ViewModels
         ICommand _signIn, _createAccount;
         readonly INavigationService _navigationService;
 
-        public HomeViewModel(INavigationService navigationService)
+        public HomeViewModel(INavigationService navigationService, IUserAccountService accountService)
         {
             _navigationService = navigationService;
+
+            Task.Run(async () =>
+            {
+                var account = accountService.GetLocalAccount();
+                if (account != null)
+                    await _navigationService.Navigate(typeof(ArticlesView), replaceRoot: true);
+            });
         }
 
         public ICommand SignInCommand

@@ -68,7 +68,7 @@
                     <Label Style="{StaticResource FieldStyle}" Text="Your address" />
                     <controls:UnderlineEntry
                         Placeholder="Address line 1"
-                        Style="{StaticResource InputStyle}"
+                        Style="{StaticResource UnderlineInputStyle}"
                         Text="{Binding AddressLine1}">
                         <controls:UnderlineEntry.Behaviors>
                             <shared:EntryLengthValidatorBehavior MaxLength="52" />
@@ -76,7 +76,7 @@
                     </controls:UnderlineEntry>
                     <controls:UnderlineEntry
                         Placeholder="Address line 2"
-                        Style="{StaticResource InputStyle}"
+                        Style="{StaticResource UnderlineInputStyle}"
                         Text="{Binding AddressLine2}">
                         <controls:UnderlineEntry.Behaviors>
                             <shared:EntryLengthValidatorBehavior MaxLength="52" />
@@ -84,7 +84,7 @@
                     </controls:UnderlineEntry>
                     <controls:UnderlineEntry
                         Placeholder="City"
-                        Style="{StaticResource InputStyle}"
+                        Style="{StaticResource UnderlineInputStyle}"
                         Text="{Binding City}">
                         <controls:UnderlineEntry.Behaviors>
                             <shared:EntryLengthValidatorBehavior MaxLength="52" />

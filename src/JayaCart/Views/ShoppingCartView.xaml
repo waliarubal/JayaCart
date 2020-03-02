@@ -5,9 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:JayaCart.Mobile.Controls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:local="clr-namespace:JayaCart.Mobile"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:shared="https://github.com/waliarubal/schemas"
     x:Name="this"
     Title="Shopping Cart"
+    shared:ViewModelLocator.AutoWireViewModel="True"
     NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
     <controls:PageContainer
@@ -17,5 +20,41 @@
         <controls:PageContainer.HeaderContent>
             <controls:TitleBar Title="{Binding Title, Source={x:Reference this}}" />
         </controls:PageContainer.HeaderContent>
+        <controls:PageContainer.PageContent>
+            <Grid
+                Margin="8"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill">
+                <Grid.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="Margin" Value="16,0,0,0" />
+                        <Setter Property="FontSize" Value="Title" />
+                        <Setter Property="VerticalTextAlignment" Value="Center" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label
+                    FontFamily="{DynamicResource FontAwesomeSolid}"
+                    Text="{x:Static local:FontAwesomeSolidIcons.ShoppingCart}"
+                    TextColor="{DynamicResource BackgroundColorHigh}" />
+                <Label
+                    Grid.Column="1"
+                    Text="Total:"
+                    TextColor="{DynamicResource TextColorMid}" />
+                <Label
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    Text="0"
+                    TextColor="{DynamicResource BorderColorHigh}" />
+            </Grid>
+        </controls:PageContainer.PageContent>
     </controls:PageContainer>
 </ContentPage>

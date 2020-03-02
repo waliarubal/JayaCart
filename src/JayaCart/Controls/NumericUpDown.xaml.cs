@@ -7,9 +7,9 @@ using Xamarin.Forms.Xaml;
 namespace JayaCart.Mobile.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NumericUpDown : ContentView
-	{
-        public static readonly BindableProperty MaximumProperty, MinimumProperty, ValueProperty;
+    public partial class NumericUpDown : ContentView
+    {
+        public static readonly BindableProperty MaximumProperty, MinimumProperty, ValueProperty, ValueChangedCommandProperty;
         ICommand _increase, _decrease;
 
         static NumericUpDown()
@@ -17,6 +17,7 @@ namespace JayaCart.Mobile.Controls
             MaximumProperty = BindableProperty.Create(nameof(Maximum), typeof(long), typeof(NumericUpDown), 100L, BindingMode.OneWay);
             MinimumProperty = BindableProperty.Create(nameof(Minimum), typeof(long), typeof(NumericUpDown), 0L, BindingMode.OneWay);
             ValueProperty = BindableProperty.Create(nameof(Value), typeof(long), typeof(NumericUpDown), 0L, BindingMode.TwoWay);
+            ValueChangedCommandProperty = BindableProperty.Create(nameof(ValueChangedCommand), typeof(ICommand), typeof(NumericUpDown), defaultBindingMode: BindingMode.OneWay);
         }
 
         public NumericUpDown()
@@ -46,6 +47,12 @@ namespace JayaCart.Mobile.Controls
             }
         }
 
+        public ICommand ValueChangedCommand
+        {
+            get => (ICommand)GetValue(ValueChangedCommandProperty);
+            set => SetValue(ValueChangedCommandProperty, value);
+        }
+
         public long Maximum
         {
             get => (long)GetValue(MaximumProperty);
@@ -61,7 +68,13 @@ namespace JayaCart.Mobile.Controls
         public long Value
         {
             get => (long)GetValue(ValueProperty);
-            set => SetValue(ValueProperty, value);
+            set
+            {
+                SetValue(ValueProperty, value);
+
+                if (ValueChangedCommand != null)
+                    ValueChangedCommand.Execute(Value);
+            }
         }
 
         void IncreaseAction()

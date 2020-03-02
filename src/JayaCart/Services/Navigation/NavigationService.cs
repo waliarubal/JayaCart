@@ -11,12 +11,6 @@ namespace JayaCart.Mobile.Services
 {
     public class NavigationService : INavigationService
     {
-        readonly Dictionary<Type, Page> _pageCache;
-
-        public NavigationService()
-        {
-            _pageCache = new Dictionary<Type, Page>();
-        }
 
         public async Task Alert(string title, string message, string cancel = "Cancel")
         {
@@ -55,11 +49,7 @@ namespace JayaCart.Mobile.Services
 
         Page GetView(Type viewType)
         {
-            if (_pageCache.ContainsKey(viewType))
-                return _pageCache[viewType];
-
             var view = Activator.CreateInstance(viewType) as Page;
-            _pageCache.Add(viewType, view);
             return view;
         }
 
