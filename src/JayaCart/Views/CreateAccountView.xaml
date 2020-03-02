@@ -34,82 +34,82 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Entry
+                        <controls:UnderlineEntry
                             Placeholder="First name"
-                            Style="{StaticResource InputStyle}"
+                            Style="{StaticResource UnderlineInputStyle}"
                             Text="{Binding FirstName}">
-                            <Entry.Behaviors>
+                            <controls:UnderlineEntry.Behaviors>
                                 <shared:EntryLengthValidatorBehavior MaxLength="32" />
-                            </Entry.Behaviors>
-                        </Entry>
-                        <Entry
+                            </controls:UnderlineEntry.Behaviors>
+                        </controls:UnderlineEntry>
+                        <controls:UnderlineEntry
                             Grid.Column="1"
                             Placeholder="Last name"
-                            Style="{StaticResource InputStyle}"
+                            Style="{StaticResource UnderlineInputStyle}"
                             Text="{Binding LastName}">
-                            <Entry.Behaviors>
+                            <controls:UnderlineEntry.Behaviors>
                                 <shared:EntryLengthValidatorBehavior MaxLength="32" />
-                            </Entry.Behaviors>
-                        </Entry>
+                            </controls:UnderlineEntry.Behaviors>
+                        </controls:UnderlineEntry>
                     </Grid>
 
                     <Label Style="{StaticResource FieldStyle}" Text="Your phone number" />
-                    <Entry
+                    <controls:UnderlineEntry
                         Keyboard="Telephone"
                         Placeholder="Your mobile phone number"
-                        Style="{StaticResource InputStyle}"
+                        Style="{StaticResource UnderlineInputStyle}"
                         Text="{Binding PhoneNumber}">
-                        <Entry.Behaviors>
+                        <controls:UnderlineEntry.Behaviors>
                             <shared:NumericValidationBehavior />
                             <shared:EntryLengthValidatorBehavior MaxLength="10" />
-                        </Entry.Behaviors>
-                    </Entry>
+                        </controls:UnderlineEntry.Behaviors>
+                    </controls:UnderlineEntry>
 
                     <Label Style="{StaticResource FieldStyle}" Text="Your address" />
-                    <Entry
+                    <controls:UnderlineEntry
                         Placeholder="Address line 1"
                         Style="{StaticResource InputStyle}"
                         Text="{Binding AddressLine1}">
-                        <Entry.Behaviors>
+                        <controls:UnderlineEntry.Behaviors>
                             <shared:EntryLengthValidatorBehavior MaxLength="52" />
-                        </Entry.Behaviors>
-                    </Entry>
-                    <Entry
+                        </controls:UnderlineEntry.Behaviors>
+                    </controls:UnderlineEntry>
+                    <controls:UnderlineEntry
                         Placeholder="Address line 2"
                         Style="{StaticResource InputStyle}"
                         Text="{Binding AddressLine2}">
-                        <Entry.Behaviors>
+                        <controls:UnderlineEntry.Behaviors>
                             <shared:EntryLengthValidatorBehavior MaxLength="52" />
-                        </Entry.Behaviors>
-                    </Entry>
-                    <Entry
+                        </controls:UnderlineEntry.Behaviors>
+                    </controls:UnderlineEntry>
+                    <controls:UnderlineEntry
                         Placeholder="City"
                         Style="{StaticResource InputStyle}"
                         Text="{Binding City}">
-                        <Entry.Behaviors>
+                        <controls:UnderlineEntry.Behaviors>
                             <shared:EntryLengthValidatorBehavior MaxLength="52" />
-                        </Entry.Behaviors>
-                    </Entry>
+                        </controls:UnderlineEntry.Behaviors>
+                    </controls:UnderlineEntry>
 
                     <Label Style="{StaticResource FieldStyle}" Text="Create password" />
-                    <Entry
+                    <controls:UnderlineEntry
                         Placeholder="At least six characters"
                         Style="{StaticResource PasswordInputStyle}"
                         Text="{Binding Password}">
-                        <Entry.Behaviors>
+                        <controls:UnderlineEntry.Behaviors>
                             <shared:EntryLengthValidatorBehavior MaxLength="32" />
-                        </Entry.Behaviors>
-                    </Entry>
+                        </controls:UnderlineEntry.Behaviors>
+                    </controls:UnderlineEntry>
 
                     <Label Style="{StaticResource FieldStyle}" Text="Confirm password" />
-                    <Entry
+                    <controls:UnderlineEntry
                         Placeholder="Must match password"
                         Style="{StaticResource PasswordInputStyle}"
                         Text="{Binding ConfirmPassword}">
-                        <Entry.Behaviors>
+                        <controls:UnderlineEntry.Behaviors>
                             <shared:EntryLengthValidatorBehavior MaxLength="32" />
-                        </Entry.Behaviors>
-                    </Entry>
+                        </controls:UnderlineEntry.Behaviors>
+                    </controls:UnderlineEntry>
 
                     <StackLayout Margin="0,8" Orientation="Horizontal">
                         <CheckBox IsChecked="{Binding IsPolicyAgreed}" Style="{StaticResource CheckInputStyle}" />
