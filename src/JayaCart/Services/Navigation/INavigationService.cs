@@ -9,7 +9,7 @@ namespace JayaCart.Mobile.Services
     {
         IEnumerable<SidebarItem> GetSidebarItems();
 
-        Task Navigate(Type viewType, bool isModal = false);
+        Task Navigate(Type viewType, bool isModal = false, bool replaceRoot = false);
 
         Task NavigateBack();
 

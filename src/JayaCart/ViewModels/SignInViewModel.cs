@@ -4,14 +4,13 @@ using JayaCart.Mobile.Services;
 using JayaCart.Mobile.Shared.Base;
 using JayaCart.Mobile.Shared.Commands;
 using JayaCart.Mobile.Views;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace JayaCart.Mobile.ViewModels
 {
     public class SignInViewModel : ViewModelBase
     {
-        ICommand _signIn, _createAccount;
+        ICommand _signIn, _createAccount, _signOut;
         readonly IUserAccountService _accountService;
         readonly INavigationService _navigationService;
 
@@ -20,7 +19,7 @@ namespace JayaCart.Mobile.ViewModels
             _accountService = accountService;
             _navigationService = navigationService;
 
-            Task.Run(async () => await SignOut());
+            SignOutCommand.Execute(null);
         }
 
         public string PhoneNumber
@@ -49,6 +48,17 @@ namespace JayaCart.Mobile.ViewModels
                     _signIn = new RelayCommand(SignInAction);
 
                 return _signIn;
+            }
+        }
+
+        public ICommand SignOutCommand
+        {
+            get
+            {
+                if (_signOut == null)
+                    _signOut = new RelayCommand(SignOutAction);
+
+                return _signOut;
             }
         }
 
@@ -92,7 +102,11 @@ namespace JayaCart.Mobile.ViewModels
             {
                 var user = await _accountService.SignIn(PhoneNumber, Password);
                 if (user != null)
-                    await _navigationService.Close();
+                {
+                    Clear();
+                    await _navigationService.Navigate(typeof(ArticlesView), replaceRoot: true);
+                }
+                    
             }
             catch (ServiceException ex)
             {
@@ -101,7 +115,7 @@ namespace JayaCart.Mobile.ViewModels
             }
         }
 
-        async Task SignOut()
+        async void SignOutAction()
         {
             var user = _accountService.GetLocalAccount();
             if (user != null)

@@ -154,7 +154,10 @@ namespace JayaCart.Mobile.ViewModels
             {
                 var newAccount = await _accountService.Create(account);
                 if (newAccount != null)
-                    await _navigationService.Close();
+                {
+                    Clear();
+                    await _navigationService.Navigate(typeof(ArticlesView), replaceRoot: true);
+                }
             }
             catch (ServiceException ex)
             {

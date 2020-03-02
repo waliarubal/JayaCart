@@ -4,9 +4,7 @@ using JayaCart.Mobile.Models;
 using JayaCart.Mobile.Services;
 using JayaCart.Mobile.Shared.Base;
 using JayaCart.Mobile.Shared.Commands;
-using JayaCart.Mobile.Views;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace JayaCart.Mobile.ViewModels
@@ -21,8 +19,6 @@ namespace JayaCart.Mobile.ViewModels
         {
             _navigationService = navigationService;
             _accountService = userAccountService;
-
-            Task.Run(async() => await SignIn());
         }
 
         public IEnumerable<SidebarItem> Items => _navigationService?.GetSidebarItems();
@@ -56,15 +52,9 @@ namespace JayaCart.Mobile.ViewModels
             _navigationService.Quit();
         }
 
-        async Task SignIn()
-        {
-            if (Account == null)
-                await _navigationService.Navigate(typeof(SignInView), true);
-        }
-
         async void ItemClickAction(SidebarItem item)
         {
-            await _navigationService.Navigate(item.ViewType, item.IsModal);
+            await _navigationService.Navigate(item.ViewType, item.IsModal, item.IsRoot);
         }
     }
 }

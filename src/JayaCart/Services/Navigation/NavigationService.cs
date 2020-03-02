@@ -1,4 +1,5 @@
-﻿using JayaCart.Mobile.Models;
+﻿using JayaCart.Mobile.Controls;
+using JayaCart.Mobile.Models;
 using JayaCart.Mobile.Views;
 using System;
 using System.Collections.Generic;
@@ -46,28 +47,33 @@ namespace JayaCart.Mobile.Services
                 new SidebarItem("Your Orders", typeof(OrdersView)),
                 new SidebarItem("Your Account", typeof(AccountView)),
                 new SidebarItem("About", typeof(AboutView)),
-                new SidebarItem("Sign Out", typeof(SignInView), true)
+                new SidebarItem("Sign Out", typeof(HomeView), isRootView: true)
             };
 
             return menus;
         }
 
-        public async Task Navigate(Type viewType, bool isModal = false)
+        Page GetView(Type viewType)
+        {
+            if (_pageCache.ContainsKey(viewType))
+                return _pageCache[viewType];
+
+            var view = Activator.CreateInstance(viewType) as Page;
+            _pageCache.Add(viewType, view);
+            return view;
+        }
+
+        public async Task Navigate(Type viewType, bool isModal = false, bool replaceRoot = false)
         {
             var mainPage = Application.Current.MainPage as MasterDetailPage;
             if (mainPage == null)
                 return;
 
-            if (!isModal && mainPage.Detail.Navigation.NavigationStack.Count > 0)
-                if (mainPage.Detail.Navigation.NavigationStack[mainPage.Detail.Navigation.NavigationStack.Count - 1].GetType() == viewType)
-                    return;
+            //if (!isModal && mainPage.Detail.Navigation.NavigationStack.Count > 0)
+            //    if (mainPage.Detail.Navigation.NavigationStack[mainPage.Detail.Navigation.NavigationStack.Count - 1].GetType() == viewType)
+            //        return;
 
-            Page view;
-            if (_pageCache.ContainsKey(viewType))
-                view = _pageCache[viewType];
-            else
-                view = Activator.CreateInstance(viewType) as Page;
-
+            var view = GetView(viewType);
             if (view == null)
                 return;
 
@@ -76,7 +82,13 @@ namespace JayaCart.Mobile.Services
             if (isModal)
                 await mainPage.Navigation.PushModalAsync(view);
             else
-                await mainPage.Detail.Navigation.PushAsync(view);
+            {
+                if (replaceRoot)
+                    mainPage.Detail = new AnimationlessNavigationPage(view);
+                else
+                    await mainPage.Detail.Navigation.PushAsync(view);
+            }
+                
         }
 
         public async Task NavigateBack()
