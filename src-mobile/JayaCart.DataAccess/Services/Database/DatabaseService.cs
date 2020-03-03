@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using JayaCart.DataAccess.Models;
+using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Serializers.NewtonsoftJson;
 using System;
@@ -39,10 +40,10 @@ namespace JayaCart.DataAccess.Services
         {
             var client = GetClient($"{collectionName}/{key}", Method.GET, out RestRequest request);
 
-            T result;
+            ApiResponse<T> result;
             try
             {
-                result = await client.GetAsync<T>(request);
+                result = await client.GetAsync<ApiResponse<T>>(request);
             }
             catch (Exception ex)
             {
@@ -50,17 +51,20 @@ namespace JayaCart.DataAccess.Services
                 result = default;
             }
 
-            return result;
+            if (result.IsHavingError)
+                throw new ServiceException(result.Error);
+
+            return result.Response;
         }
 
         public async Task<IReadOnlyCollection<T>> GetMany<T>(string collectionName) where T : new()
         {
             var client = GetClient($"{collectionName}", Method.GET, out RestRequest request);
 
-            IReadOnlyCollection<T> result;
+            ApiResponse<List<T>> result;
             try
             {
-                result = await client.GetAsync<List<T>>(request);
+                result = await client.GetAsync<ApiResponse<List<T>>>(request);
             }
             catch (Exception ex)
             {
@@ -68,7 +72,10 @@ namespace JayaCart.DataAccess.Services
                 result = default;
             }
 
-            return result;
+            if (result.IsHavingError)
+                throw new ServiceException(result.Error);
+
+            return result.Response;
         }
 
         public async Task<T> Insert<T>(string collectionName, string key, T record) where T : new()
@@ -76,10 +83,10 @@ namespace JayaCart.DataAccess.Services
             var client = GetClient($"{collectionName}", Method.POST, out RestRequest request);
             request.AddJsonBody(record);
 
-            T result;
+            ApiResponse<T> result;
             try
             {
-                result = await client.PostAsync<T>(request);
+                result = await client.PostAsync<ApiResponse<T>>(request);
             }
             catch (Exception ex)
             {
@@ -87,7 +94,10 @@ namespace JayaCart.DataAccess.Services
                 result = default;
             }
 
-            return result;
+            if (result.IsHavingError)
+                throw new ServiceException(result.Error);
+
+            return result.Response;
         }
     }
 }

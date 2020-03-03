@@ -17,5 +17,8 @@ export const webApi = functions.https.onRequest(main);
 
 const db = admin.firestore();
 
-let userAccountService = new UserAccountService(db, app);
-userAccountService.RegisterMethods();
+let services = [
+    new UserAccountService(db, app)
+];
+for (let service of services)
+    service.RegisterMethods();

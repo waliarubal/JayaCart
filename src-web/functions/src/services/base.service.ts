@@ -7,6 +7,8 @@ export abstract class BaseService {
     constructor(
         private readonly _db: admin.firestore.Firestore, 
         private readonly _app: express.Express) {
+            console.log(_db);
+            console.log(_app);
     }
 
     protected get Database(): admin.firestore.Firestore {

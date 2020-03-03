@@ -67,7 +67,7 @@ export class UserAccountService extends BaseService {
                 .json(this.Error<UserAccount>(`Failed to get user account for phone number ${request.params.PhoneNumber}: ${ex}`)));
     }
 
-    private GetAccount(request, response) {
+    private GetAccounts(request, response) {
         firebaseHelper.firestore.backup(this.Database, this.USER_ACCOUNTS)
             .then(records => response
                 .status(HttpStatus.OK)
@@ -88,7 +88,7 @@ export class UserAccountService extends BaseService {
         this.Application.post(`/${this.USER_ACCOUNTS}`, this.CreateAccount);
         this.Application.patch(`/${this.USER_ACCOUNTS}/:PhoneNumber`, this.UpdateAccount);
         this.Application.get(`/${this.USER_ACCOUNTS}/:PhoneNumber`, this.GetAccountByPhoneNumber);
-        this.Application.get(`/${this.USER_ACCOUNTS}`, this.GetAccount);
+        this.Application.get(`/${this.USER_ACCOUNTS}`, this.GetAccounts);
         this.Application.delete(`/${this.USER_ACCOUNTS}/:PhoneNumber`, this.DeleteAccount);
     }
 }
