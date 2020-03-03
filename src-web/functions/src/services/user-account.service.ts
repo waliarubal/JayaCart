@@ -30,42 +30,58 @@ export class UserAccountService extends BaseService {
 
             let isCreated = await firebaseHelper.firestore.createDocumentWithID(this.Database, this.USER_ACCOUNTS, account.PhoneNumber, account);
             if (isCreated)
-                response.status(HttpStatus.CREATED).json(account);
-            else {
-                console.log(`Failed to create user account: ${account}`);
-                response.status(HttpStatus.BAD_REQUEST).send(`Failed to create user account.`);
-            }
-
+                response
+                    .status(HttpStatus.CREATED)
+                    .json(this.Result<UserAccount>(account));
+            else
+                response
+                    .status(HttpStatus.BAD_REQUEST)
+                    .json(this.Error<UserAccount>(`Failed to create user account: ${account}`));
         } catch (ex) {
-            console.log(`Failed to create user account. ${ex}`);
-            response.status(HttpStatus.BAD_REQUEST).send(`Failed to create user account.`);
+            response
+                .status(HttpStatus.BAD_REQUEST)
+                .json(this.Error<UserAccount>(`Failed to create user account.`));
         }
     }
 
     private async UpdateAccount(request, response) {
         try {
             await firebaseHelper.firestore.updateDocument(this.Database, this.USER_ACCOUNTS, request.params.PhoneNumber, request.body);
-            response.status(HttpStatus.NO_CONTENT).json(request.body);
+            response
+                .status(HttpStatus.NO_CONTENT)
+                .json(this.Result<UserAccount>(request.body));
         } catch (ex) {
-            response.status(HttpStatus.BAD_REQUEST).send(`Failed to update user account with phone number ${request.params.PhoneNumber}.`);
+            response
+                .status(HttpStatus.BAD_REQUEST)
+                .json(this.Error<UserAccount>(`Failed to update user account with phone number ${request.params.PhoneNumber}.`));
         }
     }
 
     private GetAccountByPhoneNumber(request, response) {
         firebaseHelper.firestore.getDocument(this.Database, this.USER_ACCOUNTS, request.params.PhoneNumber)
-            .then(record => response.status(HttpStatus.OK).json(record))
-            .catch(ex => response.status(HttpStatus.BAD_REQUEST).send(`Failed to get user account for phone number ${request.params.PhoneNumber}: ${ex}`));
+            .then(record => response.
+                status(HttpStatus.OK)
+                .json(this.Result<UserAccount>(record)))
+            .catch(ex => response
+                .status(HttpStatus.BAD_REQUEST)
+                .json(this.Error<UserAccount>(`Failed to get user account for phone number ${request.params.PhoneNumber}: ${ex}`)));
     }
 
     private GetAccount(request, response) {
         firebaseHelper.firestore.backup(this.Database, this.USER_ACCOUNTS)
-            .then(records => response.status(HttpStatus.OK).json(records))
-            .catch(ex => response.status(HttpStatus.BAD_REQUEST).send(`Failed to get user accounts: ${ex}`));
+            .then(records => response
+                .status(HttpStatus.OK)
+                .json(this.Result<unknown>(records)))
+            .catch(ex => response
+                .status(HttpStatus.BAD_REQUEST)
+                .json(this.Error<UserAccount>(`Failed to get user accounts: ${ex}`)));
     }
 
     private async DeleteAccount(request, response) {
         const deletedRecord = await firebaseHelper.firestore.deleteDocument(this.Database, this.USER_ACCOUNTS, request.params.PhoneNumber);
-        response.status(204).json(deletedRecord);
+        response
+            .status(HttpStatus.NO_CONTENT)
+            .json(this.Result<object>(deletedRecord));
     }
 
     RegisterMethods(): void {
