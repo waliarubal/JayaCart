@@ -28,7 +28,7 @@ export class UserAccountService extends BaseService {
                 IsAdmin: false
             };
 
-            let isCreated = await firebaseHelper.firestore.createDocumentWithID(this.Database, this.USER_ACCOUNTS, account.PhoneNumber, account);
+            let isCreated = await firebaseHelper.firestore.createDocumentWithID(super.Database, this.USER_ACCOUNTS, account.PhoneNumber, account);
             if (isCreated)
                 response
                     .status(HttpStatus.CREATED)
@@ -46,7 +46,7 @@ export class UserAccountService extends BaseService {
 
     private async UpdateAccount(request, response) {
         try {
-            await firebaseHelper.firestore.updateDocument(this.Database, this.USER_ACCOUNTS, request.params.PhoneNumber, request.body);
+            await firebaseHelper.firestore.updateDocument(super.Database, this.USER_ACCOUNTS, request.params.PhoneNumber, request.body);
             response
                 .status(HttpStatus.NO_CONTENT)
                 .json(this.Result<UserAccount>(request.body));
@@ -58,7 +58,7 @@ export class UserAccountService extends BaseService {
     }
 
     private GetAccountByPhoneNumber(request, response) {
-        firebaseHelper.firestore.getDocument(this.Database, this.USER_ACCOUNTS, request.params.PhoneNumber)
+        firebaseHelper.firestore.getDocument(super.Database, this.USER_ACCOUNTS, request.params.PhoneNumber)
             .then(record => response.
                 status(HttpStatus.OK)
                 .json(this.Result<UserAccount>(record)))
@@ -68,7 +68,7 @@ export class UserAccountService extends BaseService {
     }
 
     private GetAccounts(request, response) {
-        firebaseHelper.firestore.backup(this.Database, this.USER_ACCOUNTS)
+        firebaseHelper.firestore.backup(super.Database, this.USER_ACCOUNTS)
             .then(records => response
                 .status(HttpStatus.OK)
                 .json(this.Result<unknown>(records)))
@@ -78,7 +78,7 @@ export class UserAccountService extends BaseService {
     }
 
     private async DeleteAccount(request, response) {
-        const deletedRecord = await firebaseHelper.firestore.deleteDocument(this.Database, this.USER_ACCOUNTS, request.params.PhoneNumber);
+        const deletedRecord = await firebaseHelper.firestore.deleteDocument(super.Database, this.USER_ACCOUNTS, request.params.PhoneNumber);
         response
             .status(HttpStatus.NO_CONTENT)
             .json(this.Result<object>(deletedRecord));
