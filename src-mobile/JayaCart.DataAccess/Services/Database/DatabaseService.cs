@@ -48,7 +48,7 @@ namespace JayaCart.DataAccess.Services
             catch (Exception ex)
             {
                 Debug.Write(ex);
-                result = default;
+                return default;
             }
 
             if (result.IsHavingError)
@@ -69,7 +69,7 @@ namespace JayaCart.DataAccess.Services
             catch (Exception ex)
             {
                 Debug.Write(ex);
-                result = default;
+                return default;
             }
 
             if (result.IsHavingError)
@@ -91,7 +91,7 @@ namespace JayaCart.DataAccess.Services
             catch (Exception ex)
             {
                 Debug.Write(ex);
-                result = default;
+                return default;
             }
 
             if (result.IsHavingError)

@@ -86,10 +86,10 @@ export class UserAccountService extends BaseService {
     }
 
     RegisterMethods(): void {
-        this.RegisterMethod(HttpMethod.Post, `/${this.USER_ACCOUNTS}`, this.CreateAccount);
-        this.RegisterMethod(HttpMethod.Patch, `/${this.USER_ACCOUNTS}/:PhoneNumber`, this.UpdateAccount);
-        this.RegisterMethod(HttpMethod.Get, `/${this.USER_ACCOUNTS}/:PhoneNumber`, this.GetAccountByPhoneNumber);
-        this.RegisterMethod(HttpMethod.Get, `/${this.USER_ACCOUNTS}`, this.GetAccounts);
-        this.RegisterMethod(HttpMethod.Delete, `/${this.USER_ACCOUNTS}/:PhoneNumber`, this.DeleteAccount);
+        this.RegisterMethod(HttpMethod.Post, `/${this.USER_ACCOUNTS}`, async (request, response) => await this.CreateAccount(request, response));
+        this.RegisterMethod(HttpMethod.Patch, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.UpdateAccount(request, response));
+        this.RegisterMethod(HttpMethod.Get, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.GetAccountByPhoneNumber(request, response));
+        this.RegisterMethod(HttpMethod.Get, `/${this.USER_ACCOUNTS}`, async (request, response) => await this.GetAccounts(request, response));
+        this.RegisterMethod(HttpMethod.Delete, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.DeleteAccount(request, response));
     }
 }

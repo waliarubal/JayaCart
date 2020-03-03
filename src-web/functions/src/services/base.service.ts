@@ -27,27 +27,27 @@ export abstract class BaseService {
     protected RegisterMethod(method: HttpMethod, route: string, handler: ApiRequestHandler): void {
         switch(method) {
             case HttpMethod.Get:
-                this._app.get(route, async (request, response) => await handler(request, response));
+                this._app.get(route, handler);
                 break;
 
             case HttpMethod.Post:
-                this._app.post(route, async (request, response) => await handler(request, response));
+                this._app.post(route, handler);
                 break;
 
             case HttpMethod.Put:
-                this._app.put(route, async (request, response) => await handler(request, response));
+                this._app.put(route, handler);
                 break;
 
             case HttpMethod.Delete:
-                this._app.delete(route, async (request, response) => await handler(request, response));
+                this._app.delete(route, handler);
                 break;
 
             case HttpMethod.Patch:
-                this._app.patch(route, async (request, response) => await handler(request, response));
+                this._app.patch(route, handler);
                 break;
 
             case HttpMethod.Head:
-                this._app.head(route, async (request, response) => await handler(request, response));
+                this._app.head(route, handler);
                 break;
         }
     }
