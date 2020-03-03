@@ -1,9 +1,20 @@
 import * as express from 'express';
 import * as admin from 'firebase-admin';
-import { ApiResponse } from '../models/api-response';
+import { ApiResponse } from '../models/api-response'; 
+
+export type ApiRequestHandler = (request: any, response: any) => Promise<void>;
+
+export enum HttpMethod {
+    Get,
+    Post,
+    Put,
+    Delete,
+    Patch,
+    Head
+}
 
 export abstract class BaseService {
-    
+
     constructor(
         private readonly _db: admin.firestore.Firestore, 
         private readonly _app: express.Express) {
@@ -13,8 +24,32 @@ export abstract class BaseService {
         return this._db;
     }
 
-    protected get Application(): express.Express {
-        return this._app;
+    protected RegisterMethod(method: HttpMethod, route: string, handler: ApiRequestHandler): void {
+        switch(method) {
+            case HttpMethod.Get:
+                this._app.get(route, async (request, response) => await handler(request, response));
+                break;
+
+            case HttpMethod.Post:
+                this._app.post(route, async (request, response) => await handler(request, response));
+                break;
+
+            case HttpMethod.Put:
+                this._app.put(route, async (request, response) => await handler(request, response));
+                break;
+
+            case HttpMethod.Delete:
+                this._app.delete(route, async (request, response) => await handler(request, response));
+                break;
+
+            case HttpMethod.Patch:
+                this._app.patch(route, async (request, response) => await handler(request, response));
+                break;
+
+            case HttpMethod.Head:
+                this._app.head(route, async (request, response) => await handler(request, response));
+                break;
+        }
     }
 
     abstract RegisterMethods(): void;
