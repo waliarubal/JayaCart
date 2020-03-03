@@ -1,5 +1,10 @@
 {
   "name": "functions",
+  "author": {
+    "email": "walia.rubal@gmail.com",
+    "name": "Rubal Walia",
+    "url": "https://waliarubal.github.io/"
+  },
   "scripts": {
     "build": "tsc",
     "serve": "npm run build && firebase serve --only functions",

@@ -1,14 +1,17 @@
 {
-  "name": "client",
+  "name": "jaya-cart-client",
   "version": "0.0.0",
+  "author": {
+    "email": "walia.rubal@gmail.com",
+    "name": "Rubal Walia",
+    "url": "https://waliarubal.github.io/"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "prod-build": "ng build --prod",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +23,9 @@
     "@angular/platform-browser": "~9.0.2",
     "@angular/platform-browser-dynamic": "~9.0.2",
     "@angular/router": "~9.0.2",
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "@ng-bootstrap/ng-bootstrap": "^6.0.0",
+    "bootstrap": "^4.4.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
