@@ -8,4 +8,6 @@ export class UserAccount {
     Password: string;
     Image: string;
     Balance: number;
+    IsActive: boolean;
+    IsAdmin: boolean;
 }
