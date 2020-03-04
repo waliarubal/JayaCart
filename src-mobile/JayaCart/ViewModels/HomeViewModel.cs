@@ -25,6 +25,8 @@ namespace JayaCart.Mobile.ViewModels
             });
         }
 
+        public override bool IsCachable => false;
+
         public ICommand SignInCommand
         {
             get

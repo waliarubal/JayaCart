@@ -21,6 +21,8 @@ namespace JayaCart.Mobile.ViewModels
             _accountService = userAccountService;
         }
 
+        public override bool IsCachable => false;
+
         public IEnumerable<SidebarItem> Items => _navigationService?.GetSidebarItems();
 
         public UserAccount Account => _accountService?.GetLocalAccount();

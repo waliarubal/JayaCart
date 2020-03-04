@@ -21,6 +21,8 @@ namespace JayaCart.Mobile.ViewModels
             _navigationService = navigationService;
         }
 
+        public override bool IsCachable => false;
+
         public string FirstName
         {
             get => Get<string>();

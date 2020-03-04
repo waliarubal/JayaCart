@@ -11,6 +11,8 @@ namespace JayaCart.Mobile.Shared.Base
 
         #region properties
 
+        public abstract bool IsCachable { get; }
+
         public bool IsBusy
         {
             get => Get<bool>();

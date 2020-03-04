@@ -1,6 +1,7 @@
 ﻿using JayaCart.Mobile.Shared.Base;
 using Nancy.TinyIoc;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using Xamarin.Forms;
@@ -18,6 +19,7 @@ namespace JayaCart.Mobile.Shared
     public static class ViewModelLocator
     {
         static TinyIoCContainer _container;
+        static Dictionary<string, ViewModelBase> _viewModelCache;
 
         public static readonly BindableProperty AutoWireViewModelProperty;
 
@@ -26,6 +28,7 @@ namespace JayaCart.Mobile.Shared
             AutoWireViewModelProperty = BindableProperty.CreateAttached("AutoWireViewModel", typeof(bool), typeof(ViewModelLocator), default(bool), propertyChanged: OnAutoWireViewModelChanged);
 
             _container = new TinyIoCContainer();
+            _viewModelCache = new Dictionary<string, ViewModelBase>();
         }
 
         public static bool GetAutoWireViewModel(BindableObject bindable)
@@ -64,6 +67,13 @@ namespace JayaCart.Mobile.Shared
             var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName;
             var viewModelName = string.Format(CultureInfo.InvariantCulture, "{0}Model, {1}", viewName, viewAssemblyName);
 
+            if (_viewModelCache.ContainsKey(viewModelName))
+            {
+                view.BindingContext = _viewModelCache[viewModelName];
+                return;
+            }
+
+            // get VM from cache
             var viewModelType = Type.GetType(viewModelName);
             if (viewModelType == null)
                 return;
@@ -71,6 +81,10 @@ namespace JayaCart.Mobile.Shared
             var viewModel = _container.Resolve(viewModelType) as ViewModelBase;
             view.BindingContext = viewModel;
             viewModel.IsLoaded = true;
+
+            // cache VM
+            if (viewModel.IsCachable && !_viewModelCache.ContainsKey(viewModelName))
+                _viewModelCache.Add(viewModelName, viewModel);
         }
     }
 }

@@ -22,6 +22,8 @@ namespace JayaCart.Mobile.ViewModels
             SignOutCommand.Execute(null);
         }
 
+        public override bool IsCachable => false;
+
         public string PhoneNumber
         {
             get => Get<string>();

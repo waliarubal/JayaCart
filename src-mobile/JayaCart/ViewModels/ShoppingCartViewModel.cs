@@ -13,6 +13,8 @@ namespace JayaCart.Mobile.ViewModels
             _orderService = orderService;
         }
 
+        public override bool IsCachable => true;
+
         public Order Cart => _orderService?.Cart;
     }
 }

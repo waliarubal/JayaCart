@@ -20,6 +20,8 @@ namespace JayaCart.Mobile.ViewModels
             SearchCommand.Execute("<suggested>");
         }
 
+        public override bool IsCachable => true;
+
         public ObservableCollection<ShoppingCartArticle> Articles
         {
             get => Get<ObservableCollection<ShoppingCartArticle>>();
