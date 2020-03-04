@@ -16,7 +16,7 @@ namespace JayaCart.DataAccess.Services
             _databaseService = databaseService;
         }
 
-        async Task<UserAccount> GetAccount(string phoneNumber)
+        async Task<ApiResponse<UserAccount>> GetAccount(string phoneNumber)
         {
             return await _databaseService.Get<UserAccount>("UserAccounts", phoneNumber);
         }
@@ -39,15 +39,17 @@ namespace JayaCart.DataAccess.Services
 
         public async Task<UserAccount> Create(UserAccount account)
         {
-            var existingAccount = await GetAccount(account.PhoneNumber);
-            if (existingAccount != null)
+            var response = await GetAccount(account.PhoneNumber);
+            if (response != null && !response.IsHavingError && response.Response != null)
                 throw new ServiceException($"Another user with phone number {account.PhoneNumber} is registered.");
 
             account.Password = account.Password.MD5();
 
-            var newAccount = await _databaseService.Insert("UserAccounts", account.PhoneNumber, account);
-            if (newAccount == null)
+            response = await _databaseService.Insert("UserAccounts", account.PhoneNumber, account);
+            if (response == null)
                 throw new ServiceException($"Failed to create user account with phone number {account.PhoneNumber}");
+            else if (response.IsHavingError)
+                throw new ServiceException(response.Error);
 
             _settingsService.Set(nameof(UserAccount.PhoneNumber), account.PhoneNumber);
             _settingsService.Set(nameof(UserAccount.FirstName), account.FirstName);
@@ -60,20 +62,22 @@ namespace JayaCart.DataAccess.Services
 
         public async Task<UserAccount> SignIn(string phone, string password)
         {
-            var account = await GetAccount(phone);
-            if (account == null)
+            var response = await GetAccount(phone);
+            if (response == null)
                 throw new ServiceException($"User with phone number {phone} is not registered.");
+            if (response.IsHavingError)
+                throw new ServiceException(response.Error);
 
-            if (!account.Password.Equals(password.MD5(), StringComparison.Ordinal))
+            if (!response.Response.Password.Equals(password.MD5(), StringComparison.Ordinal))
                 throw new ServiceException("Password is incorrect.");
 
-            _settingsService.Set(nameof(UserAccount.PhoneNumber), account.PhoneNumber);
-            _settingsService.Set(nameof(UserAccount.FirstName), account.FirstName);
-            _settingsService.Set(nameof(UserAccount.City), account.City);
-            _settingsService.Set(nameof(UserAccount.Image), account.Image);
+            _settingsService.Set(nameof(UserAccount.PhoneNumber), response.Response.PhoneNumber);
+            _settingsService.Set(nameof(UserAccount.FirstName), response.Response.FirstName);
+            _settingsService.Set(nameof(UserAccount.City), response.Response.City);
+            _settingsService.Set(nameof(UserAccount.Image), response.Response.Image);
             await _settingsService.Save();
 
-            return account;
+            return response.Response;
         }
 
         public async Task SignOut()

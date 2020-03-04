@@ -59,10 +59,16 @@ export class UserAccountService extends BaseService {
     private async GetAccountByPhoneNumber(request, response) {
         try {
             let record = await firebaseHelper.firestore.getDocument(this.Database, this.USER_ACCOUNTS, request.params.PhoneNumber);
-            if (record)
-                response
-                    .status(HttpStatus.OK)
-                    .json(this.Result<UserAccount>(record));
+            if (record) {
+                if (record.IsActive)
+                    response
+                        .status(HttpStatus.OK)
+                        .json(this.Result<UserAccount>(record));
+                else
+                    response
+                        .status(HttpStatus.BAD_REQUEST)
+                        .json(this.Error<UserAccount>(`User account for phone number ${request.params.PhoneNumber} is not active.`));
+            }
             else
                 response
                     .status(HttpStatus.BAD_REQUEST)

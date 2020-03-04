@@ -36,7 +36,7 @@ namespace JayaCart.DataAccess.Services
             return client;
         }
 
-        public async Task<T> Get<T>(string collectionName, string key) where T : new()
+        public async Task<ApiResponse<T>> Get<T>(string collectionName, string key) where T : new()
         {
             var client = GetClient($"{collectionName}/{key}", Method.GET, out RestRequest request);
 
@@ -48,16 +48,13 @@ namespace JayaCart.DataAccess.Services
             catch (Exception ex)
             {
                 Debug.Write(ex);
-                return default;
+                result = new ApiResponse<T>(default, ex.Message);
             }
 
-            if (result.IsHavingError)
-                throw new ServiceException(result.Error);
-
-            return result.Response;
+            return result;
         }
 
-        public async Task<IReadOnlyCollection<T>> GetMany<T>(string collectionName) where T : new()
+        public async Task<ApiResponse<List<T>>> GetMany<T>(string collectionName) where T : new()
         {
             var client = GetClient($"{collectionName}", Method.GET, out RestRequest request);
 
@@ -69,16 +66,13 @@ namespace JayaCart.DataAccess.Services
             catch (Exception ex)
             {
                 Debug.Write(ex);
-                return default;
+                result = new ApiResponse<List<T>>(default, ex.Message);
             }
 
-            if (result.IsHavingError)
-                throw new ServiceException(result.Error);
-
-            return result.Response;
+            return result;
         }
 
-        public async Task<T> Insert<T>(string collectionName, string key, T record) where T : new()
+        public async Task<ApiResponse<T>> Insert<T>(string collectionName, string key, T record) where T : new()
         {
             var client = GetClient($"{collectionName}", Method.POST, out RestRequest request);
             request.AddJsonBody(record);
@@ -91,13 +85,10 @@ namespace JayaCart.DataAccess.Services
             catch (Exception ex)
             {
                 Debug.Write(ex);
-                return default;
+                result = new ApiResponse<T>(default, ex.Message);
             }
 
-            if (result.IsHavingError)
-                throw new ServiceException(result.Error);
-
-            return result.Response;
+            return result;
         }
     }
 }
