@@ -1,8 +1,8 @@
 {
   "functions": {
     "predeploy": [
-      "npm --prefix \"$PROJECT_DIR/client\" run prod-build",
-      "npm --prefix \"$PROJECT_DIR/functions\" run build"
+      "cd \"$PROJECT_DIR/client\" &&  npm install && npm run prod-build && cd ..",
+      "cd \"$PROJECT_DIR/functions\" && npm run build && cd .."
     ]
   },
   "hosting": {

@@ -10,8 +10,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "prod-build": "ng build --prod",
-    "lint": "ng lint"
+    "prod-build": "ng build --prod"
   },
   "private": true,
   "dependencies": {
