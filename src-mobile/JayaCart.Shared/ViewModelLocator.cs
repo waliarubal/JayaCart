@@ -1,5 +1,4 @@
 ﻿using JayaCart.Mobile.Shared.Base;
-using Nancy.TinyIoc;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -18,7 +17,6 @@ namespace JayaCart.Mobile.Shared
 {
     public static class ViewModelLocator
     {
-        static TinyIoCContainer _container;
         static Dictionary<string, ViewModelBase> _viewModelCache;
 
         public static readonly BindableProperty AutoWireViewModelProperty;
@@ -27,7 +25,6 @@ namespace JayaCart.Mobile.Shared
         {
             AutoWireViewModelProperty = BindableProperty.CreateAttached("AutoWireViewModel", typeof(bool), typeof(ViewModelLocator), default(bool), propertyChanged: OnAutoWireViewModelChanged);
 
-            _container = new TinyIoCContainer();
             _viewModelCache = new Dictionary<string, ViewModelBase>();
         }
 
@@ -39,21 +36,6 @@ namespace JayaCart.Mobile.Shared
         public static void SetAutoWireViewModel(BindableObject bindable, bool value)
         {
             bindable.SetValue(AutoWireViewModelProperty, value);
-        }
-
-        public static void RegisterSingleton<TInterface, T>() where TInterface : class where T : class, TInterface
-        {
-            _container.Register<TInterface, T>().AsSingleton();
-        }
-
-        public static void Register<T>() where T: class
-        {
-            _container.Register<T>();
-        }
-
-        public static T Resolve<T>() where T : class
-        {
-            return _container.Resolve<T>();
         }
 
         static void OnAutoWireViewModelChanged(BindableObject bindable, object oldValue, object newValue)
@@ -78,7 +60,7 @@ namespace JayaCart.Mobile.Shared
             if (viewModelType == null)
                 return;
             
-            var viewModel = _container.Resolve(viewModelType) as ViewModelBase;
+            var viewModel = ServiceLocator.Instance.Container.Resolve(viewModelType) as ViewModelBase;
             view.BindingContext = viewModel;
             viewModel.IsLoaded = true;
 

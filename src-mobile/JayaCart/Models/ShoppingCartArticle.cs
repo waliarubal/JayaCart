@@ -30,7 +30,7 @@ namespace JayaCart.Mobile.Models
             get
             {
                 if (_orderService == null)
-                    _orderService = ViewModelLocator.Resolve<IOrderService>();
+                    _orderService = ServiceLocator.Instance.Resolve<IOrderService>();
 
                 return _orderService;
             }

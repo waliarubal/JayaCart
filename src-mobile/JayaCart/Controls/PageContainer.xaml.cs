@@ -34,7 +34,7 @@ namespace JayaCart.Mobile.Controls
         {
             InitializeComponent();
 
-            var infoService = ViewModelLocator.Resolve<IInformationService>();
+            var infoService = ServiceLocator.Instance.Resolve<IInformationService>();
             if (infoService != null)
             {
                 AppName = infoService.ApplicationName;

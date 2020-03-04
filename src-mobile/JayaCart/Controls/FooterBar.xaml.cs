@@ -25,7 +25,7 @@ namespace JayaCart.Mobile.Controls
             get
             {
                 if (_navigationService == null)
-                    _navigationService = ViewModelLocator.Resolve<INavigationService>();
+                    _navigationService = ServiceLocator.Instance.Resolve<INavigationService>();
 
                 return _navigationService;
             }

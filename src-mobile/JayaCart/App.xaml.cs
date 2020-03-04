@@ -16,13 +16,13 @@ namespace JayaCart.Mobile
     {
         void RegisterDependencies()
         {
-            ViewModelLocator.RegisterSingleton<IInformationService, InformationService>();
-            ViewModelLocator.RegisterSingleton<ISettingsService, SettingsService>();
-            ViewModelLocator.RegisterSingleton<IDatabaseService, DatabaseService>();
-            ViewModelLocator.RegisterSingleton<INavigationService, NavigationService>();
-            ViewModelLocator.RegisterSingleton<IUserAccountService, UserAccountService>();
-            ViewModelLocator.RegisterSingleton<IArticleService, ArticleService>();
-            ViewModelLocator.RegisterSingleton<IOrderService, OrderService>();
+            ServiceLocator.Instance.RegisterSingleton<IInformationService, InformationService>();
+            ServiceLocator.Instance.RegisterSingleton<ISettingsService, SettingsService>();
+            ServiceLocator.Instance.RegisterSingleton<IDatabaseService, DatabaseService>();
+            ServiceLocator.Instance.RegisterSingleton<INavigationService, NavigationService>();
+            ServiceLocator.Instance.RegisterSingleton<IUserAccountService, UserAccountService>();
+            ServiceLocator.Instance.RegisterSingleton<IArticleService, ArticleService>();
+            ServiceLocator.Instance.RegisterSingleton<IOrderService, OrderService>();
         }
 
         public App()
