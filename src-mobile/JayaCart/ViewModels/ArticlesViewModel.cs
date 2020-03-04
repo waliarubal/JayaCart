@@ -1,5 +1,4 @@
-﻿using JayaCart.DataAccess.Models;
-using JayaCart.DataAccess.Services;
+﻿using JayaCart.DataAccess.Services;
 using JayaCart.Mobile.Models;
 using JayaCart.Mobile.Shared.Base;
 using JayaCart.Mobile.Shared.Commands;
@@ -11,7 +10,7 @@ namespace JayaCart.Mobile.ViewModels
 {
     public class ArticlesViewModel: ViewModelBase
     {
-        ICommand _search, _addToCart, _quantityChangedCommand;
+        ICommand _search;
         readonly IArticleService _articleService;
 
         public ArticlesViewModel(IArticleService articleService)
@@ -42,38 +41,6 @@ namespace JayaCart.Mobile.ViewModels
 
                 return _search;
             }
-        }
-
-        public ICommand QuantityChangedCommand
-        {
-            get
-            {
-                if (_quantityChangedCommand == null)
-                    _quantityChangedCommand = new RelayCommand(ArticleQuantityChangedAction);
-
-                return _quantityChangedCommand;
-            }
-        }
-
-        public ICommand AddToCartCommand
-        {
-            get
-            {
-                if (_addToCart == null)
-                    _addToCart = new RelayCommand(AddToCart);
-
-                return _addToCart;
-            }
-        }
-
-        void AddToCart()
-        {
-
-        }
-
-        void ArticleQuantityChangedAction()
-        {
-
         }
 
         async void SearchAction(string keywoard)

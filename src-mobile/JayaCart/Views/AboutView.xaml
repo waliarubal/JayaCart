@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="this"
     Title="About"
+    NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
     <controls:PageContainer
         BackgroundColor="{DynamicResource BackgroundColorLow}"

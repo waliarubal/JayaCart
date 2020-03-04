@@ -53,7 +53,7 @@
                 <Label
                     Grid.Column="2"
                     FontAttributes="Bold"
-                    Text="{Binding Cart.Total, Mode=OneWay}"
+                    Text="{Binding Cart.Total, Mode=OneWay, StringFormat='₹{0:####0.00}'}"
                     TextColor="{DynamicResource BorderColorHigh}" />
             </Grid>
         </controls:PageContainer.PageContent>

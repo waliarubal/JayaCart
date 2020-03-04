@@ -6,6 +6,7 @@
     xmlns:controls="clr-namespace:JayaCart.Mobile.Controls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:shared="https://github.com/waliarubal/schemas"
     x:Name="this"
     BackgroundColor="{DynamicResource BackgroundColorMid}"
     mc:Ignorable="d">
@@ -46,7 +47,9 @@
             VerticalOptions="End" />
         <StackLayout
             Grid.Row="2"
+            Margin="0,0,0,2"
             HorizontalOptions="Center"
+            IsVisible="{Binding IsNavigationAllowed, Converter={shared:InverseBoolConverter}}"
             Orientation="Horizontal">
             <StackLayout.Resources>
                 <Style TargetType="Label">

@@ -95,7 +95,7 @@
                                 <controls:NumericUpDown
                                     Grid.Column="1"
                                     VerticalOptions="Center"
-                                    Value="{Binding Quantity, Mode=OneWay}" />
+                                    Value="{Binding Quantity}" />
                                 <BoxView
                                     Grid.Row="1"
                                     Grid.ColumnSpan="2"

@@ -1,6 +1,7 @@
 ﻿using JayaCart.DataAccess.Base;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 
 namespace JayaCart.DataAccess.Models
 {
@@ -32,19 +33,31 @@ namespace JayaCart.DataAccess.Models
             {
                 case NotifyCollectionChangedAction.Add:
                     foreach (OrderArticle article in e.NewItems)
+                    {
                         total += article.Total;
+                        article.PropertyChanged += Article_PropertyChanged;
+                    }
                     break;
 
                 case NotifyCollectionChangedAction.Remove:
                     foreach (OrderArticle article in e.OldItems)
+                    {
                         total -= article.Total;
+                        article.PropertyChanged -= Article_PropertyChanged;
+                    }
                     break;
 
                 case NotifyCollectionChangedAction.Replace:
                     foreach (OrderArticle article in e.OldItems)
+                    {
                         total -= article.Total;
+                        article.PropertyChanged -= Article_PropertyChanged;
+                    }
                     foreach (OrderArticle article in e.NewItems)
+                    {
                         total += article.Total;
+                        article.PropertyChanged += Article_PropertyChanged;
+                    }
                     break;
 
                 case NotifyCollectionChangedAction.Reset:
@@ -53,6 +66,18 @@ namespace JayaCart.DataAccess.Models
             }
 
             Total = total > 0f ? total : 0f;
+        }
+
+        private void Article_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.Equals(nameof(Total)))
+            {
+                var total = 0f;
+                foreach (var article in Articles)
+                    total += article.Total;
+
+                Total = total;
+            }
         }
     }
 }

@@ -5,17 +5,16 @@ using Xamarin.Forms.Xaml;
 
 namespace JayaCart.Mobile.Shared.Converters
 {
-    public class SelectedItemEventArgsToSelectedItemConverter : IValueConverter, IMarkupExtension
+    public class InverseBoolConverter : IValueConverter, IMarkupExtension
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var eventArgs = value as ItemTappedEventArgs;
-            return eventArgs.Item;
+            return !((bool)value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return value;
         }
 
         public object ProvideValue(IServiceProvider serviceProvider)

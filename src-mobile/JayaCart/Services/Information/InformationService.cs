@@ -6,6 +6,6 @@ namespace JayaCart.Mobile.Services
     {
         public string ApplicationName => "Jaya Cart";
 
-        public Version ApplicationVersion => new Version(1, 0);
+        public Version ApplicationVersion => new Version(1, 0, 0, 0);
     }
 }

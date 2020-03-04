@@ -15,7 +15,9 @@ namespace JayaCart.Mobile.Controls
             ContentMarginProperty,
             PageContentProperty,
             HeaderContentProperty, 
-            IsNavigationAllowedProperty;
+            IsNavigationAllowedProperty, 
+            AppNameProperty, 
+            AppVersionProperty;
 
         static PageContainer()
         {
@@ -24,6 +26,8 @@ namespace JayaCart.Mobile.Controls
             PageContentProperty = BindableProperty.Create(nameof(PageContent), typeof(View), typeof(PageContainer));
             HeaderContentProperty = BindableProperty.Create(nameof(HeaderContent), typeof(View), typeof(PageContainer));
             IsNavigationAllowedProperty = BindableProperty.Create(nameof(IsNavigationAllowed), typeof(bool), typeof(TitleBar), true, BindingMode.OneWay);
+            AppNameProperty = BindableProperty.Create(nameof(AppName), typeof(string), typeof(TitleBar), default(string), BindingMode.OneWay);
+            AppVersionProperty = BindableProperty.Create(nameof(AppVersion), typeof(Version), typeof(TitleBar), default(Version), BindingMode.OneWay);
         }
 
         public PageContainer()
@@ -38,9 +42,17 @@ namespace JayaCart.Mobile.Controls
             }
         }
 
-        public string AppName { get; }
+        public string AppName
+        {
+            get => (string)GetValue(AppNameProperty);
+            private set => SetValue(AppNameProperty, value);
+        }
 
-        public Version AppVersion { get; }
+        public Version AppVersion
+        {
+            get => (Version)GetValue(AppVersionProperty);
+            private set => SetValue(AppVersionProperty, value);
+        }
 
         public GridLength HeaderHeight
         {
