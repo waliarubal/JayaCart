@@ -21,10 +21,12 @@
             <controls:TitleBar Title="{Binding Title, Source={x:Reference this}}" IsNavigationAllowed="{Binding IsNavigationAllowed, Source={x:Reference Container}}" />
         </controls:PageContainer.HeaderContent>
         <controls:PageContainer.PageContent>
-            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ScrollView
+                BindingContext="{Binding BindingContext, Source={x:Reference this}}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
                 <StackLayout
                     Margin="16"
-                    BindingContext="{Binding BindingContext, Source={x:Reference this}}"
                     HorizontalOptions="FillAndExpand"
                     Spacing="0"
                     VerticalOptions="StartAndExpand">

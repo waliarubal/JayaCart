@@ -1,4 +1,7 @@
 ﻿
+using JayaCart.Mobile.Services;
+using JayaCart.Mobile.Shared;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -26,7 +29,18 @@ namespace JayaCart.Mobile.Controls
         public PageContainer()
         {
             InitializeComponent();
+
+            var infoService = ViewModelLocator.Resolve<IInformationService>();
+            if (infoService != null)
+            {
+                AppName = infoService.ApplicationName;
+                AppVersion = infoService.ApplicationVersion;
+            }
         }
+
+        public string AppName { get; }
+
+        public Version AppVersion { get; }
 
         public GridLength HeaderHeight
         {

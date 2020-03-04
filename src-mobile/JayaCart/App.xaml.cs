@@ -16,6 +16,7 @@ namespace JayaCart.Mobile
     {
         void RegisterDependencies()
         {
+            ViewModelLocator.RegisterSingleton<IInformationService, InformationService>();
             ViewModelLocator.RegisterSingleton<ISettingsService, SettingsService>();
             ViewModelLocator.RegisterSingleton<IDatabaseService, DatabaseService>();
             ViewModelLocator.RegisterSingleton<INavigationService, NavigationService>();

@@ -56,9 +56,32 @@ export class UserAccountService extends BaseService {
         }
     }
 
+    private async GetAccount(phoneNumber: string) {
+        return await firebaseHelper.firestore.getDocument(this.Database, this.USER_ACCOUNTS, phoneNumber);
+    }
+
     private async GetAccountByPhoneNumber(request, response) {
         try {
-            let record = await firebaseHelper.firestore.getDocument(this.Database, this.USER_ACCOUNTS, request.params.PhoneNumber);
+            let record = await this.GetAccount(request.params.PhoneNumber);
+            if (record)
+                response
+                    .status(HttpStatus.OK)
+                    .json(this.Result<UserAccount>(record));
+            else
+                response
+                    .status(HttpStatus.BAD_REQUEST)
+                    .json(this.Error<UserAccount>(`Failed to get user account for phone number ${request.params.PhoneNumber}.`))
+
+        } catch (ex) {
+            response
+                .status(HttpStatus.BAD_REQUEST)
+                .json(this.Error<UserAccount>(`Failed to get user account for phone number ${request.params.PhoneNumber}: ${ex}`))
+        }
+    }
+
+    private async SignIn(request, response) {
+        try {
+            let record = await this.GetAccount(request.params.PhoneNumber);
             if (record) {
                 if (record.IsActive)
                     response
@@ -68,12 +91,10 @@ export class UserAccountService extends BaseService {
                     response
                         .status(HttpStatus.BAD_REQUEST)
                         .json(this.Error<UserAccount>(`User account for phone number ${request.params.PhoneNumber} is not active.`));
-            }
-            else
+            } else
                 response
                     .status(HttpStatus.BAD_REQUEST)
                     .json(this.Error<UserAccount>(`Failed to get user account for phone number ${request.params.PhoneNumber}.`))
-
         } catch (ex) {
             response
                 .status(HttpStatus.BAD_REQUEST)
@@ -117,5 +138,6 @@ export class UserAccountService extends BaseService {
         this.RegisterMethod(HttpMethod.Get, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.GetAccountByPhoneNumber(request, response));
         this.RegisterMethod(HttpMethod.Get, `/${this.USER_ACCOUNTS}`, async (request, response) => await this.GetAccounts(request, response));
         this.RegisterMethod(HttpMethod.Delete, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.DeleteAccount(request, response));
+        this.RegisterMethod(HttpMethod.Get, `/${this.USER_ACCOUNTS}/SignIn/:PhoneNumber`, async (request, response) => await this.SignIn(request, response));
     }
 }

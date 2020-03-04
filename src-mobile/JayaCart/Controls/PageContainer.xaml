@@ -44,5 +44,18 @@
             HorizontalOptions="FillAndExpand"
             IsVisible="{Binding IsNavigationAllowed}"
             VerticalOptions="End" />
+        <StackLayout
+            Grid.Row="2"
+            HorizontalOptions="Center"
+            Orientation="Horizontal">
+            <StackLayout.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="FontSize" Value="Micro" />
+                    <Setter Property="TextColor" Value="{DynamicResource TextColorLow}" />
+                </Style>
+            </StackLayout.Resources>
+            <Label Text="{Binding AppName}" />
+            <Label Text="{Binding AppVersion, StringFormat='Version {0}'}" />
+        </StackLayout>
     </Grid>
 </ContentView>

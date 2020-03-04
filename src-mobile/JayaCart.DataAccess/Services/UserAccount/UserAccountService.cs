@@ -62,7 +62,7 @@ namespace JayaCart.DataAccess.Services
 
         public async Task<UserAccount> SignIn(string phone, string password)
         {
-            var response = await GetAccount(phone);
+            var response = await _databaseService.Get<UserAccount>("UserAccounts/SignIn", phone);
             if (response == null)
                 throw new ServiceException($"User with phone number {phone} is not registered.");
             if (response.IsHavingError)
