@@ -2,7 +2,7 @@
   "functions": {
     "predeploy": [
       "cd \"$PROJECT_DIR/client\" &&  npm install && npm run prod-build && cd ..",
-      "cd \"$PROJECT_DIR/functions\" && npm run build && cd .."
+      "cd \"$PROJECT_DIR/functions\" && npm install && npm run build && cd .."
     ]
   },
   "hosting": {
