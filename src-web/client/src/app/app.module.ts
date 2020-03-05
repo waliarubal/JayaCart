@@ -4,13 +4,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 
+import { UserAccountModule } from './user-account/user-account.module';
+
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
-    NgbModule
+    NgbModule,
+    UserAccountModule
   ],
   providers: [],
   bootstrap: [AppComponent]
