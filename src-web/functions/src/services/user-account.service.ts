@@ -1,7 +1,7 @@
 import * as firebaseHelper from 'firebase-functions-helper';
 import * as HttpStatus from 'http-status-codes';
 import { BaseService, HttpMethod } from "./base.service";
-import { UserAccount } from "../models/user-account";
+import { UserAccount } from "../../../models/user-account";
 
 export class UserAccountService extends BaseService {
     private readonly USER_ACCOUNTS = 'UserAccounts';
