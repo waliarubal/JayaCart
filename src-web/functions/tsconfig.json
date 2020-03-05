@@ -1,15 +1,18 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "module": "commonjs",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "outDir": "lib",
+    "outDir": "dist",
     "sourceMap": true,
     "strict": false,
-    "target": "es2017"
+    "target": "es2017",
+    "experimentalDecorators": true
   },
   "compileOnSave": true,
   "include": [
-    "src", "../models/user-account.ts"
+    "src",
+    "../models/*"
   ]
 }

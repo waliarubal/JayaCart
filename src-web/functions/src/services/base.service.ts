@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as admin from 'firebase-admin';
-import { ApiResponse } from '../models/api-response'; 
+import { ApiResponse } from '../../../models/api-response'; 
 
 export type ApiRequestHandler = (request: any, response: any) => Promise<void>;
 

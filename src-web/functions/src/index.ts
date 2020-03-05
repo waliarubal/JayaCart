@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as express from 'express';
+import * as cors from 'cors';
 import * as bodyParser from 'body-parser';
 import { UserAccountService } from './services/user-account.service';
 
@@ -13,8 +14,6 @@ main.use('/api/v1', app);
 main.use(bodyParser.json());
 main.use(bodyParser.urlencoded({ extended: false }));
 
-export const webApi = functions.https.onRequest(main);
-
 const db = admin.firestore();
 
 let services = [
@@ -22,3 +21,8 @@ let services = [
 ];
 for (let service of services)
     service.RegisterMethods();
+
+app.use(cors());
+main.use(cors());
+
+export const webApi = functions.https.onRequest(main);

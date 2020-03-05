@@ -10,6 +10,6 @@ export class UserAccountService {
     }
 
     GetAllUsers() {
-        
+        return this._http.get(`${Constants.ApiUrl}/UserAccounts`);
     }
 }
