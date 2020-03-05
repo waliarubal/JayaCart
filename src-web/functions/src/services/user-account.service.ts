@@ -132,7 +132,7 @@ export class UserAccountService extends BaseService {
                 .json(this.Error<UserAccount>(`Failed to delete user account with phone number ${request.params.PhoneNumber}.`))
     }
 
-    RegisterMethods(): void {
+    protected RegisterMethods(): void {
         this.RegisterMethod(HttpMethod.Post, `/${this.USER_ACCOUNTS}`, async (request, response) => await this.CreateAccount(request, response));
         this.RegisterMethod(HttpMethod.Patch, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.UpdateAccount(request, response));
         this.RegisterMethod(HttpMethod.Get, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.GetAccountByPhoneNumber(request, response));

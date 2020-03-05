@@ -1,6 +1,7 @@
 import * as express from 'express';
+import * as core from 'express-serve-static-core';
 import * as admin from 'firebase-admin';
-import { ApiResponse } from '../../../models/api-response'; 
+import { ApiResponse } from '../../../models/api-response';
 
 export type ApiRequestHandler = (request: any, response: any) => Promise<void>;
 
@@ -16,8 +17,10 @@ export enum HttpMethod {
 export abstract class BaseService {
 
     constructor(
-        private readonly _db: admin.firestore.Firestore, 
-        private readonly _app: express.Express) {
+        private readonly _db: admin.firestore.Firestore,
+        private readonly _app: express.Express,
+        private readonly _cors: express.RequestHandler<core.ParamsDictionary>) {
+            this.RegisterMethods();
     }
 
     protected get Database(): admin.firestore.Firestore {
@@ -25,34 +28,34 @@ export abstract class BaseService {
     }
 
     protected RegisterMethod(method: HttpMethod, route: string, handler: ApiRequestHandler): void {
-        switch(method) {
+        switch (method) {
             case HttpMethod.Get:
-                this._app.get(route, handler);
+                this._app.get(route, this._cors, handler);
                 break;
 
             case HttpMethod.Post:
-                this._app.post(route, handler);
+                this._app.post(route, this._cors, handler);
                 break;
 
             case HttpMethod.Put:
-                this._app.put(route, handler);
+                this._app.put(route, this._cors, handler);
                 break;
 
             case HttpMethod.Delete:
-                this._app.delete(route, handler);
+                this._app.delete(route, this._cors, handler);
                 break;
 
             case HttpMethod.Patch:
-                this._app.patch(route, handler);
+                this._app.patch(route, this._cors, handler);
                 break;
 
             case HttpMethod.Head:
-                this._app.head(route, handler);
+                this._app.head(route, this._cors, handler);
                 break;
         }
     }
 
-    abstract RegisterMethods(): void;
+    protected abstract RegisterMethods(): void;
 
     protected Error<T>(error: string): ApiResponse<T> {
         console.log(error);
