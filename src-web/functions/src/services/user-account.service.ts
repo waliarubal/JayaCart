@@ -24,21 +24,15 @@ export class UserAccountService extends BaseService {
 
             let isCreated = await firebaseHelper.firestore.createDocumentWithID(this.Database, this.USER_ACCOUNTS, account.PhoneNumber, account);
             if (isCreated)
-                response
-                    .header('Access-Control-Allow-Origin', '*')
-                    .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
+                this.AddCorsHeaders(response)
                     .status(HttpStatus.CREATED)
                     .json(this.Result<UserAccount>(account));
             else
-                response
-                    .header('Access-Control-Allow-Origin', '*')
-                    .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
+                this.AddCorsHeaders(response)
                     .status(HttpStatus.BAD_REQUEST)
                     .json(this.Error<UserAccount>(`Failed to create user account: ${account}`));
         } catch (ex) {
-            response
-                .header('Access-Control-Allow-Origin', '*')
-                .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
+            this.AddCorsHeaders(response)
                 .status(HttpStatus.BAD_REQUEST)
                 .json(this.Error<UserAccount>(`Failed to create user account.`));
         }
@@ -48,21 +42,15 @@ export class UserAccountService extends BaseService {
         try {
             let updatedRecord = await firebaseHelper.firestore.updateDocument(this.Database, this.USER_ACCOUNTS, request.params.PhoneNumber, request.body);
             if (updatedRecord)
-                response
-                    .header('Access-Control-Allow-Origin', '*')
-                    .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
+                this.AddCorsHeaders(response)
                     .status(HttpStatus.NO_CONTENT)
                     .json(this.Result<UserAccount>(updatedRecord));
             else
-                response
-                    .header('Access-Control-Allow-Origin', '*')
-                    .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
+                this.AddCorsHeaders(response)
                     .status(HttpStatus.BAD_REQUEST)
                     .json(this.Error<UserAccount>(`Failed to update user account with phone number ${request.params.PhoneNumber}.`));
         } catch (ex) {
-            response
-                .header('Access-Control-Allow-Origin', '*')
-                .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
+            this.AddCorsHeaders(response)
                 .status(HttpStatus.BAD_REQUEST)
                 .json(this.Error<UserAccount>(`Failed to update user account with phone number ${request.params.PhoneNumber}.`));
         }
@@ -76,22 +64,16 @@ export class UserAccountService extends BaseService {
         try {
             let record = await this.GetAccount(request.params.PhoneNumber);
             if (record)
-                response
-                    .header('Access-Control-Allow-Origin', '*')
-                    .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
+                this.AddCorsHeaders(response)
                     .status(HttpStatus.OK)
                     .json(this.Result<UserAccount>(record));
             else
-                response
-                    .header('Access-Control-Allow-Origin', '*')
-                    .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
+                this.AddCorsHeaders(response)
                     .status(HttpStatus.BAD_REQUEST)
                     .json(this.Error<UserAccount>(`Failed to get user account for phone number ${request.params.PhoneNumber}.`))
 
         } catch (ex) {
-            response
-                .header('Access-Control-Allow-Origin', '*')
-                .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
+            this.AddCorsHeaders(response)
                 .status(HttpStatus.BAD_REQUEST)
                 .json(this.Error<UserAccount>(`Failed to get user account for phone number ${request.params.PhoneNumber}: ${ex}`))
         }
@@ -102,25 +84,19 @@ export class UserAccountService extends BaseService {
             let record = await this.GetAccount(request.params.PhoneNumber);
             if (record) {
                 if (record.IsActive)
-                    response
+                    this.AddCorsHeaders(response)
                         .status(HttpStatus.OK)
                         .json(this.Result<UserAccount>(record));
                 else
-                    response
-                        .header('Access-Control-Allow-Origin', '*')
-                        .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
+                    this.AddCorsHeaders(response)
                         .status(HttpStatus.BAD_REQUEST)
                         .json(this.Error<UserAccount>(`User account for phone number ${request.params.PhoneNumber} is not active.`));
             } else
-                response
-                    .header('Access-Control-Allow-Origin', '*')
-                    .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
+                this.AddCorsHeaders(response)
                     .status(HttpStatus.BAD_REQUEST)
                     .json(this.Error<UserAccount>(`Failed to get user account for phone number ${request.params.PhoneNumber}.`))
         } catch (ex) {
-            response
-                .header('Access-Control-Allow-Origin', '*')
-                .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
+            this.AddCorsHeaders(response)
                 .status(HttpStatus.BAD_REQUEST)
                 .json(this.Error<UserAccount>(`Failed to get user account for phone number ${request.params.PhoneNumber}: ${ex}`))
         }
@@ -130,22 +106,16 @@ export class UserAccountService extends BaseService {
         try {
             let records = await firebaseHelper.firestore.backup(this.Database, this.USER_ACCOUNTS)
             if (records)
-                response
+                this.AddCorsHeaders(response)
                     .status(HttpStatus.OK)
-                    .header('Access-Control-Allow-Origin', '*')
-                    .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
                     .json(this.Result<unknown>(records))
             else
-                response
+                this.AddCorsHeaders(response)
                     .status(HttpStatus.BAD_REQUEST)
-                    .header('Access-Control-Allow-Origin', '*')
-                    .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
                     .json(this.Error<UserAccount>(`Failed to get user accounts.`))
         } catch (ex) {
-            response
+            this.AddCorsHeaders(response)
                 .status(HttpStatus.BAD_REQUEST)
-                .header('Access-Control-Allow-Origin', '*')
-                .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
                 .json(this.Error<UserAccount>(`Failed to get user accounts: ${ex}`))
         }
     }
@@ -153,15 +123,11 @@ export class UserAccountService extends BaseService {
     private async DeleteAccount(request, response) {
         const deletedRecord = await firebaseHelper.firestore.deleteDocument(this.Database, this.USER_ACCOUNTS, request.params.PhoneNumber);
         if (deletedRecord)
-            response
-                .header('Access-Control-Allow-Origin', '*')
-                .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
+            this.AddCorsHeaders(response)
                 .status(HttpStatus.NO_CONTENT)
                 .json(this.Result<object>(deletedRecord));
         else
-            response
-                .header('Access-Control-Allow-Origin', '*')
-                .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
+            this.AddCorsHeaders(response)
                 .status(HttpStatus.BAD_REQUEST)
                 .json(this.Error<UserAccount>(`Failed to delete user account with phone number ${request.params.PhoneNumber}.`))
     }

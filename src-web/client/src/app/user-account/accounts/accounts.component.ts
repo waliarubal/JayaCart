@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAccountService } from '@services/user-account.service';
+import { UserAccount } from '@models/user-account.model';
 
 @Component({
     selector: 'app-accounts',
@@ -7,13 +8,18 @@ import { UserAccountService } from '@services/user-account.service';
     providers: [UserAccountService]
 })
 export class AccountsComponent implements OnInit {
-    UserAccounts: any;
+    private _accounts: UserAccount[];
 
     constructor(private readonly _accountsService: UserAccountService) {
+        this._accounts = [];
+    }
 
+    get Accounts(): UserAccount[] {
+        return this._accounts;
     }
 
     ngOnInit(): void {
-        this.UserAccounts = this._accountsService.GetAllUsers();
+        this._accountsService.GetAllUsers()
+            .then((accounts) => this._accounts = accounts);
     }
 }

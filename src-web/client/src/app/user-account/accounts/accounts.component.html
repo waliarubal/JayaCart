@@ -1,1 +1,7 @@
-<div *ngFor="let account of UserAccounts | async">{{account.PhoneNumber}}</div>
+<div class="row">
+    <div class="col"></div>
+</div>
+<div class="row" *ngFor="let account of Accounts">
+    <div class="col">{{account.FirstName}}</div>
+    <div class="col">{{account.LastName}}</div>
+</div>

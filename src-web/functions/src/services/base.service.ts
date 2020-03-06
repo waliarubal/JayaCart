@@ -55,6 +55,12 @@ export abstract class BaseService {
 
     abstract RegisterMethods(): void;
 
+    protected AddCorsHeaders(response: any): any {
+        response = response.header('Access-Control-Allow-Origin', '*');
+        response = response.header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS');
+        return response;
+    }
+
     protected Error<T>(error: string): ApiResponse<T> {
         console.log(error);
         return new ApiResponse<T>(null, error);
