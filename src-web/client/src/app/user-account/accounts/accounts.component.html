@@ -1,7 +1,26 @@
-<div class="row">
-    <div class="col"></div>
-</div>
-<div class="row" *ngFor="let account of Accounts">
-    <div class="col">{{account.FirstName}}</div>
-    <div class="col">{{account.LastName}}</div>
-</div>
+<table class="table table-striped">
+  <thead>
+    <th scope="col">&nbsp;</th>
+    <th scope="col">Name</th>
+    <th scope="col">Phone Number</th>
+    <th scope="col">Address</th>
+    <th scope="col">City</th>
+    <th scope="col">Is user active?</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let account of Accounts; let i = index;">
+      <th scope="row">
+        <i class="fas fa-user-tie" *ngIf="account.IsAdmin"></i>
+        <i class="fas fa-user" *ngIf="!account.IsAdmin"></i>
+      </th>
+      <td>{{account.FirstName}} {{account.LastName}}</td>
+      <td>{{account.PhoneNumber}}</td>
+      <td>{{account.AddressLine1}}{{account.AddressLine2 ? ', ' : ''}}{{account.AddressLine2}}</td>
+      <td>{{account.City}}</td>
+      <td>
+        <i class="fas fa-check" *ngIf="account.IsActive"></i>
+        <i class="fas fa-times" *ngIf="!account.IsActive"></i>
+      </td>
+    </tr>
+  </tbody>
+</table>
