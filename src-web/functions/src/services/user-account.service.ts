@@ -1,7 +1,7 @@
 import * as firebaseHelper from 'firebase-functions-helper';
 import * as HttpStatus from 'http-status-codes';
 import { BaseService, HttpMethod } from "./base.service";
-import { UserAccount } from "../../../models/user-account";
+import { UserAccount } from "../models";
 
 export class UserAccountService extends BaseService {
     private readonly USER_ACCOUNTS = 'UserAccounts';
@@ -131,8 +131,6 @@ export class UserAccountService extends BaseService {
             let records = await firebaseHelper.firestore.backup(this.Database, this.USER_ACCOUNTS)
             if (records)
                 response
-                    .header('Access-Control-Allow-Origin', '*')
-                    .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
                     .status(HttpStatus.OK)
                     .json(this.Result<unknown>(records))
             else
@@ -141,8 +139,6 @@ export class UserAccountService extends BaseService {
                     .json(this.Error<UserAccount>(`Failed to get user accounts.`))
         } catch (ex) {
             response
-                .header('Access-Control-Allow-Origin', '*')
-                .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
                 .status(HttpStatus.BAD_REQUEST)
                 .json(this.Error<UserAccount>(`Failed to get user accounts: ${ex}`))
         }
@@ -164,7 +160,7 @@ export class UserAccountService extends BaseService {
                 .json(this.Error<UserAccount>(`Failed to delete user account with phone number ${request.params.PhoneNumber}.`))
     }
 
-    protected RegisterMethods(): void {
+    RegisterMethods(): void {
         this.RegisterMethod(HttpMethod.Post, `/${this.USER_ACCOUNTS}`, async (request, response) => await this.CreateAccount(request, response));
         this.RegisterMethod(HttpMethod.Patch, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.UpdateAccount(request, response));
         this.RegisterMethod(HttpMethod.Get, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.GetAccountByPhoneNumber(request, response));

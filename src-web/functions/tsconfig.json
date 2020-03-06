@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "module": "commonjs",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
@@ -8,11 +8,10 @@
     "sourceMap": true,
     "strict": false,
     "target": "es2017",
-    "experimentalDecorators": true
+    "experimentalDecorators": false
   },
   "compileOnSave": true,
   "include": [
-    "src",
-    "../models/*"
+    "src"
   ]
 }
