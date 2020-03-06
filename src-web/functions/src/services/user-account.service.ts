@@ -132,14 +132,20 @@ export class UserAccountService extends BaseService {
             if (records)
                 response
                     .status(HttpStatus.OK)
+                    .header('Access-Control-Allow-Origin', '*')
+                    .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
                     .json(this.Result<unknown>(records))
             else
                 response
                     .status(HttpStatus.BAD_REQUEST)
+                    .header('Access-Control-Allow-Origin', '*')
+                    .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
                     .json(this.Error<UserAccount>(`Failed to get user accounts.`))
         } catch (ex) {
             response
                 .status(HttpStatus.BAD_REQUEST)
+                .header('Access-Control-Allow-Origin', '*')
+                .header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS')
                 .json(this.Error<UserAccount>(`Failed to get user accounts: ${ex}`))
         }
     }
