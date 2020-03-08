@@ -4,28 +4,24 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AppRoutes } from './routes';
 import { AppComponent } from './app.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NotFoundModule } from './not-found/not-found.module';
 import { UserAccountModule } from './user-account/user-account.module';
-import { AccountsComponent } from './user-account/accounts/accounts.component';
-
-const routes: Routes = [
-  { path: 'UserAccounts', component: AccountsComponent },
-  { path: '', redirectTo: '/Dashboard', pathMatch: 'full' },
-  { path: '**', component: NotFoundComponent }
-];
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NotFoundComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, { enableTracing: true }),
+    RouterModule.forRoot(AppRoutes, { enableTracing: true }),
     NgbModule,
-    UserAccountModule
+    NotFoundModule,
+    DashboardModule,
+    UserAccountModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

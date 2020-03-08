@@ -1,7 +1,8 @@
 .sidebar {
     height: 100%;
-    width: auto;
+    width: 180px;
     position: fixed;
+    color: #6c757d;
     z-index: 1;
     top: 0;
     left: 0;
@@ -11,4 +12,8 @@
   .sidebar div:hover {
     color: #f8f9fa;
     cursor: pointer;
+  }
+
+  .content {
+    margin-left: 180px;
   }
