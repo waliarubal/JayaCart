@@ -1,25 +1,35 @@
-<table class="table table-striped">
-  <thead>
+<table class="table table-sm table-hover">
+  <thead class="thead-light">
     <th scope="col">&nbsp;</th>
-    <th scope="col">Name</th>
     <th scope="col">Phone Number</th>
+    <th scope="col">Name</th>
     <th scope="col">Address</th>
     <th scope="col">City</th>
-    <th scope="col">Is user active?</th>
+    <th scope="col">&nbsp;</th>
   </thead>
   <tbody>
     <tr *ngFor="let account of Accounts; let i = index;">
-      <th scope="row">
+      <th scope="row" [ngClass]="account.IsActive ? 'text-info' : 'text-secondary'">
         <i class="fas fa-user-tie" *ngIf="account.IsAdmin"></i>
         <i class="fas fa-user" *ngIf="!account.IsAdmin"></i>
       </th>
-      <td>{{account.FirstName}} {{account.LastName}}</td>
       <td>{{account.PhoneNumber}}</td>
+      <td>{{account.FirstName}} {{account.LastName}}</td>
       <td>{{account.AddressLine1}}{{account.AddressLine2 ? ', ' : ''}}{{account.AddressLine2}}</td>
       <td>{{account.City}}</td>
       <td>
-        <i class="fas fa-check" *ngIf="account.IsActive"></i>
-        <i class="fas fa-times" *ngIf="!account.IsActive"></i>
+        <button type="button" class="btn btn-sm btn-outline-info border-0 mr-2" *ngIf="!account.IsActive">
+          <i class="fas fa-check"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-secondary border-0 mr-2" *ngIf="account.IsActive">
+          <i class="fas fa-times"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-success border-0 mr-2">
+          <i class="fas fa-pencil-alt"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-danger border-0 mr-2">
+          <i class="fas fa-trash-alt"></i>
+        </button>
       </td>
     </tr>
   </tbody>
