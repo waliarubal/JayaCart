@@ -1,36 +1,45 @@
-<table class="table table-sm table-hover">
-  <thead class="thead-light">
-    <th scope="col">&nbsp;</th>
-    <th scope="col">Phone Number</th>
-    <th scope="col">Name</th>
-    <th scope="col">Address</th>
-    <th scope="col">City</th>
-    <th scope="col">&nbsp;</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let account of Accounts; let i = index;">
-      <th scope="row" [ngClass]="account.IsActive ? 'text-info' : 'text-secondary'">
-        <i class="fas fa-user-tie" *ngIf="account.IsAdmin"></i>
-        <i class="fas fa-user" *ngIf="!account.IsAdmin"></i>
-      </th>
-      <td>{{account.PhoneNumber}}</td>
-      <td>{{account.FirstName}} {{account.LastName}}</td>
-      <td>{{account.AddressLine1}}{{account.AddressLine2 ? ', ' : ''}}{{account.AddressLine2}}</td>
-      <td>{{account.City}}</td>
-      <td>
-        <button type="button" class="btn btn-sm btn-outline-info border-0 mr-2" *ngIf="!account.IsActive">
-          <i class="fas fa-check"></i>
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary border-0 mr-2" *ngIf="account.IsActive">
-          <i class="fas fa-times"></i>
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-success border-0 mr-2">
-          <i class="fas fa-pencil-alt"></i>
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-danger border-0 mr-2">
-          <i class="fas fa-trash-alt"></i>
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="row">
+  <div class="col">
+    <table class="table table-sm table-hover">
+      <thead class="thead-light">
+        <th scope="col">&nbsp;</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">City</th>
+        <th scope="col">&nbsp;</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of Accounts; let i = index;">
+          <th scope="row" [ngClass]="account.IsActive ? 'text-info' : 'text-secondary'">
+            <i class="fas fa-user-tie" *ngIf="account.IsAdmin"></i>
+            <i class="fas fa-user" *ngIf="!account.IsAdmin"></i>
+          </th>
+          <td>{{account.PhoneNumber}}</td>
+          <td>{{account.FirstName}} {{account.LastName}}</td>
+          <td>{{account.AddressLine1}}{{account.AddressLine2 ? ', ' : ''}}{{account.AddressLine2}}</td>
+          <td>{{account.City}}</td>
+          <td>
+            <button type="button" class="btn btn-sm btn-success mr-2 border-0">
+              <i class="fas fa-user-edit"></i>
+              <span class="ml-2">Edit</span>
+            </button>
+            <button type="button" class="btn btn-sm btn-danger mr-4 border-0">
+              <i class="fas fa-user-minus"></i>
+              <span class="ml-2">Delete</span>
+            </button>
+            <button type="button" class="btn btn-sm btn-info mr-2 border-0" *ngIf="!account.IsActive">
+              <i class="fas fa-check"></i>
+              <span class="ml-2">Activate</span>
+            </button>
+            <button type="button" class="btn btn-sm btn-secondary mr-2 border-0" *ngIf="account.IsActive">
+              <i class="fas fa-times"></i>
+              <span class="ml-2">Deactivate</span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
