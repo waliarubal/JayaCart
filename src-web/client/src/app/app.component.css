@@ -6,12 +6,11 @@
     top: 0;
     left: 0;
     overflow-x: hidden;
-    background-color: #e9ecef;
   }
 
   .sidebar a {
     text-decoration: none;
-    color: #343a30;
+    color: #f8f9fa;
   }
   
   .sidebar a:hover {

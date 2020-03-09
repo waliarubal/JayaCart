@@ -1,60 +1,46 @@
-<div class="row p-2">
-  <div class="col">
-    <button type="button" class="btn btn-success">
-      <i class="fas fa-user-plus"></i>
-      <span class="ml-2">New User</span>
-    </button>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <table class="table table-sm table-hover">
-      <thead class="thead-light">
-        <th scope="col">&nbsp;</th>
-        <th scope="col">Phone Number</th>
-        <th scope="col">Name</th>
-        <th scope="col">Address</th>
-        <th scope="col">
-          <div class="input-group input-group-sm">
-            <input type="search" class="form-control" placeholder="What are you looking for?">
-            <div class="input-group-append">
-              <button type="button" class="btn btn-primary">
-                <i class="fas fa-search"></i>
-                <span class="ml-2">Search</span></button>
-            </div>
-          </div>
-        </th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let account of Accounts; let i = index;">
-          <th scope="row" [ngClass]="account.IsActive ? 'text-info' : 'text-secondary'">
-            <i class="fas fa-user-tie" *ngIf="account.IsAdmin"></i>
-            <i class="fas fa-user" *ngIf="!account.IsAdmin"></i>
-          </th>
-          <td>{{account.PhoneNumber}}</td>
-          <td>{{account.FirstName}} {{account.LastName}}</td>
-          <td>{{account.AddressLine1}}{{account.AddressLine2 ? ', ' : ''}}{{account.AddressLine2}}, {{account.City}}</td>
-          <td>
-            <button type="button" class="btn btn-sm btn-success mr-1 border-0">
-              <i class="fas fa-user-edit"></i>
-              <span class="ml-2">Edit</span>
-            </button>
-            <button type="button" class="btn btn-sm btn-danger mr-4 border-0">
-              <i class="fas fa-user-minus"></i>
-              <span class="ml-2">Delete</span>
-            </button>
-            <button type="button" class="btn btn-sm btn-info mr-2 border-0" *ngIf="!account.IsActive">
-              <i class="fas fa-check"></i>
-              <span class="ml-2">Activate</span>
-            </button>
-            <button type="button" class="btn btn-sm btn-secondary mr-2 border-0" *ngIf="account.IsActive">
-              <i class="fas fa-times"></i>
-              <span class="ml-2">Deactivate</span>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-</div>
+<table class="table table-sm table-hover">
+  <thead class="thead-light">
+    <th scope="col">
+      <i class="fas fa-phone-alt"></i>
+      <span class="ml-2">Phone Number</span>
+    </th>
+    <th scope="col">
+      <i class="fas fa-user-tag"></i>
+      <span class="ml-2">Name</span></th>
+    <th scope="col">
+      <i class="fas fa-map-marker-alt"></i>
+      <span class="ml-2">Address</span>
+    </th>
+    <th scope="col">&nbsp;</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let account of Accounts; let i = index;">
+      <td>{{account.PhoneNumber}}</td>
+      <td>
+        <span class=ml-2>{{account.FirstName}} {{account.LastName}}</span>
+      </td>
+      <td>{{account.AddressLine1}}{{account.AddressLine2 ? ', ' : ''}}{{account.AddressLine2}}, {{account.City}}
+      </td>
+      <td>
+        <button type="button" class="btn btn-sm btn-outline-success mr-1 border-0">
+          <i class="fas fa-user-edit"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-danger mr-3 border-0">
+          <i class="fas fa-user-minus"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-warning mr-1 border-0">
+          <i class="fas fa-key"></i>
+          <span class="ml-2">Reset Password</span>
+        </button>
+        <button type="button" class="btn btn-sm btn-info mr-1 border-0" *ngIf="!account.IsActive">
+          <i class="fas fa-unlock-alt"></i>
+          <span class="ml-2">Activate</span>
+        </button>
+        <button type="button" class="btn btn-sm btn-secondary mr-1 border-0" *ngIf="account.IsActive">
+          <i class="fas fa-lock"></i>
+          <span class="ml-2">Deactivate</span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

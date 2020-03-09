@@ -1,4 +1,4 @@
-import { Deserializer } from '@app/deserializer';
+import { Deserializer } from '@shared/deserializer';
 
 export class ApiResponse {
     Error: string;

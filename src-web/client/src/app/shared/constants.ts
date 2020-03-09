@@ -1,0 +1,1 @@
+export const ApiUrl: string = 'https://jaya-cart-1988.firebaseapp.com/api/v1/'
