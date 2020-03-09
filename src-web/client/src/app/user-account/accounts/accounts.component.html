@@ -1,15 +1,6 @@
 <div class="row p-2">
-  <div class="col-9">
-    <input class="form-control" type="search" placeholder="What are you looking for?" />
-  </div>
-  <div class="col-1">
-    <button type="button" class="btn btn-primary btn-block">
-      <i class="fas fa-search"></i>
-      <span class="ml-2">Search</span>
-    </button>
-  </div>
-  <div class="col-2">
-    <button type="button" class="btn btn-success btn-block">
+  <div class="col">
+    <button type="button" class="btn btn-success">
       <i class="fas fa-user-plus"></i>
       <span class="ml-2">New User</span>
     </button>
@@ -23,8 +14,16 @@
         <th scope="col">Phone Number</th>
         <th scope="col">Name</th>
         <th scope="col">Address</th>
-        <th scope="col">City</th>
-        <th scope="col">&nbsp;</th>
+        <th scope="col">
+          <div class="input-group input-group-sm">
+            <input type="search" class="form-control" placeholder="What are you looking for?">
+            <div class="input-group-append">
+              <button type="button" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+                <span class="ml-2">Search</span></button>
+            </div>
+          </div>
+        </th>
       </thead>
       <tbody>
         <tr *ngFor="let account of Accounts; let i = index;">
@@ -34,10 +33,9 @@
           </th>
           <td>{{account.PhoneNumber}}</td>
           <td>{{account.FirstName}} {{account.LastName}}</td>
-          <td>{{account.AddressLine1}}{{account.AddressLine2 ? ', ' : ''}}{{account.AddressLine2}}</td>
-          <td>{{account.City}}</td>
+          <td>{{account.AddressLine1}}{{account.AddressLine2 ? ', ' : ''}}{{account.AddressLine2}}, {{account.City}}</td>
           <td>
-            <button type="button" class="btn btn-sm btn-success mr-2 border-0">
+            <button type="button" class="btn btn-sm btn-success mr-1 border-0">
               <i class="fas fa-user-edit"></i>
               <span class="ml-2">Edit</span>
             </button>
