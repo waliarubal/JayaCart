@@ -108,11 +108,11 @@ export class UserAccountService extends BaseService {
             if (records)
                 this.AddCorsHeaders(response)
                     .status(HttpStatus.OK)
-                    .json(this.Result<unknown>(records))
+                    .json(this.ResultArray<UserAccount[]>(records, this.USER_ACCOUNTS));
             else
                 this.AddCorsHeaders(response)
                     .status(HttpStatus.BAD_REQUEST)
-                    .json(this.Error<UserAccount>(`Failed to get user accounts.`))
+                    .json(this.Error<UserAccount[]>(`Failed to get user accounts.`))
         } catch (ex) {
             this.AddCorsHeaders(response)
                 .status(HttpStatus.BAD_REQUEST)

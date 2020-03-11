@@ -3,6 +3,10 @@
     "predeploy": [
       "cd \"$PROJECT_DIR/client\" &&  npm install && npm run prod-build && cd ..",
       "cd \"$PROJECT_DIR/functions\" && npm install && npm run build && cd .."
+    ],
+    "postdeploy": [
+      "rmdir \"$PROJECT_DIR/client/dist\" /S /Q",
+      "rmdir \"$PROJECT_DIR/functions/dist\" /S /Q"
     ]
   },
   "hosting": {

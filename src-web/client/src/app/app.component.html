@@ -1,30 +1,44 @@
 <div class="sidebar p-2 bg-dark">
   <a routerLink="/Dashboard" routerLinkActive="text-info" class="row">
-    <div class="col mx-3 my-1">
+    <div class="col mx-1 my-1">
       <i class="fas fa-chart-line"></i>
       <span class="ml-2">Dashboard</span>
     </div>
   </a>
-  <a routerLink="/UserAccounts" routerLinkActive="text-info" class="row">
-    <div class="col mx-3 my-1">
+  <div class="row">
+    <div class="col mx-1 my-1">
       <i class="fas fa-users"></i>
       <span class="ml-2">User Accounts</span>
     </div>
-  </a>
+  </div>
+  <div class="row ml-4">
+    <a routerLink="/UserAccounts/All" [routerLinkActive]="'text-info'" class="row">
+      <div class="col my-1">
+        <i class="fas fa-user-friends"></i>
+        <span class="ml-2">Manage Users</span>
+      </div>
+    </a>
+    <a routerLink="/UserAccounts/New" [routerLinkActive]="'text-info'" class="row">
+      <div class="col my-1">
+        <i class="fas fa-user-plus"></i>
+        <span class="ml-2">New User</span>
+      </div>
+    </a>
+  </div>
   <a class="row">
-    <div class="col mx-3 my-1">
+    <div class="col mx-1 my-1">
       <i class="fas fa-archive"></i>
       <span class="ml-2">Articles</span>
     </div>
   </a>
   <a class="row">
-    <div class="col mx-3 my-1">
+    <div class="col mx-1 my-1">
       <i class="fas fa-cubes"></i>
       <span class="ml-2">Stock</span>
     </div>
   </a>
   <a class="row">
-    <div class="col mx-3 my-1">
+    <div class="col mx-1 my-1">
       <i class="fas fa-shopping-bag"></i>
       <span class="ml-2">Orders</span>
     </div>

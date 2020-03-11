@@ -53,6 +53,30 @@ export abstract class BaseService {
         }
     }
 
+    protected Deserialize<T>(data: any): T {
+        let parsedObject = JSON.parse(JSON.stringify(data));
+
+        let object = <T>{};
+        for (let propertyName in parsedObject)
+            object[propertyName] = parsedObject[propertyName];
+
+        return object;
+    }
+
+    protected DeserializeArray<T>(data: any, key?: string): T[] {
+        let parsedObject = key ? JSON.parse(JSON.stringify(data))[key] : JSON.parse(JSON.stringify(data));
+        
+        let objects: T[] = [];
+        for(let propertyName in parsedObject) {
+            let subObject = parsedObject[propertyName];
+
+            let object = this.Deserialize<T>(subObject);
+            objects.push(object);
+        }
+
+        return objects;
+    }
+
     abstract RegisterMethods(): void;
 
     protected AddCorsHeaders(response: any): any {
@@ -68,6 +92,11 @@ export abstract class BaseService {
 
     protected Result<T>(result: T): ApiResponse<T> {
         return new ApiResponse<T>(result);
+    }
+
+    protected ResultArray<T>(result: any, key: string): ApiResponse<T[]> {
+        let data = this.DeserializeArray<T>(result, key);
+        return new ApiResponse<T[]>(data);
     }
 
 }

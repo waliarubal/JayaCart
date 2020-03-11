@@ -17,7 +17,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(AppRoutes, { enableTracing: true }),
+    RouterModule.forRoot(AppRoutes, { enableTracing: false }),
     NgbModule,
     NotFoundModule,
     DashboardModule,
