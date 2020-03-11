@@ -6,6 +6,10 @@ import { UserAccount } from "../models";
 export class UserAccountService extends BaseService {
     private readonly USER_ACCOUNTS = 'UserAccounts';
 
+    private GetDefaultPassword(): string {
+        return '';
+    }
+
     private async CreateAccount(request, response) {
         try {
             let account: UserAccount = {
@@ -15,12 +19,14 @@ export class UserAccountService extends BaseService {
                 AddressLine1: request.body['AddressLine1'],
                 AddressLine2: request.body['AddressLine2'],
                 City: request.body['City'],
-                Password: request.body['Password'],
+                Password: request.body['Password'] ? request.body['Password'] : this.GetDefaultPassword(),
                 Image: request.body['Image'],
                 Balance: 0,
-                IsActive: false,
-                IsAdmin: false
+                IsActive: request.body['IsActive'] ? request.body['IsActive'] : false,
+                IsAdmin: request.body['IsAdmin'] ? request.body['IsAdmin'] : false
             };
+
+            console.info(account);
 
             let isCreated = await firebaseHelper.firestore.createDocumentWithID(this.Database, this.USER_ACCOUNTS, account.PhoneNumber, account);
             if (isCreated)
@@ -133,6 +139,7 @@ export class UserAccountService extends BaseService {
     }
 
     RegisterMethods(): void {
+        this.RegisterMethod(HttpMethod.Options, `/${this.USER_ACCOUNTS}`, null);
         this.RegisterMethod(HttpMethod.Post, `/${this.USER_ACCOUNTS}`, async (request, response) => await this.CreateAccount(request, response));
         this.RegisterMethod(HttpMethod.Patch, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.UpdateAccount(request, response));
         this.RegisterMethod(HttpMethod.Get, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.GetAccountByPhoneNumber(request, response));

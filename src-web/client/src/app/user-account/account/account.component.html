@@ -53,7 +53,7 @@
       <i class="fas fa-lock ml-2" *ngIf="!Account.IsActive"></i>
     </div>
   </div>
-  <button type="submit" class="btn btn-success">
+  <button type="submit" class="btn btn-success" (click)="Save();">
     <i class="fas fa-user-plus"></i>
     <span class="ml-2">Create User</span>
   </button>

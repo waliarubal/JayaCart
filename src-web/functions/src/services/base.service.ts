@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as admin from 'firebase-admin';
+import * as HttpStatus from 'http-status-codes';
 import { ApiResponse } from '../models';
 
 export type ApiRequestHandler = (request: any, response: any) => Promise<void>;
@@ -10,7 +11,8 @@ export enum HttpMethod {
     Put,
     Delete,
     Patch,
-    Head
+    Head,
+    Options
 }
 
 export abstract class BaseService {
@@ -50,7 +52,16 @@ export abstract class BaseService {
             case HttpMethod.Head:
                 this._app.head(route, handler);
                 break;
+
+            case HttpMethod.Options:
+                this._app.options(route, (request, response) => this.OptionsRequestHandler(request, response));
+                break;
         }
+    }
+
+    private OptionsRequestHandler(request: any, response: any) {
+        this.AddCorsHeaders(response)
+            .status(HttpStatus.OK);
     }
 
     protected Deserialize<T>(data: any): T {
@@ -65,9 +76,9 @@ export abstract class BaseService {
 
     protected DeserializeArray<T>(data: any, key?: string): T[] {
         let parsedObject = key ? JSON.parse(JSON.stringify(data))[key] : JSON.parse(JSON.stringify(data));
-        
+
         let objects: T[] = [];
-        for(let propertyName in parsedObject) {
+        for (let propertyName in parsedObject) {
             let subObject = parsedObject[propertyName];
 
             let object = this.Deserialize<T>(subObject);

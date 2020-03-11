@@ -13,4 +13,8 @@ export class UserAccountService extends BaseService {
     GetAllUsers(): Promise<UserAccount[]> {
         return this.GetAll();
     }
+
+    CreateUser(account: UserAccount): Promise<UserAccount> {
+        return this.Post(account);
+    }
 }

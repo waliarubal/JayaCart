@@ -1,6 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiResponse } from '@models/api-response.model';
-import { ApiUrl } from '@shared/constants';
+import { API_URL } from '@shared/constants';
+
+const HTTP_OPTIONS = {
+    headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+    })
+};
 
 export abstract class BaseService {
     private readonly COLLECTION_NAME: string;
@@ -11,17 +17,32 @@ export abstract class BaseService {
 
     protected GetAll<T>(): Promise<T[]> {
         return new Promise<T[]>((resolve, reject) => {
-            this._http.get<ApiResponse>(`${ApiUrl}${this.COLLECTION_NAME}`).subscribe(
+            this._http.get<ApiResponse>(`${API_URL}${this.COLLECTION_NAME}`).subscribe(
                 success => {
                     if (success.IsHavingError)
                         reject(success.Error);
                     else {
-                        let accounts = ApiResponse.GetResponseArray<T>(success);
-                        resolve(accounts);
+                        let records = ApiResponse.GetResponseArray<T>(success);
+                        resolve(records);
                     }
                 },
                 error => reject(error));
         });
     }
 
+    protected Post<T>(record: T): Promise<T> {
+        return new Promise<T>((resolve, reject) => {
+            this._http.post<ApiResponse>(`${API_URL}${this.COLLECTION_NAME}`, record, HTTP_OPTIONS).subscribe(
+                success => {
+                    if (success.IsHavingError)
+                        reject(success.Error);
+                    else {
+                        let record = ApiResponse.GetResponse<T>(success);
+                        resolve(record);
+                    }
+                },
+                error => reject(error)
+            )
+        });
+    }
 }
