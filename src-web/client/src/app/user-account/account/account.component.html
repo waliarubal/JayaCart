@@ -6,40 +6,51 @@
 <form class="p-2">
   <div class="form-group">
     <label>Phone Number</label>
-    <input type="text" class="form-control" placeholder="Enter mobile phone number">
+    <input type="text" class="form-control" placeholder="Enter mobile phone number" [(ngModel)]="Account.PhoneNumber"
+      name="PhoneNumber">
   </div>
   <div class="form-row">
     <div class="form-group col">
       <label>First Name</label>
-      <input type="text" class="form-control" placeholder="Enter first name">
+      <input type="text" class="form-control" placeholder="Enter first name" [(ngModel)]="Account.FirstName"
+        name="FirstName">
     </div>
     <div class="form-group col">
       <label>Last Name</label>
-      <input type="text" class="form-control" placeholder="Enter last name">
+      <input type="text" class="form-control" placeholder="Enter last name" [(ngModel)]="Account.LastName"
+        name="LastName">
     </div>
   </div>
   <div class="form-group">
     <label>Address Line 1</label>
-    <input type="text" class="form-control" placeholder="Enter address line 1">
+    <input type="text" class="form-control" placeholder="Enter address line 1" [(ngModel)]="Account.AddressLine1"
+      name="AddressLine1">
   </div>
   <div class="form-group">
     <label>Address Line 2</label>
-    <input type="text" class="form-control" placeholder="Enter address line 2">
+    <input type="text" class="form-control" placeholder="Enter address line 2" [(ngModel)]="Account.AddressLine2"
+      name="AddressLine2">
   </div>
   <div class="form-group">
     <label>City</label>
-    <input type="text" class="form-control" placeholder="Select city">
+    <input type="text" class="form-control" placeholder="Select city" [(ngModel)]="Account.City" name="City">
   </div>
   <div class="form-group">
     <div class="form-check">
-      <input type="checkbox" class="form-check-input" placeholder="Select city">
+      <input type="checkbox" class="form-check-input" [checked]="Account.IsAdmin"
+        (change)="Account.IsAdmin = !Account.IsAdmin;" name="IsAdmin">
       <label class="form-check-label">Is having administrative privilages?</label>
+      <i class="fas fa-user ml-2" *ngIf="!Account.IsAdmin"></i>
+      <i class="fas fa-user-tie ml-2" *ngIf="Account.IsAdmin"></i>
     </div>
   </div>
   <div class="form-group">
     <div class="form-check">
-      <input type="checkbox" class="form-check-input" placeholder="Select city">
+      <input type="checkbox" class="form-check-input" [checked]="Account.IsActive"
+        (change)="Account.IsActive = !Account.IsActive;" name="IsActive">
       <label class="form-check-label">Is user account active?</label>
+      <i class="fas fa-unlock-alt ml-2" *ngIf="Account.IsActive"></i>
+      <i class="fas fa-lock ml-2" *ngIf="!Account.IsActive"></i>
     </div>
   </div>
   <button type="submit" class="btn btn-success">
