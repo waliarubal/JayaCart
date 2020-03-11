@@ -1,5 +1,3 @@
-import { Deserializer } from '@shared/deserializer';
-
 export class ApiResponse {
     Error: string;
     Response: any;
@@ -12,10 +10,10 @@ export class ApiResponse {
     }
 
     static GetResponse<T>(apiResponse: ApiResponse): T {
-        return Deserializer.Deserialize<T>(apiResponse.Response);
+        return apiResponse.Response;
     }
 
-    static GetResponseArray<T>(apiResponse: ApiResponse, key?: string): T[] {
-        return Deserializer.DeserializeArray(apiResponse.Response, key);
+    static GetResponseArray<T>(apiResponse: ApiResponse): T[] {
+        return apiResponse.Response;
     }
 }

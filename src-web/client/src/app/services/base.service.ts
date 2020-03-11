@@ -16,7 +16,7 @@ export abstract class BaseService {
                     if (success.IsHavingError)
                         reject(success.Error);
                     else {
-                        let accounts = ApiResponse.GetResponseArray<T>(success, this.COLLECTION_NAME);
+                        let accounts = ApiResponse.GetResponseArray<T>(success);
                         resolve(accounts);
                     }
                 },

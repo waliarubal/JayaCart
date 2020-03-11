@@ -1,6 +1,6 @@
 .sidebar {
     height: 100%;
-    width: 190px;
+    width: 220px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -11,14 +11,28 @@
   .sidebar a, .sidebar > div {
     text-decoration: none;
     color: #f8f9fa;
+    padding-left: 8px;
+  }
+
+  .sidebar > div a {
+    padding-left: 32px;
   }
   
-  .sidebar a:hover {
+  .sidebar a:hover, .sidebar > div:hover {
     color: #17a2b8;
     cursor: pointer;
   }
 
+  .active {
+    background-color: #17a2b8 !important;
+    text-transform: uppercase !important;
+  }
+
+  .active:hover {
+    color: #343a40 !important;
+  }
+
   .content {
-    margin-left: 190px;
+    margin-left: 220px;
     overflow-x: hidden;
   }
