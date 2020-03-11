@@ -11,8 +11,7 @@ export enum HttpMethod {
     Put,
     Delete,
     Patch,
-    Head,
-    Options
+    Head
 }
 
 export abstract class BaseService {
@@ -52,16 +51,17 @@ export abstract class BaseService {
             case HttpMethod.Head:
                 this._app.head(route, handler);
                 break;
-
-            case HttpMethod.Options:
-                this._app.options(route, (request, response) => this.OptionsRequestHandler(request, response));
-                break;
         }
     }
 
-    private OptionsRequestHandler(request: any, response: any) {
+    protected RegisterCorsPreflight(route: string): void {
+        this._app.options(route, (request, response) => this.OptionsRequestHandler(request, response));
+    }
+
+    private OptionsRequestHandler(request: any, response: any): void {
         this.AddCorsHeaders(response)
-            .status(HttpStatus.OK);
+            .status(HttpStatus.OK)
+            .end();
     }
 
     protected Deserialize<T>(data: any): T {
@@ -93,6 +93,7 @@ export abstract class BaseService {
     protected AddCorsHeaders(response: any): any {
         response = response.header('Access-Control-Allow-Origin', '*');
         response = response.header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS');
+        response = response.header('Access-Control-Allow-Headers', '*');
         return response;
     }
 

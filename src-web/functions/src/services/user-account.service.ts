@@ -12,6 +12,9 @@ export class UserAccountService extends BaseService {
 
     private async CreateAccount(request, response) {
         try {
+            let password =  request.body['Password'] ? request.body['Password'] : this.GetDefaultPassword();
+            let image = request.body['Image'] ? request.body['Image'] : '';
+
             let account: UserAccount = {
                 PhoneNumber: request.body['PhoneNumber'],
                 FirstName: request.body['FirstName'],
@@ -19,14 +22,12 @@ export class UserAccountService extends BaseService {
                 AddressLine1: request.body['AddressLine1'],
                 AddressLine2: request.body['AddressLine2'],
                 City: request.body['City'],
-                Password: request.body['Password'] ? request.body['Password'] : this.GetDefaultPassword(),
-                Image: request.body['Image'],
+                Password: password,
+                Image: image,
                 Balance: 0,
                 IsActive: request.body['IsActive'] ? request.body['IsActive'] : false,
                 IsAdmin: request.body['IsAdmin'] ? request.body['IsAdmin'] : false
             };
-
-            console.info(account);
 
             let isCreated = await firebaseHelper.firestore.createDocumentWithID(this.Database, this.USER_ACCOUNTS, account.PhoneNumber, account);
             if (isCreated)
@@ -40,7 +41,7 @@ export class UserAccountService extends BaseService {
         } catch (ex) {
             this.AddCorsHeaders(response)
                 .status(HttpStatus.BAD_REQUEST)
-                .json(this.Error<UserAccount>(`Failed to create user account.`));
+                .json(this.Error<UserAccount>(`Failed to create user account. ${ex}`));
         }
     }
 
@@ -58,7 +59,7 @@ export class UserAccountService extends BaseService {
         } catch (ex) {
             this.AddCorsHeaders(response)
                 .status(HttpStatus.BAD_REQUEST)
-                .json(this.Error<UserAccount>(`Failed to update user account with phone number ${request.params.PhoneNumber}.`));
+                .json(this.Error<UserAccount>(`Failed to update user account with phone number ${request.params.PhoneNumber}. ${ex}`));
         }
     }
 
@@ -139,7 +140,7 @@ export class UserAccountService extends BaseService {
     }
 
     RegisterMethods(): void {
-        this.RegisterMethod(HttpMethod.Options, `/${this.USER_ACCOUNTS}`, null);
+        this.RegisterCorsPreflight(`/${this.USER_ACCOUNTS}`);
         this.RegisterMethod(HttpMethod.Post, `/${this.USER_ACCOUNTS}`, async (request, response) => await this.CreateAccount(request, response));
         this.RegisterMethod(HttpMethod.Patch, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.UpdateAccount(request, response));
         this.RegisterMethod(HttpMethod.Get, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.GetAccountByPhoneNumber(request, response));
