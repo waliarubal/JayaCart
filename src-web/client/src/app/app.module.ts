@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { NotFoundModule } from './not-found/not-found.module';
 import { UserAccountModule } from './user-account/user-account.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RoutesModule,
     NgbModule,
     NotFoundModule,

@@ -3,7 +3,7 @@
     <strong>Create New User Account</strong>
   </h4>
 </div>
-<form class="p-2">
+<form class="p-2" #form="ngForm" (ngSubmit)="Save(form);">
   <div class="form-group">
     <label>Phone Number</label>
     <input type="text" class="form-control" placeholder="Enter mobile phone number" [(ngModel)]="Account.PhoneNumber"
@@ -53,8 +53,9 @@
       <i class="fas fa-lock ml-2" *ngIf="!Account.IsActive"></i>
     </div>
   </div>
-  <button type="submit" class="btn btn-success" (click)="Save();">
-    <i class="fas fa-user-plus"></i>
+  <button type="submit" class="btn btn-success" [disabled]="IsBusy">
+    <div class="spinner-border spinner-border-sm" role="status" *ngIf="IsBusy"></div>
+    <i class="fas fa-user-plus" *ngIf="!IsBusy"></i>
     <span class="ml-2">Create User</span>
   </button>
 </form>
