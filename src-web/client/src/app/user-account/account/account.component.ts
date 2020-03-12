@@ -16,16 +16,16 @@ export class AccountComponent extends BaseComponent {
         this.Account = new UserAccount();
 
         this.SetValidationMessage('PhoneNumber',
-            { key: 'required', value: 'Mobile phone number must be ten characters long.' },
+            { key: 'required', value: 'Mobile phone number not entered.' },
             { key: 'minlength', value: 'Mobile phone number must be ten characters long.' },
-            { key: 'maxlength', value: 'Mobile phone number must be ten characters long.' });
+            { key: 'maxlength', value: 'Mobile phone number must not exceed ten characters.' });
     }
 
     async Save() {
-        this.IsBusy = true;
-
         if (!this.Validate())
             return;
+
+        this.IsBusy = true;
 
         let account = await this._accountService.CreateUser(this.Account);
         if (account)

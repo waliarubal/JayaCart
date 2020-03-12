@@ -78,15 +78,10 @@ export abstract class BaseComponent {
         if (!form)
             form = this.Form;
 
-        const isBusy = this.IsBusy;
-        this.IsBusy = true;
-
         let controlNames = Object.keys(form.form.controls);
         for (let controlName of controlNames) {
             if (!this._validationMessages.has(controlName))
                 continue;
-
-            debugger;
 
             let control = form.form.get(controlName);
             if (control && !control.valid && (control.dirty || control.touched)) {
@@ -96,14 +91,12 @@ export abstract class BaseComponent {
                     if (errorMessages.has(errorKey)) {
                         this._validationError = errorMessages.get(errorKey);
                         document.getElementsByName(controlName)[0].focus();
-                        this.IsBusy = isBusy;
                         return false;
                     }
                 }
             }
         }
 
-        this.IsBusy = isBusy;
         return true;
     }
 }
