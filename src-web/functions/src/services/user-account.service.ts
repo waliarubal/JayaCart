@@ -12,35 +12,39 @@ export class UserAccountService extends BaseService {
 
     private async CreateAccount(request, response) {
         try {
-            let password =  request.body['Password'] ? request.body['Password'] : this.GetDefaultPassword();
-            let image = request.body['Image'] ? request.body['Image'] : '';
+            let password =  request.body['Password'] ?? this.GetDefaultPassword();
+            let image = request.body['Image'] ?? '';
+            let lastName = request.body['LastName'] ?? '';
+            let addressLine2 = request.body['AddressLine2'] ?? '';
+            let isActive = request.body['IsActive'] ?? false;
+            let isAdmin = request.body['IsAdmin'] ?? false;
 
             let account: UserAccount = {
                 PhoneNumber: request.body['PhoneNumber'],
                 FirstName: request.body['FirstName'],
-                LastName: request.body['LastName'],
+                LastName: lastName,
                 AddressLine1: request.body['AddressLine1'],
-                AddressLine2: request.body['AddressLine2'],
+                AddressLine2: addressLine2,
                 City: request.body['City'],
                 Password: password,
                 Image: image,
                 Balance: 0,
-                IsActive: request.body['IsActive'] ? request.body['IsActive'] : false,
-                IsAdmin: request.body['IsAdmin'] ? request.body['IsAdmin'] : false
+                IsActive: isActive,
+                IsAdmin: isAdmin
             };
 
             let isCreated = await firebaseHelper.firestore.createDocumentWithID(this.Database, this.USER_ACCOUNTS, account.PhoneNumber, account);
             if (isCreated)
                 this.AddCorsHeaders(response)
-                    .status(HttpStatus.CREATED)
+                    .status(HttpStatus.OK)
                     .json(this.Result<UserAccount>(account));
             else
                 this.AddCorsHeaders(response)
-                    .status(HttpStatus.BAD_REQUEST)
+                    .status(HttpStatus.OK)
                     .json(this.Error<UserAccount>(`Failed to create user account: ${account}`));
         } catch (ex) {
             this.AddCorsHeaders(response)
-                .status(HttpStatus.BAD_REQUEST)
+                .status(HttpStatus.OK)
                 .json(this.Error<UserAccount>(`Failed to create user account. ${ex}`));
         }
     }
@@ -50,15 +54,15 @@ export class UserAccountService extends BaseService {
             let updatedRecord = await firebaseHelper.firestore.updateDocument(this.Database, this.USER_ACCOUNTS, request.params.PhoneNumber, request.body);
             if (updatedRecord)
                 this.AddCorsHeaders(response)
-                    .status(HttpStatus.NO_CONTENT)
+                    .status(HttpStatus.OK)
                     .json(this.Result<UserAccount>(updatedRecord));
             else
                 this.AddCorsHeaders(response)
-                    .status(HttpStatus.BAD_REQUEST)
+                    .status(HttpStatus.OK)
                     .json(this.Error<UserAccount>(`Failed to update user account with phone number ${request.params.PhoneNumber}.`));
         } catch (ex) {
             this.AddCorsHeaders(response)
-                .status(HttpStatus.BAD_REQUEST)
+                .status(HttpStatus.OK)
                 .json(this.Error<UserAccount>(`Failed to update user account with phone number ${request.params.PhoneNumber}. ${ex}`));
         }
     }
@@ -76,12 +80,12 @@ export class UserAccountService extends BaseService {
                     .json(this.Result<UserAccount>(record));
             else
                 this.AddCorsHeaders(response)
-                    .status(HttpStatus.BAD_REQUEST)
+                    .status(HttpStatus.OK)
                     .json(this.Error<UserAccount>(`Failed to get user account for phone number ${request.params.PhoneNumber}.`))
 
         } catch (ex) {
             this.AddCorsHeaders(response)
-                .status(HttpStatus.BAD_REQUEST)
+                .status(HttpStatus.OK)
                 .json(this.Error<UserAccount>(`Failed to get user account for phone number ${request.params.PhoneNumber}: ${ex}`))
         }
     }
@@ -96,15 +100,15 @@ export class UserAccountService extends BaseService {
                         .json(this.Result<UserAccount>(record));
                 else
                     this.AddCorsHeaders(response)
-                        .status(HttpStatus.BAD_REQUEST)
+                        .status(HttpStatus.OK)
                         .json(this.Error<UserAccount>(`User account for phone number ${request.params.PhoneNumber} is not active.`));
             } else
                 this.AddCorsHeaders(response)
-                    .status(HttpStatus.BAD_REQUEST)
+                    .status(HttpStatus.OK)
                     .json(this.Error<UserAccount>(`Failed to get user account for phone number ${request.params.PhoneNumber}.`))
         } catch (ex) {
             this.AddCorsHeaders(response)
-                .status(HttpStatus.BAD_REQUEST)
+                .status(HttpStatus.OK)
                 .json(this.Error<UserAccount>(`Failed to get user account for phone number ${request.params.PhoneNumber}: ${ex}`))
         }
     }
@@ -118,11 +122,11 @@ export class UserAccountService extends BaseService {
                     .json(this.ResultArray<UserAccount[]>(records, this.USER_ACCOUNTS));
             else
                 this.AddCorsHeaders(response)
-                    .status(HttpStatus.BAD_REQUEST)
+                    .status(HttpStatus.OK)
                     .json(this.Error<UserAccount[]>(`Failed to get user accounts.`))
         } catch (ex) {
             this.AddCorsHeaders(response)
-                .status(HttpStatus.BAD_REQUEST)
+                .status(HttpStatus.OK)
                 .json(this.Error<UserAccount>(`Failed to get user accounts: ${ex}`))
         }
     }
@@ -131,11 +135,11 @@ export class UserAccountService extends BaseService {
         const deletedRecord = await firebaseHelper.firestore.deleteDocument(this.Database, this.USER_ACCOUNTS, request.params.PhoneNumber);
         if (deletedRecord)
             this.AddCorsHeaders(response)
-                .status(HttpStatus.NO_CONTENT)
+                .status(HttpStatus.OK)
                 .json(this.Result<object>(deletedRecord));
         else
             this.AddCorsHeaders(response)
-                .status(HttpStatus.BAD_REQUEST)
+                .status(HttpStatus.OK)
                 .json(this.Error<UserAccount>(`Failed to delete user account with phone number ${request.params.PhoneNumber}.`))
     }
 

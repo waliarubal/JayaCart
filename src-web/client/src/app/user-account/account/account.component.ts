@@ -19,6 +19,9 @@ export class AccountComponent extends BaseComponent {
             { key: 'required', value: 'Mobile phone number not entered.' },
             { key: 'minlength', value: 'Mobile phone number must be ten characters long.' },
             { key: 'maxlength', value: 'Mobile phone number must not exceed ten characters.' });
+        this.SetValidationMessage('FirstName', { key: 'required', value: 'First name not entered.' });
+        this.SetValidationMessage('AddressLine1', { key: 'required', value: 'Address not entered.' });
+        this.SetValidationMessage('City', { key: 'required', value: 'City not selected.' });
     }
 
     async Save() {
