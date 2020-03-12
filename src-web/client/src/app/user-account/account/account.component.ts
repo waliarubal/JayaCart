@@ -18,11 +18,11 @@ export class AccountComponent extends BaseComponent  {
 
     async Save() {
         this.Disable();
-        
         this.IsBusy = true;
-        let account = await this._accountService.CreateUser(this.Account);
-        this.IsBusy = false;
 
+        let account = await this._accountService.CreateUser(this.Account);
+        
+        this.IsBusy = false;
         this.Enable();
         
         if (account) {

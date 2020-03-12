@@ -2,8 +2,9 @@ import { NgForm } from '@angular/forms';
 import { ViewChild } from '@angular/core';
 
 export abstract class BaseComponent {
-    IsBusy: boolean;
     @ViewChild('form', { static: true }) private _form: NgForm;
+
+    IsBusy: boolean;
 
     protected get Form(): NgForm {
         return this._form;

@@ -7,13 +7,13 @@
   <div class="form-group">
     <label>Phone Number</label>
     <input type="text" class="form-control" placeholder="Enter mobile phone number" [(ngModel)]="Account.PhoneNumber"
-      name="PhoneNumber">
+      name="PhoneNumber" required minlength="10" maxlength="10">
   </div>
   <div class="form-row">
     <div class="form-group col">
       <label>First Name</label>
       <input type="text" class="form-control" placeholder="Enter first name" [(ngModel)]="Account.FirstName"
-        name="FirstName">
+        name="FirstName" required>
     </div>
     <div class="form-group col">
       <label>Last Name</label>
@@ -24,7 +24,7 @@
   <div class="form-group">
     <label>Address Line 1</label>
     <input type="text" class="form-control" placeholder="Enter address line 1" [(ngModel)]="Account.AddressLine1"
-      name="AddressLine1">
+      name="AddressLine1" required>
   </div>
   <div class="form-group">
     <label>Address Line 2</label>
@@ -33,7 +33,7 @@
   </div>
   <div class="form-group">
     <label>City</label>
-    <input type="text" class="form-control" placeholder="Select city" [(ngModel)]="Account.City" name="City">
+    <input type="text" class="form-control" placeholder="Select city" [(ngModel)]="Account.City" name="City" required>
   </div>
   <div class="form-group">
     <div class="form-check">
@@ -53,7 +53,7 @@
       <i class="fas fa-lock ml-2" *ngIf="!Account.IsActive"></i>
     </div>
   </div>
-  <button type="submit" class="btn btn-success">
+  <button type="submit" class="btn btn-success" [disabled]="IsBusy">
     <div class="spinner-border spinner-border-sm" role="status" *ngIf="IsBusy"></div>
     <i class="fas fa-user-plus" *ngIf="!IsBusy"></i>
     <span class="ml-2">Create User</span>
