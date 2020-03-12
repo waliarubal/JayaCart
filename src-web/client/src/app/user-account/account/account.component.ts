@@ -22,19 +22,15 @@ export class AccountComponent extends BaseComponent {
     }
 
     async Save() {
-        this.Disable();
         this.IsBusy = true;
 
         if (!this.Validate())
             return;
 
         let account = await this._accountService.CreateUser(this.Account);
+        if (account)
+            this.Account = new UserAccount();
 
         this.IsBusy = false;
-        this.Enable();
-
-        if (account) {
-            this.Account = new UserAccount();
-        }
     }
 }
