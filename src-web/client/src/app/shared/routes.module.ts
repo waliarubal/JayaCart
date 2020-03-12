@@ -9,8 +9,8 @@ const APP_ROUTES: Routes = [
     {
         path: 'UserAccounts',
         children: [
-            { path: 'New', component: AccountComponent },
-            { path: 'All', component: UserAccountComponent }
+            { path: '', component: UserAccountComponent },
+            { path: 'New', component: AccountComponent }
         ]
     },
     { path: 'Dashboard', component: DashboardComponent },
