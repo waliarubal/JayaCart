@@ -58,4 +58,6 @@
     <i class="fas fa-user-plus" *ngIf="!IsBusy"></i>
     <span class="ml-2">Create User</span>
   </button>
+
+  <span class="text-error" *ngIf="ValidationError">{{ValidationError}}</span>
 </form>
