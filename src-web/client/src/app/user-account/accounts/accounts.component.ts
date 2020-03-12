@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserAccount } from '@models/user-account.model';
 import { BaseComponent } from '@shared/base.component';
 import { UserAccountService } from '@services/user-account.service';
@@ -20,9 +20,13 @@ export class AccountsComponent extends BaseComponent {
         return this._accounts;
     }
 
+    Keywoards: string;
+
     async Search() {
         this.IsBusy = true;
+
         this._accounts = await this._accountService.GetAllUsers();
+        
         this.IsBusy = false;
     }
 }

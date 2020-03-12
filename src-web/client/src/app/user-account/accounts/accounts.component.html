@@ -2,20 +2,21 @@
   <h4 class="col-4 text-light text-uppercase">
     <strong>Manage User Accounts</strong>
   </h4>
-  <div class="col-8">
+  <form class="col-8" #form="ngForm" (ngSubmit)="Search();">
     <div class="input-group">
-      <input type="search" class="form-control" placeholder="Which user are you looking for?" [disabled]="IsBusy">
+      <input type="search" class="form-control" placeholder="Which user are you looking for?" [(ngModel)]="Keywoards"
+        name="Keywoards">
       <div class="input-group-append">
-        <button type="button" class="btn btn-primary" (click)="Search();" [disabled]="IsBusy">
+        <button type="submit" class="btn btn-primary" [disabled]="IsBusy">
           <i class="fas fa-search" *ngIf="!IsBusy"></i>
           <div class="spinner-border spinner-border-sm" role="status" *ngIf="IsBusy"></div>
           <span class="ml-2">Search</span>
         </button>
       </div>
     </div>
-  </div>
+  </form>
 </div>
-<div class="row no-gutters" >
+<div class="row no-gutters">
   <div class="col">
     <table class="table table-sm table-hover">
       <thead class="thead-light">
@@ -41,21 +42,23 @@
           <td>{{account.AddressLine1}}{{account.AddressLine2 ? ', ' : ''}}{{account.AddressLine2}}, {{account.City}}
           </td>
           <td>
-            <button type="button" class="btn btn-sm btn-outline-success mr-1 border-0">
+            <button type="button" class="btn btn-sm btn-outline-success mr-1 border-0" [disabled]="IsBusy">
               <i class="fas fa-user-edit"></i>
             </button>
-            <button type="button" class="btn btn-sm btn-outline-danger mr-3 border-0">
+            <button type="button" class="btn btn-sm btn-outline-danger mr-3 border-0" [disabled]="IsBusy">
               <i class="fas fa-user-times"></i>
             </button>
-            <button type="button" class="btn btn-sm btn-warning mr-1 border-0">
+            <button type="button" class="btn btn-sm btn-warning mr-1 border-0" [disabled]="IsBusy">
               <i class="fas fa-key"></i>
               <span class="ml-2">Reset Password</span>
             </button>
-            <button type="button" class="btn btn-sm btn-info mr-1 border-0" *ngIf="!account.IsActive">
+            <button type="button" class="btn btn-sm btn-info mr-1 border-0" *ngIf="!account.IsActive"
+              [disabled]="IsBusy">
               <i class="fas fa-unlock-alt"></i>
               <span class="ml-2">Activate</span>
             </button>
-            <button type="button" class="btn btn-sm btn-secondary mr-1 border-0" *ngIf="account.IsActive">
+            <button type="button" class="btn btn-sm btn-secondary mr-1 border-0" *ngIf="account.IsActive"
+              [disabled]="IsBusy">
               <i class="fas fa-lock"></i>
               <span class="ml-2">Deactivate</span>
             </button>

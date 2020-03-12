@@ -40,6 +40,8 @@ export abstract class BaseComponent {
     protected Enable(form?: NgForm): void {
         if (!form)
             form = this.Form;
+        if (!form)
+            return;
 
         if (form.form.disabled)
             form.form.enable();
@@ -48,6 +50,8 @@ export abstract class BaseComponent {
     protected Disable(form?: NgForm): void {
         if (!form)
             form = this.Form;
+        if (!form)
+            return;
 
         if (form.form.enabled)
             form.form.disable();
@@ -56,6 +60,8 @@ export abstract class BaseComponent {
     protected Clear(form?: NgForm): void {
         if (!form)
             form = this.Form;
+        if (!form)
+            return;
 
         form.form.reset();
     }
@@ -77,6 +83,8 @@ export abstract class BaseComponent {
 
         if (!form)
             form = this.Form;
+        if (!form)
+            return true;
 
         let controlNames = Object.keys(form.form.controls);
         for (let controlName of controlNames) {
