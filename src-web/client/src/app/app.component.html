@@ -47,7 +47,7 @@
     </div>
   </a>
 </div> -->
-<div class="sidebar bg-dark">
+<div class="sidebar bg-dark" *ngIf="IsLoggedIn">
   <ng-container *ngFor="let sidebarItem of SidebarItems">
     <a class="row no-gutters" routerLinkActive="active" [routerLink]="sidebarItem.RouterLink"
       [routerLinkActiveOptions]="{exact: true}" *ngIf="sidebarItem.Items.length === 0; else nested">
@@ -79,6 +79,6 @@
   </ng-container>
 </div>
 
-<div class="content">
+<div class="content" [class.not-logged-in]="!IsLoggedIn">
   <router-outlet></router-outlet>
 </div>

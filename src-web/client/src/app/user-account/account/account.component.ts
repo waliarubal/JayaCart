@@ -5,8 +5,7 @@ import { UserAccountService } from '@services/user-account.service';
 
 @Component({
     selector: 'app-account',
-    templateUrl: './account.component.html',
-    providers: [UserAccountService]
+    templateUrl: './account.component.html'
 })
 export class AccountComponent extends BaseComponent {
     Account: UserAccount;

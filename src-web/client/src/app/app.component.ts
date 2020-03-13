@@ -3,6 +3,7 @@ import { Router, RouterEvent } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SidebarItem } from '@models/sidebar-item.model';
 import { RoutesModule } from '@shared/routes.module';
+import { UserAccountService } from '@services/user-account.service';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,14 @@ export class AppComponent implements OnDestroy, OnInit {
   private readonly _onRouteChanged: Subscription;
   private _sidebarItems: SidebarItem[]
 
-  constructor(private readonly _router: Router) {
+  constructor(
+    private readonly _router: Router,
+    private readonly _accountService: UserAccountService) {
     this._onRouteChanged = this._router.events.subscribe((e: RouterEvent) => this.Navigated(e));
+  }
+
+  get IsLoggedIn(): boolean {
+    return this._accountService.IsLoggedIn;
   }
 
   get SidebarItems(): SidebarItem[] {

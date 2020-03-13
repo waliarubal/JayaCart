@@ -50,3 +50,7 @@
   .content {
     margin-left: 220px;
   }
+
+  .not-logged-in {
+    margin-left: 0px !important;
+  }

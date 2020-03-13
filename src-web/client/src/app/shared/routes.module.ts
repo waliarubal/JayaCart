@@ -5,16 +5,21 @@ import { DashboardComponent } from '@app/dashboard/dashboard.component';
 import { UserAccountComponent } from '@app/user-account/user-account.component';
 import { AccountComponent } from '@app/user-account/account/account.component';
 import { SidebarItem } from '@models/sidebar-item.model';
+import { AuthGuardService } from '@services/auth-guard.service';
+import { LoginComponent } from '@app/user-account/login/login.component';
 
 const APP_ROUTES: Routes = [
+
     {
         path: 'Dashboard',
         component: DashboardComponent,
+        canActivate: [AuthGuardService],
         data: { "Label": "Dashboard", "IconClass": "fas fa-chart-line" }
     },
     {
         path: 'UserAccounts',
         data: { "Label": "User Accounts", "IconClass": "fas fa-users" },
+        canActivate: [AuthGuardService],
         children: [
             {
                 path: '',
@@ -28,7 +33,8 @@ const APP_ROUTES: Routes = [
             }
         ]
     },
-    { path: '', redirectTo: '/Dashboard', pathMatch: 'full' },
+    { path: 'Login', component: LoginComponent },
+    { path: '', redirectTo: '/Login', pathMatch: 'full' },
     { path: '**', component: NotFoundComponent }
 ];
 

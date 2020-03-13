@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { AccountsComponent } from './accounts/accounts.component';
 import { AccountComponent } from './account/account.component';
 import { UserAccountComponent } from './user-account.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
     declarations: [
         AccountsComponent,
         AccountComponent,
-        UserAccountComponent
+        UserAccountComponent,
+        LoginComponent
     ],
     imports: [
         BrowserModule,
