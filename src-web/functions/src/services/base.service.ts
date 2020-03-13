@@ -1,6 +1,5 @@
 import * as express from 'express';
 import * as admin from 'firebase-admin';
-import * as HttpStatus from 'http-status-codes';
 import { ApiResponse } from '../models';
 
 export type ApiRequestHandler = (request: any, response: any) => Promise<void>;
@@ -54,16 +53,6 @@ export abstract class BaseService {
         }
     }
 
-    protected RegisterCorsPreflight(route: string): void {
-        this._app.options(route, (request, response) => this.OptionsRequestHandler(request, response));
-    }
-
-    private OptionsRequestHandler(request: any, response: any): void {
-        this.AddCorsHeaders(response)
-            .status(HttpStatus.OK)
-            .end();
-    }
-
     protected Deserialize<T>(data: any): T {
         let parsedObject = JSON.parse(JSON.stringify(data));
 
@@ -89,13 +78,6 @@ export abstract class BaseService {
     }
 
     abstract RegisterMethods(): void;
-
-    protected AddCorsHeaders(response: any): any {
-        response = response.header('Access-Control-Allow-Origin', '*');
-        response = response.header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS');
-        response = response.header('Access-Control-Allow-Headers', '*');
-        return response;
-    }
 
     protected Error<T>(error: string): ApiResponse<T> {
         console.log(error);
