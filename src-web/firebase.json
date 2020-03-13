@@ -5,8 +5,8 @@
       "cd \"$PROJECT_DIR/functions\" && npm install && npm run build && cd .."
     ],
     "postdeploy": [
-      "rmdir \"$PROJECT_DIR/client/dist\" /S /Q",
-      "rmdir \"$PROJECT_DIR/functions/dist\" /S /Q"
+      "rmdir /S /Q \"$PROJECT_DIR/client/dist\"",
+      "rmdir /S /Q \"$PROJECT_DIR/functions/dist\""
     ]
   },
   "hosting": {
