@@ -8,13 +8,15 @@
     overflow-x: hidden;
   }
 
-  .sidebar a, .sidebar > div {
+  .sidebar > a, .sidebar > div > div[class~="mx-1"] {
     text-decoration: none;
     color: #f8f9fa;
     padding-left: 8px;
   }
 
-  .sidebar > div a {
+  .sidebar > div[class~="bg-secondary"] a {
+    text-decoration: none;
+    color: #f8f9fa;
     padding-left: 32px;
   }
   
@@ -23,9 +25,22 @@
     cursor: pointer;
   }
 
-  .active {
-    background-color: #17a2b8 !important;
-    text-transform: uppercase !important;
+  .sidebar > a.active {
+    background-color: #17a2b8;
+    text-transform: uppercase;
+    border-left-color: #f8f9fa;
+    border-left-width: 5px;
+    border-left-style: solid;
+    padding-left: 3px;
+  }
+
+  .sidebar > div[class~="bg-secondary"] > div > a.active {
+    background-color: #17a2b8;
+    text-transform: uppercase;
+    border-left-color: #f8f9fa;
+    border-left-width: 5px;
+    border-left-style: solid;
+    padding-left: 27px;
   }
 
   .active:hover {
@@ -34,5 +49,4 @@
 
   .content {
     margin-left: 220px;
-    /*overflow-x: hidden;*/
   }
