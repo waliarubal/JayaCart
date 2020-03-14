@@ -34,9 +34,9 @@ export abstract class BaseService {
         let endPoint = `${API_URL}${this.COLLECTION_NAME}`;
         if (url)
             endPoint += `/${url}`;
-            
+
         return new Promise<T>((resolve, reject) => {
-            this._http.post<ApiResponse>(`${API_URL}${this.COLLECTION_NAME}`, record, HTTP_OPTIONS).subscribe(
+            this._http.post<ApiResponse>(endPoint, record, HTTP_OPTIONS).subscribe(
                 success => {
                     if (success.IsHavingError)
                         reject(success.Error);
