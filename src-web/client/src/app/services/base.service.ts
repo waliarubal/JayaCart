@@ -30,7 +30,11 @@ export abstract class BaseService {
         });
     }
 
-    protected Post<T>(record: T): Promise<T> {
+    protected Post<T>(record: any, url?: string): Promise<T> {
+        let endPoint = `${API_URL}${this.COLLECTION_NAME}`;
+        if (url)
+            endPoint += `/${url}`;
+            
         return new Promise<T>((resolve, reject) => {
             this._http.post<ApiResponse>(`${API_URL}${this.COLLECTION_NAME}`, record, HTTP_OPTIONS).subscribe(
                 success => {

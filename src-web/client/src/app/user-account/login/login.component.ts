@@ -1,9 +1,35 @@
 import { Component } from '@angular/core';
+import { BaseComponent } from '@shared/base.component';
+import { UserAccountService } from '@services/user-account.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html'
 })
-export class LoginComponent {
+export class LoginComponent extends BaseComponent {
+    PhoneNumber: string;
+    Password: string;
 
+    constructor(
+        private readonly _accountService: UserAccountService, 
+        private readonly _router: Router) {
+        super();
+    }
+
+    Clear(): void {
+        super.Clear();
+        super.Focus('PhoneNumber');
+    }
+
+    async LogIn() {
+        if (!this.Validate())
+            return;
+
+        this.IsBusy = true;
+
+        let result = await this._accountService.LogIn(this.PhoneNumber, this.Password);
+        if (result)
+            this._router.navigate(['Dashboard']);
+    }
 }

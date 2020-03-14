@@ -77,6 +77,12 @@ export abstract class BaseComponent {
         this._validationMessages.set(controlName, messageMap);
     }
 
+    protected Focus(controlName: string): void {
+        let controls = document.getElementsByName(controlName);
+        if (controls && controls.length > 0)
+            controls[0].focus();
+    }
+
     protected Validate(form?: NgForm): boolean {
         if (!this._validationMessages || this._validationMessages.size === 0)
             return true;
@@ -98,7 +104,7 @@ export abstract class BaseComponent {
                 for (let errorKey in control.errors) {
                     if (errorMessages.has(errorKey)) {
                         this._validationError = errorMessages.get(errorKey);
-                        document.getElementsByName(controlName)[0].focus();
+                        this.Focus(controlName);
                         return false;
                     }
                 }

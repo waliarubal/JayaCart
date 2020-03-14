@@ -1,20 +1,21 @@
 import * as firebaseHelper from 'firebase-functions-helper';
 import * as HttpStatus from 'http-status-codes';
-import {Md5} from 'ts-md5/dist/md5';
+import { Md5 } from 'ts-md5/dist/md5';
 import { BaseService, HttpMethod } from "./base.service";
 import { UserAccount } from "../models";
 
 export class UserAccountService extends BaseService {
     private readonly USER_ACCOUNTS = 'UserAccounts';
+    private readonly DEFAULT_PASSWORD = 'password@123';
 
-    private GetDefaultPassword(): string {
-        let md5 = new Md5().appendStr('password@123').end();
+    private GetMd5(data: string): string {
+        let md5 = new Md5().appendStr(data).end();
         return md5.toString();
     }
 
     private async CreateAccount(request, response) {
         try {
-            let password = request.body['Password'] ?? this.GetDefaultPassword();
+            let password = request.body['Password'] ?? this.GetMd5(this.DEFAULT_PASSWORD);
             let image = request.body['Image'] ?? '';
             let lastName = request.body['LastName'] ?? '';
             let addressLine2 = request.body['AddressLine2'] ?? '';
@@ -70,7 +71,11 @@ export class UserAccountService extends BaseService {
     }
 
     private async GetAccount(phoneNumber: string) {
-        return await firebaseHelper.firestore.getDocument(this.Database, this.USER_ACCOUNTS, phoneNumber);
+        let record = await firebaseHelper.firestore.getDocument(this.Database, this.USER_ACCOUNTS, phoneNumber);
+        if (record)
+            return this.Deserialize<UserAccount>(record);
+        else
+            return undefined;
     }
 
     private async GetAccountByPhoneNumber(request, response) {
@@ -83,31 +88,44 @@ export class UserAccountService extends BaseService {
             else
                 response
                     .status(HttpStatus.OK)
-                    .json(this.Error<UserAccount>(`Failed to get user account for phone number ${request.params.PhoneNumber}.`))
+                    .json(this.Error<UserAccount>(`User account with phone number ${request.params.PhoneNumber} does not exist.`))
 
         } catch (ex) {
             response
                 .status(HttpStatus.OK)
-                .json(this.Error<UserAccount>(`Failed to get user account for phone number ${request.params.PhoneNumber}: ${ex}`))
+                .json(this.Error<UserAccount>(`Failed to get user account with phone number ${request.params.PhoneNumber}: ${ex}`))
         }
     }
 
     private async SignIn(request, response) {
         try {
-            let record = await this.GetAccount(request.params.PhoneNumber);
+            let phoneNumber = request.body['PhoneNumber'];
+            let password = request.body['Password'];
+
+            let record = await this.GetAccount(phoneNumber);
             if (record) {
-                if (record.IsActive)
+                if (record.Password !== password) {
                     response
                         .status(HttpStatus.OK)
-                        .json(this.Result<UserAccount>(record));
-                else
+                        .json(this.Error<UserAccount>(`Password is incorrect.`));
+                    return;
+                }
+
+                if (!record.IsActive) {
                     response
                         .status(HttpStatus.OK)
                         .json(this.Error<UserAccount>(`User account for phone number ${request.params.PhoneNumber} is not active.`));
+                    return;
+                }
+
+                response
+                    .status(HttpStatus.OK)
+                    .json(this.Result<UserAccount>(record));
+
             } else
                 response
                     .status(HttpStatus.OK)
-                    .json(this.Error<UserAccount>(`Failed to get user account for phone number ${request.params.PhoneNumber}.`))
+                    .json(this.Error<UserAccount>(`User account for phone number ${request.params.PhoneNumber} does not exist.`))
         } catch (ex) {
             response
                 .status(HttpStatus.OK)
@@ -151,6 +169,6 @@ export class UserAccountService extends BaseService {
         this.RegisterMethod(HttpMethod.Get, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.GetAccountByPhoneNumber(request, response));
         this.RegisterMethod(HttpMethod.Get, `/${this.USER_ACCOUNTS}`, async (request, response) => await this.GetAccounts(request, response));
         this.RegisterMethod(HttpMethod.Delete, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.DeleteAccount(request, response));
-        this.RegisterMethod(HttpMethod.Get, `/${this.USER_ACCOUNTS}/SignIn/:PhoneNumber`, async (request, response) => await this.SignIn(request, response));
+        this.RegisterMethod(HttpMethod.Post, `/${this.USER_ACCOUNTS}/SignIn`, async (request, response) => await this.SignIn(request, response));
     }
 }

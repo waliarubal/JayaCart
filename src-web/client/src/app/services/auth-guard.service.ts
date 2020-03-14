@@ -7,12 +7,14 @@ export class AuthGuardService implements CanActivate {
 
     constructor(
         private readonly _router: Router,
-        private readonly _accountService: UserAccountService) {}
+        private readonly _accountService: UserAccountService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        return this._accountService.IsLoggedIn;
+        let isLoggedIn = this._accountService.IsLoggedIn;
+        if (isLoggedIn)
+            return true;
 
-        this._router.navigate(['/Login']);
+        this._router.navigate(['Login']);
         return false;
     }
 
