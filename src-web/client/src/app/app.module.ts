@@ -4,17 +4,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
-import { RoutesModule } from './shared/routes.module';
-import { AppComponent } from './app.component';
-import { NotFoundModule } from './not-found/not-found.module';
-import { UserAccountModule } from './user-account/user-account.module';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { UserAccountService } from '@services/user-account.service';
 import { AuthGuardService } from '@services/auth-guard.service';
+import { AppComponent } from './app.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { RoutesModule } from './shared/routes.module';
+import { UserAccountModule } from './user-account/user-account.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { ArticleModule } from './article/article.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -22,9 +24,9 @@ import { AuthGuardService } from '@services/auth-guard.service';
     FormsModule,
     RoutesModule,
     NgbModule,
-    NotFoundModule,
     DashboardModule,
     UserAccountModule,
+    ArticleModule
   ],
   providers: [
     UserAccountService,
