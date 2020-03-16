@@ -61,7 +61,8 @@
         <div class="col mx-1 my-1" (click)="sidebarItem.IsExpanded = !sidebarItem.IsExpanded;">
           <i class="{{sidebarItem.Icon}}"></i>
           <span class="ml-2">{{sidebarItem.Label}}</span>
-          <i class="fas fa-chevron-right float-right mt-1"></i>
+          <i class="fas fa-chevron-right float-right mt-1" *ngIf="!sidebarItem.IsExpanded"></i>
+          <i class="fas fa-chevron-down float-right mt-1" *ngIf="sidebarItem.IsExpanded"></i>
         </div>
       </div>
       <div class="row no-gutters bg-secondary" [ngbCollapse]="sidebarItem.IsExpanded">
