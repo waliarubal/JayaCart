@@ -12,9 +12,15 @@ export class LoginComponent extends BaseComponent {
     Password: string;
 
     constructor(
-        private readonly _accountService: UserAccountService, 
+        private readonly _accountService: UserAccountService,
         private readonly _router: Router) {
         super();
+
+        this.SetValidationMessage('PhoneNumber',
+            { key: 'required', value: 'Mobile phone number not entered.' },
+            { key: 'minlength', value: 'Mobile phone number must be ten characters long.' },
+            { key: 'maxlength', value: 'Mobile phone number must not exceed ten characters.' });
+        this.SetValidationMessage('Password', { key: 'required', value: 'Password not entered.' })
     }
 
     Clear(): void {
