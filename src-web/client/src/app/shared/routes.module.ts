@@ -9,7 +9,6 @@ import { AuthGuardService } from '@services/auth-guard.service';
 import { LoginComponent } from '@app/user-account/login/login.component';
 
 const APP_ROUTES: Routes = [
-
     {
         path: 'Dashboard',
         component: DashboardComponent,
@@ -34,7 +33,7 @@ const APP_ROUTES: Routes = [
         ]
     },
     { path: 'Login', component: LoginComponent },
-    { path: '', redirectTo: '/Login', pathMatch: 'full' },
+    { path: '', redirectTo: '/Dashboard', pathMatch: 'full' },
     { path: '**', component: NotFoundComponent }
 ];
 

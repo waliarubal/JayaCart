@@ -4,12 +4,21 @@ import { UserAccount } from '@models/user-account.model';
 import { BaseService } from '@services/base.service';
 import { HttpClient } from '@angular/common/http';
 
+const ACCOUNT_KEY = 'UserAccount';
+
 @Injectable()
 export class UserAccountService extends BaseService {
     private _account: UserAccount;
 
     constructor(httpClient: HttpClient) {
         super(httpClient, 'UserAccounts');
+
+        let accountString = localStorage.getItem(ACCOUNT_KEY);
+        if (accountString) {
+            accountString = atob(accountString);
+            this._account = <UserAccount>JSON.parse(accountString);
+        }
+            
     }
 
     get Account(): UserAccount {
@@ -45,9 +54,15 @@ export class UserAccountService extends BaseService {
         let account = await this.Post<UserAccount>(credentials, 'SignIn');
         if (account) {
             this._account = account;
+            localStorage.setItem(ACCOUNT_KEY, btoa(JSON.stringify(account)));
             return true;
         }
 
         return false;
+    }
+
+    LogOff(): void {
+        this._account = undefined;
+        localStorage.removeItem(ACCOUNT_KEY);
     }
 }
