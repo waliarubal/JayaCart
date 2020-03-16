@@ -3,12 +3,12 @@ export class SidebarItem {
     readonly Label: string;
     Icon: string;
     RouterLink: string;
-    IsExpanded: boolean;
+    IsCollapsed: boolean;
 
     constructor(label: string, iconClass?: string) {
         this.Items = [];
         this.Label = label;
         this.Icon = iconClass;
-        this.IsExpanded = false;
+        this.IsCollapsed = false;
     }
 }

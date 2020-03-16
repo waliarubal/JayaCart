@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin';
 import * as express from 'express';
 import * as cors from 'cors';
 import * as bodyParser from 'body-parser';
-import { UserAccountService, BaseService } from './services';
+import { UserAccountService, BaseService, CategoryService } from './services';
 
 admin.initializeApp(functions.config().firebase);
 
@@ -23,7 +23,8 @@ export const webApi = functions.https.onRequest(main)
 const db = admin.firestore();
 
 const services: BaseService[] = [
-    new UserAccountService(db, app)
+    new UserAccountService(db, app),
+    new CategoryService(db, app)
 ];
 for (let service of services)
     service.RegisterMethods();

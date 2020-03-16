@@ -58,14 +58,14 @@
     </a>
     <ng-template #nested>
       <div class="row no-gutters">
-        <div class="col mx-1 my-1" (click)="sidebarItem.IsExpanded = !sidebarItem.IsExpanded;">
+        <div class="col mx-1 my-1" (click)="sidebarItem.IsCollapsed = !sidebarItem.IsCollapsed;">
           <i class="{{sidebarItem.Icon}}"></i>
           <span class="ml-2">{{sidebarItem.Label}}</span>
-          <i class="fas fa-chevron-right float-right mt-1" *ngIf="!sidebarItem.IsExpanded"></i>
-          <i class="fas fa-chevron-down float-right mt-1" *ngIf="sidebarItem.IsExpanded"></i>
+          <i class="fas fa-chevron-right float-right mt-1" *ngIf="sidebarItem.IsCollapsed"></i>
+          <i class="fas fa-chevron-down float-right mt-1" *ngIf="!sidebarItem.IsCollapsed"></i>
         </div>
       </div>
-      <div class="row no-gutters bg-secondary" [ngbCollapse]="sidebarItem.IsExpanded">
+      <div class="row no-gutters bg-secondary" [ngbCollapse]="sidebarItem.IsCollapsed">
         <div class="col">
           <a class="row no-gutters" [routerLink]="sidebarSubItem.RouterLink" routerLinkActive="active"
             [routerLinkActiveOptions]="{exact: true}" *ngFor="let sidebarSubItem of sidebarItem.Items">

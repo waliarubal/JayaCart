@@ -4,18 +4,19 @@ import { Md5 } from 'ts-md5/dist/md5';
 import { BaseService, HttpMethod } from "./base.service";
 import { UserAccount } from "../models";
 
+const USER_ACCOUNTS = 'UserAccounts';
+const DEFAULT_PASSWORD = 'password@123';
+
 export class UserAccountService extends BaseService {
-    private readonly USER_ACCOUNTS = 'UserAccounts';
-    private readonly DEFAULT_PASSWORD = 'password@123';
 
     private GetMd5(data: string): string {
         let md5 = new Md5().appendStr(data).end();
         return md5.toString();
     }
 
-    private async CreateAccount(request, response) {
+    private async Create(request, response) {
         try {
-            let password = request.body['Password'] ?? this.GetMd5(this.DEFAULT_PASSWORD);
+            let password = request.body['Password'] ?? this.GetMd5(DEFAULT_PASSWORD);
             let image = request.body['Image'] ?? '';
             let lastName = request.body['LastName'] ?? '';
             let addressLine2 = request.body['AddressLine2'] ?? '';
@@ -36,7 +37,7 @@ export class UserAccountService extends BaseService {
                 IsAdmin: isAdmin
             };
 
-            let isCreated = await firebaseHelper.firestore.createDocumentWithID(this.Database, this.USER_ACCOUNTS, account.PhoneNumber, account);
+            let isCreated = await firebaseHelper.firestore.createDocumentWithID(this.Database, USER_ACCOUNTS, account.PhoneNumber, account);
             if (isCreated)
                 response
                     .status(HttpStatus.OK)
@@ -52,9 +53,9 @@ export class UserAccountService extends BaseService {
         }
     }
 
-    private async UpdateAccount(request, response) {
+    private async Update(request, response) {
         try {
-            let updatedRecord = await firebaseHelper.firestore.updateDocument(this.Database, this.USER_ACCOUNTS, request.params.PhoneNumber, request.body);
+            let updatedRecord = await firebaseHelper.firestore.updateDocument(this.Database, USER_ACCOUNTS, request.params.PhoneNumber, request.body);
             if (updatedRecord)
                 response
                     .status(HttpStatus.OK)
@@ -70,17 +71,17 @@ export class UserAccountService extends BaseService {
         }
     }
 
-    private async GetAccount(phoneNumber: string) {
-        let record = await firebaseHelper.firestore.getDocument(this.Database, this.USER_ACCOUNTS, phoneNumber);
+    private async Get(phoneNumber: string) {
+        let record = await firebaseHelper.firestore.getDocument(this.Database, USER_ACCOUNTS, phoneNumber);
         if (record)
             return this.Deserialize<UserAccount>(record);
         else
             return undefined;
     }
 
-    private async GetAccountByPhoneNumber(request, response) {
+    private async GetByPhoneNumber(request, response) {
         try {
-            let record = await this.GetAccount(request.params.PhoneNumber);
+            let record = await this.Get(request.params.PhoneNumber);
             if (record)
                 response
                     .status(HttpStatus.OK)
@@ -102,7 +103,7 @@ export class UserAccountService extends BaseService {
             let phoneNumber = request.body['PhoneNumber'];
             let password = request.body['Password'];
 
-            let record = await this.GetAccount(phoneNumber);
+            let record = await this.Get(phoneNumber);
             if (record) {
                 if (record.Password !== password) {
                     response
@@ -133,13 +134,13 @@ export class UserAccountService extends BaseService {
         }
     }
 
-    private async GetAccounts(request, response) {
+    private async GetMany(request, response) {
         try {
-            let records = await firebaseHelper.firestore.backup(this.Database, this.USER_ACCOUNTS)
+            let records = await firebaseHelper.firestore.backup(this.Database, USER_ACCOUNTS)
             if (records)
                 response
                     .status(HttpStatus.OK)
-                    .json(this.ResultArray<UserAccount[]>(records, this.USER_ACCOUNTS));
+                    .json(this.ResultArray<UserAccount[]>(records, USER_ACCOUNTS));
             else
                 response
                     .status(HttpStatus.OK)
@@ -151,8 +152,8 @@ export class UserAccountService extends BaseService {
         }
     }
 
-    private async DeleteAccount(request, response) {
-        const deletedRecord = await firebaseHelper.firestore.deleteDocument(this.Database, this.USER_ACCOUNTS, request.params.PhoneNumber);
+    private async Delete(request, response) {
+        const deletedRecord = await firebaseHelper.firestore.deleteDocument(this.Database, USER_ACCOUNTS, request.params.PhoneNumber);
         if (deletedRecord)
             response
                 .status(HttpStatus.OK)
@@ -164,11 +165,11 @@ export class UserAccountService extends BaseService {
     }
 
     RegisterMethods(): void {
-        this.RegisterMethod(HttpMethod.Post, `/${this.USER_ACCOUNTS}`, async (request, response) => await this.CreateAccount(request, response));
-        this.RegisterMethod(HttpMethod.Patch, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.UpdateAccount(request, response));
-        this.RegisterMethod(HttpMethod.Get, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.GetAccountByPhoneNumber(request, response));
-        this.RegisterMethod(HttpMethod.Get, `/${this.USER_ACCOUNTS}`, async (request, response) => await this.GetAccounts(request, response));
-        this.RegisterMethod(HttpMethod.Delete, `/${this.USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.DeleteAccount(request, response));
-        this.RegisterMethod(HttpMethod.Post, `/${this.USER_ACCOUNTS}/SignIn`, async (request, response) => await this.SignIn(request, response));
+        this.RegisterMethod(HttpMethod.Post, `/${USER_ACCOUNTS}`, async (request, response) => await this.Create(request, response));
+        this.RegisterMethod(HttpMethod.Patch, `/${USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.Update(request, response));
+        this.RegisterMethod(HttpMethod.Get, `/${USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.GetByPhoneNumber(request, response));
+        this.RegisterMethod(HttpMethod.Get, `/${USER_ACCOUNTS}`, async (request, response) => await this.GetMany(request, response));
+        this.RegisterMethod(HttpMethod.Delete, `/${USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.Delete(request, response));
+        this.RegisterMethod(HttpMethod.Post, `/${USER_ACCOUNTS}/SignIn`, async (request, response) => await this.SignIn(request, response));
     }
 }
