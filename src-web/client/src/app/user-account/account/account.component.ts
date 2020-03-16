@@ -35,4 +35,9 @@ export class AccountComponent extends BaseComponent {
 
         this.IsBusy = false;
     }
+
+    Clear(): void {
+        super.Clear();
+        super.Focus('PhoneNumber');
+    }
 }
