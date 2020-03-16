@@ -98,7 +98,17 @@ export abstract class BaseComponent {
                 continue;
 
             let control = form.form.get(controlName);
-            if (control && !control.valid && (control.dirty || control.touched)) {
+            if (!control)
+                continue;
+
+            if (control.untouched) {
+                let errorMessages = this._validationMessages.get(controlName);
+                this._validationError = errorMessages.values().next().value;
+                this.Focus(controlName);
+                return false;
+            }
+
+            if (!control.valid && (control.dirty || control.touched)) {
                 let errorMessages = this._validationMessages.get(controlName);
 
                 for (let errorKey in control.errors) {

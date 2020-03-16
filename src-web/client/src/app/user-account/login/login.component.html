@@ -1,4 +1,4 @@
-<form #form="ngForm" (ngSubmit)="LogIn();" class="col-4 mx-auto">
+<form #form="ngForm" (ngSubmit)="LogIn();" class="col-4 mx-auto border rounded-lg p-4">
   <div class="form-group">
     <label>Phone Number</label>
     <input type="text" class="form-control" name="PhoneNumber" placeholder="Enter your mobile phone number"
@@ -15,7 +15,9 @@
     <span class="ml-2">Sign In</span>
   </button>
   <button type="button" class="btn btn-secondary ml-2" (click)="Clear();" [disabled]="IsBusy">
-    <i class="fas fa-fingerprint"></i>
+    <i class="fas fa-trash-alt"></i>
     <span class="ml-2">Clear</span>
   </button>
+
+  <span class="text-danger ml-2" *ngIf="ValidationError">{{ValidationError}}</span>
 </form>
