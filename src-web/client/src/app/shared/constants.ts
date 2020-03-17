@@ -1,1 +1,3 @@
-export const API_URL: string = 'https://jaya-cart-1988.firebaseapp.com/api/v1/'
+import { environment } from 'environments/environment'
+
+export const API_URL = environment.ApiUrl;

@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
-import { ArticleComponent } from './article.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
-    declarations: [ArticleComponent],
-    imports: [],
-    exports: [ArticleComponent]
+    declarations: [
+        ArticlesComponent,
+        CategoriesComponent
+    ],
+    imports: []
 })
 export class ArticleModule {
 
