@@ -1,6 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router, RouterEvent } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { SidebarItem } from '@models/sidebar-item.model';
 import { RoutesModule } from '@shared/routes.module';
 import { UserAccountService } from '@services/user-account.service';
@@ -10,14 +8,11 @@ import { UserAccountService } from '@services/user-account.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnDestroy, OnInit {
-  private readonly _onRouteChanged: Subscription;
+export class AppComponent implements OnInit {
   private _sidebarItems: SidebarItem[]
 
   constructor(
-    private readonly _router: Router,
     private readonly _accountService: UserAccountService) {
-    this._onRouteChanged = this._router.events.subscribe((e: RouterEvent) => this.Navigated(e));
   }
 
   get IsLoggedIn(): boolean {
@@ -30,16 +25,5 @@ export class AppComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     this._sidebarItems = RoutesModule.GetSidebarItems();
-  }
-
-  ngOnDestroy(): void {
-    this._onRouteChanged.unsubscribe();
-  }
-
-  private Navigated(data: RouterEvent): void {
-    if (!data.url)
-      return;
-
-    //console.log(data.url);
   }
 }

@@ -5,13 +5,15 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { AccountComponent } from './account/account.component';
 import { UserAccountComponent } from './user-account.component';
 import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from '@app/header/header.component';
 
 @NgModule({
     declarations: [
         AccountsComponent,
         AccountComponent,
         UserAccountComponent,
-        LoginComponent
+        LoginComponent,
+        HeaderComponent
     ],
     imports: [
         BrowserModule,

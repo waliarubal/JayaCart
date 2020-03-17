@@ -1,5 +1,5 @@
 import { NgForm } from '@angular/forms';
-import { ViewChild } from '@angular/core';
+import { ViewChild, Input } from '@angular/core';
 import { KeyValue } from '@angular/common';
 
 export abstract class BaseComponent {

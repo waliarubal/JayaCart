@@ -14,34 +14,34 @@ const APP_ROUTES: Routes = [
         path: 'Dashboard',
         component: DashboardComponent,
         canActivate: [AuthGuardService],
-        data: { "Label": "Dashboard", "IconClass": "fas fa-chart-line" }
+        data: { Label: "Dashboard", IconClass: "fas fa-chart-line" }
     },
     {
         path: 'Articles',
-        data: { 'Label': 'Articles', 'IconClass': 'fas fa-boxes' },
+        data: { Label: 'Articles', IconClass: 'fas fa-boxes' },
         canActivate: [AuthGuardService],
         children: [
             {
                 path: '',
                 component: ArticleComponent,
-                data: { "Label": "Manage Articles", "IconClass": "fas fa-box" }
+                data: { Label: "Manage Articles", IconClass: "fas fa-box" }
             },
         ]
     },
     {
         path: 'UserAccounts',
-        data: { "Label": "User Accounts", "IconClass": "fas fa-users" },
+        data: { Label: "User Accounts", IconClass: "fas fa-users" },
         canActivate: [AuthGuardService],
         children: [
             {
                 path: '',
                 component: UserAccountComponent,
-                data: { "Label": "Manage Users", "IconClass": "fas fa-user-friends", "Header": "Manage User Accounts" }
+                data: { Label: "Manage Users", IconClass: "fas fa-user-friends", Header: "Manage User Accounts" }
             },
             {
                 path: 'New',
                 component: AccountComponent,
-                data: { "Label": "New User", "IconClass": "fas fa-user-plus", 'Header': 'Create New User Account' }
+                data: { Label: "New User", IconClass: "fas fa-user-plus", Header: 'Create New User Account' }
             }
         ]
     },

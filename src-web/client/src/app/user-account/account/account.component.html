@@ -1,8 +1,5 @@
-<div class="row no-gutters p-2 bg-dark">
-  <h4 class="col text-light text-uppercase">
-    <strong>Create New User Account</strong>
-  </h4>
-</div>
+<app-header [Title]="'Create New User Account'">
+</app-header>
 <form class="p-2" #form="ngForm" (ngSubmit)="Save();">
   <div class="form-group">
     <label>Phone Number</label>

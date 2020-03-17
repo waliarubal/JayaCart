@@ -1,21 +1,5 @@
-<div class="row no-gutters p-2 bg-dark">
-  <h4 class="col-4 text-light text-uppercase">
-    <strong>Manage User Accounts</strong>
-  </h4>
-  <form class="col-8" #form="ngForm" (ngSubmit)="Search();">
-    <div class="input-group">
-      <input type="search" class="form-control" placeholder="Which user are you looking for?" [(ngModel)]="Keywoards"
-        name="Keywoards">
-      <div class="input-group-append">
-        <button type="submit" class="btn btn-primary" [disabled]="IsBusy">
-          <i class="fas fa-search" *ngIf="!IsBusy"></i>
-          <div class="spinner-border spinner-border-sm" role="status" *ngIf="IsBusy"></div>
-          <span class="ml-2">Search</span>
-        </button>
-      </div>
-    </div>
-  </form>
-</div>
+<app-header [IsBusy]="IsBusy" [IsSearchAllowed]='true' [Title]="'Manage User Accounts'" (OnSearch)="Search($event);">
+</app-header>
 <div class="row no-gutters">
   <div class="col">
     <table class="table table-sm table-hover">

@@ -21,7 +21,7 @@ export class AccountsComponent extends BaseComponent {
 
     Keywoards: string;
 
-    async Search() {
+    async Search(keywoards: string) {
         this.IsBusy = true;
 
         this._accounts = await this._accountService.GetAllUsers();
