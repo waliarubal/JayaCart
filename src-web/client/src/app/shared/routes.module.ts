@@ -9,6 +9,7 @@ import { AuthGuardService } from '@services/auth-guard.service';
 import { LoginComponent } from '@app/user-account/login/login.component';
 import { ArticlesComponent } from '@app/article/articles/articles.component';
 import { CategoriesComponent } from '@app/article/categories/categories.component';
+import { CategoryComponent } from '@app/article/category/category.component';
 
 const APP_ROUTES: Routes = [
     {
@@ -32,6 +33,11 @@ const APP_ROUTES: Routes = [
                 data: { Label: "Manage Categories", IconClass: "fas fa-tags" },
                 component: CategoriesComponent
             },
+            {
+                path: 'Categories/New',
+                data: { Label: "New Category", IconClass: "fas fa-tag" },
+                component: CategoryComponent
+            }
         ]
     },
     {

@@ -11,7 +11,7 @@ const HTTP_OPTIONS = {
 export abstract class BaseService {
     private readonly COLLECTION_NAME: string;
 
-    constructor(private readonly _http: HttpClient, collectionName: string) {
+    protected constructor(private readonly _http: HttpClient, collectionName: string) {
         this.COLLECTION_NAME = collectionName;
     }
 
