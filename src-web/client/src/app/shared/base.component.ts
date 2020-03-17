@@ -10,7 +10,7 @@ export abstract class BaseComponent {
     @ViewChild('form', { static: false })
     private _form: NgForm;
 
-    constructor() {
+    protected constructor() {
         this._validationMessages = new Map();
     }
 

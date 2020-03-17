@@ -19,8 +19,6 @@ export class AccountsComponent extends BaseComponent {
         return this._accounts;
     }
 
-    Keywoards: string;
-
     async Search(keywoards: string) {
         this.IsBusy = true;
 

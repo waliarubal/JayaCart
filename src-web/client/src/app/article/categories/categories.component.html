@@ -1,1 +1,29 @@
 <app-header [IsBusy]="IsBusy" [IsSearchAllowed]='true' [Title]="'Manage Categories'" (OnSearch)="Search($event);">
+</app-header>
+<div class="row no-gutters">
+  <div class="col">
+    <table class="table table-sm table-hover">
+      <thead class="thead-light">
+        <th scope="col">Code</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">&nbsp;</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of Categories; let i = index;">
+          <td>{{category.Code}}</td>
+          <td>{{category.Name}}</td>
+          <td>{{category.Description}}</td>
+          <td>
+            <button type="button" class="btn btn-sm btn-outline-success mr-1 border-0" [disabled]="IsBusy">
+              <i class="fas fa-pen"></i>
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-danger mr-3 border-0" [disabled]="IsBusy">
+              <i class="fas fa-times"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
