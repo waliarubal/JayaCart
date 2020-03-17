@@ -1,15 +1,19 @@
 {
   "functions": {
     "predeploy": [
-      "cd \"$PROJECT_DIR/client\" &&  npm install && npm run prod-build && cd ..",
       "cd \"$PROJECT_DIR/functions\" && npm install && npm run build && cd .."
     ],
     "postdeploy": [
-      "rmdir /S /Q \"$PROJECT_DIR/client/dist\"",
       "rmdir /S /Q \"$PROJECT_DIR/functions/dist\""
     ]
   },
   "hosting": {
+    "predeploy": [
+      "cd \"$PROJECT_DIR/client\" &&  npm install && npm run prod-build && cd .."
+    ],
+    "postdeploy": [
+      "rmdir /S /Q \"$PROJECT_DIR/client/dist\""
+    ],
     "public": "./client/dist",
     "ignore": [
       "firebase.json",
