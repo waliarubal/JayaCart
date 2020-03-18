@@ -16,5 +16,6 @@ export class HeaderComponent {
     @Input() Title: string;
     @Input() SearchBoxPlaceholder: string;
     @Input() IsSearchAllowed: boolean;
+    @Input() NewRecordRouterLink: string;
     Keywoards: string;
 }

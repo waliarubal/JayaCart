@@ -1,4 +1,5 @@
-<app-header [IsBusy]="IsBusy" [IsSearchAllowed]='true' [Title]="'Manage User Accounts'" (OnSearch)="Search($event);">
+<app-header [IsBusy]="IsBusy" [IsSearchAllowed]='true' [Title]="'Manage User Accounts'" (OnSearch)="Search($event);"
+  [NewRecordRouterLink]="'/UserAccounts/New'">
 </app-header>
 <div class="row no-gutters">
   <div class="col">
