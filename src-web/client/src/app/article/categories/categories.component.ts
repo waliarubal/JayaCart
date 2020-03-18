@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BaseComponent } from '@shared/base.component';
 import { Category } from '@models/category.model';
 import { CategoryService } from '@services/category.service';
+import { MessageService } from '@services/message.service';
 
 @Component({
     selector: 'app-categories',
@@ -11,8 +12,8 @@ import { CategoryService } from '@services/category.service';
 export class CategoriesComponent extends BaseComponent {
     private _categories: Category[];
 
-    constructor(private readonly _categoryService: CategoryService) {
-        super();
+    constructor(private readonly _categoryService: CategoryService, messageService: MessageService) {
+        super(messageService);
         this._categories = [];
     }
 

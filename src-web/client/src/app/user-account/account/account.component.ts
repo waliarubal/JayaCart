@@ -4,6 +4,7 @@ import { UserAccount } from '@models/user-account.model';
 import { UserAccountService } from '@services/user-account.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MessageService } from '@services/message.service';
 
 @Component({
     selector: 'app-account',
@@ -16,8 +17,9 @@ export class AccountComponent extends BaseComponent implements OnInit, OnDestroy
 
     constructor(
         private readonly _accountService: UserAccountService,
-        private readonly _route: ActivatedRoute) {
-        super();
+        private readonly _route: ActivatedRoute,
+        messageService: MessageService) {
+        super(messageService);
         this.Account = new UserAccount();
 
         this.SetValidationMessage('PhoneNumber',

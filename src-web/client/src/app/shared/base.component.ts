@@ -1,7 +1,7 @@
 import { NgForm } from '@angular/forms';
-import { ViewChild, Input } from '@angular/core';
+import { ViewChild } from '@angular/core';
 import { KeyValue } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { MessageService } from '@services/message.service';
 
 export abstract class BaseComponent {
     private readonly _validationMessages: Map<string, Map<string, string>>;
@@ -11,7 +11,7 @@ export abstract class BaseComponent {
     @ViewChild('form', { static: false })
     private _form: NgForm;
 
-    protected constructor() {
+    protected constructor(private readonly _messageService: MessageService) {
         this._validationMessages = new Map();
     }
 
@@ -111,6 +111,7 @@ export abstract class BaseComponent {
             if (control.untouched) {
                 let errorMessages = this._validationMessages.get(controlName);
                 this._validationError = errorMessages.values().next().value;
+                this._messageService.Show(this._validationError, 'bg-danger text-light');
                 this.Focus(controlName);
                 return false;
             }
@@ -121,6 +122,7 @@ export abstract class BaseComponent {
                 for (let errorKey in control.errors) {
                     if (errorMessages.has(errorKey)) {
                         this._validationError = errorMessages.get(errorKey);
+                        this._messageService.Show(this._validationError, 'bg-danger text-light');
                         this.Focus(controlName);
                         return false;
                     }

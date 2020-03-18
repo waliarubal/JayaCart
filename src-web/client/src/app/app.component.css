@@ -1,62 +1,79 @@
 .sidebar {
-    height: 100%;
-    width: 260px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    overflow-x: hidden;
+  height: 100%;
+  width: 260px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
 
-    -webkit-user-select: none;  /* Chrome all / Safari all */
-    -moz-user-select: none;     /* Firefox all */
-    -ms-user-select: none;      /* IE 10+ */
-    user-select: none;          /* Likely future */  
-  }
+  /* Chrome all / Safari all */
+  -webkit-user-select: none;
 
-  .sidebar > a, .sidebar > div > div[class~="mx-1"] {
-    text-decoration: none;
-    color: #f8f9fa;
-    padding-left: 8px;
-  }
+  /* Firefox all */
+  -moz-user-select: none;
 
-  .sidebar > div[class~="bg-secondary"] a {
-    text-decoration: none;
-    color: #f8f9fa;
-    padding-left: 32px;
-  }
-  
-  .sidebar a:hover, .sidebar > div:hover {
-    color: #17a2b8;
-    cursor: pointer;
-  }
+  /* IE 10+ */
+  -ms-user-select: none;
 
-  .sidebar > a.active {
-    background-color: #17a2b8;
-    text-transform: uppercase;
-    border-left-color: #f8f9fa;
-    border-left-width: 5px;
-    border-left-style: solid;
-    padding-left: 3px;
-  }
+  /* Likely future */
+  user-select: none;
+}
 
-  .sidebar > div[class~="bg-secondary"] > div > a.active {
-    background-color: #17a2b8;
-    text-transform: uppercase;
-    border-left-color: #f8f9fa;
-    border-left-width: 5px;
-    border-left-style: solid;
-    padding-left: 27px;
-  }
+.sidebar>a,
+.sidebar>div>div[class~="mx-1"] {
+  text-decoration: none;
+  color: #f8f9fa;
+  padding-left: 8px;
+}
 
-  .active:hover {
-    color: #343a40 !important;
-  }
+.sidebar>div[class~="bg-secondary"] a {
+  text-decoration: none;
+  color: #f8f9fa;
+  padding-left: 32px;
+}
 
-  .content {
-    margin-left: 260px;
-    min-height: 100vh;
-  }
+.sidebar a:hover,
+.sidebar>div:hover {
+  color: #17a2b8;
+  cursor: pointer;
+}
 
-  .not-logged-in {
-    margin-left: 0px !important;
-  }
+.sidebar>a.active {
+  background-color: #17a2b8;
+  text-transform: uppercase;
+  border-left-color: #f8f9fa;
+  border-left-width: 5px;
+  border-left-style: solid;
+  padding-left: 3px;
+}
+
+.sidebar>div[class~="bg-secondary"]>div>a.active {
+  background-color: #17a2b8;
+  text-transform: uppercase;
+  border-left-color: #f8f9fa;
+  border-left-width: 5px;
+  border-left-style: solid;
+  padding-left: 27px;
+}
+
+.active:hover {
+  color: #343a40 !important;
+}
+
+.content {
+  margin-left: 260px;
+  min-height: 100vh;
+}
+
+.not-logged-in {
+  margin-left: 0px !important;
+}
+
+ngb-toast {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 0.5em;
+  z-index: 1200;
+}

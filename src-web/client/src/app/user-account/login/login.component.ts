@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BaseComponent } from '@shared/base.component';
 import { UserAccountService } from '@services/user-account.service';
 import { Router } from '@angular/router';
+import { MessageService } from '@services/message.service';
 
 @Component({
     selector: 'app-login',
@@ -13,8 +14,9 @@ export class LoginComponent extends BaseComponent {
 
     constructor(
         private readonly _accountService: UserAccountService,
-        private readonly _router: Router) {
-        super();
+        private readonly _router: Router, 
+        messageService: MessageService) {
+        super(messageService);
 
         this.SetValidationMessage('PhoneNumber',
             { key: 'required', value: 'Mobile phone number not entered.' },

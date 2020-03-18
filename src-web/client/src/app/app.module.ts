@@ -12,6 +12,7 @@ import { RoutesModule } from './shared/routes.module';
 import { UserAccountModule } from './user-account/user-account.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ArticleModule } from './article/article.module';
+import { MessageService } from '@services/message.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ArticleModule } from './article/article.module';
   ],
   providers: [
     UserAccountService,
-    AuthGuardService
+    AuthGuardService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })
