@@ -13,12 +13,12 @@ export class MessageService {
         return this._class;
     }
 
-    Show(message: string, cssClass: string) {
+    Toast(message: string, cssClass: string) {
         this._message = message;
         this._class = cssClass;
     }
 
-    Hide(): void {
+    HideToast(): void {
         this._message = undefined;
         this._class = undefined;
     }

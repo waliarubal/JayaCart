@@ -3,6 +3,8 @@ import { ViewChild } from '@angular/core';
 import { KeyValue } from '@angular/common';
 import { MessageService } from '@services/message.service';
 
+const ERROR_CSS = 'border border-danger rounded p-2 text-danger font-weight-bold';
+
 export abstract class BaseComponent {
     private readonly _validationMessages: Map<string, Map<string, string>>;
     private _validationError: string;
@@ -99,6 +101,8 @@ export abstract class BaseComponent {
         if (!form)
             return true;
 
+        form.form.markAllAsTouched();
+
         let controlNames = Object.keys(form.form.controls);
         for (let controlName of controlNames) {
             if (skipControls.indexOf(controlName) > -1 || !this._validationMessages.has(controlName))
@@ -108,21 +112,13 @@ export abstract class BaseComponent {
             if (!control)
                 continue;
 
-            if (control.untouched) {
-                let errorMessages = this._validationMessages.get(controlName);
-                this._validationError = errorMessages.values().next().value;
-                this._messageService.Show(this._validationError, 'bg-danger text-light');
-                this.Focus(controlName);
-                return false;
-            }
-
             if (!control.valid && (control.dirty || control.touched)) {
                 let errorMessages = this._validationMessages.get(controlName);
 
                 for (let errorKey in control.errors) {
                     if (errorMessages.has(errorKey)) {
                         this._validationError = errorMessages.get(errorKey);
-                        this._messageService.Show(this._validationError, 'bg-danger text-light');
+                        this._messageService.Toast(this._validationError, ERROR_CSS);
                         this.Focus(controlName);
                         return false;
                     }

@@ -84,6 +84,6 @@
   <router-outlet></router-outlet>
 </div>
 
-<ngb-toast [class]="MessageService.CssClass" [autohide]="true" [delay]="5000" (hide)="MessageService.Hide()" *ngIf="MessageService.Message">
+<ngb-toast [class]="MessageService.CssClass" [autohide]="true" [delay]="5000" (hide)="MessageService.HideToast()" *ngIf="MessageService.Message">
   {{MessageService.Message}}
 </ngb-toast>
