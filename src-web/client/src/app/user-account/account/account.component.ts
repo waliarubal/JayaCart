@@ -1,16 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BaseComponent } from '@shared/base.component';
 import { UserAccount } from '@models/user-account.model';
 import { UserAccountService } from '@services/user-account.service';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-account',
     templateUrl: './account.component.html'
 })
-export class AccountComponent extends BaseComponent {
+export class AccountComponent extends BaseComponent implements OnInit, OnDestroy {
+    private _isEdit: boolean;
+    private _subscription: Subscription;
     Account: UserAccount;
 
-    constructor(private readonly _accountService: UserAccountService) {
+    constructor(
+        private readonly _accountService: UserAccountService,
+        private readonly _route: ActivatedRoute) {
         super();
         this.Account = new UserAccount();
 
@@ -23,21 +29,53 @@ export class AccountComponent extends BaseComponent {
         this.SetValidationMessage('City', { key: 'required', value: 'City not selected.' });
     }
 
+    get IsEdit(): boolean {
+        return this._isEdit;
+    }
+
+    ngOnInit(): void {
+        this._subscription = this._route.params.subscribe(async param => {
+            this._isEdit = true;
+            let phoneNumber = param['PhoneNumber'];
+            this.Account = await this._accountService.GetUser(phoneNumber);
+        });
+    }
+
+    ngOnDestroy(): void {
+        this._subscription.unsubscribe();
+    }
+
     async Save() {
-        if (!this.Validate())
-            return;
+        if (this.IsEdit) {
+            if (!this.Validate(undefined, 'PhoneNumber'))
+                return;
 
-        this.IsBusy = true;
+            this.IsBusy = true;
 
-        let account = await this._accountService.CreateUser(this.Account);
-        if (account)
-            this.Account = new UserAccount();
+            let account = await this._accountService.Update(this.Account);
+            if (account)
+                this.Account = new UserAccount();
 
-        this.IsBusy = false;
+            this.IsBusy = false;
+
+        } else {
+            if (!this.Validate())
+                return;
+
+            this.IsBusy = true;
+
+            let account = await this._accountService.CreateUser(this.Account);
+            if (account)
+                this.Account = new UserAccount();
+
+            this.IsBusy = false;
+        }
     }
 
     Clear(): void {
-        super.Clear();
-        super.Focus('PhoneNumber');
+        if (this.IsEdit)
+            super.Clear(undefined, { PhoneNumber: this.Account.PhoneNumber }, 'FirstName');
+        else
+            super.Clear(undefined, undefined, 'PhoneNumber');
     }
 }

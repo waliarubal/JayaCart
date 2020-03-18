@@ -30,6 +30,21 @@ export abstract class BaseService {
         });
     }
 
+    protected Get<T>(url: string): Promise<T> {
+        return new Promise<T>((resolve, reject) => {
+            this._http.get<ApiResponse>(`${API_URL}${this.COLLECTION_NAME}/${url}`).subscribe(
+                success => {
+                    if (success.IsHavingError)
+                        reject(success.Error);
+                    else {
+                        let record = ApiResponse.GetResponse<T>(success);
+                        resolve(record);
+                    }
+                },
+                error => reject(error));
+        });
+    }
+
     protected Post<T>(record: any, url?: string): Promise<T> {
         let endPoint = `${API_URL}${this.COLLECTION_NAME}`;
         if (url)
@@ -37,6 +52,26 @@ export abstract class BaseService {
 
         return new Promise<T>((resolve, reject) => {
             this._http.post<ApiResponse>(endPoint, record, HTTP_OPTIONS).subscribe(
+                success => {
+                    if (success.IsHavingError)
+                        reject(success.Error);
+                    else {
+                        let record = ApiResponse.GetResponse<T>(success);
+                        resolve(record);
+                    }
+                },
+                error => reject(error)
+            )
+        });
+    }
+
+    protected Patch<T>(record: any, url?: string): Promise<T> {
+        let endPoint = `${API_URL}${this.COLLECTION_NAME}`;
+        if (url)
+            endPoint += `/${url}`;
+
+        return new Promise<T>((resolve, reject) => {
+            this._http.patch<ApiResponse>(endPoint, record, HTTP_OPTIONS).subscribe(
                 success => {
                     if (success.IsHavingError)
                         reject(success.Error);

@@ -5,6 +5,7 @@ import { HeaderModule } from '@app/header/header.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { CategoryComponent } from './category/category.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -15,6 +16,7 @@ import { CategoryComponent } from './category/category.component';
     imports: [
         BrowserModule,
         FormsModule,
+        RouterModule,
         HeaderModule
     ]
 })

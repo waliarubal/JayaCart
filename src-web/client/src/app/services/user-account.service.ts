@@ -34,12 +34,20 @@ export class UserAccountService extends BaseService {
         return md5.toString();
     }
 
+    GetUser(phoneNumber: string): Promise<UserAccount> {
+        return this.Get<UserAccount>(phoneNumber);
+    }
+
     GetAllUsers(): Promise<UserAccount[]> {
         return this.GetAll();
     }
 
     CreateUser(account: UserAccount): Promise<UserAccount> {
         return this.Post(account);
+    }
+
+    Update(account: UserAccount) : Promise<UserAccount> {
+        return this.Patch(account, account.PhoneNumber);
     }
 
     async LogIn(phoneNumber: string, password: string): Promise<boolean> {

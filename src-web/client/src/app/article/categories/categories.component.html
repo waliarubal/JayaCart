@@ -8,7 +8,7 @@
         <th scope="col">Code</th>
         <th scope="col">Name</th>
         <th scope="col">Description</th>
-        <th scope="col">&nbsp;</th>
+        <th scope="col">Actions</th>
       </thead>
       <tbody>
         <tr *ngFor="let category of Categories; let i = index;">
@@ -16,7 +16,8 @@
           <td>{{category.Name}}</td>
           <td>{{category.Description}}</td>
           <td>
-            <button type="button" class="btn btn-sm btn-outline-success mr-1 border-0" [disabled]="IsBusy">
+            <button type="button" class="btn btn-sm btn-outline-success mr-1 border-0" [disabled]="IsBusy"
+              [routerLink]="['/Articles/Categories', category.Code]">
               <i class="fas fa-pen"></i>
             </button>
             <button type="button" class="btn btn-sm btn-outline-danger mr-3 border-0" [disabled]="IsBusy">

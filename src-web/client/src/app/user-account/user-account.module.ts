@@ -5,6 +5,7 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { AccountComponent } from './account/account.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderModule } from '@app/header/header.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import { HeaderModule } from '@app/header/header.module';
     imports: [
         BrowserModule,
         FormsModule,
-        HeaderModule
+        HeaderModule,
+        RouterModule
     ]
 })
 export class UserAccountModule { }

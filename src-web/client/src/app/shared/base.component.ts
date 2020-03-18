@@ -1,6 +1,7 @@
 import { NgForm } from '@angular/forms';
 import { ViewChild, Input } from '@angular/core';
 import { KeyValue } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 export abstract class BaseComponent {
     private readonly _validationMessages: Map<string, Map<string, string>>;
@@ -57,13 +58,19 @@ export abstract class BaseComponent {
             form.form.disable();
     }
 
-    protected Clear(form?: NgForm): void {
+    protected Clear(form?: NgForm, value?: any, focusOnControl?: string): void {
         if (!form)
             form = this.Form;
         if (!form)
             return;
 
-        form.form.reset();
+        if (value)
+            form.form.reset(value);
+        else
+            form.form.reset();
+
+        if (focusOnControl)
+            this.Focus(focusOnControl);
     }
 
     protected SetValidationMessage(controlName: string, ...messages: KeyValue<string, string>[]): void {
@@ -83,7 +90,7 @@ export abstract class BaseComponent {
             controls[0].focus();
     }
 
-    protected Validate(form?: NgForm): boolean {
+    protected Validate(form?: NgForm, ...skipControls: string[]): boolean {
         if (!this._validationMessages || this._validationMessages.size === 0)
             return true;
 
@@ -94,7 +101,7 @@ export abstract class BaseComponent {
 
         let controlNames = Object.keys(form.form.controls);
         for (let controlName of controlNames) {
-            if (!this._validationMessages.has(controlName))
+            if (skipControls.indexOf(controlName) > -1 || !this._validationMessages.has(controlName))
                 continue;
 
             let control = form.form.get(controlName);
