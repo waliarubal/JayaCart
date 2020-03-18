@@ -33,11 +33,8 @@ const APP_ROUTES: Routes = [
                 data: { Label: "Manage Categories", IconClass: "fas fa-tags" },
                 component: CategoriesComponent
             },
-            {
-                path: 'Categories/New',
-                data: { Label: "New Category", IconClass: "fas fa-tag" },
-                component: CategoryComponent
-            }
+            { path: 'Categories/New', component: CategoryComponent },
+            { path: 'Categories/:Code', component: CategoryComponent }
         ]
     },
     {
@@ -50,11 +47,8 @@ const APP_ROUTES: Routes = [
                 data: { Label: "Manage Users", IconClass: "fas fa-user-friends" },
                 component: AccountsComponent
             },
-            {
-                path: 'New',
-                data: { Label: "New User", IconClass: "fas fa-user-plus" },
-                component: AccountComponent
-            }
+            { path: 'New', component: AccountComponent },
+            { path: ':PhoneNumber', component: AccountComponent }
         ]
     },
     { path: 'Login', component: LoginComponent },
