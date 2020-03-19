@@ -41,7 +41,9 @@
     [autohide]="true" [delay]="5000" (hide)="MessageService.Hide()">
     <div class="row no-gutters">
       <div class="col-auto">
-        <h4 class="fas fa-exclamation-circle"></h4>
+        <h4
+          [ngClass]="{'fas fa-times' : MessageService.Type === MessageType.Error, 'fas fa-check': MessageService.Type === MessageType.Info, 'fas fa-exclamation': MessageService.Type === MessageType.Warning}">
+        </h4>
       </div>
       <div class="col">
         <span class="ml-2 align-middle">{{MessageService.Message}}</span>
