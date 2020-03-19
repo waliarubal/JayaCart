@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SidebarItem } from '@models/sidebar-item.model';
 import { RoutesModule } from '@shared/routes.module';
 import { UserAccountService } from '@services/user-account.service';
-import { MessageService } from '@services/message.service';
+import { MessageService, MessageType } from '@services/message.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,8 @@ import { MessageService } from '@services/message.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  readonly MessageType = MessageType;
+  
   private _sidebarItems: SidebarItem[]
 
   constructor(

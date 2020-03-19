@@ -14,9 +14,9 @@ export class LoginComponent extends BaseComponent {
 
     constructor(
         private readonly _accountService: UserAccountService,
-        private readonly _router: Router, 
-        messageService: MessageService) {
-        super(messageService);
+        messageService: MessageService, 
+        router: Router) {
+        super(messageService, router);
 
         this.SetValidationMessage('PhoneNumber',
             { key: 'required', value: 'Mobile phone number not entered.' },
@@ -38,6 +38,6 @@ export class LoginComponent extends BaseComponent {
 
         let result = await this._accountService.LogIn(this.PhoneNumber, this.Password);
         if (result)
-            this._router.navigate(['Dashboard']);
+            this.Navigate('Dashboard');
     }
 }

@@ -3,6 +3,7 @@ import { UserAccount } from '@models/user-account.model';
 import { BaseComponent } from '@shared/base.component';
 import { UserAccountService } from '@services/user-account.service';
 import { MessageService } from '@services/message.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-accounts',
@@ -11,8 +12,8 @@ import { MessageService } from '@services/message.service';
 export class AccountsComponent extends BaseComponent {
     private _accounts: UserAccount[];
 
-    constructor(private readonly _accountService: UserAccountService, messageService: MessageService) {
-        super(messageService)
+    constructor(private readonly _accountService: UserAccountService, messageService: MessageService, router: Router) {
+        super(messageService, router)
         this._accounts = [];
     }
 

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BaseComponent } from '@shared/base.component';
 import { UserAccount } from '@models/user-account.model';
 import { UserAccountService } from '@services/user-account.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MessageService } from '@services/message.service';
 
@@ -18,8 +18,9 @@ export class AccountComponent extends BaseComponent implements OnInit, OnDestroy
     constructor(
         private readonly _accountService: UserAccountService,
         private readonly _route: ActivatedRoute,
-        messageService: MessageService) {
-        super(messageService);
+        messageService: MessageService,
+        router: Router) {
+        super(messageService, router);
         this.Account = new UserAccount();
 
         this.SetValidationMessage('PhoneNumber',
@@ -37,8 +38,11 @@ export class AccountComponent extends BaseComponent implements OnInit, OnDestroy
 
     ngOnInit(): void {
         this._subscription = this._route.params.subscribe(async param => {
-            this._isEdit = true;
             let phoneNumber = param['PhoneNumber'];
+            if (!phoneNumber)
+                return;
+
+            this._isEdit = true;
             this.Account = await this._accountService.GetUser(phoneNumber);
         });
     }
@@ -48,30 +52,18 @@ export class AccountComponent extends BaseComponent implements OnInit, OnDestroy
     }
 
     async Save() {
-        if (this.IsEdit) {
-            if (!this.Validate(undefined, 'PhoneNumber'))
-                return;
+        if (!this.Validate())
+            return;
 
-            this.IsBusy = true;
+        this.IsBusy = true;
 
-            let account = await this._accountService.Update(this.Account);
-            if (account)
-                this.Account = new UserAccount();
+        let account = this.IsEdit ?
+            await this._accountService.Update(this.Account) :
+            await this._accountService.CreateUser(this.Account);
+        if (account && !this.IsEdit)
+            this.Account = new UserAccount();
 
-            this.IsBusy = false;
-
-        } else {
-            if (!this.Validate())
-                return;
-
-            this.IsBusy = true;
-
-            let account = await this._accountService.CreateUser(this.Account);
-            if (account)
-                this.Account = new UserAccount();
-
-            this.IsBusy = false;
-        }
+        this.IsBusy = false;
     }
 
     Clear(): void {

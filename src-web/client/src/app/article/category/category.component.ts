@@ -3,6 +3,7 @@ import { BaseComponent } from '@shared/base.component';
 import { CategoryService } from '@services/category.service';
 import { Category } from '@models/category.model';
 import { MessageService } from '@services/message.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-category',
@@ -12,8 +13,8 @@ import { MessageService } from '@services/message.service';
 export class CategoryComponent extends BaseComponent {
     Category: Category;
 
-    constructor(private readonly _categoryService: CategoryService, messageService: MessageService) {
-        super(messageService);
+    constructor(private readonly _categoryService: CategoryService, messageService: MessageService, router: Router) {
+        super(messageService, router);
         this.Category = new Category();
 
         this.SetValidationMessage('Code',

@@ -1,25 +1,31 @@
 import { Injectable } from '@angular/core';
 
+export enum MessageType {
+    Info,
+    Warning,
+    Error
+}
+
 @Injectable()
 export class MessageService {
-    private _message: string;
-    private _class: string;
+    private _toastMessage: string;
+    private _messageType: MessageType;
 
     get Message(): string {
-        return this._message;
+        return this._toastMessage;
     }
 
-    get CssClass(): string {
-        return this._class;
+    get Type(): MessageType {
+        return this._messageType;
     }
 
-    Toast(message: string, cssClass: string) {
-        this._message = message;
-        this._class = cssClass;
+    Toast(message: string, type: MessageType) {
+        this._toastMessage = message;
+        this._messageType = type;
     }
 
-    HideToast(): void {
-        this._message = undefined;
-        this._class = undefined;
+    Hide(): void {
+        this._toastMessage = undefined;
+        this._messageType = undefined;
     }
 }

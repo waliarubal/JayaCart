@@ -52,8 +52,8 @@
   </div>
   <button type="submit" class="btn btn-success" [disabled]="IsBusy">
     <div class="spinner-border spinner-border-sm" role="status" *ngIf="IsBusy"></div>
-    <i class="fas fa-user-plus" *ngIf="!IsBusy"></i>
-    <span class="ml-2">Create User</span>
+    <i [ngClass]="IsEdit ? 'fas fa-save' : 'fas fa-plus'" class="" *ngIf="!IsBusy"></i>
+    <span class="ml-2">{{IsEdit ? 'Save Changes' : 'Create New'}}</span>
   </button>
   <button type="button" class="btn btn-secondary ml-2" (click)="Clear();" [disabled]="IsBusy">
     <i class="fas fa-trash-alt"></i>

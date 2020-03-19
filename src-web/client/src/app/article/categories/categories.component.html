@@ -17,7 +17,7 @@
           <td>{{category.Description}}</td>
           <td>
             <button type="button" class="btn btn-sm btn-outline-success mr-1 border-0" [disabled]="IsBusy"
-              [routerLink]="['/Articles/Categories', category.Code]">
+              [routerLink]="['/Articles/Categories/Edit', category.Code]">
               <i class="fas fa-pen"></i>
             </button>
             <button type="button" class="btn btn-sm btn-outline-danger mr-3 border-0" [disabled]="IsBusy">

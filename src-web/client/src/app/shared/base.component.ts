@@ -1,7 +1,8 @@
 import { NgForm } from '@angular/forms';
 import { ViewChild } from '@angular/core';
 import { KeyValue } from '@angular/common';
-import { MessageService } from '@services/message.service';
+import { MessageService, MessageType } from '@services/message.service';
+import { Router } from '@angular/router';
 
 const ERROR_CSS = 'border border-danger rounded p-2 text-danger font-weight-bold';
 
@@ -13,7 +14,9 @@ export abstract class BaseComponent {
     @ViewChild('form', { static: false })
     private _form: NgForm;
 
-    protected constructor(private readonly _messageService: MessageService) {
+    protected constructor(
+        private readonly _messageService: MessageService,
+        private readonly _router: Router) {
         this._validationMessages = new Map();
     }
 
@@ -38,6 +41,15 @@ export abstract class BaseComponent {
 
     protected get Form(): NgForm {
         return this._form;
+    }
+
+    protected Navigate(url: string, ...data: any[]): Promise<boolean> {
+        let params: any[] = [];
+        params.push(url);
+        for(let d of data)
+            params.push(d);
+
+        return this._router.navigate(params);
     }
 
     protected Enable(form?: NgForm): void {
@@ -118,7 +130,7 @@ export abstract class BaseComponent {
                 for (let errorKey in control.errors) {
                     if (errorMessages.has(errorKey)) {
                         this._validationError = errorMessages.get(errorKey);
-                        this._messageService.Toast(this._validationError, ERROR_CSS);
+                        this._messageService.Toast(this._validationError, MessageType.Error);
                         this.Focus(controlName);
                         return false;
                     }

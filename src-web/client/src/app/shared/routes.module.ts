@@ -34,7 +34,7 @@ const APP_ROUTES: Routes = [
                 component: CategoriesComponent
             },
             { path: 'Categories/New', component: CategoryComponent },
-            { path: 'Categories/:Code', component: CategoryComponent }
+            { path: 'Categories/Edit/:Code', component: CategoryComponent }
         ]
     },
     {
@@ -48,7 +48,7 @@ const APP_ROUTES: Routes = [
                 component: AccountsComponent
             },
             { path: 'New', component: AccountComponent },
-            { path: ':PhoneNumber', component: AccountComponent }
+            { path: 'Edit/:PhoneNumber', component: AccountComponent }
         ]
     },
     { path: 'Login', component: LoginComponent },

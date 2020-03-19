@@ -1,52 +1,3 @@
-<!-- <div class="sidebar bg-dark">
-  <a routerLink="/Dashboard" routerLinkActive="active" class="row no-gutters">
-    <div class="col mx-1 my-1">
-      <i class="fas fa-chart-line"></i>
-      <span class="ml-2">Dashboard</span>
-    </div>
-  </a>
-  <div class="row no-gutters">
-    <div class="col mx-1 my-1" (click)="IsCollapsed[0] = !IsCollapsed[0];">
-      <i class="fas fa-users"></i>
-      <span class="ml-2">User Accounts</span>
-      <i class="fas fa-chevron-right float-right mt-1"></i>
-    </div>
-  </div>
-  <div class="row no-gutters bg-secondary" [ngbCollapse]="IsCollapsed[0]">
-    <div class="col">
-      <a class="row no-gutters" routerLink="/UserAccounts" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <div class="col py-1">
-          <i class="fas fa-user-friends"></i>
-          <span class="ml-2">Manage Users</span>
-        </div>
-      </a>
-      <a class="row no-gutters" routerLink="/UserAccounts/New" routerLinkActive="active">
-        <div class="col py-1">
-          <i class="fas fa-user-plus"></i>
-          <span class="ml-2">New User</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <a class="row no-gutters">
-    <div class="col mx-1 my-1">
-      <i class="fas fa-archive"></i>
-      <span class="ml-2">Articles</span>
-    </div>
-  </a>
-  <a class="row no-gutters">
-    <div class="col mx-1 my-1">
-      <i class="fas fa-cubes"></i>
-      <span class="ml-2">Stock</span>
-    </div>
-  </a>
-  <a class="row no-gutters">
-    <div class="col mx-1 my-1">
-      <i class="fas fa-shopping-bag"></i>
-      <span class="ml-2">Orders</span>
-    </div>
-  </a>
-</div> -->
 <div class="sidebar bg-dark" *ngIf="IsLoggedIn">
   <ng-container *ngFor="let sidebarItem of SidebarItems">
     <a class="row no-gutters" routerLinkActive="active" [routerLink]="sidebarItem.RouterLink"
@@ -84,6 +35,17 @@
   <router-outlet></router-outlet>
 </div>
 
-<ngb-toast [class]="MessageService.CssClass" [autohide]="true" [delay]="5000" (hide)="MessageService.HideToast()" *ngIf="MessageService.Message">
-  {{MessageService.Message}}
-</ngb-toast>
+<ng-container *ngIf="MessageService.Message">
+  <ngb-toast class="border rounded bg-light "
+    [ngClass]="{ 'border-danger text-danger' : MessageService.Type === MessageType.Error, 'border-success text-success': MessageService.Type === MessageType.Info, 'border-warning text-warning': MessageService.Type === MessageType.Warning}"
+    [autohide]="true" [delay]="5000" (hide)="MessageService.Hide()">
+    <div class="row no-gutters">
+      <div class="col-auto">
+        <h4 class="fas fa-exclamation-circle"></h4>
+      </div>
+      <div class="col">
+        <span class="ml-2 align-middle">{{MessageService.Message}}</span>
+      </div>
+    </div>
+  </ngb-toast>
+</ng-container>
