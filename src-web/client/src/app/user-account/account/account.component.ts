@@ -4,7 +4,7 @@ import { UserAccount } from '@models/user-account.model';
 import { UserAccountService } from '@services/user-account.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MessageService } from '@services/message.service';
+import { MessageService, MessageType } from '@services/message.service';
 
 @Component({
     selector: 'app-account',
@@ -60,8 +60,12 @@ export class AccountComponent extends BaseComponent implements OnInit, OnDestroy
         let account = this.IsEdit ?
             await this._accountService.Update(this.Account) :
             await this._accountService.CreateUser(this.Account);
-        if (account && !this.IsEdit)
-            this.Account = new UserAccount();
+        if (account) {
+            this.Toast('Record saved successfully.', MessageType.Info);
+            if (!this.IsEdit)
+                this.Account = new UserAccount();
+        }
+
 
         this.IsBusy = false;
     }

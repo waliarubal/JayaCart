@@ -36,17 +36,17 @@
 </div>
 
 <ng-container *ngIf="MessageService.Message">
-  <ngb-toast class="border rounded bg-light "
-    [ngClass]="{ 'border-danger text-danger' : MessageService.Type === MessageType.Error, 'border-success text-success': MessageService.Type === MessageType.Info, 'border-warning text-warning': MessageService.Type === MessageType.Warning}"
+  <ngb-toast class="border rounded"
+    [ngClass]="{ 'border-danger text-danger bg-danger-light' : MessageService.Type === MessageType.Error, 'border-success text-success bg-success-light': MessageService.Type === MessageType.Info, 'border-warning text-warning bg-warning-light': MessageService.Type === MessageType.Warning}"
     [autohide]="true" [delay]="5000" (hide)="MessageService.Hide()">
     <div class="row no-gutters">
       <div class="col-auto">
-        <h4
-          [ngClass]="{'fas fa-times' : MessageService.Type === MessageType.Error, 'fas fa-check': MessageService.Type === MessageType.Info, 'fas fa-exclamation': MessageService.Type === MessageType.Warning}">
-        </h4>
+        <i class="fas"
+          [ngClass]="{'fa-times' : MessageService.Type === MessageType.Error, 'fa-check': MessageService.Type === MessageType.Info, 'fa-exclamation': MessageService.Type === MessageType.Warning}">
+        </i>
       </div>
       <div class="col">
-        <span class="ml-2 align-middle">{{MessageService.Message}}</span>
+        <span class="ml-2">{{MessageService.Message}}</span>
       </div>
     </div>
   </ngb-toast>

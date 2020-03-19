@@ -4,8 +4,6 @@ import { KeyValue } from '@angular/common';
 import { MessageService, MessageType } from '@services/message.service';
 import { Router } from '@angular/router';
 
-const ERROR_CSS = 'border border-danger rounded p-2 text-danger font-weight-bold';
-
 export abstract class BaseComponent {
     private readonly _validationMessages: Map<string, Map<string, string>>;
     private _validationError: string;
@@ -104,6 +102,10 @@ export abstract class BaseComponent {
             controls[0].focus();
     }
 
+    protected Toast(message: string, type: MessageType): void {
+        this._messageService.Toast(message, type);
+    }
+
     protected Validate(form?: NgForm, ...skipControls: string[]): boolean {
         if (!this._validationMessages || this._validationMessages.size === 0)
             return true;
@@ -130,7 +132,7 @@ export abstract class BaseComponent {
                 for (let errorKey in control.errors) {
                     if (errorMessages.has(errorKey)) {
                         this._validationError = errorMessages.get(errorKey);
-                        this._messageService.Toast(this._validationError, MessageType.Error);
+                        this.Toast(this._validationError, MessageType.Error);
                         this.Focus(controlName);
                         return false;
                     }
