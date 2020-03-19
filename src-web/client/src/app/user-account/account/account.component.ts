@@ -66,7 +66,6 @@ export class AccountComponent extends BaseComponent implements OnInit, OnDestroy
                 this.Account = new UserAccount();
         }
 
-
         this.IsBusy = false;
     }
 
