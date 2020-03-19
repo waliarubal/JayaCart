@@ -3,8 +3,9 @@
 <form class="p-2" #form="ngForm" (ngSubmit)="Save();">
   <div class="form-group">
     <label>Phone Number</label>
-    <input type="text" class="form-control" placeholder="Enter mobile phone number" [(ngModel)]="Account.PhoneNumber"
-      name="PhoneNumber" required minlength="10" maxlength="10">
+    <input type="text" placeholder="Enter mobile phone number" [(ngModel)]="Account.PhoneNumber" name="PhoneNumber"
+      required minlength="10" maxlength="10" [readOnly]="IsEdit"
+      [ngClass]="{'form-control-plaintext font-weight-bold' : IsEdit, 'form-control' : !IsEdit}">
   </div>
   <div class="form-row">
     <div class="form-group col">
