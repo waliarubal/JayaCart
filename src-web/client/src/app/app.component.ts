@@ -3,20 +3,24 @@ import { SidebarItem } from '@models/sidebar-item.model';
 import { RoutesModule } from '@shared/routes.module';
 import { UserAccountService } from '@services/user-account.service';
 import { MessageService, MessageType } from '@services/message.service';
+import { BaseComponent } from '@shared/base.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent extends BaseComponent implements OnInit {
   readonly MessageType = MessageType;
-  
+
   private _sidebarItems: SidebarItem[]
 
   constructor(
-    private readonly _messageService: MessageService,
+    messageService: MessageService,
+    router: Router,
     private readonly _accountService: UserAccountService) {
+    super(messageService, router);
   }
 
   get MessageService(): MessageService {
@@ -33,5 +37,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this._sidebarItems = RoutesModule.GetSidebarItems();
+  }
+
+  SignOut(): void {
+    this._accountService.LogOff();
+    this.Navigate('/Login');
   }
 }

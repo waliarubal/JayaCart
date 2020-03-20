@@ -1,27 +1,35 @@
 <div class="sidebar bg-dark" *ngIf="IsLoggedIn">
   <ng-container *ngFor="let sidebarItem of SidebarItems">
-    <a class="row no-gutters" routerLinkActive="active" [routerLink]="sidebarItem.RouterLink"
+    <a class="row no-gutters py-1" routerLinkActive="active" [routerLink]="sidebarItem.RouterLink"
       [routerLinkActiveOptions]="{exact: true}" *ngIf="sidebarItem.Items.length === 0; else nested">
-      <div class="col mx-1 my-1">
+      <div class="col-auto">
         <i class="{{sidebarItem.Icon}}"></i>
+      </div>
+      <div class="col">
         <span class="ml-2">{{sidebarItem.Label}}</span>
       </div>
     </a>
     <ng-template #nested>
-      <div class="row no-gutters">
-        <div class="col mx-1 my-1" (click)="sidebarItem.IsCollapsed = !sidebarItem.IsCollapsed;">
+      <div class="row no-gutters py-1" (click)="sidebarItem.IsCollapsed = !sidebarItem.IsCollapsed;">
+        <div class="col-auto">
           <i class="{{sidebarItem.Icon}}"></i>
+        </div>
+        <div class="col">
           <span class="ml-2">{{sidebarItem.Label}}</span>
-          <i class="fas fa-chevron-right float-right mt-1 mr-1" *ngIf="sidebarItem.IsCollapsed"></i>
-          <i class="fas fa-chevron-down float-right mt-1 mr-1" *ngIf="!sidebarItem.IsCollapsed"></i>
+        </div>
+        <div class="col-auto">
+          <i class="fas fa-chevron-right mr-1" *ngIf="sidebarItem.IsCollapsed"></i>
+          <i class="fas fa-chevron-down mr-1" *ngIf="!sidebarItem.IsCollapsed"></i>
         </div>
       </div>
       <div class="row no-gutters bg-secondary" [ngbCollapse]="sidebarItem.IsCollapsed">
         <div class="col">
-          <a class="row no-gutters" [routerLink]="sidebarSubItem.RouterLink" routerLinkActive="active"
+          <a class="row no-gutters py-1" [routerLink]="sidebarSubItem.RouterLink" routerLinkActive="active"
             [routerLinkActiveOptions]="{exact: true}" *ngFor="let sidebarSubItem of sidebarItem.Items">
-            <div class="col py-1">
+            <div class="col-auto">
               <i class="{{sidebarSubItem.Icon}}"></i>
+            </div>
+            <div class="col">
               <span class="ml-2">{{sidebarSubItem.Label}}</span>
             </div>
           </a>
@@ -29,6 +37,15 @@
       </div>
     </ng-template>
   </ng-container>
+
+  <div class="row no-gutters py-1 border-top border-secondary position-absolute w-100" (click)="SignOut()" style="bottom: 0;">
+    <div class="col-auto">
+      <i class="fas fa-sign-out-alt"></i>
+    </div>
+    <div class="col">
+      <span class="ml-2">Log Off</span>
+    </div>
+  </div>
 </div>
 
 <div class="content" [class.not-logged-in]="!IsLoggedIn">

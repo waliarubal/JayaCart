@@ -13,7 +13,7 @@ export abstract class BaseComponent {
     private _form: NgForm;
 
     protected constructor(
-        private readonly _messageService: MessageService,
+        protected readonly _messageService: MessageService,
         private readonly _router: Router) {
         this._validationMessages = new Map();
     }

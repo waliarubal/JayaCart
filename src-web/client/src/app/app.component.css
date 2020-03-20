@@ -21,7 +21,7 @@
 }
 
 .sidebar>a,
-.sidebar>div>div[class~="mx-1"] {
+.sidebar>div[class~="py-1"] {
   text-decoration: none;
   color: #f8f9fa;
   padding-left: 8px;

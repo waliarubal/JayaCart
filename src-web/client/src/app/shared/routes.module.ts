@@ -48,7 +48,12 @@ const APP_ROUTES: Routes = [
                 component: AccountsComponent
             },
             { path: 'New', component: AccountComponent },
-            { path: 'Edit/:PhoneNumber', component: AccountComponent }
+            { path: 'Edit/:PhoneNumber', component: AccountComponent },
+            {
+                path: 'Profile',
+                data: { Label: 'My Profile', IconClass: 'fas fa-user' },
+                component: AccountComponent
+            }
         ]
     },
     { path: 'Login', component: LoginComponent },

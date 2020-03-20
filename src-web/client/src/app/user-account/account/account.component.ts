@@ -12,6 +12,7 @@ import { MessageService, MessageType } from '@services/message.service';
 })
 export class AccountComponent extends BaseComponent implements OnInit, OnDestroy {
     private _isEdit: boolean;
+    private _isProfile: boolean;
     private _subscription: Subscription;
     Account: UserAccount;
 
@@ -36,12 +37,18 @@ export class AccountComponent extends BaseComponent implements OnInit, OnDestroy
         return this._isEdit;
     }
 
+    get IsProfile(): boolean {
+        return this._isProfile;
+    }
+
     ngOnInit(): void {
         this._subscription = this._route.params.subscribe(async param => {
             let phoneNumber = param['PhoneNumber'];
-            if (!phoneNumber)
-                return;
-
+            if (!phoneNumber) {
+                phoneNumber = this._accountService.Account.PhoneNumber;
+                this._isProfile = true;
+            }
+            
             this._isEdit = true;
             this.Account = await this._accountService.GetUser(phoneNumber);
         });
