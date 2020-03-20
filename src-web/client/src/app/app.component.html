@@ -1,7 +1,13 @@
-<div class="sidebar bg-dark" *ngIf="IsLoggedIn">
+<div class="sidebar bg-dark" *ngIf="IsLoggedIn" [class.collapsed]="IsSidebarCollapsed">
+  <div class="row no-gutters py-1" (click)="IsSidebarCollapsed = !IsSidebarCollapsed">
+    <div class="col">
+      <i class="fas fa-bars"></i>
+    </div>
+  </div>
   <ng-container *ngFor="let sidebarItem of SidebarItems">
     <a class="row no-gutters py-1" routerLinkActive="active" [routerLink]="sidebarItem.RouterLink"
-      [routerLinkActiveOptions]="{exact: true}" *ngIf="sidebarItem.Items.length === 0; else nested">
+      [routerLinkActiveOptions]="{exact: true}" *ngIf="sidebarItem.Items.length === 0; else nested"
+      [class.collapsed]="IsSidebarCollapsed">
       <div class="col-auto">
         <i class="{{sidebarItem.Icon}}"></i>
       </div>
@@ -10,7 +16,8 @@
       </div>
     </a>
     <ng-template #nested>
-      <div class="row no-gutters py-1" (click)="sidebarItem.IsCollapsed = !sidebarItem.IsCollapsed;">
+      <div class="row no-gutters py-1" (click)="sidebarItem.IsCollapsed = !sidebarItem.IsCollapsed;"
+        [class.collapsed]="IsSidebarCollapsed">
         <div class="col-auto">
           <i class="{{sidebarItem.Icon}}"></i>
         </div>
@@ -22,7 +29,7 @@
           <i class="fas fa-chevron-down mr-1" *ngIf="!sidebarItem.IsCollapsed"></i>
         </div>
       </div>
-      <div class="row no-gutters bg-secondary" [ngbCollapse]="sidebarItem.IsCollapsed">
+      <div class="row no-gutters bg-secondary" [ngbCollapse]="sidebarItem.IsCollapsed || IsSidebarCollapsed">
         <div class="col">
           <a class="row no-gutters py-1" [routerLink]="sidebarSubItem.RouterLink" routerLinkActive="active"
             [routerLinkActiveOptions]="{exact: true}" *ngFor="let sidebarSubItem of sidebarItem.Items">
@@ -38,17 +45,18 @@
     </ng-template>
   </ng-container>
 
-  <div class="row no-gutters py-1 border-top border-secondary position-absolute w-100" (click)="SignOut()" style="bottom: 0;">
+  <div class="row no-gutters py-1 border-top border-secondary position-absolute w-100" (click)="SignOut()"
+    style="bottom: 0;">
     <div class="col-auto">
       <i class="fas fa-sign-out-alt"></i>
     </div>
-    <div class="col">
+    <div class="col" [class.collapsed]="IsSidebarCollapsed">
       <span class="ml-2">Log Off</span>
     </div>
   </div>
 </div>
 
-<div class="content" [class.not-logged-in]="!IsLoggedIn">
+<div class="content" [class.not-logged-in]="!IsLoggedIn" [class.collapsed]="IsSidebarCollapsed">
   <router-outlet></router-outlet>
 </div>
 

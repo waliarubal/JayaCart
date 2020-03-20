@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent extends BaseComponent implements OnInit {
   readonly MessageType = MessageType;
-
   private _sidebarItems: SidebarItem[]
+  IsSidebarCollapsed: boolean;
 
   constructor(
     messageService: MessageService,

@@ -20,11 +20,21 @@
   user-select: none;
 }
 
+.sidebar.collapsed {
+  display: block;
+  width: 36px;
+}
+
 .sidebar>a,
 .sidebar>div[class~="py-1"] {
   text-decoration: none;
   color: #f8f9fa;
   padding-left: 8px;
+}
+
+.sidebar>a.collpsed>div,
+.sidebar>div[class~="py-1"].collapsed>div {
+  display: none;
 }
 
 .sidebar>div[class~="bg-secondary"] a {
@@ -64,6 +74,10 @@
 .content {
   margin-left: 260px;
   min-height: 100vh;
+}
+
+.content.collapsed {
+  margin-left: 36px;
 }
 
 .not-logged-in {
