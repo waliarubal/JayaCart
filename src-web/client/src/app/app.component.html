@@ -46,7 +46,7 @@
   </ng-container>
 
   <div class="row no-gutters py-1 border-top border-secondary position-absolute w-100" (click)="SignOut()"
-    style="bottom: 0;">
+    style="bottom: 0;" [class.collapsed]="IsSidebarCollapsed">
     <div class="col-auto">
       <i class="fas fa-sign-out-alt"></i>
     </div>

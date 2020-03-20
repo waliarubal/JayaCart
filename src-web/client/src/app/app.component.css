@@ -32,8 +32,9 @@
   padding-left: 8px;
 }
 
-.sidebar>a.collpsed>div,
-.sidebar>div[class~="py-1"].collapsed>div {
+.sidebar>a.collapsed>div:nth-child(n+2),
+.sidebar>div[class~="py-1"].collapsed>div:nth-child(n+2),
+.sidebar>div[class~="position-absolute"].collapsed>div:nth-child(n+2) {
   display: none;
 }
 
