@@ -17,4 +17,12 @@ export class CategoryService extends BaseService {
     CreateCategory(category: Category): Promise<Category> {
         return this.Post(category);
     }
+
+    GetCategory(code: string): Promise<Category> {
+        return this.Get<Category>(code);
+    }
+
+    Update(category: Category) : Promise<Category> {
+        return this.Patch(category, category.Code);
+    }
 }
