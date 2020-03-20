@@ -7,7 +7,7 @@
   <ng-container *ngFor="let sidebarItem of SidebarItems">
     <a class="row no-gutters py-1" routerLinkActive="active" [routerLink]="sidebarItem.RouterLink"
       [routerLinkActiveOptions]="{exact: true}" *ngIf="sidebarItem.Items.length === 0; else nested"
-      [class.collapsed]="IsSidebarCollapsed">
+      [class.collapsed]="IsSidebarCollapsed" (click)="ExpandSidebar()">
       <div class="col-auto">
         <i class="{{sidebarItem.Icon}}"></i>
       </div>
@@ -16,7 +16,7 @@
       </div>
     </a>
     <ng-template #nested>
-      <div class="row no-gutters py-1" (click)="sidebarItem.IsCollapsed = !sidebarItem.IsCollapsed;"
+      <div class="row no-gutters py-1" (click)="ExpandSidebar(); sidebarItem.IsCollapsed = !sidebarItem.IsCollapsed;"
         [class.collapsed]="IsSidebarCollapsed">
         <div class="col-auto">
           <i class="{{sidebarItem.Icon}}"></i>

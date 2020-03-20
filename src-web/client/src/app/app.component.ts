@@ -43,4 +43,9 @@ export class AppComponent extends BaseComponent implements OnInit {
     this._accountService.LogOff();
     this.Navigate('/Login');
   }
+
+  ExpandSidebar(): void {
+    if (this.IsSidebarCollapsed)
+      this.IsSidebarCollapsed = false;
+  }
 }

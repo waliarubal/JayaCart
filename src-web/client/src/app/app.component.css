@@ -22,7 +22,7 @@
 
 .sidebar.collapsed {
   display: block;
-  width: 36px;
+  width: 35px;
 }
 
 .sidebar>a,
@@ -78,7 +78,7 @@
 }
 
 .content.collapsed {
-  margin-left: 36px;
+  margin-left: 35px;
 }
 
 .not-logged-in {
