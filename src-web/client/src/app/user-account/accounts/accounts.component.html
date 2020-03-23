@@ -1,5 +1,6 @@
-<app-header [IsBusy]="IsBusy" [IsSearchAllowed]='true' [Title]="'Manage User Accounts'" (OnSearch)="Search($event);"
-  [NewRecordRouterLink]="'/UserAccounts/New'">
+<app-header [IsBusy]="IsBusy" [IsSearchAllowed]='true' [Title]="'Manage User Accounts'"
+   [NewRecordRouterLink]="'/UserAccounts/New'"
+  [Keywoards]="Keywoards" (KeywoardsChange)="Search(Keywoards);">
 </app-header>
 <div class="row no-gutters">
   <div class="col">
@@ -38,15 +39,16 @@
               <i class="fas fa-key"></i>
               <span class="ml-2">Reset Password</span>
             </button>
-            <button type="button" class="btn btn-sm btn-info mr-1 border-0" *ngIf="!account.IsActive"
-              [disabled]="IsBusy">
-              <i class="fas fa-unlock-alt"></i>
-              <span class="ml-2">Activate</span>
-            </button>
-            <button type="button" class="btn btn-sm btn-secondary mr-1 border-0" *ngIf="account.IsActive"
-              [disabled]="IsBusy">
-              <i class="fas fa-lock"></i>
-              <span class="ml-2">Deactivate</span>
+            <button type="button" class="btn btn-sm btn-info mr-1 border-0" [disabled]="IsBusy"
+              (click)="Activate(account)">
+              <ng-container *ngIf="!account.IsActive">
+                <i class="fas fa-unlock-alt"></i>
+                <span class="ml-2">Activate</span>
+              </ng-container>
+              <ng-container *ngIf="account.IsActive">
+                <i class="fas fa-lock"></i>
+                <span class="ml-2">Deactivate</span>
+              </ng-container>
             </button>
           </td>
         </tr>

@@ -98,10 +98,36 @@ export class UserAccountService extends BaseService {
         }
     }
 
+    private async Activate(request, response) {
+        try {
+            let phoneNumber = request.params.PhoneNumber;
+            let isActive = request.params.IsActive === 'true';
+
+            let account = await this.Get(phoneNumber);
+            if (account) {
+                account.IsActive = isActive;
+
+                let updatedRecord = await firebaseHelper.firestore.updateDocument(this.Database, USER_ACCOUNTS, phoneNumber, account);
+                if (updatedRecord)
+                    response
+                        .status(HttpStatus.OK)
+                        .json(this.Result<UserAccount>(updatedRecord));
+                else
+                    response
+                        .status(HttpStatus.OK)
+                        .json(this.Error<UserAccount>(`Failed to update user account with phone number ${request.params.PhoneNumber}.`));
+            }
+
+        } catch (ex) {
+
+        }
+    }
+
     private async SignIn(request, response) {
         try {
             let phoneNumber = request.body['PhoneNumber'];
             let password = request.body['Password'];
+            let isAdmin = new Boolean(request.body['IsAdmin']);
 
             let record = await this.Get(phoneNumber);
             if (record) {
@@ -115,7 +141,14 @@ export class UserAccountService extends BaseService {
                 if (!record.IsActive) {
                     response
                         .status(HttpStatus.OK)
-                        .json(this.Error<UserAccount>(`User account for phone number ${request.params.PhoneNumber} is not active.`));
+                        .json(this.Error<UserAccount>(`User account for phone number ${phoneNumber} is not active.`));
+                    return;
+                }
+
+                if (isAdmin && !record.IsAdmin) {
+                    response
+                        .status(HttpStatus.OK)
+                        .json(this.Error<UserAccount>(`User account for phone number ${phoneNumber} is not authorized for access.`));
                     return;
                 }
 
@@ -126,7 +159,7 @@ export class UserAccountService extends BaseService {
             } else
                 response
                     .status(HttpStatus.OK)
-                    .json(this.Error<UserAccount>(`User account for phone number ${request.params.PhoneNumber} does not exist.`))
+                    .json(this.Error<UserAccount>(`User account for phone number ${phoneNumber} does not exist.`))
         } catch (ex) {
             response
                 .status(HttpStatus.OK)
@@ -171,5 +204,6 @@ export class UserAccountService extends BaseService {
         this.RegisterMethod(HttpMethod.Get, `/${USER_ACCOUNTS}`, async (request, response) => await this.GetMany(request, response));
         this.RegisterMethod(HttpMethod.Delete, `/${USER_ACCOUNTS}/:PhoneNumber`, async (request, response) => await this.Delete(request, response));
         this.RegisterMethod(HttpMethod.Post, `/${USER_ACCOUNTS}/SignIn`, async (request, response) => await this.SignIn(request, response));
+        this.RegisterMethod(HttpMethod.Patch, `/${USER_ACCOUNTS}/Activate/:PhoneNumber/:IsActive`, async (request, response) => await this.Activate(request, response));
     }
 }

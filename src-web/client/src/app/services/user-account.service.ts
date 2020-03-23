@@ -18,7 +18,6 @@ export class UserAccountService extends BaseService {
             accountString = atob(accountString);
             this._account = <UserAccount>JSON.parse(accountString);
         }
-            
     }
 
     get Account(): UserAccount {
@@ -46,6 +45,10 @@ export class UserAccountService extends BaseService {
         return this.Post(account);
     }
 
+    Activate(phoneNumber: string, isActive: boolean): Promise<UserAccount> {
+        return this.Patch(undefined, `Activate/${phoneNumber}/${isActive}`);
+    }
+
     Update(account: UserAccount) : Promise<UserAccount> {
         return this.Patch(account, account.PhoneNumber);
     }
@@ -56,7 +59,8 @@ export class UserAccountService extends BaseService {
         password = this.GetMd5(password);
         let credentials = {
             PhoneNumber: phoneNumber,
-            Password: password
+            Password: password,
+            IsAdmin: true
         };
 
         let account = await this.Post<UserAccount>(credentials, 'SignIn');

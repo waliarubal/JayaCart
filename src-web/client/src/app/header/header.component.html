@@ -3,7 +3,7 @@
     <h4 class="text-light text-uppercase font-weight-bold mr-2">{{Title}}</h4>
   </div>
   <div class="col">
-    <form #form="ngForm" (ngSubmit)="OnSearch.emit(Keywoards)">
+    <form #form="ngForm" (ngSubmit)="KeywoardsChange.emit(Keywoards);">
       <div class="form-row">
 
         <div class="input-group col" *ngIf="IsSearchAllowed">
