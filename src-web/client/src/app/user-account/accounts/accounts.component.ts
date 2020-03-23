@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AccountsComponent extends BaseComponent {
     private _accounts: UserAccount[];
-    Keywoards: string;
+    private _keywoards: string;
 
     constructor(private readonly _accountService: UserAccountService, messageService: MessageService, router: Router) {
         super(messageService, router)
@@ -23,7 +23,8 @@ export class AccountsComponent extends BaseComponent {
     }
 
     async Search(keywoards: string = '') {
-        debugger;
+        this._keywoards = keywoards;
+
         this.IsBusy = true;
         this._accounts = await this._accountService.GetAllUsers();
         this.IsBusy = false;
@@ -34,7 +35,7 @@ export class AccountsComponent extends BaseComponent {
 
         let record = await this._accountService.Activate(account.PhoneNumber, !account.IsActive);
         if (record)
-            await this.Search(this.Keywoards);
+            await this.Search(this._keywoards);
 
         this.IsBusy = false;
     }

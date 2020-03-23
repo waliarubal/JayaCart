@@ -1,6 +1,5 @@
 <app-header [IsBusy]="IsBusy" [IsSearchAllowed]='true' [Title]="'Manage User Accounts'"
-   [NewRecordRouterLink]="'/UserAccounts/New'"
-  [Keywoards]="Keywoards" (KeywoardsChange)="Search(Keywoards);">
+  [NewRecordRouterLink]="'/UserAccounts/New'" (OnSearch)="Search(Keywoards);">
 </app-header>
 <div class="row no-gutters">
   <div class="col">
